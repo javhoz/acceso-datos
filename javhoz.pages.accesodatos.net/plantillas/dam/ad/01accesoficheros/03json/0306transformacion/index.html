@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  
+<!-- Mirrored from manuais.pages.iessanclemente.net/plantillas/dam/ad/01accesoficheros/03json/0306transformacion/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Sep 2025 20:45:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.140.2">
+    <meta name="generator" content="Relearn 7.6.1+0b83617ee9da5253aafcf11807b256da7d88d709">
+    <meta name="description" content="0. Introducción. GsonBuilder#registerTypeAdapter​(Type, Object) 1. Soporte de versiones en GSON: @Since y @Until 2. Creación de objetos personalizados en GSON: InstanceCreator 3. Serialización y Deserialización personalizados: JsonSerializer y JsonDeserializer 3.1. Serializador personalizado 3.2. Deserializador personalizado Ejemplo avanzado 4. Adaptadores de tipo: clase TypeAdapter Definiendo la forma JSON de un tipo 0. Introducción. GsonBuilder#registerTypeAdapter (Type, Object) GsonBuilder dispone de un método:
+public GsonBuilder registerTypeAdapter (Type tipo, Object tipoDeAdaptador)
+Que se emplea para la serialización o deserialización personalizada.
+Este método puede registrar varios tipos de adaptadores:">
+    <meta name="author" content="IES Tubalcain">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <meta name="twitter:title" content="01.06. Gson. Transformación de objetos JSON personalizada :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta name="twitter:description" content="0. Introducción. GsonBuilder#registerTypeAdapter​(Type, Object) 1. Soporte de versiones en GSON: @Since y @Until 2. Creación de objetos personalizados en GSON: InstanceCreator 3. Serialización y Deserialización personalizados: JsonSerializer y JsonDeserializer 3.1. Serializador personalizado 3.2. Deserializador personalizado Ejemplo avanzado 4. Adaptadores de tipo: clase TypeAdapter Definiendo la forma JSON de un tipo 0. Introducción. GsonBuilder#registerTypeAdapter (Type, Object) GsonBuilder dispone de un método:
+public GsonBuilder registerTypeAdapter (Type tipo, Object tipoDeAdaptador)
+Que se emplea para la serialización o deserialización personalizada.
+Este método puede registrar varios tipos de adaptadores:">
+    <meta property="og:url" content="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0306transformacion/index.html">
+    <meta property="og:site_name" content="IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta property="og:title" content="01.06. Gson. Transformación de objetos JSON personalizada :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta property="og:description" content="0. Introducción. GsonBuilder#registerTypeAdapter​(Type, Object) 1. Soporte de versiones en GSON: @Since y @Until 2. Creación de objetos personalizados en GSON: InstanceCreator 3. Serialización y Deserialización personalizados: JsonSerializer y JsonDeserializer 3.1. Serializador personalizado 3.2. Deserializador personalizado Ejemplo avanzado 4. Adaptadores de tipo: clase TypeAdapter Definiendo la forma JSON de un tipo 0. Introducción. GsonBuilder#registerTypeAdapter (Type, Object) GsonBuilder dispone de un método:
+public GsonBuilder registerTypeAdapter (Type tipo, Object tipoDeAdaptador)
+Que se emplea para la serialización o deserialización personalizada.
+Este método puede registrar varios tipos de adaptadores:">
+    <meta property="og:locale" content="es">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML">
+    <meta property="article:modified_time" content="2025-06-06T08:52:43+00:00">
+    <meta property="og:image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <meta itemprop="name" content="01.06. Gson. Transformación de objetos JSON personalizada :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta itemprop="description" content="0. Introducción. GsonBuilder#registerTypeAdapter​(Type, Object) 1. Soporte de versiones en GSON: @Since y @Until 2. Creación de objetos personalizados en GSON: InstanceCreator 3. Serialización y Deserialización personalizados: JsonSerializer y JsonDeserializer 3.1. Serializador personalizado 3.2. Deserializador personalizado Ejemplo avanzado 4. Adaptadores de tipo: clase TypeAdapter Definiendo la forma JSON de un tipo 0. Introducción. GsonBuilder#registerTypeAdapter (Type, Object) GsonBuilder dispone de un método:
+public GsonBuilder registerTypeAdapter (Type tipo, Object tipoDeAdaptador)
+Que se emplea para la serialización o deserialización personalizada.
+Este método puede registrar varios tipos de adaptadores:">
+    <meta itemprop="dateModified" content="2025-06-06T08:52:43+00:00">
+    <meta itemprop="wordCount" content="3793">
+    <meta itemprop="image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <title>01.06. Gson. Transformación de objetos JSON personalizada :: IES Tubalcain - Acceso a datos (2º DAM)</title>
+    <link href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/01accesoficheros/03json/0306transformacion/index.xml" rel="alternate" type="application/rss+xml" title="01.06. Gson. Transformación de objetos JSON personalizada :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <link href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/01accesoficheros/03json/0306transformacion/index.print.html" rel="alternate" type="text/html" title="01.06. Gson. Transformación de objetos JSON personalizada :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <link href="../../../fonts/fontawesome/css/fontawesome-all.min3c2e.css?1749199978" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../../fonts/fontawesome/css/fontawesome-all.min3c2e.css?1749199978" rel="stylesheet"></noscript>
+    <link href="../../../css/perfect-scrollbar/perfect-scrollbar.min3c2e.css?1749199978" rel="stylesheet">
+    <link href="../../../css/theme.min3c2e.css?1749199978" rel="stylesheet">
+    <link href="../../../css/format-html.min3c2e.css?1749199978" rel="stylesheet" id="R-format-style">
+    <link href="../../../css/auto-complete/auto-complete.min3c2e.css?1749199978" rel="stylesheet">
+    <script src="../../../js/auto-complete/auto-complete.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.stemmer.support.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.multi.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.es.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/search.min3c2e.js?1749199978" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='#\/01accesoficheros\/03json\/0306transformacion\/index.html';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='';
+      window.relearn.contentLangs=['es'];
+      window.relearn.index_js_url="../../../searchindex.es3c2e.js?1749199978";
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // variant stuff
+      window.relearn.themevariants = [ 'blue', 'relearn-light', 'relearn-dark', 'learn', 'neon', 'green', 'red' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copiar en el portapapeles`;
+      window.T_Copied_to_clipboard = `¡Copiado al portapapeles!`;
+      window.T_Copy_link_to_clipboard = `Copiar enlace al portapapeles`;
+      window.T_Link_copied_to_clipboard = `¡Enlace copiado al portapapeles!`;
+      window.T_Reset_view = `Restablecer vista`;
+      window.T_View_reset = `¡Ver reajuste!`;
+      window.T_No_results_found = `No se han encontrado resultados para "{0}"`;
+      window.T_N_results_found = `{1} resultados encontrados para "{0}"`;
+    </script><style>
+    :root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+}
+
+@media screen and (max-width: 70.5rem) {
+    #R-sidebar {
+        min-width: var(--INTERNAL-MENU-WIDTH-S);
+        max-width: var(--INTERNAL-MENU-WIDTH-S);
+        width: var(--INTERNAL-MENU-WIDTH-S);
+    }
+    #R-body {
+        margin-inline-start: var(--INTERNAL-MENU-WIDTH-S);
+        min-width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+        max-width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+        width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+    }
+}
+@media screen and (max-width: 70.5rem) {
+     
+
+    .mobile-support #R-sidebar {
+        inset-inline-start: calc( -1 * var(--INTERNAL-MENU-WIDTH-S) );
+        min-width: var(--INTERNAL-MENU-WIDTH-S);
+        max-width: var(--INTERNAL-MENU-WIDTH-S);
+        width: var(--INTERNAL-MENU-WIDTH-S);
+    }
+    .mobile-support #navshow{
+        display: inline;
+    }
+    .mobile-support #R-body {
+        min-width: 100%;
+        max-width: 100%;
+        width: 100%;
+    }
+    .mobile-support #R-body {
+        margin-inline-start: 0;
+    }
+    .mobile-support.sidebar-flyout {
+        overflow: hidden;
+    }
+    .mobile-support.sidebar-flyout #R-sidebar {
+        inset-inline-start: 0;
+        z-index: 90;
+    }
+    .mobile-support.sidebar-flyout #R-body {
+        margin-inline-start: var(--INTERNAL-MENU-WIDTH-S);
+        overflow: hidden;
+    }
+    .mobile-support.sidebar-flyout #R-body-overlay{
+        background-color: rgba( 134, 134, 134, .5 );
+        bottom: 0;
+        cursor: pointer;
+        height: 100vh;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 190;
+    }
+}
+
+</style>
+
+
+  </head>
+  <body class="mobile-support html" data-url="../../../01accesoficheros/03json/0306transformacion/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menú (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Tabla de contenido (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#0-introducción-gsonbuilderregistertypeadapter-type-object">0. Introducción. <code>GsonBuilder#registerTypeAdapter (Type, Object)</code></a></li>
+    <li><a href="#1-soporte-de-versiones-en-gson-since-y-until">1. Soporte de versiones en GSON: <code>@Since</code> y <code>@Until</code></a></li>
+    <li><a href="#2-creación-de-objetos-personalizados-en-gson-instancecreatorhttpswwwjavadociostaticcomgooglecodegsongson2101comgooglegsoncomgooglegsoninstancecreatorhtml">2. Creación de objetos personalizados en GSON: <a href="https://www.javadoc.io/static/com.google.code.gson/gson/2.10.1/com.google.gson/com/google/gson/InstanceCreator.html"><code>InstanceCreator</code></a></a></li>
+    <li><a href="#3-serialización-y-deserialización-personalizados-jsonserializer-y-jsondeserializer">3. Serialización y Deserialización personalizados: <code>JsonSerializer</code> y <code>JsonDeserializer</code></a>
+      <ul>
+        <li><a href="#31-serializador-personalizado">3.1. Serializador personalizado</a></li>
+        <li><a href="#32-deserializador-personalizado">3.2. Deserializador personalizado</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-adaptadores-de-tipo-clase-typeadapter">4. Adaptadores de tipo: clase <code>TypeAdapter</code></a>
+      <ul>
+        <li><a href="#definiendo-la-forma-json-de-un-tipo">Definiendo la forma JSON de un tipo</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../../index.html"><span itemprop="name">Acceso a datos</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../index.html"><span itemprop="name">UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../index.html"><span itemprop="name">01.03 JSON en Java</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">01.06. Gson. Transformación de objetos JSON personalizada</span><meta itemprop="position" content="4"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/01accesoficheros/03json/0306transformacion/index.print.html" title="Imprimir todo el capítulo (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../0306creaciongson/index.html" title="01.05 Gson. Creación y lectura de objetos JSON (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../0307jsonreader01/index.html" title="01.07 Gson. JsonReader (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Más"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 01accesoficheros" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="0106-gson-transformación-de-objetos-json-personalizada">01.06. Gson. Transformación de objetos JSON personalizada</h1>
+
+<ul>
+<li><a href="index.html#0-introducción-gsonbuilderregistertypeadaptertype-object">0. Introducción. <code>GsonBuilder#registerTypeAdapter​(Type, Object)</code></a></li>
+<li><a href="index.html#1-soporte-de-versiones-en-gson-since-y-until">1. Soporte de versiones en GSON: <code>@Since</code> y <code>@Until</code></a></li>
+<li><a href="index.html#2-creación-de-objetos-personalizados-en-gson-instancecreator">2. Creación de objetos personalizados en GSON: <code>InstanceCreator</code></a></li>
+<li><a href="index.html#3-serialización-y-deserialización-personalizados-jsonserializer-y-jsondeserializer">3. Serialización y Deserialización personalizados: <code>JsonSerializer</code> y <code>JsonDeserializer</code></a>
+<ul>
+<li><a href="index.html#31-serializador-personalizado">3.1. Serializador personalizado</a></li>
+<li><a href="index.html#32-deserializador-personalizado">3.2. Deserializador personalizado</a>
+<ul>
+<li><a href="index.html#ejemplo-avanzado">Ejemplo avanzado</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="index.html#4-adaptadores-de-tipo-clase-typeadapter">4. Adaptadores de tipo: clase <code>TypeAdapter</code></a>
+<ul>
+<li><a href="index.html#definiendo-la-forma-json-de-un-tipo">Definiendo la forma JSON de un tipo</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="0-introducción-gsonbuilderregistertypeadapter-type-object">0. Introducción. <code>GsonBuilder#registerTypeAdapter (Type, Object)</code></h2>
+<p><a href="https://www.javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/com/google/gson/GsonBuilder.html#registerTypeAdapter(java.lang.reflect.Type,java.lang.Object)" rel="external" target="_blank">GsonBuilder dispone de un método</a>:</p>
+<p><code>public GsonBuilder registerTypeAdapter (Type tipo, Object tipoDeAdaptador)</code></p>
+<p>Que se emplea para la <strong>serialización o deserialización personalizada</strong>.<br>
+Este método puede registrar varios tipos de adaptadores:</p>
+<ol>
+<li>
+<p><strong><a href="https://www.javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/com/google/gson/TypeAdapter.html" rel="external" target="_blank">Adaptadores de tipo</a>: <code>TypeAdapter</code></strong>, clase abstracta empleada para personalizar la adaptación de tipos integrados, implantando los métodos <code>write (JsonWriter out, T valor)</code> y <code>read(JsonReader reader)</code>:</p>
+<ul>
+<li>El <strong>método <code>write</code> se emplea para serializar un objeto de tipo <code>T</code> en un JSON</strong>: <code>public abstract void write (JsonWriter out, T value) throws IOException</code>. Por ejemplo, para serializar un objeto de tipo <code>Persona</code>:</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">write</span>(JsonWriter out, Persona persona) <span style="color:#66d9ef">throws</span> IOException {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(out <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">||</span> persona <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>            writer.<span style="color:#a6e22e">nullValue</span>();
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        out.<span style="color:#a6e22e">beginObject</span>();
+</span></span><span style="display:flex;"><span>        out.<span style="color:#a6e22e">name</span>(<span style="color:#e6db74">&#34;nombre&#34;</span>).<span style="color:#a6e22e">value</span>(persona.<span style="color:#a6e22e">getNombre</span>());
+</span></span><span style="display:flex;"><span>        out.<span style="color:#a6e22e">name</span>(<span style="color:#e6db74">&#34;edad&#34;</span>).<span style="color:#a6e22e">value</span>(persona.<span style="color:#a6e22e">getEdad</span>());
+</span></span><span style="display:flex;"><span>        out.<span style="color:#a6e22e">endObject</span>();
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Los métodos principales de JsonWriter son: <code>beginArray()</code>, <code>endArray()</code>, <code>beginObject()</code>, <code>endObject()</code>, <code>name(String name)</code>, <code>value(String value)</code>, <code>value(Boolean value)</code>, <code>value(double value)</code>, <code>value(long value)</code>, <code>nullValue()</code>, <code>setLenient(boolean lenient)</code>, <code>setIndent(String indent)</code>, <code>setSerializeNulls(boolean serializeNulls)</code>, <code>close()</code>, <code>flush()</code>. <strong>El método <code>name(String name)</code> se emplea para escribir el nombre de un atributo en un objeto JSON y el método <code>value(T value)</code> para escribir el valor de un atributo en un objeto JSON</strong>.</p>
+</li>
+</ol>
+<ul>
+<li>
+<p>El <strong>método <code>read</code> se emplea para deserializar un JSON en un objeto de tipo <code>T</code></strong>: <code>public abstract T read(JsonReader in) throws IOException</code>. Por ejemplo, para deserializar un objeto de tipo <code>Persona</code>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> Persona <span style="color:#a6e22e">read</span>(JsonReader in) <span style="color:#66d9ef">throws</span> IOException {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(in <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    Persona persona <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Persona();
+</span></span><span style="display:flex;"><span>    in.<span style="color:#a6e22e">beginObject</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (in.<span style="color:#a6e22e">hasNext</span>()) {
+</span></span><span style="display:flex;"><span>        String name <span style="color:#f92672">=</span> in.<span style="color:#a6e22e">nextName</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">switch</span> (name) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;nombre&#34;</span>:
+</span></span><span style="display:flex;"><span>                persona.<span style="color:#a6e22e">setNombre</span>(in.<span style="color:#a6e22e">nextString</span>());
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;edad&#34;</span>:
+</span></span><span style="display:flex;"><span>                persona.<span style="color:#a6e22e">setEdad</span>(in.<span style="color:#a6e22e">nextInt</span>());
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">default</span>:
+</span></span><span style="display:flex;"><span>                in.<span style="color:#a6e22e">skipValue</span>();
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    in.<span style="color:#a6e22e">endObject</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> persona;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Los métodos principales de JsonReader son: <code>beginArray()</code>, <code>endArray()</code>, <code>beginObject()</code>, <code>endObject()</code>, <code>hasNext()</code>, <code>nextName()</code>, <code>nextString()</code>, <code>nextBoolean()</code>, <code>nextDouble()</code>, <code>nextInt()</code>, <code>skipValue()</code>, <code>setLenient(boolean lenient)</code>, <code>close()</code>, <code>peek()</code>, <code>skipValue()</code>. <strong>El método <code>nextName()</code> se emplea para leer el nombre de un atributo en un objeto JSON y los métodos <code>nextString()</code>, <code>nextBoolean()</code>, <code>nextDouble()</code>, <code>nextInt()</code> para leer el valor de un atributo en un objeto JSON</strong>. Se puede usar el método <code>peek()</code> para ver el siguiente token sin consumirlo y tomar decisiones::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>JsonToken token <span style="color:#f92672">=</span> in.<span style="color:#a6e22e">peek</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (token <span style="color:#f92672">==</span> JsonToken.<span style="color:#a6e22e">NULL</span>) {
+</span></span><span style="display:flex;"><span>    in.<span style="color:#a6e22e">nextNull</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+</li>
+</ul>
+<ol start="2">
+<li><strong><a href="https://www.javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/com/google/gson/InstanceCreator.html" rel="external" target="_blank">Creadores de instancia</a>: <code>InstanceCreator&lt;T&gt;</code></strong>, interfaz que debe implantarse para crear instancias de una clase sin constructor por defecto. Siempre, si fuese posible, es mejor implantar un constructor por defecto.</li>
+<li><strong><a href="https://www.javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/com/google/gson/JsonSerializer.html" rel="external" target="_blank">Serialización</a> y <a href="https://www.javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/com/google/gson/JsonDeserializer.html" rel="external" target="_blank">deserialización</a> personalizada: <code>JsonSerializer&lt;T&gt;</code> y un <code>JsonDeserializer&lt;T&gt;</code></strong>. Interfaces que representa un serializador y deserializador personalizado para JSON. Debe escribir un serializador/deserializador personalizado si no estás satisfecho con la serialización predeterminada realizada por Gson.</li>
+</ol>
+<p>Se utiliza mejor cuando un único objeto <code>TypeAdapter</code> implementa todas las interfaces necesarias para la serialización personalizada con Gson.<br>
+<strong>Si se registró previamente un adaptador de tipo para el tipo especificado, este será sobrescrito</strong>.</p>
+<p>Este método registra solo el tipo especificado y ningún otro: ¡debes registrar manualmente los tipos relacionados! Por ejemplo, las aplicaciones que registran <code>boolean.class</code> también deben registrar <code>Boolean.class</code>.</p>
+<p><code>JsonSerializer</code> y <code>JsonDeserializer</code> son &ldquo;a prueba de nulos&rdquo;. Esto significa que al intentar serializar <code>null</code>, Gson escribirá un JSON <code>null</code> y no se llamará al serializador. De manera similar, al deserializar un JSON <code>null</code>, Gson emitirá <code>null</code> sin llamar al deserializador. Si se desea manejar valores nulos, en su lugar, se debe usar un <code>TypeAdapter</code>.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> GsonBuilder <span style="color:#a6e22e">registerTypeAdapter</span> (Type type, Object typeAdapter) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Implementación del método</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>; <span style="color:#75715e">// Devuelve una referencia a este objeto GsonBuilder</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Empezaremos viendo cómo restringir la serialización y deserialización por versión de la clase y pasaremos a ver ejemplos de <strong>adaptadores personalizados</strong>.</p>
+<h2 id="1-soporte-de-versiones-en-gson-since-y-until">1. Soporte de versiones en GSON: <code>@Since</code> y <code>@Until</code></h2>
+<p>GSON permite un control sencillo de versiones de las clases para los objetos Java que lee y escribe. El soporte de versiones en GSON significa que <strong>se pueden marcar los atributos de las clases Java con un número de versión y luego hacer que GSON incluya o excluya campos de tus clases Java según su número de versión</strong>.<br>
+Estas anotaciones son útiles para <strong>gestionar el control de versiones de las clases JSON</strong>.</p>
+<p>Se precisan hacer dos cosas:</p>
+<ol>
+<li>Añadir la <a href="https://www.javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/com/google/gson/annotations/Since.html" rel="external" target="_blank">anotación <code>@Since</code></a> o la <a href="https://www.javadoc.io/static/com.google.code.gson/gson/2.10.1/com.google.gson/com/google/gson/annotations/Until.html" rel="external" target="_blank">anotacion <code>@Until</code></a> al atributo: <code>@Since(x.x)</code> o <code>@Until(x.x)</code>
+<ol>
+<li><code>@Until</code> indica el <strong>número de versión HASTA que un miembro o un tipo debe estar presente</strong>. Si Gson se crea con un número de versión igual o superior al valor almacenado de la anotación @Until, el campo se ignorará en la salida JSON.</li>
+<li><code>@Since</code> indica <strong>el número de versión DESDE que un miembro o un tipo debe estar presente</strong>.</li>
+</ol>
+</li>
+<li>Indicarle al GsonBuilder las versión a admitir:  <a href="https://www.javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/com/google/gson/GsonBuilder.html#setVersion(double)" rel="external" target="_blank">public GsonBuilder setVersion (double version)</a></li>
+</ol>
+<p>(1) Ejemplo de la clase Persoa con sus campos anotados con las anotaciones @Since y @Until:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> com.google.gson.annotations.Since;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.google.gson.annotations.Until;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Persoa</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// He puesto los atributos como públicos para simplificar</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// el código, pero no se recomienda en absoluto.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Since</span>(1.<span style="color:#a6e22e">0</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String nome <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Since</span>(1.<span style="color:#a6e22e">0</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String apelidos <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Until</span>(2.<span style="color:#a6e22e">0</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String cidade <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Since</span>(3.<span style="color:#a6e22e">0</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String email <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>(2) En segundo lugar, debes <strong>crear un GsonBuilder y decirle a qué versión (desde o hasta) debería serializar y deserializar</strong>.</p>
+<p>Por ejemplo:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>GsonBuilder builder <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> GsonBuilder();
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Versión 2.0, entonces serializa/deserializa </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// los que tienen un @Since menor o igual a 2.0 o @Until </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// mayor que 2.0 </span>
+</span></span><span style="display:flex;"><span>builder.<span style="color:#a6e22e">setVersion</span>(2.<span style="color:#a6e22e">0</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Gson gson <span style="color:#f92672">=</span> builder.<span style="color:#a6e22e">create</span>();</span></span></code></pre></div>
+<p>La instancia de Gson creada a partir del GsonBuilder anterior solo incluirá campos que estén anotados <strong>con @Since(2.0) o con un número de versión inferior a 2.0</strong>, así como los campos que <strong>tengan @Until superior a 2.0</strong> (no inclúido).</p>
+<p>En el ejemplo de la clase <em>Persoa</em> anterior los campos <em>nome</em> y <em>apelidos</em> serán incluidos, no así <em>cidade</em> porque tiene un valor igual (no superior) a 2.0. El campo email está anotado con la versión 3.0, que es posterior a 2.0, por lo que GSON también excluirá el campo email.</p>
+<p>Ejemplo de cómo serializar un objeto Persoa a JSON y ver el JSON generado:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Persoa persoa <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Persoa();
+</span></span><span style="display:flex;"><span>persoa.<span style="color:#a6e22e">nome</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Anne&#34;</span>;
+</span></span><span style="display:flex;"><span>persoa.<span style="color:#a6e22e">apelidos</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Sexton&#34;</span>;
+</span></span><span style="display:flex;"><span>persoa.<span style="color:#a6e22e">cidade</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Santiago&#34;</span>;
+</span></span><span style="display:flex;"><span>persoa.<span style="color:#a6e22e">email</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;anne@doe.com&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>GsonBuilder builder <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> GsonBuilder();
+</span></span><span style="display:flex;"><span>builder.<span style="color:#a6e22e">setVersion</span>(2.<span style="color:#a6e22e">0</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Gson gson <span style="color:#f92672">=</span> builder.<span style="color:#a6e22e">create</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>String persoaJson <span style="color:#f92672">=</span> gson.<span style="color:#a6e22e">toJson</span>(persoa);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(persoaJson);</span></span></code></pre></div>
+<p>Este ejemplo imprimirá la siguiente cadena JSON:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{<span style="color:#f92672">&#34;nome&#34;</span>:<span style="color:#e6db74">&#34;Anne&#34;</span>,<span style="color:#f92672">&#34;apelidos&#34;</span>:<span style="color:#e6db74">&#34;Sexton&#34;</span>}</span></span></code></pre></div>
+<p>Observa cómo GSON excluyó el campo email y cidade en el JSON generado.</p>
+<p>Excluir campos basados en la versión <strong>funciona de la misma manera para leer JSON en objetos Java (deserialización)</strong>. Observa la siguiente cadena JSON que contiene todos los campos, incluido el campo email:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{<span style="color:#f92672">&#34;nome&#34;</span>:<span style="color:#e6db74">&#34;Anne&#34;</span>,<span style="color:#f92672">&#34;apelidos&#34;</span>:<span style="color:#e6db74">&#34;Sexton&#34;</span>,<span style="color:#f92672">&#34;cidade&#34;</span>:<span style="color:#e6db74">&#34;Santiago&#34;</span>,<span style="color:#f92672">&#34;email&#34;</span>:<span style="color:#e6db74">&#34;anne@doe.com&#34;</span>}</span></span></code></pre></div>
+<p>Si se intenta leer un objeto Persoa con la instancia de Gson anterior, el campo email y el campo cidade no se leerán incluso si está presente en la cadena JSON.<br>
+Así se vería la lectura de un objeto Persoa con la instancia de Gson anterior:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String persoaJson2 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;{\&#34;nome\&#34;:\&#34;Anne\&#34;,\&#34;apelidos\&#34;:\&#34;Sexton\&#34;,\&#34;cidade\&#34;:\&#34;Santiago\&#34;,\&#34;email\&#34;:\&#34;anne@doe.com\&#34;}&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Person persoaLeida <span style="color:#f92672">=</span> gson.<span style="color:#a6e22e">fromJson</span>(persoaJson2, Persoa.<span style="color:#a6e22e">class</span>);</span></span></code></pre></div>
+<p>Comprueba el resultado.</p>
+<h2 id="2-creación-de-objetos-personalizados-en-gson-instancecreatorhttpswwwjavadociostaticcomgooglecodegsongson2101comgooglegsoncomgooglegsoninstancecreatorhtml">2. Creación de objetos personalizados en GSON: <a href="https://www.javadoc.io/static/com.google.code.gson/gson/2.10.1/com.google.gson/com/google/gson/InstanceCreator.html" rel="external" target="_blank"><code>InstanceCreator</code></a></h2>
+<p>GSON de manera prederminada <strong>crea los objetos a partir de un JSON invocando al constructor por defecto</strong>.<br>
+En muchos casos la clase no tiene un constructor predeterminado, o se <strong>desea realizar alguna configuración predeterminada del objeto,</strong> o se desea <strong>crear una instancia de una subclase</strong> en su lugar.<br>
+Para eso Gson tiene una interface: <a href="https://www.javadoc.io/static/com.google.code.gson/gson/2.10.1/com.google.gson/com/google/gson/InstanceCreator.html" rel="external" target="_blank"><code>com.google.gson.InstanceCreator</code></a>.</p>
+<p>Un objeto de tipo  <a href="https://www.javadoc.io/static/com.google.code.gson/gson/2.10.1/com.google.gson/com/google/gson/InstanceCreator.html" rel="external" target="_blank"><code>InstanceCreator</code></a> en GSON <strong>es un <a href="https://www.baeldung.com/java-factory-pattern" rel="external" target="_blank">objeto de tipo Factory</a></strong>.
+Un <strong>creador de instancias tiene que implementar la interfaz <code>InstanceCreator</code></strong> (<a href="https://www.javadoc.io/static/com.google.code.gson/gson/2.10.1/com.google.gson/com/google/gson/InstanceCreator.html" rel="external" target="_blank">com.google.gson.InstanceCreator</a>).</p>
+<p>Por ejemplo:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> com.google.gson.InstanceCreator;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CreadorDePoetas</span> <span style="color:#66d9ef">implements</span> InstanceCreator<span style="color:#f92672">&lt;</span>Poeta<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Poeta <span style="color:#a6e22e">createInstance</span>(Type tipo) {
+</span></span><span style="display:flex;"><span>        Poeta poeta <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Poeta();
+</span></span><span style="display:flex;"><span>        poeta.<span style="color:#a6e22e">setCategoria</span>(<span style="color:#e6db74">&#34;Poesía&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> poeta;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Se puede usar la clase <em>CreadorDePoetas</em> registrándola en un GsonBuilder con el método <a href="https://www.javadoc.io/static/com.google.code.gson/gson/2.10.1/com.google.gson/com/google/gson/GsonBuilder.html#registerTypeAdapter(java.lang.reflect.Type,java.lang.Object)" rel="external" target="_blank"><code>registerTypeAdapter</code></a> antes de crear la instantcia de tipo Gson: <code>gsonBuilder.registerTypeAdapter(Poeta.class, new CreadorDePoetas());</code></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>GsonBuilder gsonBuilder <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> GsonBuilder();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>gsonBuilder.<span style="color:#a6e22e">registerTypeAdapter</span>(Poeta.<span style="color:#a6e22e">class</span>, <span style="color:#66d9ef">new</span> CreadorDePoetas());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Gson gson  <span style="color:#f92672">=</span> gsonBuilder.<span style="color:#a6e22e">create</span>();</span></span></code></pre></div>
+<p>El objeto de tipo Gson del ejemplo anterior <strong>utilizará la instancia <code>CreadorDePoetas</code> para crear objetos de tipo <code>Poeta</code></strong>.<br>
+Comprúebalo con el siguiente código (haciendo uso del código anterior):</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String poetaJson <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;{ \&#34;nome\&#34; : \&#34;Anne Sexton\&#34;,  \&#34;idade\&#34; : 45}&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Poeta poeta <span style="color:#f92672">=</span> gson.<span style="color:#a6e22e">fromJson</span>(poetaJson, Poeta.<span style="color:#a6e22e">class</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// se supone que poeta tiene un campo denominado categoria.</span>
+</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(poeta.<span style="color:#a6e22e">getCategoria</span>());</span></span></code></pre></div>
+<p>El valor predeterminado de la propiedad <code>categoria</code> es nulo y la cadena JSON no contiene una propiedad <code>categoria</code>. Sin embargo, se asigna <strong>el valor para la propiedad <code>categoria</code> establecido dentro del método <code>createInstance()</code> de CreadorDePoetas (Poesía)</strong>.</p>
+<h2 id="3-serialización-y-deserialización-personalizados-jsonserializer-y-jsondeserializer">3. Serialización y Deserialización personalizados: <code>JsonSerializer</code> y <code>JsonDeserializer</code></h2>
+<p>GSON ofrece la posibilidad de utilizar <strong>serializadores y deserializadores personalizados</strong>.<br>
+Los serializadores personalizados pueden convertir valores Java a JSON personalizado, y los deserializadores personalizados pueden convertir JSON personalizado de nuevo a valores Java.</p>
+<h3 id="31-serializador-personalizado">3.1. Serializador personalizado</h3>
+<p>Un serializador personalizado en GSON <strong>debe implementar la interfaz funcional <code>JsonSerializer</code></strong>. La interfaz <code>JsonSerializer</code>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">JsonSerializer</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> JsonElement <span style="color:#a6e22e">serialize</span>(T valor, Type tipo,
+</span></span><span style="display:flex;"><span>        JsonSerializationContext jsonSerializationContext) {
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p><strong>JSONElement es una clase abstracta que representa un elemento JSON</strong>. Subclases de JSONElement son:</p>
+<ul>
+<li><a href="https://javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/com/google/gson/JsonArray.html" rel="external" target="_blank"><code>JsonArray</code></a>: representa un array JSON, Podemos añadir elementos a un JsonArray con el método <code>add()</code> y obtener un elemento con el método <code>get(int i)</code>. También es posible obtener el array como un único elemento Java si contiene un único elemento: <code>getAsBoolean()</code>, <code>getAsCharacter()</code>, <code>getAsDouble()</code>, <code>getAsFloat()</code>, <code>getAsInt()</code>, <code>getAsString()</code>, etc.</li>
+<li><a href="https://javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/com/google/gson/JsonNull.html" rel="external" target="_blank"><code>JsonNull</code>/<code>JsonNull.INSTANCE</code></a>: representa un valor nulo en JSON.</li>
+<li><a href="https://javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/com/google/gson/JsonObject.html" rel="external" target="_blank"><code>JsonObject</code></a>: representa un objeto JSON. Podemos añadir elementos a un JsonObject con el método <code>add(String property, JsonElement value)</code> o <code>addProperty(String property, T value)</code> y obtener un elemento con el método <code>get(String nombreMiembro)</code> o como Array, Objeto y tipo primitivo con los métodos <code>getAsJsonArray()</code>, <code>getAsJsonObject()</code>, <code>getAsJsonPrimitive()</code>.</li>
+<li><a href="https://javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/com/google/gson/JsonPrimitive.html" rel="external" target="_blank"><code>JsonPrimitive</code></a>, que son Boolean, Character, Number o String y permite crear un JSON primitivo: <code>new JsonPrimitive(1)</code>, <code>new JsonPrimitive(&quot;Wittgenstein&quot;)</code>, <code>new JsonPrimitive(true)</code>, <code>new JsonPrimitive('a')</code>.</li>
+</ul>
+<p>Por ejemplo, para declarar un serializador personalizado que pueda serializar valores booleanos:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BooleanSerializer</span> <span style="color:#66d9ef">implements</span> JsonSerializer<span style="color:#f92672">&lt;</span>Boolean<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> JsonElement <span style="color:#a6e22e">serialize</span>(Boolean aBoolean, Type tipo,
+</span></span><span style="display:flex;"><span>    JsonSerializationContext jsonSerializationContext) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(aBoolean){
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> JsonPrimitive(1);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> JsonPrimitive(0);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Observa cómo el parámetro de tipo <code>T</code> se sustituye con la clase <code>Boolean</code> en dos lugares.</p>
+<p>Dentro del método <code>serialize()</code>, puedes convertir el valor (un <code>Boolean</code> en este caso) a un <code>JsonElement</code>, que el método <code>serialize()</code> debe devolver. En el ejemplo anterior, utilizamos un <code>JsonPrimitive</code>, que también es un <code>JsonElement</code>. Como puedes ver, los valores booleanos verdaderos se convierten en 1 y los falsos en 0, en lugar de true y false normalmente usados en JSON.</p>
+
+<details open class=" box cstyle notices info">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-info-circle"></i> 
+    JsonElement
+  </summary>
+  <div class="box-content">
+<p>Existen 4 subclases de JsonElement que pueden ser devueltas: <a href="https://www.javadoc.io/static/com.google.code.gson/gson/2.10.1/com.google.gson/com/google/gson/JsonArray.html" rel="external" target="_blank"><code>JsonArray</code></a>, <a href="https://www.javadoc.io/static/com.google.code.gson/gson/2.10.1/com.google.gson/com/google/gson/JsonNull.html" rel="external" target="_blank"><code>JsonNull.INSTANCE</code></a>, <a href="https://www.javadoc.io/static/com.google.code.gson/gson/2.10.1/com.google.gson/com/google/gson/JsonObject.html" rel="external" target="_blank"><code>JsonObject</code></a>, <a href="https://www.javadoc.io/static/com.google.code.gson/gson/2.10.1/com.google.gson/com/google/gson/JsonPrimitive.html" rel="external" target="_blank"><code>JsonPrimitive</code></a>, que son Boolean, Character, Number o String.<br>
+Ten en cuenta que el método serialize devuelve un objeto de tipo JsonElement.</p>
+  </div>
+</details>
+<p>El<a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/lang/reflect/Type.html?is-external=true" rel="external" target="_blank"> <code>Type</code> <code>tipo</code> es el tipo de objeto que se está serializando</a>. En la mayoría de los casos, se puede ignorar este parámetro, pero permite obtener información sobre el nombre de la clase y los parámetros de tipo.</p>
+<p>Registrar este serializador personalizado se hace de la siguiente manera (empleando un objeto del tipo BooleanSerializer):</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>GsonBuilder builder <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> GsonBuilder();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>builder.<span style="color:#a6e22e">registerTypeAdapter</span>(Boolean.<span style="color:#a6e22e">class</span>, <span style="color:#66d9ef">new</span> BooleanSerializer()) ;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Gson gson <span style="color:#f92672">=</span> builder.<span style="color:#a6e22e">create</span>();</span></span></code></pre></div>
+<p>Se realiza una llamada a <code>registerTypeAdapter()</code> para que registra el serializador personalizado con GSON.</p>
+<p>Con <strong>clases anónimas</strong>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>GsonBuilder builder <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> GsonBuilder();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>builder.<span style="color:#a6e22e">registerTypeAdapter</span>(Boolean.<span style="color:#a6e22e">class</span>, <span style="color:#66d9ef">new</span> JsonSerializer<span style="color:#f92672">&lt;</span>Boolean<span style="color:#f92672">&gt;</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> JsonElement <span style="color:#a6e22e">serialize</span>(Boolean aBoolean, Type tipo,
+</span></span><span style="display:flex;"><span>            JsonSerializationContext jsonSerializationContext) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (aBoolean) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> JsonPrimitive(1);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> JsonPrimitive(0);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Gson gson <span style="color:#f92672">=</span> builder.<span style="color:#a6e22e">create</span>();</span></span></code></pre></div>
+<p>Con clases <strong>expresiones lambda</strong>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>GsonBuilder builder <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> GsonBuilder();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>builder.<span style="color:#a6e22e">registerTypeAdapter</span>(Boolean.<span style="color:#a6e22e">class</span>, 
+</span></span><span style="display:flex;"><span>        (JsonSerializer<span style="color:#f92672">&lt;</span>Boolean<span style="color:#f92672">&gt;</span>) (aBoolean, tipo, jsonSerializationContext) <span style="color:#f92672">-&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (aBoolean) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> JsonPrimitive(1);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> JsonPrimitive(0);
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Gson gson <span style="color:#f92672">=</span> builder.<span style="color:#a6e22e">create</span>();</span></span></code></pre></div>
+<p>Una vez registrado, la instancia de Gson creada a partir de GsonBuilder utilizará el serializador personalizado. Para ver cómo funciona, utilizaremos la siguiente clase POJO:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Usuario</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String usuario <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Boolean esSuperUsuario <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Así es como se ve la serialización de una instancia de <code>Usuario</code>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Usuario pojo <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Usuario();
+</span></span><span style="display:flex;"><span>pojo.<span style="color:#a6e22e">usuario</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;abc&#34;</span>;
+</span></span><span style="display:flex;"><span>pojo.<span style="color:#a6e22e">esSuperUsuario</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>String pojoJson <span style="color:#f92672">=</span> gson.<span style="color:#a6e22e">toJson</span>(pojo);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(pojoJson);</span></span></code></pre></div>
+<p>La salida impresa de este ejemplo sería:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{<span style="color:#f92672">&#34;usuario&#34;</span>:<span style="color:#e6db74">&#34;abc&#34;</span>,<span style="color:#f92672">&#34;esSuperUsuario&#34;</span>:<span style="color:#ae81ff">0</span>}</span></span></code></pre></div>
+<p>Observa cómo el valor <code>false</code> de <code>esSuperUsuario</code> se convierte en un 0.</p>
+<h3 id="32-deserializador-personalizado">3.2. Deserializador personalizado</h3>
+<p>GSON también permite deserializadores personalizados.<br>
+Un deserializador personalizado debe implementar <a href="https://www.javadoc.io/static/com.google.code.gson/gson/2.10.1/com.google.gson/com/google/gson/JsonDeserializer.html" rel="external" target="_blank">la interfaz <code>JsonDeserializer</code></a>.</p>
+<p>Debe escribir un deserializador personalizado si se quiere modificar la deserialización predeterminada realizada por Gson. Además, también <strong>se debe registrar el deserializador a través de <code>GsonBuilder.registerTypeAdapter(Type, Object)</code></strong>.</p>
+<p>La interfaz <code>JsonDeserializer</code>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">JsonDeserializer</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Boolean <span style="color:#a6e22e">deserialize</span>(JsonElement jsonElement, 
+</span></span><span style="display:flex;"><span>        Type tipo, JsonDeserializationContext jsonDeserializationContext) 
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">throws</span> JsonParseException;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Implementar un deserializador personalizado para el tipo <code>Boolean</code> se vería así:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BooleanDeserializer</span> <span style="color:#66d9ef">implements</span> JsonDeserializer<span style="color:#f92672">&lt;</span>Boolean<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Boolean <span style="color:#a6e22e">deserialize</span>(JsonElement jsonElement, Type tipo,
+</span></span><span style="display:flex;"><span>    JsonDeserializationContext jsonDeserializationContext)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">throws</span> JsonParseException {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> jsonElement.<span style="color:#a6e22e">getAsInt</span>() <span style="color:#f92672">==</span> 0 <span style="color:#f92672">?</span> <span style="color:#66d9ef">false</span> : <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Ahora, como se ha comentado, <strong>se debe registrar el deserializador a través de <code>GsonBuilder.registerTypeAdapter(Type, Object)</code></strong>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>GsonBuilder builder <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> GsonBuilder();
+</span></span><span style="display:flex;"><span>builder.<span style="color:#a6e22e">registerTypeAdapter</span>(Boolean.<span style="color:#a6e22e">class</span>, <span style="color:#66d9ef">new</span> BooleanDeserializer());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Gson gson <span style="color:#f92672">=</span> builder.<span style="color:#a6e22e">create</span>();</span></span></code></pre></div>
+<p>Y así es como se ve analizar una cadena JSON con la instancia de Gson creada:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String jsonSource <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;{\&#34;usuario\&#34;:\&#34;abc\&#34;,\&#34;esSuperUsuario\&#34;:1}&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Usuario pojo <span style="color:#f92672">=</span> gson.<span style="color:#a6e22e">fromJson</span>(jsonSource, Usuario.<span style="color:#a6e22e">class</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(pojo.<span style="color:#a6e22e">esSuperUsuario</span>);</span></span></code></pre></div>
+<p>La salida impresa de este ejemplo de deserialización personalizada de GSON sería:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">true</span></span></span></code></pre></div>
+<p>&hellip; ya que el 1 en la cadena JSON se convertiría en el valor booleano <code>true</code>.</p>
+<h4 id="ejemplo-avanzado">Ejemplo avanzado</h4>
+<p>Veamos un ejemplo más avanzado en dónde la serialización y deserialización resulta más útil. La clase <code>Id</code> definida a continuación tiene dos campos: <code>clase</code> y <code>valor</code>.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Id</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> Class<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> clase;
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">long</span> valor;
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Id</span>(Class<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> clase, <span style="color:#66d9ef">long</span> valor) {
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">clase</span> <span style="color:#f92672">=</span> clase;
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">valor</span> <span style="color:#f92672">=</span> valor;
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">long</span> <span style="color:#a6e22e">getvalor</span>() {
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">return</span> valor;
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>La deserialización predeterminada de <code>Id(com.otto.MiClase.class, 20L)</code> requerirá que la cadena JSON sea <code>{&quot;clase&quot;:&quot;com.otto.MiClase&quot;,&quot;valor&quot;:20}</code>.<br>
+Supongamos que se conoce el tipo del campo en el que se deserializará el <code>Id</code> y, por lo tanto, sólo se desea deserializarlo a partir de una cadena JSON <code>20</code>.</p>
+<p>Se puede hacer escribiendo un deserializador personalizado:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">IdDeserializer</span> <span style="color:#66d9ef">implements</span> JsonDeserializer<span style="color:#f92672">&lt;</span>Id<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">public</span> Id <span style="color:#a6e22e">deserialize</span>(JsonElement json, Type tipoDeT, JsonDeserializationContext context)
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">throws</span> JsonParseException {
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">long</span> idValor <span style="color:#f92672">=</span> json.<span style="color:#a6e22e">getAsJsonPrimitive</span>().<span style="color:#a6e22e">getAsLong</span>();
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Id((Class) tipoDeT, idValor);
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>También se debe registrar el objeto de tipo <code>IdDeserializer</code> con Gson:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Gson gson <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> GsonBuilder().<span style="color:#a6e22e">registerTypeAdapter</span>(Id.<span style="color:#a6e22e">class</span>, <span style="color:#66d9ef">new</span> IdDeserializer()).<span style="color:#a6e22e">create</span>();</span></span></code></pre></div>
+
+<details open class=" box cstyle notices code">
+  <summary class="box-label" tabindex="-1">
+    TypeAdapter o JsonSerializer/JsonDeserializer
+  </summary>
+  <div class="box-content">
+<p>Las nuevas aplicaciones deberían emplear <strong><code>TypeAdapter</code>, incorporado en la versión 2.1 de Gson</strong>, cuya API de transmisión e<strong>s más eficiente que la API de las interfaces  <code>JsonDeserializer&lt;T&gt;</code> y <code>JsonSerializer&lt;T&gt;</code></strong>, pues <strong>no requiere la creación de objetos intermedios</strong> y emp<strong>lea flujo de salida y entrada de JSON directamente</strong>, con menor consumo de memoria.</p>
+  </div>
+</details>
+
+<details open class=" box cstyle notices info">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-pen-square"></i> 
+    Ejercicio. Clase Examen con JsonSerializer y JsonDeserializer de LocalDateTime
+  </summary>
+  <div class="box-content">
+<p>Modifica la clase <code>Examen</code> que contiene los siguientes atributos:</p>
+<ul>
+<li><code>materia</code>: de tipo <code>String</code>.</li>
+<li><code>fecha</code>: <code>LocalDateTime</code>, ahora LocalDateTime.</li>
+<li><code>participantes</code>: de tipo <code>List</code> de <code>String</code> con los nombres de los estudiantes.</li>
+</ul>
+<p>Para que la fecha la guarde en formato LocalDateTime, no Date.</p>
+<p>Para que la serialización/deserialización funcione correctamente, debes crear una clase que implante las interfaces siguientes:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LocalDateTimeTypeAdapter</span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">implements</span> JsonSerializer<span style="color:#f92672">&lt;</span>LocalDateTime<span style="color:#f92672">&gt;</span>, JsonDeserializer<span style="color:#f92672">&lt;</span>LocalDateTime<span style="color:#f92672">&gt;</span>;</span></span></code></pre></div>
+<p>Emplea el formato siguiente para la fecha en la serialización del objeto de tipo LocalDateTime:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> DateTimeFormatter formato 
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">=</span> DateTimeFormatter.<span style="color:#a6e22e">ofPattern</span>(<span style="color:#e6db74">&#34;d:MM:uuuu HH:mm:ss&#34;</span>);</span></span></code></pre></div>
+<p>Crea una sencilla aplicación que cree un examen de &ldquo;Acceso a Datos&rdquo; para el 12 de noviembre del 2023 a las 9:45 horas, con 5 estudiantes con nombres de poetas femeninas del siglo XX.</p>
+<p>Guarda el examen en una archivo JSON llamado <code>accesoADatos.json</code>, de manera &ldquo;vistosa&rdquo; y con formato de fecha anterior mediante el api de Gson y muestre el contenido del archivo por pantalla, utilizando Files de Java NIO.2 y recupere el archivo para guardarlo en un nuevo objeto Java.</p>
+<p>Ayuda:</p>
+<ul>
+<li><a href="https://www.javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/module-summary.html" rel="external" target="_blank">API Gson Documentation</a></li>
+</ul>
+  </div>
+</details>
+
+<details open class=" box cstyle notices info">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-pen-square"></i> 
+    Ejercicios con JsonSerializer y JsonDeserializer
+  </summary>
+  <div class="box-content">
+<p><strong>Ejercicio 1: Serialización y deserialización básica</strong>
+<em>Serializar y deserializar una clase sencilla con atributos básicos.</em></p>
+<p>Crea una clase <code>Persona</code> con atributos <code>nombre</code> y <code>edad</code>. Implementa un <code>JsonSerializer</code> y un <code>JsonDeserializer</code> para esta clase, personalizando los nombres de los atributos en el JSON resultante, de modo que aparezcan como <code>name</code> y <code>age</code> en formato JSON.</p>
+<p><strong>Ejercicio 2: Serialización y deserialización de objetos anidados</strong>
+<em>Manejar una clase que contiene otro objeto como atributo.</em></p>
+<p>Crea una clase <code>Direccion</code> con atributos <code>calle</code> y <code>ciudad</code>. Añade un atributo de tipo <code>Direccion</code>. Implementa los serializadores y deserializadores necesarios para manejar esta estructura de modo que la dirección tenga el nombre <code>address</code> y aparezca como una cadena de texto con el formato <code>calle, ciudad</code>.</p>
+<p><strong>Ejercicio 3: Serialización y deserialización de listas</strong>
+<em>Manejar una clase que contiene una lista de objetos.</em></p>
+<p>Añade a la clase <code>Persona</code> una lista de objetos <code>Persona</code> llamados <code>amigos</code>. Implementa los serializadores y deserializadores para manejar la lista de amigos en el JSON. Haz que la lista de amigos la represente como un <strong>array de objetos JSON</strong>.</p>
+<p><strong>Ejercicio 4: Serialización y deserialización de números personalizados</strong>
+<em>Personalizar la serialización y deserialización de números.</em></p>
+<p>Crea una clase <code>Producto</code> con atributos <code>nombre</code> y <code>precio</code>. Implementa un <code>JsonSerializer</code> y un <code>JsonDeserializer</code> que formateen el <strong>precio como una cadena con dos decimales en el JSON</strong>.</p>
+<p><strong>Ejercicio 5: Serialización y deserialización de arrays</strong>
+<em>Manejar una clase que contiene un array de objetos.</em></p>
+<p>Añade a la clase persona un atributo <code>hobbies</code>. Implementa los serializadores y deserializadores para manejar el array de hobbies en el JSON para que aparezca como una lista de cadenas de texto separadas por guion.</p>
+  </div>
+</details>
+<h2 id="4-adaptadores-de-tipo-clase-typeadapter">4. Adaptadores de tipo: clase <code>TypeAdapter</code></h2>
+<p>El API de Gson incorpora una clase, para <strong>declarar adaptaciones de tipos de datos personalizadas</strong>, la <a href="https://www.javadoc.io/static/com.google.code.gson/gson/2.10.1/com.google.gson/com/google/gson/TypeAdapter.html" rel="external" target="_blank">clase abstracta <code>TypeAdapter</code></a>.<br>
+Dicha clase tiene <strong>dos métodos abstractos &ldquo;<code>read</code>&rdquo; y &ldquo;<code>write</code>&rdquo;</strong>.</p>
+<h3 id="definiendo-la-forma-json-de-un-tipo">Definiendo la forma JSON de un tipo</h3>
+<p>Por defecto, Gson convierte las clases de la aplicación a JSON utilizando sus adaptadores de tipo integrados. Si la conversión JSON predeterminada de Gson no es adecuada para un tipo, <strong>debe extenderse esta clase para personalizar la conversión</strong>.</p>
+<p>Por ejemplo, un adaptador de tipo para un punto (X, Y):</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Adaptador de la clase Point</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PointAdapter</span> <span style="color:#66d9ef">extends</span> TypeAdapter<span style="color:#f92672">&lt;</span>Point<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Implantación del método read:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> Point <span style="color:#a6e22e">read</span>(JsonReader reader) <span style="color:#66d9ef">throws</span> IOException {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (reader.<span style="color:#a6e22e">peek</span>() <span style="color:#f92672">==</span> JsonToken.<span style="color:#a6e22e">NULL</span>) { <span style="color:#75715e">// si el token es null, lo lee y sale.</span>
+</span></span><span style="display:flex;"><span>      reader.<span style="color:#a6e22e">nextNull</span>();
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    String xy <span style="color:#f92672">=</span> reader.<span style="color:#a6e22e">nextString</span>(); <span style="color:#75715e">// lee la cadena y la consume.</span>
+</span></span><span style="display:flex;"><span>    String<span style="color:#f92672">[]</span> coords <span style="color:#f92672">=</span> xy.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#34;,&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> Integer.<span style="color:#a6e22e">parseInt</span>(coords<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> y <span style="color:#f92672">=</span> Integer.<span style="color:#a6e22e">parseInt</span>(coords<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Point(x, y);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Implantación del método write para escribir el Objeto Java.</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">write</span>(JsonWriter writer, Point punto) <span style="color:#66d9ef">throws</span> IOException {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (punto <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>      writer.<span style="color:#a6e22e">nullValue</span>(); <span style="color:#75715e">// codifica null</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    String xy <span style="color:#f92672">=</span> punto.<span style="color:#a6e22e">getX</span>() <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;,&#34;</span> <span style="color:#f92672">+</span> punto.<span style="color:#a6e22e">getY</span>();
+</span></span><span style="display:flex;"><span>    writer.<span style="color:#a6e22e">value</span>(xy); <span style="color:#75715e">// Codifica la cadena (devuelve el JsonWriter que podemos concatenar)</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Con este adaptador de tipo registrado, Gson <strong>convertirá los puntos a JSON como cadenas como &ldquo;5,8&rdquo; en lugar de objetos como {&ldquo;x&rdquo;:5,&ldquo;y&rdquo;:8}</strong>. En este caso, el adaptador de tipo vincula una clase Java a un valor JSON compacto.</p>
+<p>El método <code>read()</code> debe leer exactamente un valor y <code>write()</code> debe escribir exactamente <strong>un valor</strong>.</p>
+<ul>
+<li>Para <strong>tipos primitivos</strong>, esto significa que los readers deben hacer exactamente una llamada a <code>nextBoolean()</code>, <code>nextDouble()</code>, <code>nextInt()</code>, <code>nextLong()</code>, <code>nextString()</code> o <code>nextNull()</code>. Estos métodos devuelven el valor boolean, double, int, long, String o null del siguiente token, consumiéndolo.</li>
+<li>Los writers deben hacer exactamente una <strong>llamada a <code>value()</code> o <code>nullValue()</code></strong>. &ldquo;value&rdquo; codifica el valor y lo escribe directamente.</li>
+<li>Para arrays, los adaptadores de tipo deben comenzar con una llamada a <code>beginArray()</code>, convertir todos los elementos y finalizar con una llamada a <code>endArray()</code>.</li>
+<li>Para objetos, deben comenzar con <code>beginObject()</code>, convertir el objeto y finalizar con <code>endObject()</code>. No convertir un valor o convertir demasiados valores puede hacer que la aplicación se bloquee.</li>
+</ul>
+<p>Los adaptadores de tipo deben estar preparados para leer null desde el flujo y escribirlo en el flujo. Alternativamente, deben utilizar el método <code>nullSafe()</code> al registrar el adaptador de tipo con Gson. Si la instancia de Gson ha sido configurada con <code>GsonBuilder.serializeNulls()</code>, estos nulos se escribirán en el documento final. De lo contrario, el valor (y el nombre correspondiente al escribir en un objeto JSON) se omitirá automáticamente. En ambos casos, el adaptador de tipo debe manejar null.</p>
+<p>Los adaptadores de tipo deben ser sin estado y seguros para subprocesos; de lo contrario, las garantías de seguridad para subprocesos de Gson podrían no aplicarse.</p>
+<p>Para usar un adaptador de tipo personalizado con Gson, debes registrarlo con un GsonBuilder:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>GsonBuilder builder <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> GsonBuilder();
+</span></span><span style="display:flex;"><span>builder.<span style="color:#a6e22e">registerTypeAdapter</span>(Point.<span style="color:#a6e22e">class</span>, <span style="color:#66d9ef">new</span> PointAdapter());
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Si PointAdapter no comprobó los nulos en sus métodos de lectura/escritura, debes usar en su lugar</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// builder.registerTypeAdapter(Point.class, new PointAdapter().nullSafe());</span>
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>Gson gson <span style="color:#f92672">=</span> builder.<span style="color:#a6e22e">create</span>();</span></span></code></pre></div>
+
+<details open class=" box cstyle notices info">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-pen-square"></i> 
+    Ejercicio con TypeAdapter
+  </summary>
+  <div class="box-content">
+<p>Modifica la clase <code>Examen</code> que contiene los siguientes atributos:</p>
+<ul>
+<li><code>materia</code>: de tipo <code>String</code>.</li>
+<li><code>fecha</code>: <code>LocalDateTime</code>, ahora LocalDateTime.</li>
+<li><code>participantes</code>: de tipo <code>List</code> de <code>String</code> con los nombres de los estudiantes.</li>
+</ul>
+<p>Para que la fecha la guarde en formato LocalDateTime, no Date.</p>
+<p>Para que la serialización/deserialización funcione correctamente, debes crear una clase que herede la clase <code>TypeAdapter</code>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LocalDateTimeAdapter</span> <span style="color:#66d9ef">extends</span> TypeAdapter<span style="color:#f92672">&lt;</span>LocalDateTime<span style="color:#f92672">&gt;</span>;</span></span></code></pre></div>
+<p>Emplea el formato siguiente para la fecha en la serialización del objeto de tipo LocalDateTime:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> DateTimeFormatter formato 
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">=</span> DateTimeFormatter.<span style="color:#a6e22e">ofPattern</span>(<span style="color:#e6db74">&#34;yyyy-MM-dd HH:mm:ss&#34;</span>);</span></span></code></pre></div>
+<p>Crea una sencilla aplicación que cree un examen de &ldquo;Acceso a Datos&rdquo; para el 12 de noviembre del 2023 a las 9:45 horas, con 5 estudiantes con nombres de poetas femeninas del siglo XX.</p>
+<p>Guarda el examen en una archivo JSON llamado <code>accesoADatos.json</code> (de manera &ldquo;vistosa&rdquo; y con formato de fecha anterior mediante el api de Gson y muestre el contenido del archivo por pantalla, utilizando Files de Java NIO.2 y recupere el archivo para guardarlo en un nuevo objeto Java.</p>
+<p>Ayuda:</p>
+<ul>
+<li><a href="https://www.javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/module-summary.html" rel="external" target="_blank">API Gson Documentation</a></li>
+</ul>
+  </div>
+</details>
+
+<details open class=" box cstyle notices info">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-pen-square"></i> 
+    Ejercicios con TypeAdapter
+  </summary>
+  <div class="box-content">
+<p><strong>Ejercicio 1: Serialización y deserialización básica</strong>
+<em>Serializar y deserializar una clase sencilla con atributos básicos.</em></p>
+<p>Crea una clase <code>Persona</code> con atributos <code>nombre</code> y <code>edad</code>. Implementa un <code>TypeAdapter</code> para esta clase, personalizando los nombres de los atributos en el JSON resultante, de modo que aparezcan como <code>name</code> y <code>age</code> en formato JSON.</p>
+<p><strong>Ejercicio 2: Serialización y deserialización de objetos anidados</strong></p>
+<p><em>Manejar una clase que contiene otro objeto como atributo.</em></p>
+<p>Crea una clase <code>Direccion</code> con atributos <code>calle</code> y <code>ciudad</code>. Añade un atributo de tipo <code>Direccion</code>. Implementa los adaptadores de tipo necesarios para manejar esta estructura de modo que la dirección tenga el nombre <code>address</code> y aparezca como una cadena de texto con el formato <code>calle, ciudad</code>.</p>
+<p><strong>Ejercicio 3: Serialización y deserialización de listas</strong></p>
+<p><em>Manejar una clase que contiene una lista de objetos.</em></p>
+<p>Añade a la clase <code>Persona</code> una lista de objetos <code>Persona</code> llamados <code>amigos</code>. Implementa los adaptadores de tipo para manejar la lista de amigos en el JSON. Haz que la lista de amigos la represente como un <strong>array de objetos JSON</strong>.</p>
+<p><strong>Ejercicio 4: Serialización y deserialización de números personalizados</strong></p>
+<p><em>Personalizar la serialización y deserialización de números.</em></p>
+<p>Crea una clase <code>Producto</code> con atributos <code>nombre</code> y <code>precio</code>. Implementa un <code>TypeAdapter</code> que formatee el <strong>precio como una cadena con dos decimales en el JSON</strong>.</p>
+<p><strong>Ejercicio 5: Serialización y deserialización de arrays</strong></p>
+<p><em>Manejar una clase que contiene un array de objetos.</em></p>
+<p>Añade a la clase persona un atributo <code>hobbies</code>. Implementa los adaptadores de tipo para manejar el array de hobbies en el JSON para que aparezca como una lista de cadenas de texto separadas por guion.</p>
+  </div>
+</details>
+
+  <footer class="footline"></article>
+<footer>
+   <i class='fas fa-user'></i>  <span itemprop="name"> </span>
+
+<i class='fas fa-calendar'></i> Última actualización: 06.06.2025 
+</footer>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<img  src="../../../images/logo-ies.png" style="color:white;  font-size: 20px;" id="logo" href="http://manuais.pages.iessanclemente.net/apuntes/">
+        </div>
+        <search><form action="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Buscar (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Buscar</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Buscar...">
+            <button class="search-clear" type="button" data-search-clear="" title="Borrar búsqueda"><i class="fas fa-times" title="Borrar búsqueda"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/index.html"><a class="padding" href="../../../index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/index.html"><input type="checkbox" id="R-section-0758abab80c2aa84781892223aa808b3" aria-controls="R-subsections-0758abab80c2aa84781892223aa808b3"><label for="R-section-0758abab80c2aa84781892223aa808b3"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 0. Refuerzo y ayudas complementarias</span></label><a class="padding" href="../../../00ayudas/index.html">UD 0. Refuerzo y ayudas complementarias<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-0758abab80c2aa84781892223aa808b3" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/index.html"><input type="checkbox" id="R-section-1b1977ce428c9ac8dab8b72f8979bcb5" aria-controls="R-subsections-1b1977ce428c9ac8dab8b72f8979bcb5"><label for="R-section-1b1977ce428c9ac8dab8b72f8979bcb5"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01 Configuración y despliegue</span></label><a class="padding" href="../../../00ayudas/00configjava/index.html">01 Configuración y despliegue<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1b1977ce428c9ac8dab8b72f8979bcb5" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/01jarfiles/index.html"><a class="padding" href="../../../00ayudas/00configjava/01jarfiles/index.html">01 Archivos Jar<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/02jarwithmaven/index.html"><a class="padding" href="../../../00ayudas/00configjava/02jarwithmaven/index.html">02 Creación de un JAR ejecutable con Java con Apache Maven<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/03dependencias/index.html"><a class="padding" href="../../../00ayudas/00configjava/03dependencias/index.html">03. Dependencias Maven.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/index.html"><input type="checkbox" id="R-section-0ee0a79915535bc59e8b9d0e78f65ef9" aria-controls="R-subsections-0ee0a79915535bc59e8b9d0e78f65ef9"><label for="R-section-0ee0a79915535bc59e8b9d0e78f65ef9"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02 Java General</span></label><a class="padding" href="../../../00ayudas/02javageneral/index.html">02 Java General<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-0ee0a79915535bc59e8b9d0e78f65ef9" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/01streamapi/index.html"><a class="padding" href="../../../00ayudas/02javageneral/01streamapi/index.html">00.01 Java Stream API<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/02urlfiles/index.html"><a class="padding" href="../../../00ayudas/02javageneral/02urlfiles/index.html">00.02 Descarga de archivos de Internet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/03hashcode/index.html"><a class="padding" href="../../../00ayudas/02javageneral/03hashcode/index.html">03 Implementación de hashCode()<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/index.html"><input type="checkbox" id="R-section-8eb2a58628ca595eccda7f8f066488f0" aria-controls="R-subsections-8eb2a58628ca595eccda7f8f066488f0"><label for="R-section-8eb2a58628ca595eccda7f8f066488f0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 03. Layouts en Java Swing &amp; UI</span></label><a class="padding" href="../../../00ayudas/03layouts/index.html">03. Layouts en Java Swing &amp; UI<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8eb2a58628ca595eccda7f8f066488f0" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/00dialogosenswing/index.html"><a class="padding" href="../../../00ayudas/03layouts/00dialogosenswing/index.html">01 Ventanas de entrada de datos, mensajes y archivos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/05gridbaglayout/index.html"><a class="padding" href="../../../00ayudas/03layouts/05gridbaglayout/index.html">05 GridBagLayout<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/index.html"><input type="checkbox" id="R-section-1c69dc8b47fb6fae98603b1968118cf8" aria-controls="R-subsections-1c69dc8b47fb6fae98603b1968118cf8"><label for="R-section-1c69dc8b47fb6fae98603b1968118cf8"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 04. Patrones de diseño</span></label><a class="padding" href="../../../00ayudas/04patronesdisenho/index.html">04. Patrones de diseño<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1c69dc8b47fb6fae98603b1968118cf8" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/01designprinciples/index.html"><a class="padding" href="../../../00ayudas/04patronesdisenho/01designprinciples/index.html">01. Principios de diseño<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/02singleton/index.html"><a class="padding" href="../../../00ayudas/04patronesdisenho/02singleton/index.html">02. Patrón Singleton<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/03objetosinmutables/index.html"><a class="padding" href="../../../00ayudas/04patronesdisenho/03objetosinmutables/index.html">03. Objetos Inmutables<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/index.html"><input type="checkbox" id="R-section-36a825e367dd24b7cccca030c91ea60b" aria-controls="R-subsections-36a825e367dd24b7cccca030c91ea60b"><label for="R-section-36a825e367dd24b7cccca030c91ea60b"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 05. Programación en Kotlin</span></label><a class="padding" href="../../../00ayudas/05kotlin/index.html">05. Programación en Kotlin<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-36a825e367dd24b7cccca030c91ea60b" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/index.html"><input type="checkbox" id="R-section-312a90d18fa918ef04d04e75820d73c0" aria-controls="R-subsections-312a90d18fa918ef04d04e75820d73c0"><label for="R-section-312a90d18fa918ef04d04e75820d73c0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación estructurada básica</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/index.html">Programación estructurada básica<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-312a90d18fa918ef04d04e75820d73c0" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/10.-la_funcion_main/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/10.-la_funcion_main/index.html">La funcion main()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/20.-la_funcion-print-_y-_println/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/20.-la_funcion-print-_y-_println/index.html">La funcion print() y println()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/30.-comentarios/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/30.-comentarios/index.html">Comentarios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/40.-variables-_-literales-_y_-sentencia_-de_-asignación/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/40.-variables-_-literales-_y_-sentencia_-de_-asignaci%c3%b3n/index.html">Variables, literales y sentencia de asignación<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/50.-palabras_reservadas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/50.-palabras_reservadas/index.html">Palabras reservadas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/index.html"><input type="checkbox" id="R-section-94a2bfa5cc4fa0f33d0f2cf1c75e3265" aria-controls="R-subsections-94a2bfa5cc4fa0f33d0f2cf1c75e3265"><label for="R-section-94a2bfa5cc4fa0f33d0f2cf1c75e3265"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú tipos de datos y operadores</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/index.html">tipos de datos y operadores<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-94a2bfa5cc4fa0f33d0f2cf1c75e3265" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/60.tipos_de_datos_basicos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/60.tipos_de_datos_basicos/index.html">Tipos de datos básicos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/70.tipos_numericos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/70.tipos_numericos/index.html">Tipos Numéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/80.tipos_no_-numericos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/80.tipos_no_-numericos/index.html">Tipos básicos  No Numéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/90.conversion_de_tipos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/90.conversion_de_tipos/index.html">Conversión de Tipos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/100.-operadores/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/100.-operadores/index.html">Operadores<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/110.-expresiones_booleanas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/110.-expresiones_booleanas/index.html">Expresiones booleanas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/index.html"><input type="checkbox" id="R-section-840caf4a5c9da596bf4345cae4c798ab" aria-controls="R-subsections-840caf4a5c9da596bf4345cae4c798ab"><label for="R-section-840caf4a5c9da596bf4345cae4c798ab"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú colecciones básicas</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/index.html">colecciones básicas<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-840caf4a5c9da596bf4345cae4c798ab" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/120.-string/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/120.-string/index.html">String<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/130.-listas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/130.-listas/index.html">Listas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/140.rangos-/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/140.rangos-/index.html">Rangos<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/150.-entrada_teclado/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/150.-entrada_teclado/index.html">Entrada de datos por teclado con readln()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/index.html"><input type="checkbox" id="R-section-f79f31fcf5ae1f44691bca6f05e1710f" aria-controls="R-subsections-f79f31fcf5ae1f44691bca6f05e1710f"><label for="R-section-f79f31fcf5ae1f44691bca6f05e1710f"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú control de flujo</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/index.html">control de flujo<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-f79f31fcf5ae1f44691bca6f05e1710f" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/151.-control_de_flujo/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/151.-control_de_flujo/index.html">Control de flujo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/160.-sentencia_condicional_if/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/160.-sentencia_condicional_if/index.html">Sentencia condicional IF<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/190.-sentecia_when/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/190.-sentecia_when/index.html">Sentencia when<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/200.-bucle_for/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/200.-bucle_for/index.html">Bucle for<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/210.-while_y_do_while/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/210.-while_y_do_while/index.html">while y do while<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/220.-variables_locales_y_bloques/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/220.-variables_locales_y_bloques/index.html">variables locales y bloques<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/230.-break_y_continue/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/230.-break_y_continue/index.html">break y continue<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/240.otras_formas_de_iterar/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/240.otras_formas_de_iterar/index.html">Otras formas de iterar<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/250.-funciones/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/250.-funciones/index.html">Funciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/260.el_valor_nulo/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/260.el_valor_nulo/index.html">El valor nulo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/270.-readline/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/270.-readline/index.html">Entrada de datos por teclado con readLine()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/index.html"><input type="checkbox" id="R-section-44784ce5c237bf9124eefe20ce36272f" aria-controls="R-subsections-44784ce5c237bf9124eefe20ce36272f"><label for="R-section-44784ce5c237bf9124eefe20ce36272f"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú más sobre colecciones básicas</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/index.html">más sobre colecciones básicas<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-44784ce5c237bf9124eefe20ce36272f" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/310.-arrays/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/310.-arrays/index.html">Arrays<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/320.-listas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/320.-listas/index.html">Listas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/330.rangos-/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/330.rangos-/index.html">Rangos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/340.mapas-/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/340.mapas-/index.html">Mapas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/350.iterar_sobre_colecciones/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/350.iterar_sobre_colecciones/index.html">Iterar sobre colecciones<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/index.html"><input type="checkbox" id="R-section-1ef1a5ed807dacffeb206c0950804c3a" aria-controls="R-subsections-1ef1a5ed807dacffeb206c0950804c3a"><label for="R-section-1ef1a5ed807dacffeb206c0950804c3a"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación orientada a objetos</span></label><a class="padding" href="../../../00ayudas/05kotlin/02progoo/index.html">Programación orientada a objetos<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1ef1a5ed807dacffeb206c0950804c3a" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1010.objetos_y_clases/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1010.objetos_y_clases/index.html">Objetos y clases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1020.constructores-/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1020.constructores-/index.html">Constructores<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1030.propiedades/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1030.propiedades/index.html">Propiedades<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1040.sobreescribir_tostring/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1040.sobreescribir_tostring/index.html">Sobreescribir toString()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1060.modificadoresvisibilidad/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1060.modificadoresvisibilidad/index.html">modificadores de visibilidad<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1070.enum/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1070.enum/index.html">clases Enum<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1100.composicion/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1100.composicion/index.html">Composición<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1200.herencia/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1200.herencia/index.html">Herencia<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1220.clases_abstractas_interfaces/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1220.clases_abstractas_interfaces/index.html">Clases abstractas e Interfaces<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1240.dataclases/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1240.dataclases/index.html">Data Clases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1250.keywordobject/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1250.keywordobject/index.html">La palabra reservada object. Companion object, objetos singleton y objetos expressions<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1255.excepciones/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1255.excepciones/index.html">Excepciones en Kotlin<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1260.genericos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1260.genericos/index.html">Genéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1265.clausulatypealiases/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1265.clausulatypealiases/index.html">cláusula typealiases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1270.delegacion/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1270.delegacion/index.html">Delegación con cláusula by<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1280.claesanidadaseinternas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1280.claesanidadaseinternas/index.html">Clases anidadas e internas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/index.html"><input type="checkbox" id="R-section-8bbd4a78f07b64e8b2bc4b83b71f1498" aria-controls="R-subsections-8bbd4a78f07b64e8b2bc4b83b71f1498"><label for="R-section-8bbd4a78f07b64e8b2bc4b83b71f1498"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación funcional</span></label><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/index.html">Programación funcional<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8bbd4a78f07b64e8b2bc4b83b71f1498" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2010.funcioneskotlin/index.html"><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/2010.funcioneskotlin/index.html">sintáxis avanzada de las  funciones kotlin<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2020.-basesdepf/index.html"><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/2020.-basesdepf/index.html">algunos conceptos básicos de programación funcional<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2030.funcionesordensuperiorcolecciones/index.html"><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/2030.funcionesordensuperiorcolecciones/index.html">funciones de orden superior y colecciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2040.funcionesordensuperiorysequence/index.html"><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/2040.funcionesordensuperiorysequence/index.html">funciones de orden superior y sequence<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li></ul></li></ul></li>
+            <li class="parent " data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/index.html"><input type="checkbox" id="R-section-cf4ee7bae7fca4e692355524601fe599" aria-controls="R-subsections-cf4ee7bae7fca4e692355524601fe599" checked><label for="R-section-cf4ee7bae7fca4e692355524601fe599"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML</span></label><a class="padding" href="../../index.html">UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-cf4ee7bae7fca4e692355524601fe599" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/index.html"><input type="checkbox" id="R-section-ec127efd28751c1f836952c8dac2374d" aria-controls="R-subsections-ec127efd28751c1f836952c8dac2374d"><label for="R-section-ec127efd28751c1f836952c8dac2374d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.01 Java IO. Acceso a ficheros, flujos, serialización de objetos.</span></label><a class="padding" href="../../01javaio/index.html">01.01 Java IO. Acceso a ficheros, flujos, serialización de objetos.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-ec127efd28751c1f836952c8dac2374d" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0100javaiointro/index.html"><a class="padding" href="../../01javaio/0100javaiointro/index.html">01.00 Java IO. Introducción.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0101javaiofile/index.html"><a class="padding" href="../../01javaio/0101javaiofile/index.html">01.01 La clase File<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0102randomaccessfile/index.html"><a class="padding" href="../../01javaio/0102randomaccessfile/index.html">01.02 La clase RandomAccessFile<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0103javaiostreams/index.html"><a class="padding" href="../../01javaio/0103javaiostreams/index.html">01.03 Flujos de E/S<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0104bytestream/index.html"><a class="padding" href="../../01javaio/0104bytestream/index.html">01.04 Flujos de byte<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0105characterstream/index.html"><a class="padding" href="../../01javaio/0105characterstream/index.html">01.05 Flujos de caracteres<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0106javaiobuffer/index.html"><a class="padding" href="../../01javaio/0106javaiobuffer/index.html">01.06 Flujos de E/S con Buffer<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0107javaistream/index.html"><a class="padding" href="../../01javaio/0107javaistream/index.html">01.07 Operaciones comunes con flujos de E/S.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0109ejercicios/index.html"><a class="padding" href="../../01javaio/0109ejercicios/index.html">Ejercicios<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/index.html"><input type="checkbox" id="R-section-2d1e1941df73311305891c0dca6583fd" aria-controls="R-subsections-2d1e1941df73311305891c0dca6583fd"><label for="R-section-2d1e1941df73311305891c0dca6583fd"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.02 Java NIO.2</span></label><a class="padding" href="../../02javanio2/index.html">01.02 Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-2d1e1941df73311305891c0dca6583fd" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0202javaniopath/index.html"><a class="padding" href="../../02javanio2/0202javaniopath/index.html">02.01. La interface Path<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0203javaniopathcreate/index.html"><a class="padding" href="../../02javanio2/0203javaniopathcreate/index.html">02.03. Creación de Path<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0204javaniopath/index.html"><a class="padding" href="../../02javanio2/0204javaniopath/index.html">02.04. Operaciones comunes de Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0205javaniopathmethods/index.html"><a class="padding" href="../../02javanio2/0205javaniopathmethods/index.html">02.05. Métodos y con Path Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0206javaniostreams/index.html"><a class="padding" href="../../02javanio2/0206javaniostreams/index.html">02.06. Programación funcional con Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="parent " data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/index.html"><input type="checkbox" id="R-section-662c48eb0e2f97ba0e58c14a690fca47" aria-controls="R-subsections-662c48eb0e2f97ba0e58c14a690fca47" checked><label for="R-section-662c48eb0e2f97ba0e58c14a690fca47"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.03 JSON en Java</span></label><a class="padding" href="../index.html">01.03 JSON en Java<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-662c48eb0e2f97ba0e58c14a690fca47" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0300jsonintro/index.html"><a class="padding" href="../0300jsonintro/index.html">01.00. Introducción a JSON<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0301jsonjs/index.html"><a class="padding" href="../0301jsonjs/index.html">01.01. JSON con el API JavaScript de Java<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0302jsonlibraries/index.html"><a class="padding" href="../0302jsonlibraries/index.html">01.02. Bibliotecas JSON para Java<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0304gson/index.html"><a class="padding" href="../0304gson/index.html">01.03. Gson. Introducción<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0304gsondiagram/index.html"><a class="padding" href="../0304gsondiagram/index.html">01.03. Gson. Diagrama de clases (e interfaces)<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0305gsoncreate/index.html"><a class="padding" href="../0305gsoncreate/index.html">01.04. Gson. Creación de instancias Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0306creaciongson/index.html"><a class="padding" href="../0306creaciongson/index.html">01.05 Gson. Creación y lectura de objetos JSON<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="active " data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0306transformacion/index.html"><a class="padding" href="index.html">01.06. Gson. Transformación de objetos JSON personalizada<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0307jsonreader01/index.html"><a class="padding" href="../0307jsonreader01/index.html">01.07 Gson. JsonReader<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0308jsonrename/index.html"><a class="padding" href="../0308jsonrename/index.html">01.08 Gson. Renombrar atributos <i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0309jsonserialize/index.html"><a class="padding" href="../0309jsonserialize/index.html">01.09 Resumen Serialización Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0310jsondeserialize/index.html"><a class="padding" href="../0310jsondeserialize/index.html">01.09 Resumen Deserialización Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/098ejercicio/index.html"><a class="padding" href="../098ejercicio/index.html">Ejercicio. Trivial<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/0105ejercicios/index.html"><a class="padding" href="../../0105ejercicios/index.html">Ejercicios y recursos<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/index.html"><input type="checkbox" id="R-section-342b2e95b9611e1108f16a11c61cd1f2" aria-controls="R-subsections-342b2e95b9611e1108f16a11c61cd1f2"><label for="R-section-342b2e95b9611e1108f16a11c61cd1f2"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 2. Acceso a BD remotas relacionales</span></label><a class="padding" href="../../../02accesobd/index.html">UD 2. Acceso a BD remotas relacionales<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-342b2e95b9611e1108f16a11c61cd1f2" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/index.html"><input type="checkbox" id="R-section-66326b82828cdbb6e30c77e924342908" aria-controls="R-subsections-66326b82828cdbb6e30c77e924342908"><label for="R-section-66326b82828cdbb6e30c77e924342908"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02.02 JDBC. Introducción a las Bases de datos relacionales.</span></label><a class="padding" href="../../../02accesobd/02db/index.html">02.02 JDBC. Introducción a las Bases de datos relacionales.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-66326b82828cdbb6e30c77e924342908" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0101databases/index.html"><a class="padding" href="../../../02accesobd/02db/0101databases/index.html">02.01. Sistemas gestores de bases de datos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0102introdb/index.html"><a class="padding" href="../../../02accesobd/02db/0102introdb/index.html">02. Introducción a las bases de datos relacionales<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0103postgresql/index.html"><a class="padding" href="../../../02accesobd/02db/0103postgresql/index.html">03. PostgreSQL<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0104postgres01/index.html"><a class="padding" href="../../../02accesobd/02db/0104postgres01/index.html">04. PostgreSQL. Características y Operadores.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/index.html"><input type="checkbox" id="R-section-4b93c45cd959371d7c20dcc7da6d632c" aria-controls="R-subsections-4b93c45cd959371d7c20dcc7da6d632c"><label for="R-section-4b93c45cd959371d7c20dcc7da6d632c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02.03. Procesamiento de sentencias SQL.</span></label><a class="padding" href="../../../02accesobd/03procesandosql/index.html">02.03. Procesamiento de sentencias SQL.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-4b93c45cd959371d7c20dcc7da6d632c" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0101procesamientosql/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0101procesamientosql/index.html">01. Procesamiento de sentencias SQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0102conexiones/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0102conexiones/index.html">02. Conexiones a BD<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0103excepcionessql/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0103excepcionessql/index.html">03. Excepciones SQLException<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0104resultset/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0104resultset/index.html">04. ResultSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0105resultsetbatch/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0105resultsetbatch/index.html">05. Actualizaciones por lotes con ResultSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0106preparedst/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0106preparedst/index.html">06. Prepared Statement<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0107transacciones/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0107transacciones/index.html">07. Transacciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0108clavesgeneradas/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0108clavesgeneradas/index.html">08. Claves Generadas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0109largeobjects/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0109largeobjects/index.html">09. Objectos grandes<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0111rowset/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0111rowset/index.html">11. RowSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0115boletines/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0115boletines/index.html">15. Ejercicios y archivos de la unidad<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/99proyecto/index.html"><a class="padding" href="../../../02accesobd/99proyecto/index.html">Proyecto 1ª evaluación<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/index.html"><input type="checkbox" id="R-section-87c8b6c6cd354a309db816f73d185be0" aria-controls="R-subsections-87c8b6c6cd354a309db816f73d185be0"><label for="R-section-87c8b6c6cd354a309db816f73d185be0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 3. Object/Relational Mapping (ORM). JPA e Hibernate</span></label><a class="padding" href="../../../03orm/index.html">UD 3. Object/Relational Mapping (ORM). JPA e Hibernate<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-87c8b6c6cd354a309db816f73d185be0" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/index.html"><input type="checkbox" id="R-section-5aaca10806a740cf4d784be6e24473b9" aria-controls="R-subsections-5aaca10806a740cf4d784be6e24473b9"><label for="R-section-5aaca10806a740cf4d784be6e24473b9"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 03.01. Jakarta Persistence (JPA).</span></label><a class="padding" href="../../../03orm/jpa/index.html">03.01. Jakarta Persistence (JPA).<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-5aaca10806a740cf4d784be6e24473b9" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/01jpa/index.html"><a class="padding" href="../../../03orm/jpa/01jpa/index.html">01. Jakarta Persistence (JPA).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/02jpavshibernate/index.html"><a class="padding" href="../../../03orm/jpa/02jpavshibernate/index.html">02. JPA vs Hibernate.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/03jpaejercicio/index.html"><a class="padding" href="../../../03orm/jpa/03jpaejercicio/index.html">03. Ejercicio básico de JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/04entitymanager/index.html"><a class="padding" href="../../../03orm/jpa/04entitymanager/index.html">04. Gestión de entidades con EntityManager.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/05mapeoentidades/index.html"><a class="padding" href="../../../03orm/jpa/05mapeoentidades/index.html">05. Mapeo de entidades.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/06relaciones/index.html"><a class="padding" href="../../../03orm/jpa/06relaciones/index.html">06. Relaciones JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/07embedidos/index.html"><a class="padding" href="../../../03orm/jpa/07embedidos/index.html">07. Objetos embebidos.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/08colecciones/index.html"><a class="padding" href="../../../03orm/jpa/08colecciones/index.html">08. Mapeo de colecciones.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/09queries/index.html"><a class="padding" href="../../../03orm/jpa/09queries/index.html">09. Consultas.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/10jpql/index.html"><a class="padding" href="../../../03orm/jpa/10jpql/index.html">10. JPQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/11paginacion/index.html"><a class="padding" href="../../../03orm/jpa/11paginacion/index.html">11. Paginación de consultas.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/12herencia/index.html"><a class="padding" href="../../../03orm/jpa/12herencia/index.html">12. Herencia.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/14ejercicios/index.html"><a class="padding" href="../../../03orm/jpa/14ejercicios/index.html">Ejercicios de la unidad de JPA<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/15boletines/index.html"><a class="padding" href="../../../03orm/jpa/15boletines/index.html">Ejercicios de refuerzo.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/16dependencias/index.html"><a class="padding" href="../../../03orm/jpa/16dependencias/index.html">Dependencias Maven.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/95singleton/index.html"><a class="padding" href="../../../03orm/95singleton/index.html">03.02. Patrón Singleton.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/96ejerciciosrepaso/index.html"><a class="padding" href="../../../03orm/96ejerciciosrepaso/index.html">03.03. Ejercicios de refuerzo (Violín).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/97ejerciciosrepaso2/index.html"><a class="padding" href="../../../03orm/97ejerciciosrepaso2/index.html">03.04 Ejercicios de refuerzo (II)<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/98ejerciciosrepaso3/index.html"><a class="padding" href="../../../03orm/98ejerciciosrepaso3/index.html">03.05 Ejercicios de refuerzo (III)<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/index.html"><input type="checkbox" id="R-section-ffae27028787f9b794af8498ce8bc361" aria-controls="R-subsections-ffae27028787f9b794af8498ce8bc361"><label for="R-section-ffae27028787f9b794af8498ce8bc361"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 4. Spring.</span></label><a class="padding" href="../../../04spring/index.html">UD 4. Spring.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-ffae27028787f9b794af8498ce8bc361" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/01springboot/index.html"><a class="padding" href="../../../04spring/01springboot/index.html">01. Spring Boot.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/02springdata/index.html"><a class="padding" href="../../../04spring/02springdata/index.html">02. Spring Data JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/03practicajpadata/index.html"><a class="padding" href="../../../04spring/03practicajpadata/index.html">03. Práctica con de Spring Data JPA y REST.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/04repositorios/index.html"><a class="padding" href="../../../04spring/04repositorios/index.html">04. Repositorios String Data.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/05paginacion/index.html"><a class="padding" href="../../../04spring/05paginacion/index.html">05. Paginación y Ordenación usando Spring Data JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/06paginacionrest/index.html"><a class="padding" href="../../../04spring/06paginacionrest/index.html">06. Paginación y Ordenación usando Spring Data REST.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/07vaadin/index.html"><a class="padding" href="../../../04spring/07vaadin/index.html">07. Spring Data JPA con Vaadin (práctica).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/08ejecutores/index.html"><a class="padding" href="../../../04spring/08ejecutores/index.html">08. Ejecutores al inicio con Spring Boot<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/09serviciocompo/index.html"><a class="padding" href="../../../04spring/09serviciocompo/index.html">09. Servicios, componentes y repositorios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/10servicios/index.html"><a class="padding" href="../../../04spring/10servicios/index.html">10. Servicios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/index.html"><input type="checkbox" id="R-section-f25e02e15b94f5cb39179f26efa74bfe" aria-controls="R-subsections-f25e02e15b94f5cb39179f26efa74bfe"><label for="R-section-f25e02e15b94f5cb39179f26efa74bfe"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 11. Proyecto Spring. Cuestionarios.</span></label><a class="padding" href="../../../04spring/11proyecto/index.html">11. Proyecto Spring. Cuestionarios.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-f25e02e15b94f5cb39179f26efa74bfe" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/01modelo/index.html"><a class="padding" href="../../../04spring/11proyecto/01modelo/index.html">01. Modelo de datos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/02dto/index.html"><a class="padding" href="../../../04spring/11proyecto/02dto/index.html">02. DTO<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/03repositorios/index.html"><a class="padding" href="../../../04spring/11proyecto/03repositorios/index.html">03. Repositorios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/04controller/index.html"><a class="padding" href="../../../04spring/11proyecto/04controller/index.html">04. Controller<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/05resultados/index.html"><a class="padding" href="../../../04spring/11proyecto/05resultados/index.html">05. Pruebas y mejoras<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/12springproj/index.html"><a class="padding" href="../../../04spring/12springproj/index.html">12. Proyecto Spring. Cuestionarios.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/index.html"><input type="checkbox" id="R-section-a0dc28a495fca757d219f1aec2ecff4c" aria-controls="R-subsections-a0dc28a495fca757d219f1aec2ecff4c"><label for="R-section-a0dc28a495fca757d219f1aec2ecff4c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 5. Bases de datos no SQL. MongoDB</span></label><a class="padding" href="../../../05basesdatosnonsql/index.html">UD 5. Bases de datos no SQL. MongoDB<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-a0dc28a495fca757d219f1aec2ecff4c" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/mongodb/01nosql/index.html"><a class="padding" href="../../../05basesdatosnonsql/mongodb/01nosql/index.html">01. Bases de datos NoSQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/mongodb/03springmongodb/index.html"><a class="padding" href="../../../05basesdatosnonsql/mongodb/03springmongodb/index.html">03. Conexión a MongoDB con String Data MongoDB (práctica).<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/index.html"><input type="checkbox" id="R-section-8d4041f058dd2262e83830e1db38cc6d" aria-controls="R-subsections-8d4041f058dd2262e83830e1db38cc6d"><label for="R-section-8d4041f058dd2262e83830e1db38cc6d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Git</span></label><a class="padding" href="../../../git/index.html">Git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8d4041f058dd2262e83830e1db38cc6d" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/index.html"><input type="checkbox" id="R-section-a87776bdac862bf972ec945bc124b884" aria-controls="R-subsections-a87776bdac862bf972ec945bc124b884"><label for="R-section-a87776bdac862bf972ec945bc124b884"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Introducción git</span></label><a class="padding" href="../../../git/1.introduccion_git/index.html">Introducción git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-a87776bdac862bf972ec945bc124b884" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/1.introduccion_git/index.html"><a class="padding" href="../../../git/1.introduccion_git/1.introduccion_git/index.html">Introducción a git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/2.estados_git/index.html"><a class="padding" href="../../../git/1.introduccion_git/2.estados_git/index.html">Estados de git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/3.instalacion_git/index.html"><a class="padding" href="../../../git/1.introduccion_git/3.instalacion_git/index.html">Instalación de git<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/index.html"><input type="checkbox" id="R-section-b63515bb4dcfe678de9ffac7a29c1e77" aria-controls="R-subsections-b63515bb4dcfe678de9ffac7a29c1e77"><label for="R-section-b63515bb4dcfe678de9ffac7a29c1e77"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Fundamentos git</span></label><a class="padding" href="../../../git/2.fundamentos_git/index.html">Fundamentos git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-b63515bb4dcfe678de9ffac7a29c1e77" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/1.configuracion_git/index.html"><a class="padding" href="../../../git/2.fundamentos_git/1.configuracion_git/index.html">Configuracion de git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/2.inicializar_repo/index.html"><a class="padding" href="../../../git/2.fundamentos_git/2.inicializar_repo/index.html">Inicializando repositorio<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/3.cambios/index.html"><a class="padding" href="../../../git/2.fundamentos_git/3.cambios/index.html">Cambios en el repositorio<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/4.ignorar_archivos/index.html"><a class="padding" href="../../../git/2.fundamentos_git/4.ignorar_archivos/index.html">Archivos Ignorados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/5.checkout/index.html"><a class="padding" href="../../../git/2.fundamentos_git/5.checkout/index.html">Git checkout<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/6.log/index.html"><a class="padding" href="../../../git/2.fundamentos_git/6.log/index.html">Git Log<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/7.archivos_modificados/index.html"><a class="padding" href="../../../git/2.fundamentos_git/7.archivos_modificados/index.html">Archivos modificados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/8.cambios/index.html"><a class="padding" href="../../../git/2.fundamentos_git/8.cambios/index.html">Archivos modificados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/9.eliminar_archivos/index.html"><a class="padding" href="../../../git/2.fundamentos_git/9.eliminar_archivos/index.html">Opciones con archivos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/10.limitar/index.html"><a class="padding" href="../../../git/2.fundamentos_git/10.limitar/index.html">Historial de confirmaciones<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/3.remotos/index.html"><a class="padding" href="../../../git/3.remotos/index.html">Remotos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/4.etiquetado/index.html"><a class="padding" href="../../../git/4.etiquetado/index.html">Etiquetado<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/index.html"><input type="checkbox" id="R-section-d8234a81ae190365829886d9d8a058a7" aria-controls="R-subsections-d8234a81ae190365829886d9d8a058a7"><label for="R-section-d8234a81ae190365829886d9d8a058a7"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Ramas Git</span></label><a class="padding" href="../../../git/5.ramas_git/index.html">Ramas Git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-d8234a81ae190365829886d9d8a058a7" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/1.ramificaciones_git/index.html"><a class="padding" href="../../../git/5.ramas_git/1.ramificaciones_git/index.html">Ramificación<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/2.ramificaciones_remotas/index.html"><a class="padding" href="../../../git/5.ramas_git/2.ramificaciones_remotas/index.html">Ramas Remotas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/6.claves_ssh/index.html"><a class="padding" href="../../../git/6.claves_ssh/index.html">Claves SSH<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">Más</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/"><a class="padding" href="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/" rel="external" target="_blank"><i class='fas fa-fw fa-bookmark'></i>  Cómo editar plantilla<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://www.iessanclemente.net/"><a class="padding" href="https://www.iessanclemente.net/" rel="external" target="_blank"><i class='fas fa-home'></i> IES Tubalcain<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/categories"><a class="padding" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/categories"><i class='fa-fw fas fa-layer-group'></i> Categories<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tags"><a class="padding" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/tags"><i class='fa-fw fas fa-tags'></i> Tags<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+            <li class="R-variantswitcher">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-paint-brush"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <label class="a11y-only" for="R-select-variant">Tema</label>
+                  <select id="R-select-variant">
+                    <option id="R-select-variant-blue" value="blue" selected>Blue</option>
+                    <option id="R-select-variant-relearn-light" value="relearn-light">Relearn Light</option>
+                    <option id="R-select-variant-relearn-dark" value="relearn-dark">Relearn Dark</option>
+                    <option id="R-select-variant-learn" value="learn">Learn</option>
+                    <option id="R-select-variant-neon" value="neon">Neon</option>
+                    <option id="R-select-variant-green" value="green">Green</option>
+                    <option id="R-select-variant-red" value="red">Red</option>
+                  </select>
+                </div>
+                <div class="clear"></div>
+              </div>
+              <script>window.relearn.markVariant();</script>
+            </li>
+            <li class="R-historyclearer">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-history"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <button>Borrar Historial</button>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+<div id="R-footer">
+<div>
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/cc.png" height="30" />
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/by.png"  height="30"/>
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/nc-eu.png"  height="30"/>
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/sa.png" height="30" />
+</div>
+</div>
+      </div>
+    </aside>
+    <script src="../../../js/clipboard/clipboard.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/perfect-scrollbar/perfect-scrollbar.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/theme.min3c2e.js?1749199978" defer></script>
+  </body>
+
+<!-- Mirrored from manuais.pages.iessanclemente.net/plantillas/dam/ad/01accesoficheros/03json/0306transformacion/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Sep 2025 20:45:34 GMT -->
+</html>

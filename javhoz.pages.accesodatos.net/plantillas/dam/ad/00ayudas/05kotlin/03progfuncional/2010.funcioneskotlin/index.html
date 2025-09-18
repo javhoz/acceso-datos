@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  
+<!-- Mirrored from manuais.pages.iessanclemente.net/plantillas/dam/ad/00ayudas/05kotlin/03progfuncional/2010.funcioneskotlin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Sep 2025 20:45:33 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.140.2">
+    <meta name="generator" content="Relearn 7.6.1+0b83617ee9da5253aafcf11807b256da7d88d709">
+    <meta name="description" content="PROGRAMACION FUNCIONAL 1: MÁS DE SINTAXIS DE FUNCIONES La programación funcional se basa esencialmente en el uso de funciones por lo que es conveniente observar sintaxis adicionales relativas a funciones que no vimos cuando estudiamos el concepto de función en la introducción a la programación estructurada.
+Argumentos con nombre al invocar a una función podemos indicar el nombre del parámetro al que queremos asociar el argumento. Esto es útil cuando la función tiene muchos argumentos para tener clara la correspondencia. Está técnica incluso nos permite cambiar el orden or defecto de los argumentos.">
+    <meta name="author" content="IES Tubalcain">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <meta name="twitter:title" content="sintáxis avanzada de las  funciones kotlin :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta name="twitter:description" content="PROGRAMACION FUNCIONAL 1: MÁS DE SINTAXIS DE FUNCIONES La programación funcional se basa esencialmente en el uso de funciones por lo que es conveniente observar sintaxis adicionales relativas a funciones que no vimos cuando estudiamos el concepto de función en la introducción a la programación estructurada.
+Argumentos con nombre al invocar a una función podemos indicar el nombre del parámetro al que queremos asociar el argumento. Esto es útil cuando la función tiene muchos argumentos para tener clara la correspondencia. Está técnica incluso nos permite cambiar el orden or defecto de los argumentos.">
+    <meta property="og:url" content="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2010.funcioneskotlin/index.html">
+    <meta property="og:site_name" content="IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta property="og:title" content="sintáxis avanzada de las  funciones kotlin :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta property="og:description" content="PROGRAMACION FUNCIONAL 1: MÁS DE SINTAXIS DE FUNCIONES La programación funcional se basa esencialmente en el uso de funciones por lo que es conveniente observar sintaxis adicionales relativas a funciones que no vimos cuando estudiamos el concepto de función en la introducción a la programación estructurada.
+Argumentos con nombre al invocar a una función podemos indicar el nombre del parámetro al que queremos asociar el argumento. Esto es útil cuando la función tiene muchos argumentos para tener clara la correspondencia. Está técnica incluso nos permite cambiar el orden or defecto de los argumentos.">
+    <meta property="og:locale" content="es">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="UD 0. Refuerzo y ayudas complementarias">
+    <meta property="article:modified_time" content="2025-06-06T08:52:43+00:00">
+    <meta property="og:image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <meta itemprop="name" content="sintáxis avanzada de las  funciones kotlin :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta itemprop="description" content="PROGRAMACION FUNCIONAL 1: MÁS DE SINTAXIS DE FUNCIONES La programación funcional se basa esencialmente en el uso de funciones por lo que es conveniente observar sintaxis adicionales relativas a funciones que no vimos cuando estudiamos el concepto de función en la introducción a la programación estructurada.
+Argumentos con nombre al invocar a una función podemos indicar el nombre del parámetro al que queremos asociar el argumento. Esto es útil cuando la función tiene muchos argumentos para tener clara la correspondencia. Está técnica incluso nos permite cambiar el orden or defecto de los argumentos.">
+    <meta itemprop="dateModified" content="2025-06-06T08:52:43+00:00">
+    <meta itemprop="wordCount" content="2973">
+    <meta itemprop="image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <title>sintáxis avanzada de las  funciones kotlin :: IES Tubalcain - Acceso a datos (2º DAM)</title>
+    <link href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/00ayudas/05kotlin/03progfuncional/2010.funcioneskotlin/index.xml" rel="alternate" type="application/rss+xml" title="sintáxis avanzada de las  funciones kotlin :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <link href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/00ayudas/05kotlin/03progfuncional/2010.funcioneskotlin/index.print.html" rel="alternate" type="text/html" title="sintáxis avanzada de las  funciones kotlin :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <link href="../../../../fonts/fontawesome/css/fontawesome-all.min3c2e.css?1749199978" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../../../fonts/fontawesome/css/fontawesome-all.min3c2e.css?1749199978" rel="stylesheet"></noscript>
+    <link href="../../../../css/perfect-scrollbar/perfect-scrollbar.min3c2e.css?1749199978" rel="stylesheet">
+    <link href="../../../../css/theme.min3c2e.css?1749199978" rel="stylesheet">
+    <link href="../../../../css/format-html.min3c2e.css?1749199978" rel="stylesheet" id="R-format-style">
+    <link href="../../../../css/auto-complete/auto-complete.min3c2e.css?1749199978" rel="stylesheet">
+    <script src="../../../../js/auto-complete/auto-complete.min3c2e.js?1749199978" defer></script>
+    <script src="../../../../js/lunr/lunr.min3c2e.js?1749199978" defer></script>
+    <script src="../../../../js/lunr/lunr.stemmer.support.min3c2e.js?1749199978" defer></script>
+    <script src="../../../../js/lunr/lunr.multi.min3c2e.js?1749199978" defer></script>
+    <script src="../../../../js/lunr/lunr.es.min3c2e.js?1749199978" defer></script>
+    <script src="../../../../js/search.min3c2e.js?1749199978" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='#\/00ayudas\/05kotlin\/03progfuncional\/2010.funcioneskotlin\/index.html';
+      window.relearn.relBasePath='..\/..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..\/..';
+      window.relearn.absBaseUri='';
+      window.relearn.contentLangs=['es'];
+      window.relearn.index_js_url="../../../../searchindex.es3c2e.js?1749199978";
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // variant stuff
+      window.relearn.themevariants = [ 'blue', 'relearn-light', 'relearn-dark', 'learn', 'neon', 'green', 'red' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copiar en el portapapeles`;
+      window.T_Copied_to_clipboard = `¡Copiado al portapapeles!`;
+      window.T_Copy_link_to_clipboard = `Copiar enlace al portapapeles`;
+      window.T_Link_copied_to_clipboard = `¡Enlace copiado al portapapeles!`;
+      window.T_Reset_view = `Restablecer vista`;
+      window.T_View_reset = `¡Ver reajuste!`;
+      window.T_No_results_found = `No se han encontrado resultados para "{0}"`;
+      window.T_N_results_found = `{1} resultados encontrados para "{0}"`;
+    </script><style>
+    :root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+}
+
+@media screen and (max-width: 70.5rem) {
+    #R-sidebar {
+        min-width: var(--INTERNAL-MENU-WIDTH-S);
+        max-width: var(--INTERNAL-MENU-WIDTH-S);
+        width: var(--INTERNAL-MENU-WIDTH-S);
+    }
+    #R-body {
+        margin-inline-start: var(--INTERNAL-MENU-WIDTH-S);
+        min-width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+        max-width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+        width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+    }
+}
+@media screen and (max-width: 70.5rem) {
+     
+
+    .mobile-support #R-sidebar {
+        inset-inline-start: calc( -1 * var(--INTERNAL-MENU-WIDTH-S) );
+        min-width: var(--INTERNAL-MENU-WIDTH-S);
+        max-width: var(--INTERNAL-MENU-WIDTH-S);
+        width: var(--INTERNAL-MENU-WIDTH-S);
+    }
+    .mobile-support #navshow{
+        display: inline;
+    }
+    .mobile-support #R-body {
+        min-width: 100%;
+        max-width: 100%;
+        width: 100%;
+    }
+    .mobile-support #R-body {
+        margin-inline-start: 0;
+    }
+    .mobile-support.sidebar-flyout {
+        overflow: hidden;
+    }
+    .mobile-support.sidebar-flyout #R-sidebar {
+        inset-inline-start: 0;
+        z-index: 90;
+    }
+    .mobile-support.sidebar-flyout #R-body {
+        margin-inline-start: var(--INTERNAL-MENU-WIDTH-S);
+        overflow: hidden;
+    }
+    .mobile-support.sidebar-flyout #R-body-overlay{
+        background-color: rgba( 134, 134, 134, .5 );
+        bottom: 0;
+        cursor: pointer;
+        height: 100vh;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 190;
+    }
+}
+
+</style>
+
+
+  </head>
+  <body class="mobile-support html" data-url="../../../../00ayudas/05kotlin/03progfuncional/2010.funcioneskotlin/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menú (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Tabla de contenido (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#argumentos-con-nombre">Argumentos con nombre</a></li>
+    <li><a href="#numero-variable-de-argumentos-con-varargs">Numero variable de argumentos con varargs</a></li>
+    <li><a href="#funciones-genéricas">Funciones genéricas</a></li>
+    <li><a href="#funciones-infix">Funciones infix</a></li>
+    <li><a href="#alcance-de-las-funciones">Alcance de las funciones</a></li>
+    <li><a href="#funciones-locales">Funciones locales</a></li>
+    <li><a href="#extensión-de-funciones">Extensión de funciones</a></li>
+    <li><a href="#sobrecarga-de-operadores">Sobrecarga de operadores</a></li>
+    <li><a href="#funciones-y-eficiencia">Funciones y eficiencia</a>
+      <ul>
+        <li><a href="#funciones-inline">Funciones inline</a></li>
+        <li><a href="#funciones-tail-recursive">funciones tail recursive</a></li>
+      </ul>
+    </li>
+    <li><a href="#asignar-funciones-a-variables-el-operador-de-referencia-a-funciones-">Asignar funciones a variables. El operador de referencia a funciones ::</a></li>
+    <li><a href="#sintaxis-para-expresar-tipos-de-función-firma-de-la-función">Sintaxis para expresar tipos de función. Firma de la función</a>
+      <ul>
+        <li><a href="#ejemplos">Ejemplos</a></li>
+      </ul>
+    </li>
+    <li><a href="#funciones-anónimas">Funciones anónimas</a></li>
+    <li><a href="#funciones-lambda">Funciones lambda</a></li>
+    <li><a href="#relación-entre-lambda-y-tipo-de-función">Relación entre lambda y tipo de función</a></li>
+    <li><a href="#funciones-que-aceptan-otra-función-como-parámetro">Funciones que aceptan otra función como parámetro</a></li>
+    <li><a href="#sintaxis-especial-para-invocar-funciones-que-tienen-por-último-parámetro-una-lambda">Sintaxis especial para invocar funciones que tienen por último parámetro una lambda</a></li>
+    <li><a href="#funciones-que-devuelven-una-función">Funciones que devuelven una función</a></li>
+    <li><a href="#la-keyword-it-en-expresiones-lambda">La keyword it en expresiones lambda</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../../../index.html"><span itemprop="name">Acceso a datos</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../../index.html"><span itemprop="name">UD 0. Refuerzo y ayudas complementarias</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../index.html"><span itemprop="name">05. Programación en Kotlin</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../index.html"><span itemprop="name">Programación funcional</span></a><meta itemprop="position" content="4">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">sintáxis avanzada de las  funciones kotlin</span><meta itemprop="position" content="5"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/00ayudas/05kotlin/03progfuncional/2010.funcioneskotlin/index.print.html" title="Imprimir todo el capítulo (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../index.html" title="Programación funcional (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../2020.-basesdepf/index.html" title="algunos conceptos básicos de programación funcional (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Más"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 00ayudas" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="sintáxis-avanzada-de-las--funciones-kotlin">sintáxis avanzada de las  funciones kotlin</h1>
+
+<h1 id="programacion-funcional-1-más-de-sintaxis-de-funciones">PROGRAMACION FUNCIONAL 1: MÁS DE SINTAXIS DE FUNCIONES</h1>
+</div>
+<div class="cell markdown"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;KUtDY5UQlw7QitjIEeqdVy&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;9msV2espl2paagdcZPweQQ&quot;},&quot;type&quot;:&quot;MD&quot;}">
+<p>La programación funcional se basa esencialmente en el uso de funciones
+por lo que es conveniente observar sintaxis adicionales relativas a
+funciones que no vimos cuando estudiamos el concepto de función en la
+introducción a la programación estructurada.</p>
+</div>
+<div class="cell markdown"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;s5xZYCwgGcdPOoCLExsaC5&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;MWNOnQYo3wiVaIEnCJZjg4&quot;},&quot;type&quot;:&quot;MD&quot;}">
+<h2 id="argumentos-con-nombre">Argumentos con nombre</h2>
+<p>al invocar a una función podemos indicar el nombre del parámetro al que
+queremos asociar el argumento. Esto es útil cuando la función tiene
+muchos argumentos para tener clara la correspondencia. Está técnica
+incluso nos permite cambiar el orden or defecto de los argumentos.</p>
+</div>
+<div class="cell code" execution_count="1"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;HpkV6kTnSrvJM7yU2o6OE9&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;FtSY6yCgjeeMFkSno9eq3d&quot;},&quot;type&quot;:&quot;CODE&quot;}">
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>fun <span style="color:#a6e22e">sumar</span>(a: Int, b: Int): Int {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>val resultado1 <span style="color:#f92672">=</span> sumar(2, 3)
+</span></span><span style="display:flex;"><span>print(resultado1)
+</span></span><span style="display:flex;"><span>val resultado2 <span style="color:#f92672">=</span> sumar(b <span style="color:#f92672">=</span> 3, a <span style="color:#f92672">=</span> 2) <span style="color:#75715e">// usando nombres puedo cambiar orden</span>
+</span></span><span style="display:flex;"><span>print(resultado2)</span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>55
+</code></pre>
+</div>
+</div>
+<div class="cell markdown"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;75OQHKKdbR3eUypp6ZOc6p&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;a0nLg3TnOS17ytf5ZumG5Z&quot;},&quot;type&quot;:&quot;MD&quot;}">
+<h2 id="numero-variable-de-argumentos-con-varargs">Numero variable de argumentos con varargs</h2>
+<p>Si marcamos un parámetro con <em>varargs</em> quiere decir que dicho parámetro
+puede recibir un número variable de argumentos</p>
+</div>
+<div class="cell code"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;dy4ukVwg4aZeRCFr5VeeKT&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;zuWcSdgAs5s1D0owyupGyG&quot;},&quot;type&quot;:&quot;CODE&quot;}">
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>fun <span style="color:#a6e22e">suma</span>(vararg numeros: Int): Int {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> resultado <span style="color:#f92672">=</span> 0
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">for</span> (numero in numeros) {
+</span></span><span style="display:flex;"><span>        resultado <span style="color:#f92672">+=</span> numero
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> resultado
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>println(suma(1, 2, 3, 4))  
+</span></span><span style="display:flex;"><span>println(suma(5, 10, 15))   </span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>10
+30
+</code></pre>
+</div>
+</div>
+<div class="cell markdown"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;ZEGqTyeF5HuYmDBKhAru4W&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;xFJ3a22HBwEQAyBmRkDw84&quot;},&quot;type&quot;:&quot;MD&quot;}">
+<p>Realmente lo que se hace internamente es generar un array, en el caso
+anterior un array de enteros. ¿Cual es entonces la diferencia con
+declarar un array como parámetro?, pues que con esta sintáxis el
+argumento puede ser un array pero también una lista de los valores
+separados por comas con los que automáticamente se genera un array.</p>
+</div>
+<div class="cell markdown"
+datalore="{&quot;hide_input_from_viewers&quot;:true,&quot;hide_output_from_viewers&quot;:true,&quot;node_id&quot;:&quot;nPD5fiqVu8lL6iIRIPulTh&quot;,&quot;type&quot;:&quot;MD&quot;}">
+<h2 id="funciones-genéricas">Funciones genéricas</h2>
+<p>Se puede escribir una función utilizando un tipo o varios genéricos.
+Este tipo genérico se puede usar para escribir el resto de la función
+tanto en los parámetros como en el cuerpo.</p>
+<p>Los tipos genéricos se indica despues de la palabra <em>fun</em> indicando una
+letra para representar el tipo genérico entre &lt;&gt;</p>
+</div>
+<div class="cell code" execution_count="2"
+datalore="{&quot;hide_input_from_viewers&quot;:true,&quot;hide_output_from_viewers&quot;:true,&quot;node_id&quot;:&quot;ZgEnxTHNuNjlnRVRLU0OtT&quot;,&quot;type&quot;:&quot;CODE&quot;}">
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>fun <span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">imprimirValor</span>(valor: T) {
+</span></span><span style="display:flex;"><span>    println(<span style="color:#e6db74">&#34;El valor es: $valor&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//observa como puedo invocar a la función con argumentos de distinto tipo</span>
+</span></span><span style="display:flex;"><span>imprimirValor(42)      
+</span></span><span style="display:flex;"><span>imprimirValor(<span style="color:#e6db74">&#34;hola&#34;</span>)  
+</span></span><span style="display:flex;"><span>imprimirValor(<span style="color:#66d9ef">true</span>)    </span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>El valor es: 42
+El valor es: hola
+El valor es: true
+</code></pre>
+</div>
+</div>
+<div class="cell markdown"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;KCawG00pROnYRl0aEkes8z&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;Pd8WI1gxsL8NEBAVcU4u7M&quot;},&quot;type&quot;:&quot;MD&quot;}">
+<h2 id="funciones-infix">Funciones infix</h2>
+<p>Una función infix es una función que se puede llamar utilizando la
+sintaxis de operador infijo en lugar de la sintaxis típica de llamada de
+función. Una función infix sólo puede tener un parámetro</p>
+</div>
+<div class="cell code" execution_count="3"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;9c9CK91BCXmcnLPsYZXAtf&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;pse6KvDAM3aC3dWpv61Vm8&quot;},&quot;type&quot;:&quot;CODE&quot;}">
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Persona</span>(val nombre: String) {
+</span></span><span style="display:flex;"><span>    infix fun <span style="color:#a6e22e">esTocayoDe</span>(persona:Persona): Boolean {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">nombre</span> <span style="color:#f92672">==</span> persona.<span style="color:#a6e22e">nombre</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>val x <span style="color:#f92672">=</span> Persona(<span style="color:#e6db74">&#34;Juan&#34;</span>)
+</span></span><span style="display:flex;"><span>val y <span style="color:#f92672">=</span> Persona(<span style="color:#e6db74">&#34;Pedro&#34;</span>)
+</span></span><span style="display:flex;"><span>println(x.<span style="color:#a6e22e">esTocayoDe</span>(y))
+</span></span><span style="display:flex;"><span>println(x esTocayoDe y) <span style="color:#f92672">//</span>uso innix</span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>false
+false
+</code></pre>
+</div>
+</div>
+<div class="cell markdown"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;T1VJmPhrswvYhKKXsnVK3l&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;vVTPGW5mqaGwU8BKAThPLk&quot;},&quot;type&quot;:&quot;MD&quot;}">
+<h2 id="alcance-de-las-funciones">Alcance de las funciones</h2>
+<p>Igual que en un lenguaje tradicional hablamos del alcance &ldquo;scope&rdquo; de una
+variable, también las funciones tienen un alcance.</p>
+<p>Si clasificamos las funciones por alcance tenemos los siguientes tipos
+de funciones.</p>
+<ul>
+<li>funciones top-level. Si lo deseamos en kotlin podemos declarar una
+función el nivel superior de archivo, lo que significa que no se
+necesita crear una clase para contener una función como en java o c#</li>
+<li>funciones locales. Una función puede definirse dentro de una función
+y pasa a ser una función interna que llamamos local</li>
+<li>funciones miembro. El alcance de la función está ligado a un objeto,
+similar a un método java.</li>
+<li>funciones de extensión. El alcance es similar a las funciones
+miembro. Estuvimos utilizando constantemente funciones top-level y
+también escribimos funciones miembreo al ver contenidos de
+programación orientada objetos en Kotlin. Veremos a continuación
+ejemplos de funciones locales y de extensión.</li>
+</ul>
+</div>
+<div class="cell markdown"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;2Ds9qyHwWXMKRCYsMEnqgk&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;fTbZeltfCrSLXZiGsrFRYH&quot;},&quot;type&quot;:&quot;MD&quot;}">
+<h2 id="funciones-locales">Funciones locales</h2>
+<p>Una función local <strong>f</strong> es una función que se define dentro de otra
+función **g **. La funcion local <strong>f</strong> solo puede ser accedida por las
+instrucciones de <strong>g</strong>, no fuera de <strong>g</strong>. Son útiles cuando al escribir
+una función observamos que duplicamos código o simplemente para tener el
+código un poco más organizado.</p>
+<p>el siguiente ejemplo es inútil pero ejemplificador de la sintaxis. La
+función sumar() es una función local ya que está definida dentro de otra
+llamada calcularSuma(). Desde fuera de calcularSuma la función sumar()
+no es accesible ya que es algo &ldquo;local&rdquo; a calcularSuma().</p>
+</div>
+<div class="cell code" execution_count="6"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;9UdLmBNjLcfHYSRMtMTfSU&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;Kiy5kMKTb8DJwEUJ0MtTrp&quot;},&quot;type&quot;:&quot;CODE&quot;}">
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>fun <span style="color:#a6e22e">calcularSuma</span>(a: Int, b: Int): Int {
+</span></span><span style="display:flex;"><span>    fun <span style="color:#a6e22e">sumar</span>(x: Int, y: Int): Int {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> x <span style="color:#f92672">+</span> y
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    val resultado <span style="color:#f92672">=</span> sumar(a, b)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> resultado
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>print(calcularSuma(3,4))
+</span></span><span style="display:flex;"><span><span style="color:#f92672">//</span>print(sumar(3,2))</span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>7
+</code></pre>
+</div>
+</div>
+<div class="cell markdown"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;9VScJrzC3EDuotQWiZu9pX&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;ub4fHuZbHIybzHv3czyHH7&quot;},&quot;type&quot;:&quot;MD&quot;}">
+<h2 id="extensión-de-funciones">Extensión de funciones</h2>
+<p>Las extensiones de función permiten extender la funcionalidad de clases
+existentes añadiendo funciones pero sin modificar su código fuente
+original añadiendo funciones. Esto puede ser especialmente útil cuando
+se trabaja con bibliotecas y frameworks que no podemos o queremos
+modificar.<br>
+En el siguiente ejemplo añadimos a la clase standar Int la función
+duplicar(), observa que podemos ver la extensión de funciones como una
+suerte de <em>&ldquo;extend express&rdquo;</em> a la clase Int</p>
+</div>
+<div class="cell code" execution_count="1"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;1a5dGlLdSS4X76IyiuJAIX&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;vgZyP6EoNPfoUgMF8p32p4&quot;},&quot;type&quot;:&quot;CODE&quot;}">
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>fun Int.<span style="color:#a6e22e">duplicar</span>(): Int {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">*</span>2
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>val x <span style="color:#f92672">=</span> 5
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">print</span>(x.<span style="color:#a6e22e">duplicar</span>())</span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>10
+</code></pre>
+</div>
+</div>
+<div class="cell markdown"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;EtB2towpP4Eqtg4Qw2K1Kn&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;K5wlws2O3Oeh1rws3Iiwzu&quot;},&quot;type&quot;:&quot;MD&quot;}">
+<p>En el siguiente ejemplo creamos una función de extensión para Int que
+además puede llamarse en modo infix</p>
+</div>
+<div class="cell code" execution_count="8"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;rhWPjYTE3EJbViDQOCiSdy&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;VNzkXLt1qV4zRUq9ymcOtp&quot;},&quot;type&quot;:&quot;CODE&quot;}">
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>infix fun Int.<span style="color:#a6e22e">sumAndMultiply</span>(other: Int): Int {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (<span style="color:#66d9ef">this</span> <span style="color:#f92672">+</span> other) <span style="color:#f92672">*</span> other
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(3 sumAndMultiply 4) <span style="color:#f92672">//</span>(3<span style="color:#f92672">+</span>4)<span style="color:#f92672">*</span>4</span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>28
+</code></pre>
+</div>
+</div>
+<div class="cell markdown"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;kd8UXD5w63fMrLPlzxs38Z&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;pLSxGXA9oBv9iNt0dqNyvZ&quot;},&quot;type&quot;:&quot;MD&quot;}">
+<h2 id="sobrecarga-de-operadores">Sobrecarga de operadores</h2>
+<p>La sobrecarga de operadores en Kotlin se refiere a la capacidad de
+definir cómo se comportará un operador determinado en una clase
+personalizada. En otras palabras, permite que los operadores estándar,
+como +, -, *, /, etc., se utilicen con objetos de una clase
+personalizada.</p>
+<p>Por ejemplo, queremos sumar objetos personas, para ello en la clase
+Persona debemos sobreescribir la función plus(). La función plus() está
+asociada por definición del lenguaje al operador + de tal forma que el
+código que escribamos dentro de la función plus de la clase Persona, es
+el código que se va a ejecutar si relacionamos dos personas con el
+operador +. Puedes consultar en kotlin.org todos los operadores que se
+pueden sobrecargar y sus funciones asociadas.</p>
+</div>
+<div class="cell code"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;X0gtfVfeZc4WfGOkofv8Wr&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;VXA6AGodavG6bV2Wa3Y2LI&quot;},&quot;type&quot;:&quot;CODE&quot;}">
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Persona</span>(val nombre: String, val edad: Int) {
+</span></span><span style="display:flex;"><span>    operator fun <span style="color:#a6e22e">plus</span>(other: Persona): Persona {
+</span></span><span style="display:flex;"><span>        val nuevoNombre <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;${this.nombre} y ${other.nombre}&#34;</span>
+</span></span><span style="display:flex;"><span>        val nuevaEdad <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">edad</span> <span style="color:#f92672">+</span> other.<span style="color:#a6e22e">edad</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">Persona</span>(nuevoNombre, nuevaEdad)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>val persona1 <span style="color:#f92672">=</span> Persona(<span style="color:#e6db74">&#34;Juan&#34;</span>, 30)
+</span></span><span style="display:flex;"><span>val persona2 <span style="color:#f92672">=</span> Persona(<span style="color:#e6db74">&#34;María&#34;</span>, 25)
+</span></span><span style="display:flex;"><span>val persona3 <span style="color:#f92672">=</span> persona1 <span style="color:#f92672">+</span> persona2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">println</span>(persona3.<span style="color:#a6e22e">nombre</span>) <span style="color:#75715e">// Juan y María</span>
+</span></span><span style="display:flex;"><span>println(persona3.<span style="color:#a6e22e">edad</span>) <span style="color:#f92672">//</span> 55</span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>Juan y María
+55
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="1"
+datalore="{&quot;hide_input_from_viewers&quot;:true,&quot;hide_output_from_viewers&quot;:true,&quot;node_id&quot;:&quot;i6Qoaso7nRC5eGcPNMR3Ta&quot;,&quot;type&quot;:&quot;CODE&quot;}">
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//ahora la suma de dos personas devuelve un entero que corresponde a la suma de edades de dos personas</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Persona</span>(val nombre: String, val edad: Int) {
+</span></span><span style="display:flex;"><span>    operator fun <span style="color:#a6e22e">plus</span>(other: Persona): Int {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">edad</span> <span style="color:#f92672">+</span> other.<span style="color:#a6e22e">edad</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>val persona1 <span style="color:#f92672">=</span> Persona(<span style="color:#e6db74">&#34;Juan&#34;</span>, 30)
+</span></span><span style="display:flex;"><span>val persona2 <span style="color:#f92672">=</span> Persona(<span style="color:#e6db74">&#34;María&#34;</span>, 25)
+</span></span><span style="display:flex;"><span>val edad <span style="color:#f92672">=</span> persona1 <span style="color:#f92672">+</span> persona2
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">println</span>(edad)</span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>55
+</code></pre>
+</div>
+</div>
+<div class="cell markdown"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;v1EqgjF7XeqPGhscioyUS9&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;AteGexBs3Ilu8UptQN2VxP&quot;},&quot;type&quot;:&quot;MD&quot;}">
+<h2 id="funciones-y-eficiencia">Funciones y eficiencia</h2>
+<p>Debido al uso intensivo de funciones en kotlin los modificadores inline
+y tailrec se utilizan para mejorar el rendimiento en determinados
+escenarios.</p>
+<h3 id="funciones-inline">Funciones inline</h3>
+<p>Una función inline en Kotlin es una función que, en tiempo de
+compilación, se &ldquo;copia y pega&rdquo; el cuerpo de la función en cada lugar
+donde se la llama en lugar de generar una llamada a la función. Esto
+puede aumentar el rendimiento del programa al evitar el costo de la
+creación y el desmantelamiento de la pila de llamadas en tiempo de
+ejecución. Pero este efecto no es visible en el código fuente.</p>
+<p>En el código fuente simplemente se añade el modificador <strong>inline</strong> y
+luego ya se encarga el compilador de hacer esa especie de &ldquo;pegado de
+código&rdquo; para eliminar las llamadas a la pila</p>
+<p>En general, se recomienda utilizar la anotación inline solamente en
+aquellas funciones que son llamadas con frecuencia y que contienen una
+cantidad significativa de código. Si declaramos indiscriminadamente
+inline todas las funciones obtendríamos un código compilado más grande y
+se reduciría el rendimiento general del programa.</p>
+<p>Nuestro objetivo ahora no es saber cuando compensa o no compensa
+declarar una función* inline*, nos basta saber como trabaja inline de
+forma que cuando usemos funciones de la biblioteca standard y
+consultemos su documentación, si éstas tienen el modificador* inline*
+sepamos simplemente que se refiere a una cuestión de eficiencia, es
+decir, que no tiene que ver con los resultados que devuelve la función y
+por lo tanto que podemos en principio despreocupar que sea <em>inline</em> o
+no.</p>
+</div>
+<div class="cell code"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;LrkCekhBF2wwWB3p1r30T1&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;xS6jqNmM51mdSPhe7OXeue&quot;},&quot;type&quot;:&quot;CODE&quot;}">
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>inline fun <span style="color:#a6e22e">saludo</span>(nombre: String): String {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Hola, $nombre!&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>val miNombre <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Juan&#34;</span>
+</span></span><span style="display:flex;"><span>val mensaje <span style="color:#f92672">=</span> saludo(miNombre)
+</span></span><span style="display:flex;"><span>println(mensaje) <span style="color:#f92672">//</span> imprime <span style="color:#e6db74">&#34;Hola, Juan!&#34;</span></span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>Hola, Juan!
+</code></pre>
+</div>
+</div>
+<div class="cell markdown"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;45JSbTTnsM7Qiv74WpPMEI&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;niiVCzpMXvx4TXQQZCQYwi&quot;},&quot;type&quot;:&quot;MD&quot;}">
+<h3 id="funciones-tail-recursive">funciones tail recursive</h3>
+</div>
+<div class="cell markdown"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;y6QLvdr9uyFQIJiHKsJpMO&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;VzpXFW66Yn5JKWeT0DJtwi&quot;},&quot;type&quot;:&quot;MD&quot;}">
+<p>Ya sabemos que las funciones se pueden llamar recursivamente, por
+ejemplo</p>
+</div>
+<div class="cell code"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;goNvGXhmwjZPy0EKdz7bwP&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;4fSM4FjYIBIFSMCDFkBNx9&quot;},&quot;type&quot;:&quot;CODE&quot;}">
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>fun <span style="color:#a6e22e">factorial</span>(n: Int): Int {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> (n <span style="color:#f92672">==</span> 1 <span style="color:#f92672">||</span> n <span style="color:#f92672">==</span> 0) {
+</span></span><span style="display:flex;"><span>        1
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        n <span style="color:#f92672">*</span> factorial(n <span style="color:#f92672">-</span> 1)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>print(factorial(4))</span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>24
+</code></pre>
+</div>
+</div>
+<div class="cell markdown"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;jyPrzlstovOEVqxgOlRiGJ&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;3elAdnk9RMl3hdL6yyHobh&quot;},&quot;type&quot;:&quot;MD&quot;}">
+<p>La recursividad es una de las herramientas de la programación funcional.
+La recursividad es muy expresiva y permite resolver cierto tipo de
+problemas muy complicados con facilidad. No obstante, es mucho menos
+eficiente que la iteración.</p>
+<p>Kotlin permite declarar las funciones recursivas como <em>tail recursive</em> y
+esto hace que automáticamente en el código compilado se genere de una
+versión iterativa eficiente de nuestra versión recursiva. Es decir, esta
+técnica nos permite disfrutar de la expresividad de la recursividad y de
+la eficiencia de la iteración.</p>
+<p>Para que una una función sea considerada como *&ldquo;tail recursive&rdquo; *tiene
+que cumplir:</p>
+<ul>
+<li>la llamada recursiva es la última operación que se ejecuta en la
+función.</li>
+<li>se especifica el modificador tailrec lo que avisa al compilador que
+haga la traducción a versión iterativa correspondiente.</li>
+</ul>
+<p>El ejemplo anterior de factorial, no ese puede declarar como tailrec ya
+que la ultima instrucción return hay una operación aritmética, no una
+simple llamada recursiva. La siguiente versión de factorialsí tailrec</p>
+</div>
+<div class="cell code"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;1TCpvn4Vu482JXbBUbvuuP&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;ZR1xbzkFkty0A9mVVu07yW&quot;},&quot;type&quot;:&quot;CODE&quot;}">
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>tailrec fun <span style="color:#a6e22e">factorial</span>(n: Int, acc: Int <span style="color:#f92672">=</span> 1): Int {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> (n <span style="color:#f92672">==</span> 0) {
+</span></span><span style="display:flex;"><span>        acc
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        factorial(n <span style="color:#f92672">-</span> 1, acc <span style="color:#f92672">*</span> n)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>print(factorial(4))</span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>24
+</code></pre>
+</div>
+</div>
+<div class="cell markdown"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;mXYM8o9CfI9UoV0SKZ1qj9&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;E6hNP5BM7NeKN72NDZvzxE&quot;},&quot;type&quot;:&quot;MD&quot;}">
+<p>Se pierde libertad y expresividad al escribir el código, pero de esta
+manera se pueden evitar el bajo rendimiento y los desbordamientos de
+pila ya que el compilador trabaja internamente con version iterativa que
+el propio compilador genera automáticamente.</p>
+<p>Muchos programadores que necesitan resolver un problema típicamente
+recursivio siguen este proceso:</p>
+<ol>
+<li>Escribe su código recursivo libremente disfrutando de la
+expresividad de la recursividad.</li>
+<li>Una vez alcanzada la solución y bien entendido el problema, si se
+preveen desbordamientos de pila o problemas de eficiencia se intenta
+reescribir la solución anterior como tail recursive para que el
+compilador genere en el código compilado al versión iterativa. No
+siempre es posible obtener una versión tail recursive, depende del
+problema a resolver.</li>
+<li>Si nuestra solución no tiene una versión equivalente escrita en
+formato tail recursive, entonces el programador intenta hacer él
+mismo una versión iterativa para lo que existen diversas técnicas
+algorítmicas.</li>
+</ol>
+</div>
+<div class="cell markdown"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;hIg84hjWDN1pDab49AgnxI&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;z5Msq8h1QG88RlC7dms83Q&quot;},&quot;type&quot;:&quot;MD&quot;}">
+<h2 id="asignar-funciones-a-variables-el-operador-de-referencia-a-funciones-">Asignar funciones a variables. El operador de referencia a funciones ::</h2>
+<p>Se puede utilizar el operador &ldquo;: :&rdquo; para asignar una función a una
+variable o a una constante. Este operador se conoce como <em>operador de
+referencia de función</em> y permite crear una referencia a una función
+existente. Es posible asignar una función a una variable de varias
+formas, por ejemplo con el operador ::</p>
+</div>
+<div class="cell code"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;DTcklbrPwnXdKy2quWSQgb&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;Pnkz8HCap4hu20vQLKngZ3&quot;},&quot;type&quot;:&quot;CODE&quot;}">
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>fun <span style="color:#a6e22e">sumar</span>(a: Int, b: Int): Int {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>fun <span style="color:#a6e22e">restar</span>(a: Int, b: Int) : Int {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> a <span style="color:#f92672">-</span> b
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> miFuncion <span style="color:#f92672">=</span> ::sumar
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">println</span>(miFuncion(2,3))
+</span></span><span style="display:flex;"><span>miFuncion <span style="color:#f92672">=</span> ::restar
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">println</span>(miFuncion(10,15))</span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>5
+-5
+</code></pre>
+</div>
+</div>
+<div class="cell markdown"
+datalore="{&quot;hide_input_from_viewers&quot;:true,&quot;hide_output_from_viewers&quot;:true,&quot;node_id&quot;:&quot;NVW8R1jDCy0c2rERtNONV6&quot;,&quot;type&quot;:&quot;MD&quot;}">
+<p>Si la función es miembro de una clase también se puede obtener una
+referencia a dicha función con la sintaxis Clase::funcion</p>
+</div>
+<div class="cell code" execution_count="2"
+datalore="{&quot;hide_input_from_viewers&quot;:true,&quot;hide_output_from_viewers&quot;:true,&quot;node_id&quot;:&quot;H47XYkHDvnlIJNxdWAcMJV&quot;,&quot;type&quot;:&quot;CODE&quot;}">
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Persona</span>(val nombre: String) {
+</span></span><span style="display:flex;"><span>    fun <span style="color:#a6e22e">saludar</span>() {
+</span></span><span style="display:flex;"><span>        println(<span style="color:#e6db74">&#34;Hola, soy $nombre&#34;</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>val funMiembroReferencia <span style="color:#f92672">=</span> Persona::saludar
+</span></span><span style="display:flex;"><span>val persona <span style="color:#f92672">=</span> Persona(<span style="color:#e6db74">&#34;Juan&#34;</span>)
+</span></span><span style="display:flex;"><span>funMiembroReferencia(persona) <span style="color:#f92672">//</span>equivalente a persona.<span style="color:#a6e22e">saludar</span>()</span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>Hola, soy Juan
+</code></pre>
+</div>
+</div>
+<div class="cell markdown"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;4lQS2Xzo7DjqwiPK4iemjd&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;oOLioygDrb2TRwkGJL9MlH&quot;},&quot;type&quot;:&quot;MD&quot;}">
+<h2 id="sintaxis-para-expresar-tipos-de-función-firma-de-la-función">Sintaxis para expresar tipos de función. Firma de la función</h2>
+<p>En ciertas situaciones necesitamos referirnos al tipo de una función. El
+tipo de una función se refiere al conjunto formado por del tipo de sus
+parámetros y el tipo de retorno. A este conjunto también se le conoce
+por el término <strong>firma de la función</strong>. La sintaxis general es:</p>
+<p><em>(lista de los tipos de parámetros separados por comas) -&gt; tipo de
+retorno</em></p>
+<h3 id="ejemplos">Ejemplos</h3>
+<p><em>(Int, Int) -&gt; Int</em> describe una función que se le pasan dos enteros y
+devuelve un entero</p>
+<p><em>(Int) -&gt; String</em> función que se le pasa un entero y devuelve un String</p>
+<p><em>() -&gt; String</em> función que no se le pasa nada y devuelve un String</p>
+<p><em>(Int) -&gt; Unit</em> función que se le pasa un Int y no devuelve nada</p>
+</div>
+<div class="cell markdown"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;7UW4L4GQs0L1ThZPyVp0z8&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;AX6RR3QVRcQiz35SGbHMJC&quot;},&quot;type&quot;:&quot;MD&quot;}">
+<h2 id="funciones-anónimas">Funciones anónimas</h2>
+<p>Una función anónima es una función que no tiene un nombre explícito
+asociado a ella.</p>
+<p>Las funciones anónimas son útiles cuando necesitamos definir una función
+simple que se utilizará solo una vez en el programa y no es necesario
+darle un nombre explícito. También es interesante cuando queremos
+asociar una función a una variable.</p>
+</div>
+<div class="cell code"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;eozhxpCdwMr8dm0chogWGO&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;ePPH9aZzKMX3r9rzMzTFNH&quot;},&quot;type&quot;:&quot;CODE&quot;}">
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>val sum <span style="color:#f92672">=</span> fun(a: Int, b: Int): Int {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Llamada a la función anónima</span>
+</span></span><span style="display:flex;"><span>val result <span style="color:#f92672">=</span> sum(2, 3)
+</span></span><span style="display:flex;"><span>println(<span style="color:#e6db74">&#34;El resultado de la suma es $result&#34;</span>)</span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>El resultado de la suma es 5
+</code></pre>
+</div>
+</div>
+<div class="cell markdown"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;OjoglxXdUIkO096MZBkIg7&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;uwB7KXLh4RQ7YuzI64SfuP&quot;},&quot;type&quot;:&quot;MD&quot;}">
+<h2 id="funciones-lambda">Funciones lambda</h2>
+<p>Las funciones lambda son otra forma de escribir funciones anónimas. La
+diferencia principal entre una función anónima y una lambda es que la
+sintaxis para definir una función lambda es más corta y concisa. Observa
+que la sintaxis de una función lambda usa la sintaxis <em>tipo de función</em>
+que comentamos más arriba. De hecho, se puede ver a una expresión lambda
+como una instancia de un tipo de función.</p>
+<p>En Kotlin, una función lambda se define utilizando la sintaxis {
+argumentos -&gt; cuerpo de la función }. La función lambda también puede
+ser asignada a una variable o pasada como un parámetro a otra función,
+de manera similar a una función anónima.</p>
+<p>En general se usan más la lambda que las funciones anónimas, no
+obstante, en ciertas situaciones que iran apareciendo poco a poco se
+podra observar que hay situaciones en las que se prefieren las funciones
+anónimas</p>
+</div>
+<div class="cell code" execution_count="1"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;EkjVKx8k7jBN2oWpFeYkr3&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;C5DnXJ9D3ryAjVNhrvm5OF&quot;},&quot;type&quot;:&quot;CODE&quot;}">
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>val sum <span style="color:#f92672">=</span> { a: Int, b: Int <span style="color:#f92672">-&gt;</span> a <span style="color:#f92672">+</span> b }  <span style="color:#75715e">//ahora como lambda</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Llamada a la función lambda</span>
+</span></span><span style="display:flex;"><span>val result <span style="color:#f92672">=</span> sum(2, 3)
+</span></span><span style="display:flex;"><span>println(<span style="color:#e6db74">&#34;El resultado de la suma es $result&#34;</span>)</span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>El resultado de la suma es 5
+</code></pre>
+</div>
+</div>
+<div class="cell markdown"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;97k1G2fA98JQpdvCF5jhPg&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;Q9q05EPWwV2EpEKrqdXuiY&quot;},&quot;type&quot;:&quot;MD&quot;}">
+<h2 id="relación-entre-lambda-y-tipo-de-función">Relación entre lambda y tipo de función</h2>
+<p>La firma de la lambda { a: Int, b: Int -&gt; a + b } en Kotlin es <em>(Int,
+Int) -&gt; Int</em></p>
+<p>Todas las funciones tienen una firma y por tanto se describe su firma
+con un tipo de función. Por ejemplo</p>
+<p><code>fun suma(a: Int, b: Int): Int {     return a + b }</code></p>
+<p>su firma también es <em>(Int, Int) -&gt; Int</em></p>
+<p>Por lo tanto los <em>tipos de función</em> describen la firma de una función.
+Ocurre además que la descripción de la firma se hace con una sintáxis
+bastante parecida, aunque no igual, a la sintaxis lambda, pero son cosas
+diferentes. Con una lambda creamos una instancia de una función. La
+sintáxis de tipos de función aquí la emplemaos &ldquo;teóricamente&rdquo; para
+también se usa en el código en ciertas situaciones, por ejemplo, para
+describir el tipo de un parámetro que queremos que reciba como argumento
+una función. Esto lo veremos más adelante.</p>
+</div>
+<div class="cell markdown"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;wvxVmaXdh2Zv2VS2IsCVkw&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;nwzBOm9f9IQ4aitL0Gp3x3&quot;},&quot;type&quot;:&quot;MD&quot;}">
+<h2 id="funciones-que-aceptan-otra-función-como-parámetro">Funciones que aceptan otra función como parámetro</h2>
+<p>Esta es una de la situaciones que la necesitamos expresamente incluir en
+nuestro código la sintaxis de <em>tipos de función</em>.</p>
+<p>Un parámetro no es más que un tipo especial de variable local. Como para
+toda variable debo indicar su tipo al definirla. Si quiero que la
+variable se asocie a un Int indicaré el tipo Int, pero si quiero que la
+variable se asocie a una función, indicare <strong>¡el tipo de la función!</strong></p>
+</div>
+<div class="cell code"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;XX8nCIPWurdNDJTyOq0vRe&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;JanAuC9z6B6ZSP5FiFfbbf&quot;},&quot;type&quot;:&quot;CODE&quot;}">
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>fun <span style="color:#a6e22e">sumar</span>(a: Int, b: Int): Int {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fun <span style="color:#a6e22e">restar</span>(a: Int, b: Int): Int {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> a <span style="color:#f92672">-</span> b
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fun <span style="color:#a6e22e">operarDosNumeros</span>(num1: Int, num2: Int, operacion: (Int, Int) <span style="color:#f92672">-&gt;</span> Int): Int {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> operacion(num1, num2)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>println(operarDosNumeros(5, 3, ::sumar))
+</span></span><span style="display:flex;"><span>println(operarDosNumeros(5, 3, ::restar))</span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>8
+2
+</code></pre>
+</div>
+</div>
+<div class="cell code"
+datalore="{&quot;hide_input_from_viewers&quot;:true,&quot;hide_output_from_viewers&quot;:true,&quot;node_id&quot;:&quot;WPQ40PrGm6J6pwgVckSbNq&quot;,&quot;type&quot;:&quot;CODE&quot;}">
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"></code></pre></div>
+</div>
+<div class="cell markdown"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;6dRNPEwbjp4UIMAUUYms3C&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;JgYfmp1v4BO4brUMh1cEWa&quot;},&quot;type&quot;:&quot;MD&quot;}">
+<h2 id="sintaxis-especial-para-invocar-funciones-que-tienen-por-último-parámetro-una-lambda">Sintaxis especial para invocar funciones que tienen por último parámetro una lambda</h2>
+<p>Es una sintaxis muy utilizada y merece una indicación especial.</p>
+<p>Cuando se llama a una función, que a su vez tiene una función lambda
+como último argumento, se pueden escribir este último argumento fuera de
+los paréntesis. Es por una cuestión de legibilidad y se recomienda este
+formato en la guia de estilo kotlin.</p>
+</div>
+<div class="cell code"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;DbPUjdUHkZij3ljOeM4Zya&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;1F1f2odsX1BLTdquiMuvES&quot;},&quot;type&quot;:&quot;CODE&quot;}">
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>fun <span style="color:#a6e22e">restar</span>(a: Int, b: Int): Int {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> a <span style="color:#f92672">-</span> b
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fun <span style="color:#a6e22e">operarDosNumeros</span>(num1: Int, num2: Int, operacion: (Int, Int) <span style="color:#f92672">-&gt;</span> Int): Int {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> operacion(num1, num2)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>println(operarDosNumeros(5, 3, ::restar))
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//ahora vamos a sumar con lambda</span>
+</span></span><span style="display:flex;"><span>println(operarDosNumeros(5, 3, {x,y<span style="color:#f92672">-&gt;</span>x<span style="color:#f92672">+</span>y}))
+</span></span><span style="display:flex;"><span>println(operarDosNumeros(5, 3) {x,y<span style="color:#f92672">-&gt;</span>x<span style="color:#f92672">+</span>y})   <span style="color:#f92672">//</span>se prefiere</span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>2
+8
+8
+</code></pre>
+</div>
+</div>
+<div class="cell markdown"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;n2pUwG4HX4xvwjCZ1P8xNi&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;HQQmGRyaK8RmSYUcoZm8mD&quot;},&quot;type&quot;:&quot;MD&quot;}">
+<h2 id="funciones-que-devuelven-una-función">Funciones que devuelven una función</h2>
+<p>Otra situación en la que necesito la sintáxis de tipo de función.</p>
+<p>Como sabemos cuando escribimos la definición de una funcion, tiene que
+concordar el tipo indicado en la cabacera con el tipo de lo que se
+devuelve en el return, por lo tanto:</p>
+<ul>
+<li>en la definición de la función, en la cabecera, al indicar el tipo
+de retorno de la función observaremos que como queremos devolver una
+función el tipo de retorno se describe con un tipo de función. En el
+ejemplo de abajo con (Int))-&gt;Int</li>
+<li>en el return devolveremos una función. En el ejemplo conseguimos
+devolver una función a través de una lambda que concuerda con el
+tipo de retorno indicado en la definición de la función.</li>
+</ul>
+<p>Veamos dos ejemplos, que efectivamente no son muy útiles pero
+ejemplifican de forma sencilla el concepto de &ldquo;devolver una función&rdquo;</p>
+</div>
+<div class="cell code" execution_count="5"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;Sk47UnLFi3tkDlQ0KqqPQp&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;nKw8wi7dUFRKkP9tRzz1VX&quot;},&quot;type&quot;:&quot;CODE&quot;}">
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>fun <span style="color:#a6e22e">square</span>(x: Int) <span style="color:#f92672">=</span> x <span style="color:#f92672">*</span> x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fun <span style="color:#a6e22e">operation</span>():  (Int) <span style="color:#f92672">-&gt;</span> Int {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> ::square
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>val func <span style="color:#f92672">=</span> operation()<span style="color:#75715e">//operation() devolvió la función square() que ahora está enganchada a la variable func</span>
+</span></span><span style="display:flex;"><span>println( func(4) )</span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>16
+</code></pre>
+</div>
+</div>
+<div class="cell code" execution_count="6"
+datalore="{&quot;hide_input_from_viewers&quot;:false,&quot;hide_output_from_viewers&quot;:false,&quot;node_id&quot;:&quot;lfyX1JKpyyw84DV5TW0EIE&quot;,&quot;report_properties&quot;:{&quot;rowId&quot;:&quot;UcqpcyqElIerx8UHqSmOrS&quot;},&quot;type&quot;:&quot;CODE&quot;}">
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>fun <span style="color:#a6e22e">sumar</span>(num1: Int): (Int) <span style="color:#f92672">-&gt;</span> Int {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> { num2 <span style="color:#f92672">-&gt;</span> num1 <span style="color:#f92672">+</span> num2 }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>val sumarCinco <span style="color:#f92672">=</span> sumar(5) <span style="color:#75715e">//podemos imagina que sumarCinco tiene dentro  la lambda {num2-&gt;5+num2}</span>
+</span></span><span style="display:flex;"><span>println(sumarCinco(3))</span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>8
+</code></pre>
+</div>
+</div>
+<div class="cell code"
+datalore="{&quot;hide_input_from_viewers&quot;:true,&quot;hide_output_from_viewers&quot;:true,&quot;node_id&quot;:&quot;0oYGAnFvTEBSdjvJWExTW1&quot;,&quot;type&quot;:&quot;CODE&quot;}">
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"></code></pre></div>
+</div>
+<div class="cell markdown"
+datalore="{&quot;hide_input_from_viewers&quot;:true,&quot;hide_output_from_viewers&quot;:true,&quot;node_id&quot;:&quot;qdJU9UUAX1E7xlZwDKjMxL&quot;,&quot;type&quot;:&quot;MD&quot;}">
+<h2 id="la-keyword-it-en-expresiones-lambda">La keyword it en expresiones lambda</h2>
+<p>Cuando la expresión lambda sólo tiene un parámetro la expresión lambda
+se puede simplificar asumiendo que dicho parámetro se llama it, lo que
+nos permite escribir todo más conciso</p>
+</div>
+<div class="cell code" execution_count="5"
+datalore="{&quot;hide_input_from_viewers&quot;:true,&quot;hide_output_from_viewers&quot;:true,&quot;node_id&quot;:&quot;75cYlC3by5tgrBuxgyUbnu&quot;,&quot;type&quot;:&quot;CODE&quot;}">
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>val incrementarEn1: (Int) <span style="color:#f92672">-&gt;</span> Int <span style="color:#f92672">=</span> { x <span style="color:#f92672">-&gt;</span> x <span style="color:#f92672">+</span> 1 }
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//val incrementarEn1 = { x:Int -&gt; x + 1 } así tb se infieren tipos</span>
+</span></span><span style="display:flex;"><span>val y <span style="color:#f92672">=</span> incrementarEn1(5) 
+</span></span><span style="display:flex;"><span>println(y)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//ahora con it</span>
+</span></span><span style="display:flex;"><span>val incEn1: (Int) <span style="color:#f92672">-&gt;</span> Int <span style="color:#f92672">=</span> { it <span style="color:#f92672">+</span> 1 }
+</span></span><span style="display:flex;"><span>val x <span style="color:#f92672">=</span> incrementarEn1(5) 
+</span></span><span style="display:flex;"><span>println(x)</span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>6
+6
+</code></pre>
+</div>
+</div>
+
+  <footer class="footline"></article>
+<footer>
+
+<i class='fas fa-calendar'></i> Última actualización: 06.06.2025 
+</footer>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<img  src="../../../../images/logo-ies.png" style="color:white;  font-size: 20px;" id="logo" href="http://manuais.pages.iessanclemente.net/apuntes/">
+        </div>
+        <search><form action="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Buscar (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Buscar</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Buscar...">
+            <button class="search-clear" type="button" data-search-clear="" title="Borrar búsqueda"><i class="fas fa-times" title="Borrar búsqueda"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/index.html"><a class="padding" href="../../../../index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/index.html"><input type="checkbox" id="R-section-0758abab80c2aa84781892223aa808b3" aria-controls="R-subsections-0758abab80c2aa84781892223aa808b3" checked><label for="R-section-0758abab80c2aa84781892223aa808b3"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 0. Refuerzo y ayudas complementarias</span></label><a class="padding" href="../../../index.html">UD 0. Refuerzo y ayudas complementarias<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-0758abab80c2aa84781892223aa808b3" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/index.html"><input type="checkbox" id="R-section-1b1977ce428c9ac8dab8b72f8979bcb5" aria-controls="R-subsections-1b1977ce428c9ac8dab8b72f8979bcb5"><label for="R-section-1b1977ce428c9ac8dab8b72f8979bcb5"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01 Configuración y despliegue</span></label><a class="padding" href="../../../00configjava/index.html">01 Configuración y despliegue<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1b1977ce428c9ac8dab8b72f8979bcb5" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/01jarfiles/index.html"><a class="padding" href="../../../00configjava/01jarfiles/index.html">01 Archivos Jar<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/02jarwithmaven/index.html"><a class="padding" href="../../../00configjava/02jarwithmaven/index.html">02 Creación de un JAR ejecutable con Java con Apache Maven<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/03dependencias/index.html"><a class="padding" href="../../../00configjava/03dependencias/index.html">03. Dependencias Maven.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/index.html"><input type="checkbox" id="R-section-0ee0a79915535bc59e8b9d0e78f65ef9" aria-controls="R-subsections-0ee0a79915535bc59e8b9d0e78f65ef9"><label for="R-section-0ee0a79915535bc59e8b9d0e78f65ef9"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02 Java General</span></label><a class="padding" href="../../../02javageneral/index.html">02 Java General<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-0ee0a79915535bc59e8b9d0e78f65ef9" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/01streamapi/index.html"><a class="padding" href="../../../02javageneral/01streamapi/index.html">00.01 Java Stream API<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/02urlfiles/index.html"><a class="padding" href="../../../02javageneral/02urlfiles/index.html">00.02 Descarga de archivos de Internet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/03hashcode/index.html"><a class="padding" href="../../../02javageneral/03hashcode/index.html">03 Implementación de hashCode()<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/index.html"><input type="checkbox" id="R-section-8eb2a58628ca595eccda7f8f066488f0" aria-controls="R-subsections-8eb2a58628ca595eccda7f8f066488f0"><label for="R-section-8eb2a58628ca595eccda7f8f066488f0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 03. Layouts en Java Swing &amp; UI</span></label><a class="padding" href="../../../03layouts/index.html">03. Layouts en Java Swing &amp; UI<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8eb2a58628ca595eccda7f8f066488f0" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/00dialogosenswing/index.html"><a class="padding" href="../../../03layouts/00dialogosenswing/index.html">01 Ventanas de entrada de datos, mensajes y archivos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/05gridbaglayout/index.html"><a class="padding" href="../../../03layouts/05gridbaglayout/index.html">05 GridBagLayout<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/index.html"><input type="checkbox" id="R-section-1c69dc8b47fb6fae98603b1968118cf8" aria-controls="R-subsections-1c69dc8b47fb6fae98603b1968118cf8"><label for="R-section-1c69dc8b47fb6fae98603b1968118cf8"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 04. Patrones de diseño</span></label><a class="padding" href="../../../04patronesdisenho/index.html">04. Patrones de diseño<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1c69dc8b47fb6fae98603b1968118cf8" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/01designprinciples/index.html"><a class="padding" href="../../../04patronesdisenho/01designprinciples/index.html">01. Principios de diseño<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/02singleton/index.html"><a class="padding" href="../../../04patronesdisenho/02singleton/index.html">02. Patrón Singleton<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/03objetosinmutables/index.html"><a class="padding" href="../../../04patronesdisenho/03objetosinmutables/index.html">03. Objetos Inmutables<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="parent " data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/index.html"><input type="checkbox" id="R-section-36a825e367dd24b7cccca030c91ea60b" aria-controls="R-subsections-36a825e367dd24b7cccca030c91ea60b" checked><label for="R-section-36a825e367dd24b7cccca030c91ea60b"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 05. Programación en Kotlin</span></label><a class="padding" href="../../index.html">05. Programación en Kotlin<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-36a825e367dd24b7cccca030c91ea60b" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/index.html"><input type="checkbox" id="R-section-312a90d18fa918ef04d04e75820d73c0" aria-controls="R-subsections-312a90d18fa918ef04d04e75820d73c0"><label for="R-section-312a90d18fa918ef04d04e75820d73c0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación estructurada básica</span></label><a class="padding" href="../../01progestructurada/index.html">Programación estructurada básica<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-312a90d18fa918ef04d04e75820d73c0" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/10.-la_funcion_main/index.html"><a class="padding" href="../../01progestructurada/10.-la_funcion_main/index.html">La funcion main()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/20.-la_funcion-print-_y-_println/index.html"><a class="padding" href="../../01progestructurada/20.-la_funcion-print-_y-_println/index.html">La funcion print() y println()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/30.-comentarios/index.html"><a class="padding" href="../../01progestructurada/30.-comentarios/index.html">Comentarios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/40.-variables-_-literales-_y_-sentencia_-de_-asignación/index.html"><a class="padding" href="../../01progestructurada/40.-variables-_-literales-_y_-sentencia_-de_-asignaci%c3%b3n/index.html">Variables, literales y sentencia de asignación<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/50.-palabras_reservadas/index.html"><a class="padding" href="../../01progestructurada/50.-palabras_reservadas/index.html">Palabras reservadas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/index.html"><input type="checkbox" id="R-section-94a2bfa5cc4fa0f33d0f2cf1c75e3265" aria-controls="R-subsections-94a2bfa5cc4fa0f33d0f2cf1c75e3265"><label for="R-section-94a2bfa5cc4fa0f33d0f2cf1c75e3265"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú tipos de datos y operadores</span></label><a class="padding" href="../../01progestructurada/tipos_de_datos_y_operadores_basicos/index.html">tipos de datos y operadores<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-94a2bfa5cc4fa0f33d0f2cf1c75e3265" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/60.tipos_de_datos_basicos/index.html"><a class="padding" href="../../01progestructurada/tipos_de_datos_y_operadores_basicos/60.tipos_de_datos_basicos/index.html">Tipos de datos básicos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/70.tipos_numericos/index.html"><a class="padding" href="../../01progestructurada/tipos_de_datos_y_operadores_basicos/70.tipos_numericos/index.html">Tipos Numéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/80.tipos_no_-numericos/index.html"><a class="padding" href="../../01progestructurada/tipos_de_datos_y_operadores_basicos/80.tipos_no_-numericos/index.html">Tipos básicos  No Numéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/90.conversion_de_tipos/index.html"><a class="padding" href="../../01progestructurada/tipos_de_datos_y_operadores_basicos/90.conversion_de_tipos/index.html">Conversión de Tipos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/100.-operadores/index.html"><a class="padding" href="../../01progestructurada/tipos_de_datos_y_operadores_basicos/100.-operadores/index.html">Operadores<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/110.-expresiones_booleanas/index.html"><a class="padding" href="../../01progestructurada/tipos_de_datos_y_operadores_basicos/110.-expresiones_booleanas/index.html">Expresiones booleanas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/index.html"><input type="checkbox" id="R-section-840caf4a5c9da596bf4345cae4c798ab" aria-controls="R-subsections-840caf4a5c9da596bf4345cae4c798ab"><label for="R-section-840caf4a5c9da596bf4345cae4c798ab"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú colecciones básicas</span></label><a class="padding" href="../../01progestructurada/coleccionesbasicas/index.html">colecciones básicas<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-840caf4a5c9da596bf4345cae4c798ab" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/120.-string/index.html"><a class="padding" href="../../01progestructurada/coleccionesbasicas/120.-string/index.html">String<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/130.-listas/index.html"><a class="padding" href="../../01progestructurada/coleccionesbasicas/130.-listas/index.html">Listas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/140.rangos-/index.html"><a class="padding" href="../../01progestructurada/coleccionesbasicas/140.rangos-/index.html">Rangos<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/150.-entrada_teclado/index.html"><a class="padding" href="../../01progestructurada/150.-entrada_teclado/index.html">Entrada de datos por teclado con readln()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/index.html"><input type="checkbox" id="R-section-f79f31fcf5ae1f44691bca6f05e1710f" aria-controls="R-subsections-f79f31fcf5ae1f44691bca6f05e1710f"><label for="R-section-f79f31fcf5ae1f44691bca6f05e1710f"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú control de flujo</span></label><a class="padding" href="../../01progestructurada/control_de_-flujo/index.html">control de flujo<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-f79f31fcf5ae1f44691bca6f05e1710f" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/151.-control_de_flujo/index.html"><a class="padding" href="../../01progestructurada/control_de_-flujo/151.-control_de_flujo/index.html">Control de flujo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/160.-sentencia_condicional_if/index.html"><a class="padding" href="../../01progestructurada/control_de_-flujo/160.-sentencia_condicional_if/index.html">Sentencia condicional IF<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/190.-sentecia_when/index.html"><a class="padding" href="../../01progestructurada/control_de_-flujo/190.-sentecia_when/index.html">Sentencia when<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/200.-bucle_for/index.html"><a class="padding" href="../../01progestructurada/control_de_-flujo/200.-bucle_for/index.html">Bucle for<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/210.-while_y_do_while/index.html"><a class="padding" href="../../01progestructurada/control_de_-flujo/210.-while_y_do_while/index.html">while y do while<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/220.-variables_locales_y_bloques/index.html"><a class="padding" href="../../01progestructurada/control_de_-flujo/220.-variables_locales_y_bloques/index.html">variables locales y bloques<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/230.-break_y_continue/index.html"><a class="padding" href="../../01progestructurada/control_de_-flujo/230.-break_y_continue/index.html">break y continue<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/240.otras_formas_de_iterar/index.html"><a class="padding" href="../../01progestructurada/control_de_-flujo/240.otras_formas_de_iterar/index.html">Otras formas de iterar<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/250.-funciones/index.html"><a class="padding" href="../../01progestructurada/250.-funciones/index.html">Funciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/260.el_valor_nulo/index.html"><a class="padding" href="../../01progestructurada/260.el_valor_nulo/index.html">El valor nulo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/270.-readline/index.html"><a class="padding" href="../../01progestructurada/270.-readline/index.html">Entrada de datos por teclado con readLine()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/index.html"><input type="checkbox" id="R-section-44784ce5c237bf9124eefe20ce36272f" aria-controls="R-subsections-44784ce5c237bf9124eefe20ce36272f"><label for="R-section-44784ce5c237bf9124eefe20ce36272f"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú más sobre colecciones básicas</span></label><a class="padding" href="../../01progestructurada/mas_sobre_colecciones_basicas/index.html">más sobre colecciones básicas<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-44784ce5c237bf9124eefe20ce36272f" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/310.-arrays/index.html"><a class="padding" href="../../01progestructurada/mas_sobre_colecciones_basicas/310.-arrays/index.html">Arrays<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/320.-listas/index.html"><a class="padding" href="../../01progestructurada/mas_sobre_colecciones_basicas/320.-listas/index.html">Listas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/330.rangos-/index.html"><a class="padding" href="../../01progestructurada/mas_sobre_colecciones_basicas/330.rangos-/index.html">Rangos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/340.mapas-/index.html"><a class="padding" href="../../01progestructurada/mas_sobre_colecciones_basicas/340.mapas-/index.html">Mapas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/350.iterar_sobre_colecciones/index.html"><a class="padding" href="../../01progestructurada/mas_sobre_colecciones_basicas/350.iterar_sobre_colecciones/index.html">Iterar sobre colecciones<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/index.html"><input type="checkbox" id="R-section-1ef1a5ed807dacffeb206c0950804c3a" aria-controls="R-subsections-1ef1a5ed807dacffeb206c0950804c3a"><label for="R-section-1ef1a5ed807dacffeb206c0950804c3a"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación orientada a objetos</span></label><a class="padding" href="../../02progoo/index.html">Programación orientada a objetos<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1ef1a5ed807dacffeb206c0950804c3a" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1010.objetos_y_clases/index.html"><a class="padding" href="../../02progoo/1010.objetos_y_clases/index.html">Objetos y clases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1020.constructores-/index.html"><a class="padding" href="../../02progoo/1020.constructores-/index.html">Constructores<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1030.propiedades/index.html"><a class="padding" href="../../02progoo/1030.propiedades/index.html">Propiedades<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1040.sobreescribir_tostring/index.html"><a class="padding" href="../../02progoo/1040.sobreescribir_tostring/index.html">Sobreescribir toString()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1060.modificadoresvisibilidad/index.html"><a class="padding" href="../../02progoo/1060.modificadoresvisibilidad/index.html">modificadores de visibilidad<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1070.enum/index.html"><a class="padding" href="../../02progoo/1070.enum/index.html">clases Enum<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1100.composicion/index.html"><a class="padding" href="../../02progoo/1100.composicion/index.html">Composición<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1200.herencia/index.html"><a class="padding" href="../../02progoo/1200.herencia/index.html">Herencia<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1220.clases_abstractas_interfaces/index.html"><a class="padding" href="../../02progoo/1220.clases_abstractas_interfaces/index.html">Clases abstractas e Interfaces<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1240.dataclases/index.html"><a class="padding" href="../../02progoo/1240.dataclases/index.html">Data Clases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1250.keywordobject/index.html"><a class="padding" href="../../02progoo/1250.keywordobject/index.html">La palabra reservada object. Companion object, objetos singleton y objetos expressions<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1255.excepciones/index.html"><a class="padding" href="../../02progoo/1255.excepciones/index.html">Excepciones en Kotlin<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1260.genericos/index.html"><a class="padding" href="../../02progoo/1260.genericos/index.html">Genéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1265.clausulatypealiases/index.html"><a class="padding" href="../../02progoo/1265.clausulatypealiases/index.html">cláusula typealiases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1270.delegacion/index.html"><a class="padding" href="../../02progoo/1270.delegacion/index.html">Delegación con cláusula by<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1280.claesanidadaseinternas/index.html"><a class="padding" href="../../02progoo/1280.claesanidadaseinternas/index.html">Clases anidadas e internas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="parent " data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/index.html"><input type="checkbox" id="R-section-8bbd4a78f07b64e8b2bc4b83b71f1498" aria-controls="R-subsections-8bbd4a78f07b64e8b2bc4b83b71f1498" checked><label for="R-section-8bbd4a78f07b64e8b2bc4b83b71f1498"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación funcional</span></label><a class="padding" href="../index.html">Programación funcional<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8bbd4a78f07b64e8b2bc4b83b71f1498" class="collapsible-menu">
+            <li class="active " data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2010.funcioneskotlin/index.html"><a class="padding" href="index.html">sintáxis avanzada de las  funciones kotlin<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2020.-basesdepf/index.html"><a class="padding" href="../2020.-basesdepf/index.html">algunos conceptos básicos de programación funcional<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2030.funcionesordensuperiorcolecciones/index.html"><a class="padding" href="../2030.funcionesordensuperiorcolecciones/index.html">funciones de orden superior y colecciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2040.funcionesordensuperiorysequence/index.html"><a class="padding" href="../2040.funcionesordensuperiorysequence/index.html">funciones de orden superior y sequence<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li></ul></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/index.html"><input type="checkbox" id="R-section-cf4ee7bae7fca4e692355524601fe599" aria-controls="R-subsections-cf4ee7bae7fca4e692355524601fe599"><label for="R-section-cf4ee7bae7fca4e692355524601fe599"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML</span></label><a class="padding" href="../../../../01accesoficheros/index.html">UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-cf4ee7bae7fca4e692355524601fe599" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/index.html"><input type="checkbox" id="R-section-ec127efd28751c1f836952c8dac2374d" aria-controls="R-subsections-ec127efd28751c1f836952c8dac2374d"><label for="R-section-ec127efd28751c1f836952c8dac2374d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.01 Java IO. Acceso a ficheros, flujos, serialización de objetos.</span></label><a class="padding" href="../../../../01accesoficheros/01javaio/index.html">01.01 Java IO. Acceso a ficheros, flujos, serialización de objetos.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-ec127efd28751c1f836952c8dac2374d" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0100javaiointro/index.html"><a class="padding" href="../../../../01accesoficheros/01javaio/0100javaiointro/index.html">01.00 Java IO. Introducción.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0101javaiofile/index.html"><a class="padding" href="../../../../01accesoficheros/01javaio/0101javaiofile/index.html">01.01 La clase File<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0102randomaccessfile/index.html"><a class="padding" href="../../../../01accesoficheros/01javaio/0102randomaccessfile/index.html">01.02 La clase RandomAccessFile<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0103javaiostreams/index.html"><a class="padding" href="../../../../01accesoficheros/01javaio/0103javaiostreams/index.html">01.03 Flujos de E/S<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0104bytestream/index.html"><a class="padding" href="../../../../01accesoficheros/01javaio/0104bytestream/index.html">01.04 Flujos de byte<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0105characterstream/index.html"><a class="padding" href="../../../../01accesoficheros/01javaio/0105characterstream/index.html">01.05 Flujos de caracteres<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0106javaiobuffer/index.html"><a class="padding" href="../../../../01accesoficheros/01javaio/0106javaiobuffer/index.html">01.06 Flujos de E/S con Buffer<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0107javaistream/index.html"><a class="padding" href="../../../../01accesoficheros/01javaio/0107javaistream/index.html">01.07 Operaciones comunes con flujos de E/S.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0109ejercicios/index.html"><a class="padding" href="../../../../01accesoficheros/01javaio/0109ejercicios/index.html">Ejercicios<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/index.html"><input type="checkbox" id="R-section-2d1e1941df73311305891c0dca6583fd" aria-controls="R-subsections-2d1e1941df73311305891c0dca6583fd"><label for="R-section-2d1e1941df73311305891c0dca6583fd"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.02 Java NIO.2</span></label><a class="padding" href="../../../../01accesoficheros/02javanio2/index.html">01.02 Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-2d1e1941df73311305891c0dca6583fd" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0202javaniopath/index.html"><a class="padding" href="../../../../01accesoficheros/02javanio2/0202javaniopath/index.html">02.01. La interface Path<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0203javaniopathcreate/index.html"><a class="padding" href="../../../../01accesoficheros/02javanio2/0203javaniopathcreate/index.html">02.03. Creación de Path<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0204javaniopath/index.html"><a class="padding" href="../../../../01accesoficheros/02javanio2/0204javaniopath/index.html">02.04. Operaciones comunes de Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0205javaniopathmethods/index.html"><a class="padding" href="../../../../01accesoficheros/02javanio2/0205javaniopathmethods/index.html">02.05. Métodos y con Path Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0206javaniostreams/index.html"><a class="padding" href="../../../../01accesoficheros/02javanio2/0206javaniostreams/index.html">02.06. Programación funcional con Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/index.html"><input type="checkbox" id="R-section-662c48eb0e2f97ba0e58c14a690fca47" aria-controls="R-subsections-662c48eb0e2f97ba0e58c14a690fca47"><label for="R-section-662c48eb0e2f97ba0e58c14a690fca47"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.03 JSON en Java</span></label><a class="padding" href="../../../../01accesoficheros/03json/index.html">01.03 JSON en Java<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-662c48eb0e2f97ba0e58c14a690fca47" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0300jsonintro/index.html"><a class="padding" href="../../../../01accesoficheros/03json/0300jsonintro/index.html">01.00. Introducción a JSON<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0301jsonjs/index.html"><a class="padding" href="../../../../01accesoficheros/03json/0301jsonjs/index.html">01.01. JSON con el API JavaScript de Java<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0302jsonlibraries/index.html"><a class="padding" href="../../../../01accesoficheros/03json/0302jsonlibraries/index.html">01.02. Bibliotecas JSON para Java<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0304gson/index.html"><a class="padding" href="../../../../01accesoficheros/03json/0304gson/index.html">01.03. Gson. Introducción<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0304gsondiagram/index.html"><a class="padding" href="../../../../01accesoficheros/03json/0304gsondiagram/index.html">01.03. Gson. Diagrama de clases (e interfaces)<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0305gsoncreate/index.html"><a class="padding" href="../../../../01accesoficheros/03json/0305gsoncreate/index.html">01.04. Gson. Creación de instancias Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0306creaciongson/index.html"><a class="padding" href="../../../../01accesoficheros/03json/0306creaciongson/index.html">01.05 Gson. Creación y lectura de objetos JSON<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0306transformacion/index.html"><a class="padding" href="../../../../01accesoficheros/03json/0306transformacion/index.html">01.06. Gson. Transformación de objetos JSON personalizada<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0307jsonreader01/index.html"><a class="padding" href="../../../../01accesoficheros/03json/0307jsonreader01/index.html">01.07 Gson. JsonReader<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0308jsonrename/index.html"><a class="padding" href="../../../../01accesoficheros/03json/0308jsonrename/index.html">01.08 Gson. Renombrar atributos <i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0309jsonserialize/index.html"><a class="padding" href="../../../../01accesoficheros/03json/0309jsonserialize/index.html">01.09 Resumen Serialización Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0310jsondeserialize/index.html"><a class="padding" href="../../../../01accesoficheros/03json/0310jsondeserialize/index.html">01.09 Resumen Deserialización Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/098ejercicio/index.html"><a class="padding" href="../../../../01accesoficheros/03json/098ejercicio/index.html">Ejercicio. Trivial<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/0105ejercicios/index.html"><a class="padding" href="../../../../01accesoficheros/0105ejercicios/index.html">Ejercicios y recursos<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/index.html"><input type="checkbox" id="R-section-342b2e95b9611e1108f16a11c61cd1f2" aria-controls="R-subsections-342b2e95b9611e1108f16a11c61cd1f2"><label for="R-section-342b2e95b9611e1108f16a11c61cd1f2"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 2. Acceso a BD remotas relacionales</span></label><a class="padding" href="../../../../02accesobd/index.html">UD 2. Acceso a BD remotas relacionales<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-342b2e95b9611e1108f16a11c61cd1f2" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/index.html"><input type="checkbox" id="R-section-66326b82828cdbb6e30c77e924342908" aria-controls="R-subsections-66326b82828cdbb6e30c77e924342908"><label for="R-section-66326b82828cdbb6e30c77e924342908"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02.02 JDBC. Introducción a las Bases de datos relacionales.</span></label><a class="padding" href="../../../../02accesobd/02db/index.html">02.02 JDBC. Introducción a las Bases de datos relacionales.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-66326b82828cdbb6e30c77e924342908" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0101databases/index.html"><a class="padding" href="../../../../02accesobd/02db/0101databases/index.html">02.01. Sistemas gestores de bases de datos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0102introdb/index.html"><a class="padding" href="../../../../02accesobd/02db/0102introdb/index.html">02. Introducción a las bases de datos relacionales<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0103postgresql/index.html"><a class="padding" href="../../../../02accesobd/02db/0103postgresql/index.html">03. PostgreSQL<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0104postgres01/index.html"><a class="padding" href="../../../../02accesobd/02db/0104postgres01/index.html">04. PostgreSQL. Características y Operadores.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/index.html"><input type="checkbox" id="R-section-4b93c45cd959371d7c20dcc7da6d632c" aria-controls="R-subsections-4b93c45cd959371d7c20dcc7da6d632c"><label for="R-section-4b93c45cd959371d7c20dcc7da6d632c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02.03. Procesamiento de sentencias SQL.</span></label><a class="padding" href="../../../../02accesobd/03procesandosql/index.html">02.03. Procesamiento de sentencias SQL.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-4b93c45cd959371d7c20dcc7da6d632c" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0101procesamientosql/index.html"><a class="padding" href="../../../../02accesobd/03procesandosql/0101procesamientosql/index.html">01. Procesamiento de sentencias SQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0102conexiones/index.html"><a class="padding" href="../../../../02accesobd/03procesandosql/0102conexiones/index.html">02. Conexiones a BD<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0103excepcionessql/index.html"><a class="padding" href="../../../../02accesobd/03procesandosql/0103excepcionessql/index.html">03. Excepciones SQLException<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0104resultset/index.html"><a class="padding" href="../../../../02accesobd/03procesandosql/0104resultset/index.html">04. ResultSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0105resultsetbatch/index.html"><a class="padding" href="../../../../02accesobd/03procesandosql/0105resultsetbatch/index.html">05. Actualizaciones por lotes con ResultSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0106preparedst/index.html"><a class="padding" href="../../../../02accesobd/03procesandosql/0106preparedst/index.html">06. Prepared Statement<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0107transacciones/index.html"><a class="padding" href="../../../../02accesobd/03procesandosql/0107transacciones/index.html">07. Transacciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0108clavesgeneradas/index.html"><a class="padding" href="../../../../02accesobd/03procesandosql/0108clavesgeneradas/index.html">08. Claves Generadas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0109largeobjects/index.html"><a class="padding" href="../../../../02accesobd/03procesandosql/0109largeobjects/index.html">09. Objectos grandes<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0111rowset/index.html"><a class="padding" href="../../../../02accesobd/03procesandosql/0111rowset/index.html">11. RowSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0115boletines/index.html"><a class="padding" href="../../../../02accesobd/03procesandosql/0115boletines/index.html">15. Ejercicios y archivos de la unidad<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/99proyecto/index.html"><a class="padding" href="../../../../02accesobd/99proyecto/index.html">Proyecto 1ª evaluación<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/index.html"><input type="checkbox" id="R-section-87c8b6c6cd354a309db816f73d185be0" aria-controls="R-subsections-87c8b6c6cd354a309db816f73d185be0"><label for="R-section-87c8b6c6cd354a309db816f73d185be0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 3. Object/Relational Mapping (ORM). JPA e Hibernate</span></label><a class="padding" href="../../../../03orm/index.html">UD 3. Object/Relational Mapping (ORM). JPA e Hibernate<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-87c8b6c6cd354a309db816f73d185be0" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/index.html"><input type="checkbox" id="R-section-5aaca10806a740cf4d784be6e24473b9" aria-controls="R-subsections-5aaca10806a740cf4d784be6e24473b9"><label for="R-section-5aaca10806a740cf4d784be6e24473b9"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 03.01. Jakarta Persistence (JPA).</span></label><a class="padding" href="../../../../03orm/jpa/index.html">03.01. Jakarta Persistence (JPA).<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-5aaca10806a740cf4d784be6e24473b9" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/01jpa/index.html"><a class="padding" href="../../../../03orm/jpa/01jpa/index.html">01. Jakarta Persistence (JPA).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/02jpavshibernate/index.html"><a class="padding" href="../../../../03orm/jpa/02jpavshibernate/index.html">02. JPA vs Hibernate.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/03jpaejercicio/index.html"><a class="padding" href="../../../../03orm/jpa/03jpaejercicio/index.html">03. Ejercicio básico de JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/04entitymanager/index.html"><a class="padding" href="../../../../03orm/jpa/04entitymanager/index.html">04. Gestión de entidades con EntityManager.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/05mapeoentidades/index.html"><a class="padding" href="../../../../03orm/jpa/05mapeoentidades/index.html">05. Mapeo de entidades.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/06relaciones/index.html"><a class="padding" href="../../../../03orm/jpa/06relaciones/index.html">06. Relaciones JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/07embedidos/index.html"><a class="padding" href="../../../../03orm/jpa/07embedidos/index.html">07. Objetos embebidos.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/08colecciones/index.html"><a class="padding" href="../../../../03orm/jpa/08colecciones/index.html">08. Mapeo de colecciones.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/09queries/index.html"><a class="padding" href="../../../../03orm/jpa/09queries/index.html">09. Consultas.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/10jpql/index.html"><a class="padding" href="../../../../03orm/jpa/10jpql/index.html">10. JPQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/11paginacion/index.html"><a class="padding" href="../../../../03orm/jpa/11paginacion/index.html">11. Paginación de consultas.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/12herencia/index.html"><a class="padding" href="../../../../03orm/jpa/12herencia/index.html">12. Herencia.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/14ejercicios/index.html"><a class="padding" href="../../../../03orm/jpa/14ejercicios/index.html">Ejercicios de la unidad de JPA<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/15boletines/index.html"><a class="padding" href="../../../../03orm/jpa/15boletines/index.html">Ejercicios de refuerzo.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/16dependencias/index.html"><a class="padding" href="../../../../03orm/jpa/16dependencias/index.html">Dependencias Maven.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/95singleton/index.html"><a class="padding" href="../../../../03orm/95singleton/index.html">03.02. Patrón Singleton.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/96ejerciciosrepaso/index.html"><a class="padding" href="../../../../03orm/96ejerciciosrepaso/index.html">03.03. Ejercicios de refuerzo (Violín).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/97ejerciciosrepaso2/index.html"><a class="padding" href="../../../../03orm/97ejerciciosrepaso2/index.html">03.04 Ejercicios de refuerzo (II)<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/98ejerciciosrepaso3/index.html"><a class="padding" href="../../../../03orm/98ejerciciosrepaso3/index.html">03.05 Ejercicios de refuerzo (III)<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/index.html"><input type="checkbox" id="R-section-ffae27028787f9b794af8498ce8bc361" aria-controls="R-subsections-ffae27028787f9b794af8498ce8bc361"><label for="R-section-ffae27028787f9b794af8498ce8bc361"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 4. Spring.</span></label><a class="padding" href="../../../../04spring/index.html">UD 4. Spring.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-ffae27028787f9b794af8498ce8bc361" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/01springboot/index.html"><a class="padding" href="../../../../04spring/01springboot/index.html">01. Spring Boot.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/02springdata/index.html"><a class="padding" href="../../../../04spring/02springdata/index.html">02. Spring Data JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/03practicajpadata/index.html"><a class="padding" href="../../../../04spring/03practicajpadata/index.html">03. Práctica con de Spring Data JPA y REST.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/04repositorios/index.html"><a class="padding" href="../../../../04spring/04repositorios/index.html">04. Repositorios String Data.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/05paginacion/index.html"><a class="padding" href="../../../../04spring/05paginacion/index.html">05. Paginación y Ordenación usando Spring Data JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/06paginacionrest/index.html"><a class="padding" href="../../../../04spring/06paginacionrest/index.html">06. Paginación y Ordenación usando Spring Data REST.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/07vaadin/index.html"><a class="padding" href="../../../../04spring/07vaadin/index.html">07. Spring Data JPA con Vaadin (práctica).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/08ejecutores/index.html"><a class="padding" href="../../../../04spring/08ejecutores/index.html">08. Ejecutores al inicio con Spring Boot<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/09serviciocompo/index.html"><a class="padding" href="../../../../04spring/09serviciocompo/index.html">09. Servicios, componentes y repositorios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/10servicios/index.html"><a class="padding" href="../../../../04spring/10servicios/index.html">10. Servicios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/index.html"><input type="checkbox" id="R-section-f25e02e15b94f5cb39179f26efa74bfe" aria-controls="R-subsections-f25e02e15b94f5cb39179f26efa74bfe"><label for="R-section-f25e02e15b94f5cb39179f26efa74bfe"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 11. Proyecto Spring. Cuestionarios.</span></label><a class="padding" href="../../../../04spring/11proyecto/index.html">11. Proyecto Spring. Cuestionarios.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-f25e02e15b94f5cb39179f26efa74bfe" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/01modelo/index.html"><a class="padding" href="../../../../04spring/11proyecto/01modelo/index.html">01. Modelo de datos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/02dto/index.html"><a class="padding" href="../../../../04spring/11proyecto/02dto/index.html">02. DTO<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/03repositorios/index.html"><a class="padding" href="../../../../04spring/11proyecto/03repositorios/index.html">03. Repositorios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/04controller/index.html"><a class="padding" href="../../../../04spring/11proyecto/04controller/index.html">04. Controller<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/05resultados/index.html"><a class="padding" href="../../../../04spring/11proyecto/05resultados/index.html">05. Pruebas y mejoras<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/12springproj/index.html"><a class="padding" href="../../../../04spring/12springproj/index.html">12. Proyecto Spring. Cuestionarios.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/index.html"><input type="checkbox" id="R-section-a0dc28a495fca757d219f1aec2ecff4c" aria-controls="R-subsections-a0dc28a495fca757d219f1aec2ecff4c"><label for="R-section-a0dc28a495fca757d219f1aec2ecff4c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 5. Bases de datos no SQL. MongoDB</span></label><a class="padding" href="../../../../05basesdatosnonsql/index.html">UD 5. Bases de datos no SQL. MongoDB<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-a0dc28a495fca757d219f1aec2ecff4c" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/mongodb/01nosql/index.html"><a class="padding" href="../../../../05basesdatosnonsql/mongodb/01nosql/index.html">01. Bases de datos NoSQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/mongodb/03springmongodb/index.html"><a class="padding" href="../../../../05basesdatosnonsql/mongodb/03springmongodb/index.html">03. Conexión a MongoDB con String Data MongoDB (práctica).<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/index.html"><input type="checkbox" id="R-section-8d4041f058dd2262e83830e1db38cc6d" aria-controls="R-subsections-8d4041f058dd2262e83830e1db38cc6d"><label for="R-section-8d4041f058dd2262e83830e1db38cc6d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Git</span></label><a class="padding" href="../../../../git/index.html">Git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8d4041f058dd2262e83830e1db38cc6d" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/index.html"><input type="checkbox" id="R-section-a87776bdac862bf972ec945bc124b884" aria-controls="R-subsections-a87776bdac862bf972ec945bc124b884"><label for="R-section-a87776bdac862bf972ec945bc124b884"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Introducción git</span></label><a class="padding" href="../../../../git/1.introduccion_git/index.html">Introducción git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-a87776bdac862bf972ec945bc124b884" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/1.introduccion_git/index.html"><a class="padding" href="../../../../git/1.introduccion_git/1.introduccion_git/index.html">Introducción a git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/2.estados_git/index.html"><a class="padding" href="../../../../git/1.introduccion_git/2.estados_git/index.html">Estados de git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/3.instalacion_git/index.html"><a class="padding" href="../../../../git/1.introduccion_git/3.instalacion_git/index.html">Instalación de git<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/index.html"><input type="checkbox" id="R-section-b63515bb4dcfe678de9ffac7a29c1e77" aria-controls="R-subsections-b63515bb4dcfe678de9ffac7a29c1e77"><label for="R-section-b63515bb4dcfe678de9ffac7a29c1e77"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Fundamentos git</span></label><a class="padding" href="../../../../git/2.fundamentos_git/index.html">Fundamentos git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-b63515bb4dcfe678de9ffac7a29c1e77" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/1.configuracion_git/index.html"><a class="padding" href="../../../../git/2.fundamentos_git/1.configuracion_git/index.html">Configuracion de git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/2.inicializar_repo/index.html"><a class="padding" href="../../../../git/2.fundamentos_git/2.inicializar_repo/index.html">Inicializando repositorio<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/3.cambios/index.html"><a class="padding" href="../../../../git/2.fundamentos_git/3.cambios/index.html">Cambios en el repositorio<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/4.ignorar_archivos/index.html"><a class="padding" href="../../../../git/2.fundamentos_git/4.ignorar_archivos/index.html">Archivos Ignorados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/5.checkout/index.html"><a class="padding" href="../../../../git/2.fundamentos_git/5.checkout/index.html">Git checkout<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/6.log/index.html"><a class="padding" href="../../../../git/2.fundamentos_git/6.log/index.html">Git Log<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/7.archivos_modificados/index.html"><a class="padding" href="../../../../git/2.fundamentos_git/7.archivos_modificados/index.html">Archivos modificados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/8.cambios/index.html"><a class="padding" href="../../../../git/2.fundamentos_git/8.cambios/index.html">Archivos modificados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/9.eliminar_archivos/index.html"><a class="padding" href="../../../../git/2.fundamentos_git/9.eliminar_archivos/index.html">Opciones con archivos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/10.limitar/index.html"><a class="padding" href="../../../../git/2.fundamentos_git/10.limitar/index.html">Historial de confirmaciones<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/3.remotos/index.html"><a class="padding" href="../../../../git/3.remotos/index.html">Remotos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/4.etiquetado/index.html"><a class="padding" href="../../../../git/4.etiquetado/index.html">Etiquetado<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/index.html"><input type="checkbox" id="R-section-d8234a81ae190365829886d9d8a058a7" aria-controls="R-subsections-d8234a81ae190365829886d9d8a058a7"><label for="R-section-d8234a81ae190365829886d9d8a058a7"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Ramas Git</span></label><a class="padding" href="../../../../git/5.ramas_git/index.html">Ramas Git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-d8234a81ae190365829886d9d8a058a7" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/1.ramificaciones_git/index.html"><a class="padding" href="../../../../git/5.ramas_git/1.ramificaciones_git/index.html">Ramificación<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/2.ramificaciones_remotas/index.html"><a class="padding" href="../../../../git/5.ramas_git/2.ramificaciones_remotas/index.html">Ramas Remotas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/6.claves_ssh/index.html"><a class="padding" href="../../../../git/6.claves_ssh/index.html">Claves SSH<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">Más</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/"><a class="padding" href="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/" rel="external" target="_blank"><i class='fas fa-fw fa-bookmark'></i>  Cómo editar plantilla<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://www.iessanclemente.net/"><a class="padding" href="https://www.iessanclemente.net/" rel="external" target="_blank"><i class='fas fa-home'></i> IES Tubalcain<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/categories"><a class="padding" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/categories"><i class='fa-fw fas fa-layer-group'></i> Categories<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tags"><a class="padding" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/tags"><i class='fa-fw fas fa-tags'></i> Tags<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+            <li class="R-variantswitcher">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-paint-brush"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <label class="a11y-only" for="R-select-variant">Tema</label>
+                  <select id="R-select-variant">
+                    <option id="R-select-variant-blue" value="blue" selected>Blue</option>
+                    <option id="R-select-variant-relearn-light" value="relearn-light">Relearn Light</option>
+                    <option id="R-select-variant-relearn-dark" value="relearn-dark">Relearn Dark</option>
+                    <option id="R-select-variant-learn" value="learn">Learn</option>
+                    <option id="R-select-variant-neon" value="neon">Neon</option>
+                    <option id="R-select-variant-green" value="green">Green</option>
+                    <option id="R-select-variant-red" value="red">Red</option>
+                  </select>
+                </div>
+                <div class="clear"></div>
+              </div>
+              <script>window.relearn.markVariant();</script>
+            </li>
+            <li class="R-historyclearer">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-history"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <button>Borrar Historial</button>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+<div id="R-footer">
+<div>
+    <img src="../../../../../../../../mirrors.creativecommons.org/presskit/icons/cc.png" height="30" />
+    <img src="../../../../../../../../mirrors.creativecommons.org/presskit/icons/by.png"  height="30"/>
+    <img src="../../../../../../../../mirrors.creativecommons.org/presskit/icons/nc-eu.png"  height="30"/>
+    <img src="../../../../../../../../mirrors.creativecommons.org/presskit/icons/sa.png" height="30" />
+</div>
+</div>
+      </div>
+    </aside>
+    <script src="../../../../js/clipboard/clipboard.min3c2e.js?1749199978" defer></script>
+    <script src="../../../../js/perfect-scrollbar/perfect-scrollbar.min3c2e.js?1749199978" defer></script>
+    <script src="../../../../js/theme.min3c2e.js?1749199978" defer></script>
+  </body>
+
+<!-- Mirrored from manuais.pages.iessanclemente.net/plantillas/dam/ad/00ayudas/05kotlin/03progfuncional/2010.funcioneskotlin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Sep 2025 20:45:33 GMT -->
+</html>

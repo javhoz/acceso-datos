@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  
+<!-- Mirrored from manuais.pages.iessanclemente.net/plantillas/dam/ad/01accesoficheros/01javaio/0101javaiofile/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Sep 2025 20:45:33 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.140.2">
+    <meta name="generator" content="Relearn 7.6.1+0b83617ee9da5253aafcf11807b256da7d88d709">
+    <meta name="description" content="1. Clases para trabajar con ficheros (java.io.File, RandomAccessFile, …) La clase File 2. Creación de un Objeto File Constructores de la clase File Campos de la clase File 3. El objeto File vs. archivo real existente 4. Trabajando con un Objeto File 5. Métodos más importantes de java.io.File Ejercicios 6. Nuevas características del paquete java.nio.file Conversión entre java.io.File y java.nio.file.Path Mapeo de la Funcionalidad de java.io.File a java.nio.file 7. La clase java.io.RandomAccessFile Escritura con RandomAccessFile Ejercicios 1. Clases para trabajar con ficheros (java.io.File, RandomAccessFile, …) Los flujos de entrada/salida (streams I/O), que veremos en esta unidad, trabajan con gran variedad de fuentes de datos, incluyendo archivos, sin embargo, los flujos no proporcionan todas las operaciones comunes a los archivos de disco.">
+    <meta name="author" content="IES Tubalcain">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <meta name="twitter:title" content="01.01 La clase File :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta name="twitter:description" content="1. Clases para trabajar con ficheros (java.io.File, RandomAccessFile, …) La clase File 2. Creación de un Objeto File Constructores de la clase File Campos de la clase File 3. El objeto File vs. archivo real existente 4. Trabajando con un Objeto File 5. Métodos más importantes de java.io.File Ejercicios 6. Nuevas características del paquete java.nio.file Conversión entre java.io.File y java.nio.file.Path Mapeo de la Funcionalidad de java.io.File a java.nio.file 7. La clase java.io.RandomAccessFile Escritura con RandomAccessFile Ejercicios 1. Clases para trabajar con ficheros (java.io.File, RandomAccessFile, …) Los flujos de entrada/salida (streams I/O), que veremos en esta unidad, trabajan con gran variedad de fuentes de datos, incluyendo archivos, sin embargo, los flujos no proporcionan todas las operaciones comunes a los archivos de disco.">
+    <meta property="og:url" content="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0101javaiofile/index.html">
+    <meta property="og:site_name" content="IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta property="og:title" content="01.01 La clase File :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta property="og:description" content="1. Clases para trabajar con ficheros (java.io.File, RandomAccessFile, …) La clase File 2. Creación de un Objeto File Constructores de la clase File Campos de la clase File 3. El objeto File vs. archivo real existente 4. Trabajando con un Objeto File 5. Métodos más importantes de java.io.File Ejercicios 6. Nuevas características del paquete java.nio.file Conversión entre java.io.File y java.nio.file.Path Mapeo de la Funcionalidad de java.io.File a java.nio.file 7. La clase java.io.RandomAccessFile Escritura con RandomAccessFile Ejercicios 1. Clases para trabajar con ficheros (java.io.File, RandomAccessFile, …) Los flujos de entrada/salida (streams I/O), que veremos en esta unidad, trabajan con gran variedad de fuentes de datos, incluyendo archivos, sin embargo, los flujos no proporcionan todas las operaciones comunes a los archivos de disco.">
+    <meta property="og:locale" content="es">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML">
+    <meta property="article:modified_time" content="2025-06-06T08:52:43+00:00">
+    <meta property="og:image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <meta itemprop="name" content="01.01 La clase File :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta itemprop="description" content="1. Clases para trabajar con ficheros (java.io.File, RandomAccessFile, …) La clase File 2. Creación de un Objeto File Constructores de la clase File Campos de la clase File 3. El objeto File vs. archivo real existente 4. Trabajando con un Objeto File 5. Métodos más importantes de java.io.File Ejercicios 6. Nuevas características del paquete java.nio.file Conversión entre java.io.File y java.nio.file.Path Mapeo de la Funcionalidad de java.io.File a java.nio.file 7. La clase java.io.RandomAccessFile Escritura con RandomAccessFile Ejercicios 1. Clases para trabajar con ficheros (java.io.File, RandomAccessFile, …) Los flujos de entrada/salida (streams I/O), que veremos en esta unidad, trabajan con gran variedad de fuentes de datos, incluyendo archivos, sin embargo, los flujos no proporcionan todas las operaciones comunes a los archivos de disco.">
+    <meta itemprop="dateModified" content="2025-06-06T08:52:43+00:00">
+    <meta itemprop="wordCount" content="4246">
+    <meta itemprop="image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <title>01.01 La clase File :: IES Tubalcain - Acceso a datos (2º DAM)</title>
+    <link href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/01accesoficheros/01javaio/0101javaiofile/index.xml" rel="alternate" type="application/rss+xml" title="01.01 La clase File :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <link href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/01accesoficheros/01javaio/0101javaiofile/index.print.html" rel="alternate" type="text/html" title="01.01 La clase File :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <link href="../../../fonts/fontawesome/css/fontawesome-all.min3c2e.css?1749199978" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../../fonts/fontawesome/css/fontawesome-all.min3c2e.css?1749199978" rel="stylesheet"></noscript>
+    <link href="../../../css/perfect-scrollbar/perfect-scrollbar.min3c2e.css?1749199978" rel="stylesheet">
+    <link href="../../../css/theme.min3c2e.css?1749199978" rel="stylesheet">
+    <link href="../../../css/format-html.min3c2e.css?1749199978" rel="stylesheet" id="R-format-style">
+    <link href="../../../css/auto-complete/auto-complete.min3c2e.css?1749199978" rel="stylesheet">
+    <script src="../../../js/auto-complete/auto-complete.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.stemmer.support.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.multi.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.es.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/search.min3c2e.js?1749199978" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='#\/01accesoficheros\/01javaio\/0101javaiofile\/index.html';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='';
+      window.relearn.contentLangs=['es'];
+      window.relearn.index_js_url="../../../searchindex.es3c2e.js?1749199978";
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // variant stuff
+      window.relearn.themevariants = [ 'blue', 'relearn-light', 'relearn-dark', 'learn', 'neon', 'green', 'red' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copiar en el portapapeles`;
+      window.T_Copied_to_clipboard = `¡Copiado al portapapeles!`;
+      window.T_Copy_link_to_clipboard = `Copiar enlace al portapapeles`;
+      window.T_Link_copied_to_clipboard = `¡Enlace copiado al portapapeles!`;
+      window.T_Reset_view = `Restablecer vista`;
+      window.T_View_reset = `¡Ver reajuste!`;
+      window.T_No_results_found = `No se han encontrado resultados para "{0}"`;
+      window.T_N_results_found = `{1} resultados encontrados para "{0}"`;
+    </script><style>
+    :root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+}
+
+@media screen and (max-width: 70.5rem) {
+    #R-sidebar {
+        min-width: var(--INTERNAL-MENU-WIDTH-S);
+        max-width: var(--INTERNAL-MENU-WIDTH-S);
+        width: var(--INTERNAL-MENU-WIDTH-S);
+    }
+    #R-body {
+        margin-inline-start: var(--INTERNAL-MENU-WIDTH-S);
+        min-width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+        max-width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+        width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+    }
+}
+@media screen and (max-width: 70.5rem) {
+     
+
+    .mobile-support #R-sidebar {
+        inset-inline-start: calc( -1 * var(--INTERNAL-MENU-WIDTH-S) );
+        min-width: var(--INTERNAL-MENU-WIDTH-S);
+        max-width: var(--INTERNAL-MENU-WIDTH-S);
+        width: var(--INTERNAL-MENU-WIDTH-S);
+    }
+    .mobile-support #navshow{
+        display: inline;
+    }
+    .mobile-support #R-body {
+        min-width: 100%;
+        max-width: 100%;
+        width: 100%;
+    }
+    .mobile-support #R-body {
+        margin-inline-start: 0;
+    }
+    .mobile-support.sidebar-flyout {
+        overflow: hidden;
+    }
+    .mobile-support.sidebar-flyout #R-sidebar {
+        inset-inline-start: 0;
+        z-index: 90;
+    }
+    .mobile-support.sidebar-flyout #R-body {
+        margin-inline-start: var(--INTERNAL-MENU-WIDTH-S);
+        overflow: hidden;
+    }
+    .mobile-support.sidebar-flyout #R-body-overlay{
+        background-color: rgba( 134, 134, 134, .5 );
+        bottom: 0;
+        cursor: pointer;
+        height: 100vh;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 190;
+    }
+}
+
+</style>
+
+
+  </head>
+  <body class="mobile-support html" data-url="../../../01accesoficheros/01javaio/0101javaiofile/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menú (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Tabla de contenido (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#1-clases-para-trabajar-con-ficheros-javaiofile-randomaccessfile-">1. Clases para trabajar con ficheros (<code>java.io.File</code>, <code>RandomAccessFile</code>, &hellip;)</a>
+      <ul>
+        <li><a href="#la-clase-file">La clase <code>File</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#2-creación-de-un-objeto-file">2. Creación de un Objeto <code>File</code></a>
+      <ul>
+        <li><a href="#constructores-de-la-clase-file">Constructores de la clase File</a></li>
+        <li><a href="#campos-de-la-clase-file">Campos de la clase File</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-el-objeto-file-vs-archivo-real-existente">3. El objeto <em>File</em> vs. archivo real existente</a></li>
+    <li><a href="#4-trabajando-con-un-objeto-file">4. Trabajando con un Objeto <code>File</code></a></li>
+    <li><a href="#5-métodos-más-importantes-de-javaiofile">5. Métodos más importantes de <code>java.io.File</code></a>
+      <ul>
+        <li><a href="#ejercicios">Ejercicios</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-nuevas-características-del-paquete-javaniofile">6. Nuevas características del paquete <code>java.nio.file</code></a>
+      <ul>
+        <li><a href="#conversión-entre-javaiofile-y-javaniofilepath">Conversión entre <code>java.io.File</code> y <code>java.nio.file.Path</code></a></li>
+        <li><a href="#mapeo-de-la-funcionalidad-de-javaiofile-a-javaniofile">Mapeo de la Funcionalidad de <code>java.io.File</code> a <code>java.nio.file</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#7-la-clase-javaiorandomaccessfile">7. La clase java.io.RandomAccessFile</a>
+      <ul>
+        <li><a href="#escritura-con-randomaccessfile">Escritura con RandomAccessFile</a></li>
+        <li><a href="#ejercicios-1">Ejercicios</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../../index.html"><span itemprop="name">Acceso a datos</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../index.html"><span itemprop="name">UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../index.html"><span itemprop="name">01.01 Java IO. Acceso a ficheros, flujos, serialización de objetos.</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">01.01 La clase File</span><meta itemprop="position" content="4"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/01accesoficheros/01javaio/0101javaiofile/index.print.html" title="Imprimir todo el capítulo (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../0100javaiointro/index.html" title="01.00 Java IO. Introducción. (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../0102randomaccessfile/index.html" title="01.02 La clase RandomAccessFile (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Más"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 01accesoficheros" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="0101-la-clase-file">01.01 La clase File</h1>
+
+<!-- TOC -->
+<ul>
+<li><a href="index.html#1-clases-para-trabajar-con-ficheros-javaiofile-randomaccessfile-">1. Clases para trabajar con ficheros (<code>java.io.File</code>, <code>RandomAccessFile</code>, &hellip;)</a>
+<ul>
+<li><a href="index.html#la-clase-file">La clase <code>File</code></a></li>
+</ul>
+</li>
+<li><a href="index.html#2-creación-de-un-objeto-file">2. Creación de un Objeto <code>File</code></a>
+<ul>
+<li><a href="index.html#constructores-de-la-clase-file">Constructores de la clase File</a></li>
+<li><a href="index.html#campos-de-la-clase-file">Campos de la clase File</a></li>
+</ul>
+</li>
+<li><a href="index.html#3-el-objeto-file-vs-archivo-real-existente">3. El objeto <em>File</em> vs. archivo real existente</a></li>
+<li><a href="index.html#4-trabajando-con-un-objeto-file">4. Trabajando con un Objeto <code>File</code></a></li>
+<li><a href="index.html#5-métodos-más-importantes-de-javaiofile">5. Métodos más importantes de <code>java.io.File</code></a>
+<ul>
+<li><a href="index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+<li><a href="index.html#6-nuevas-características-del-paquete-javaniofile">6. Nuevas características del paquete <code>java.nio.file</code></a>
+<ul>
+<li><a href="index.html#conversión-entre-javaiofile-y-javaniofilepath">Conversión entre <code>java.io.File</code> y <code>java.nio.file.Path</code></a></li>
+<li><a href="index.html#mapeo-de-la-funcionalidad-de-javaiofile-a-javaniofile">Mapeo de la Funcionalidad de <code>java.io.File</code> a <code>java.nio.file</code></a></li>
+</ul>
+</li>
+<li><a href="index.html#7-la-clase-javaiorandomaccessfile">7. La clase java.io.RandomAccessFile</a>
+<ul>
+<li><a href="index.html#escritura-con-randomaccessfile">Escritura con RandomAccessFile</a></li>
+<li><a href="index.html#ejercicios-1">Ejercicios</a></li>
+</ul>
+</li>
+</ul>
+<!-- TOC -->
+<hr>
+<h2 id="1-clases-para-trabajar-con-ficheros-javaiofile-randomaccessfile-">1. Clases para trabajar con ficheros (<code>java.io.File</code>, <code>RandomAccessFile</code>, &hellip;)</h2>
+<p>Los <strong>flujos de entrada/salida (streams I/O)</strong>, que veremos en esta unidad, <strong>trabajan con gran variedad de fuentes de datos, incluyendo archivos</strong>, sin embargo, <strong>los flujos no proporcionan todas las operaciones comunes a los archivos de disco</strong>.</p>
+<p>Existen <strong>clases de E/S para trabajar con ficheros que no son orientas a flujos</strong>. Algunas de ellas son:</p>
+<ul>
+<li><strong><a href="https://docs.oracle.com/en/java/javase/22/docs/api/java.base/java/io/File.html" rel="external" target="_blank"><code>java.io.File</code></a></strong>: ayuda a escribir código independiente de plataforma para examinar y manipular archivos y directorios. Esta clase <strong>era el mecanismo utilizado para E/S de archivos en Java antes de Java 7</strong>: <a href="https://docs.oracle.com/en/java/javase/22/docs/api/java.base/java/io/File.html" rel="external" target="_blank">https://docs.oracle.com/en/java/javase/22/docs/api/java.base/java/io/File.html</a></li>
+<li><em><strong><a href="https://docs.oracle.com/en/java/javase/22/docs/api/index.html" rel="external" target="_blank"><code>java.io.RandomAccessFile</code></a></strong></em>: proporciona acceso aleatorio a archivos.</li>
+<li><strong><a href="https://docs.oracle.com/en/java/javase/22/docs/api/java.base/java/nio/file/Path.html" rel="external" target="_blank"><code>java.nio.file.Path</code></a></strong>: <strong>interface</strong> añadida en Java 7 y que permite una forma de trabajar con rutas de archivos y directorios más eficiente. Esta interfaz <strong>se emplea con la clase <code>Files</code> para proporcionar un uso más eficiente y completo para acceder a operaciones adicionales</strong>, como atributos de archivos, o excepciones de E/S que ayudan a diagnosticar problemas de E/S.</li>
+<li><strong><a href="https://docs.oracle.com/en/java/javase/22/docs/api/java.base/java/nio/file/Files.html" rel="external" target="_blank"><code>java.nio.file.Files</code></a></strong>: <strong>clase</strong> dispone de <strong>métodos estáticos para operaciones de archivos y directorios</strong>, así como <strong>creación de flujos de entrada/salida</strong>.</li>
+</ul>
+<h3 id="la-clase-file">La clase <code>File</code></h3>
+<p>La primera clase que estudiaremos es <strong>una de las más empleadas (y antigua) del API <em>java.io</em></strong>: la clase <strong><a href="https://docs.oracle.com/en/java/javase/22/docs/api/java.base/java/io/File.html" rel="external" target="_blank"><code>java.io.File</code></a></strong>.</p>
+<p><a href="https://docs.oracle.com/en/java/javase/22/docs/api/java.base/java/io/File.html" rel="external" target="_blank">La clase <code>File</code></a> se utiliza para <strong>leer información sobre archivos y directorios existentes, listar el contenido de un directorio o crear/eliminar archivos y directorios</strong>.</p>
+<p>Una <strong>instancia de una clase <code>File</code></strong> representa la <strong>ruta a un archivo o directorio específico en el sistema de archivos</strong>, pero <strong>no contiene los datos del archivo o directorio</strong> (el archivo podría no existir).</p>
+<p>La clase <strong>File no puede leer ni escribir datos dentro de un archivo, aunque se puede pasar como referencia a muchas clases de flujos (y métodos) para leer o escribir datos</strong>. Para escribir  leer datos de un archivo, se utilizan las clases de flujo de E/S: <code>FileInputStream</code>, <code>FileOutputStream</code>, <code>FileReader</code>, <code>FileWriter</code>, <code>RandomAccessFile</code>, etc.</p>
+<p>Por ello, se usa para <strong>convertir el nombre de un archivo y pasarlo como parámetro a otros métodos o constructores que sí pueden leer o escribir datos</strong>.</p>
+
+<details open class=" box cstyle notices note">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-exclamation-circle"></i> 
+    FileChannel
+  </summary>
+  <div class="box-content">
+<p>La clase <code>FileChannel</code>, del API Java NIO, de <code>java.nio.channels</code> proporciona una forma más avanzada de trabajar con archivos que <code>RandomAccessFile</code>. Tanto File como FileChannel funcionan, pero para <strong>trabajar con puro Java NIO debe usarse la clase <code>FileChannel</code></strong>.</p>
+  </div>
+</details>
+
+<details open class=" box cstyle notices note">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-exclamation-circle"></i> 
+    java.nio.file.Files
+  </summary>
+  <div class="box-content">
+<p><strong>La <a href="https://docs.oracle.com/en/java/javase/22/docs/api/java.base/java/nio/file/Files.html" rel="external" target="_blank">clase <code>java.nio.file.Files</code></a> proporciona únicamente métodos estáticos para operaciones de archivos y directorios</strong>, así como creación de <strong>flujos de entrada/salida</strong>. Es más eficiente que la clase <code>File</code> y se recomienda su uso en lugar de <code>File</code> <strong>para nuevas aplicaciones.</strong></p>
+  </div>
+</details>
+<h2 id="2-creación-de-un-objeto-file">2. Creación de un Objeto <code>File</code></h2>
+<p>Un objeto File a menudo <strong>se inicializa con una cadena que contiene una ruta absoluta o relativa al archivo o directorio en el sistema de archivos</strong>.</p>
+<p>La <strong>ruta absoluta</strong> de un archivo o directorio es la <strong>ruta completa desde el directorio raíz hasta el archivo o directorio</strong>, incluyendo todos los subdirectorios que contienen el archivo o directorio.</p>
+<p>La <strong>ruta relativa</strong> de un archivo o directorio es la <strong>ruta desde el directorio de trabajo actual hasta el archivo o directorio</strong>. Por ejemplo, lo siguiente es una ruta absoluta al archivo <code>javaio.txt</code>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-script" data-lang="script">/home/otto/apuntes/javaio.txt</code></pre></div>
+<p>Lo siguiente es una ruta relativa al mismo archivo, asumiendo que el directorio actual del usuario está configurado en <code>/home/otto</code>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code class="language-script" data-lang="script">apuntes/javaio.txt</code></pre></div>
+<blockquote>
+<p>Los sistemas operativos diferentes varían en su formato de nombres de ruta. Por ejemplo, <strong>los sistemas basados en Unix usan la barra diagonal hacia adelante, /, para las rutas, mientras que los sistemas basados en Windows usan el carácter diagonal inversa, \, como separador de ruta</strong>.</p>
+</blockquote>
+<p>Muchos lenguajes de programación y sistemas de archivos admiten ambos tipos de barras al escribir declaraciones de ruta. Por conveniencia, <strong>Java ofrece dos opciones para recuperar el carácter separador local: una <a href="https://docs.oracle.com/en/java/javase/22/docs/api/java.base/java/lang/System.html#getProperty(java.lang.String)" rel="external" target="_blank">propiedad del sistema</a> y una <a href="https://docs.oracle.com/en/java/javase/22/docs/api/java.base/java/io/File.html#separator" rel="external" target="_blank">variable estática</a> definida en la clase <code>File</code></strong>. Ambos ejemplos imprimirán el carácter separador para el entorno actual:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(System.<span style="color:#a6e22e">getProperty</span>(<span style="color:#e6db74">&#34;file.separator&#34;</span>));
+</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(java.<span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">File</span>.<span style="color:#a6e22e">separator</span>);</span></span></code></pre></div>
+<p>Prueba el separador de la plataforma (Gitlab) con el siguiente código:</p>
+
+
+
+
+<div contentEditable="true" class="coderunner-block">
+
+    <div>
+        <a class="btn btn-default" onclick="callJOBE(this, 'jobe.iessanclemente.net', '443', 'java')">
+     
+            <i class="fa fa-play"></i>
+        </a>
+        <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HolaMundo</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Sistema: &#34;</span> <span style="color:#f92672">+</span> System.<span style="color:#a6e22e">getProperty</span>(<span style="color:#e6db74">&#34;file.separator&#34;</span>));
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Atributo: &#34;</span> <span style="color:#f92672">+</span> java.<span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">File</span>.<span style="color:#a6e22e">separator</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+    </div>
+    <b>Salida:</b> 
+    <textarea type="text" readonly></textarea>
+</div>
+
+
+<p>El siguiente código <strong>crea un objeto <em>File</em></strong> y determina si la ruta a la que hace referencia el archivo existe en el sistema de archivos:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>File javaFile <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> File(<span style="color:#e6db74">&#34;/home/otto/apuntes/javaio.txt&#34;</span>);
+</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(javaFile.<span style="color:#a6e22e">exists</span>()); <span style="color:#f92672">//</span> <span style="color:#66d9ef">true</span>, si el archivo existe</span></span></code></pre></div>
+<p>Este ejemplo proporciona la ruta absoluta a un archivo y muestra <code>true</code> o <code>false</code> según si el archivo existe.</p>
+<p>Tiene <strong>cuatro constructores</strong>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">File</span>(String pathname)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">File</span>(File parent, String child)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">File</span>(String parent, String child)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">File</span>(URI uri)</span></span></code></pre></div>
+<p>El primero crea un objeto File a partir de una ruta en forma de cadena. Los otros dos constructores se utilizan para crear un objeto File a partir de una ruta principal y una secundaria, como la siguiente:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>File apuntesJavaIO <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> File(<span style="color:#e6db74">&#34;/home/otto&#34;</span>, <span style="color:#e6db74">&#34;apuntes/javaio.md&#34;</span>);
+</span></span><span style="display:flex;"><span>File directorioPadre <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> File(<span style="color:#e6db74">&#34;/home/otto&#34;</span>);
+</span></span><span style="display:flex;"><span>File arquivo3 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> File(directorioPadre, <span style="color:#e6db74">&#34;apuntes/javaio.md&#34;</span>);</span></span></code></pre></div>
+<p>En este ejemplo, creamos dos nuevas instancias de File que son equivalentes la instancia anterior de apuntesJavaIO. <strong>Si la instancia principal es nula, se omitiría y el método volvería al constructor de cadena única</strong>.</p>
+<h3 id="constructores-de-la-clase-file">Constructores de la clase File</h3>
+<table>
+  <thead>
+      <tr>
+          <th><strong>Constructor</strong></th>
+          <th><strong>Descripción</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>File(String pathname)</code></td>
+          <td>Crea un objeto File a partir de una ruta en forma de cadena.</td>
+      </tr>
+      <tr>
+          <td><code>File(File parent, String child)</code></td>
+          <td>Crea un objeto File a partir de una ruta principal y una secundaria.</td>
+      </tr>
+      <tr>
+          <td><code>File(String parent, String child)</code></td>
+          <td>Crea un objeto File a partir de una ruta principal y una secundaria.</td>
+      </tr>
+      <tr>
+          <td><code>File(URI uri)</code></td>
+          <td>Crea un objeto File a partir de un URI.</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="campos-de-la-clase-file">Campos de la clase File</h3>
+<p>La clase File tiene varios campos que puedes usar para acceder a información sobre el sistema de archivos subyacente. Algunos de los campos más útiles son:</p>
+<table>
+  <thead>
+      <tr>
+          <th><strong>Campo</strong></th>
+          <th><strong>Descripción</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>static String pathSeparator</code></td>
+          <td>El separador de PATH de la plataforma. Por ejemplo, en Windows es <code>;</code> y en Unix es <code>:</code>.</td>
+      </tr>
+      <tr>
+          <td><code>static char pathSeparatorChar</code></td>
+          <td>El separador de ruta de la plataforma como un carácter.</td>
+      </tr>
+      <tr>
+          <td><code>static String separator</code></td>
+          <td>El separador de ruta de la plataforma. Por ejemplo, en Windows es <code>\</code> y en Unix es <code>/</code>.</td>
+      </tr>
+      <tr>
+          <td><code>static char separatorChar</code></td>
+          <td>El separador de ruta de la plataforma como un carácter.</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="3-el-objeto-file-vs-archivo-real-existente">3. El objeto <em>File</em> vs. archivo real existente</h2>
+<p>Al trabajar con una instancia de la clase File, ten en cuenta que <strong>sólo representa una ruta a un archivo</strong>. A menos que se opere sobre él, <mark><strong>no está conectado a un archivo real en el sistema de archivos</strong></mark>.</p>
+<p>Por ejemplo:</p>
+<ul>
+<li>Se puede crear un nuevo objeto <code>File</code> para <strong>comprobar <mark>si un archivo existe</mark> en el sistema</strong>.</li>
+<li>Se puede llamar a varios métodos para <strong><mark>leer propiedades de archivos</mark> dentro del sistema de archivos</strong>.</li>
+<li>Tiene <strong>hay métodos para <mark>modificar el nombre o la ubicación</mark> de un archivo, así como para eliminarlo</strong>.</li>
+</ul>
+<p>La JVM y el sistema de archivos subyacente leerán o modificarán el archivo utilizando los métodos que llamas en la clase File. Si intentas operar en un archivo que no existe o al que no tienes acceso, <strong>algunos métodos de File lanzarán una excepción</strong>. Otros métodos <strong>devolverán <code>false</code> si el archivo no existe o la operación no se puede realizar</strong>.</p>
+<h2 id="4-trabajando-con-un-objeto-file">4. Trabajando con un Objeto <code>File</code></h2>
+<p>La clase File contiene <strong>numerosos métodos útiles</strong> para interactuar con archivos y directorios en el sistema de archivos. En la siguiente tabla se muestran los más importantes, por su uso:</p>
+<h2 id="5-métodos-más-importantes-de-javaiofile">5. Métodos más importantes de <code>java.io.File</code></h2>
+<table>
+  <thead>
+      <tr>
+          <th><strong>Nombre del Método</strong></th>
+          <th><strong>Descripción</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>boolean delete()</code></td>
+          <td>Borra el archivo o directorio y devuelve <code>true</code> sólo si la operación se completó con éxito. Si esta instancia es un directorio, el directorio debe estar vacío para poder eliminarse.</td>
+      </tr>
+      <tr>
+          <td><code>boolean exists()</code></td>
+          <td>Comprueba si un archivo existe</td>
+      </tr>
+      <tr>
+          <td><code>String getAbsolutePath()</code></td>
+          <td>Obtiene el nombre absoluto del archivo o directorio en el sistema de archivos</td>
+      </tr>
+      <tr>
+          <td><code>String getName()</code></td>
+          <td>Obtiene el nombre del archivo o directorio</td>
+      </tr>
+      <tr>
+          <td><code>String getParent()</code></td>
+          <td>Obtiene el directorio principal en el que se encuentra la ruta, o null si no hay ninguno</td>
+      </tr>
+      <tr>
+          <td><code>boolean isDirectory()</code></td>
+          <td>Comprueba si una referencia File es un directorio en el sistema de archivos</td>
+      </tr>
+      <tr>
+          <td><code>boolean isFile()</code></td>
+          <td>Comprueba si una referencia File es un archivo en el sistema de archivos</td>
+      </tr>
+      <tr>
+          <td><code>long lastModified()</code></td>
+          <td>Devuelve el número de milisegundos desde la época (número de milisegundos desde las 12 a.m. UTC del 1 de enero de 1970) en que se modificó el archivo por última vez</td>
+      </tr>
+      <tr>
+          <td><code>long length()</code></td>
+          <td>Obtiene el número de bytes en el archivo</td>
+      </tr>
+      <tr>
+          <td><code>File[] listFiles()</code></td>
+          <td>Obtiene una <strong>lista de archivos</strong> dentro de un directorio</td>
+      </tr>
+      <tr>
+          <td><code>boolean mkdir()</code></td>
+          <td>Crea el directorio especificado en la ruta</td>
+      </tr>
+      <tr>
+          <td><code>boolean mkdirs()</code></td>
+          <td>Crea el directorio especificado en la ruta, incluyendo cualquier directorio principal inexistente</td>
+      </tr>
+      <tr>
+          <td><code>boolean renameTo(File dest)</code></td>
+          <td>Cambia el nombre del archivo o directorio denotado por esta ruta a dest y devuelve true sólo si la operación tuvo éxito.</td>
+      </tr>
+  </tbody>
+</table>
+<p>Prueba el siempre útil programa de ejemplo de muestra que muestra información sobre un archivo o directorio, como si existe, qué archivos contiene y más:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.*;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import static</span> java.lang.System.out;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">InfoFile</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String args<span style="color:#f92672">[]</span>) <span style="color:#66d9ef">throws</span> IOException {
+</span></span><span style="display:flex;"><span>        out.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;Raíz del sistema de ficheros&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (File raiz: File.<span style="color:#a6e22e">listRoots</span>()) {
+</span></span><span style="display:flex;"><span>            out.<span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#34;%s &#34;</span>, raiz);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        out.<span style="color:#a6e22e">println</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (String nome : args) {
+</span></span><span style="display:flex;"><span>            out.<span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#34;%n------%new File(%s)%n&#34;</span>, nome);
+</span></span><span style="display:flex;"><span>            File f <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> File(nome);
+</span></span><span style="display:flex;"><span>            out.<span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#34;toString(): %s%n&#34;</span>, f);
+</span></span><span style="display:flex;"><span>            out.<span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#34;exists(): %b%n&#34;</span>, f.<span style="color:#a6e22e">exists</span>());
+</span></span><span style="display:flex;"><span>            out.<span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#34;lastModified(): %tc%n&#34;</span>, f.<span style="color:#a6e22e">lastModified</span>());
+</span></span><span style="display:flex;"><span>            out.<span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#34;isFile(): %b%n&#34;</span>, f.<span style="color:#a6e22e">isFile</span>());
+</span></span><span style="display:flex;"><span>            out.<span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#34;isDirectory(): %b%n&#34;</span>, f.<span style="color:#a6e22e">isDirectory</span>());
+</span></span><span style="display:flex;"><span>            out.<span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#34;isHidden(): %b%n&#34;</span>, f.<span style="color:#a6e22e">isHidden</span>());
+</span></span><span style="display:flex;"><span>            out.<span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#34;canRead(): %b%n&#34;</span>, f.<span style="color:#a6e22e">canRead</span>());
+</span></span><span style="display:flex;"><span>            out.<span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#34;canWrite(): %b%n&#34;</span>, f.<span style="color:#a6e22e">canWrite</span>());
+</span></span><span style="display:flex;"><span>            out.<span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#34;canExecute(): %b%n&#34;</span>, f.<span style="color:#a6e22e">canExecute</span>());
+</span></span><span style="display:flex;"><span>            out.<span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#34;isAbsolute(): %b%n&#34;</span>, f.<span style="color:#a6e22e">isAbsolute</span>());
+</span></span><span style="display:flex;"><span>            out.<span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#34;length(): %d%n&#34;</span>, f.<span style="color:#a6e22e">length</span>());
+</span></span><span style="display:flex;"><span>            out.<span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#34;getName(): %s%n&#34;</span>, f.<span style="color:#a6e22e">getName</span>());
+</span></span><span style="display:flex;"><span>            out.<span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#34;getPath(): %s%n&#34;</span>, f.<span style="color:#a6e22e">getPath</span>());
+</span></span><span style="display:flex;"><span>            out.<span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#34;getAbsolutePath(): %s%n&#34;</span>, f.<span style="color:#a6e22e">getAbsolutePath</span>());
+</span></span><span style="display:flex;"><span>            out.<span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#34;getCanonicalPath(): %s%n&#34;</span>, f.<span style="color:#a6e22e">getCanonicalPath</span>());
+</span></span><span style="display:flex;"><span>            out.<span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#34;getParent(): %s%n&#34;</span>, f.<span style="color:#a6e22e">getParent</span>());
+</span></span><span style="display:flex;"><span>            out.<span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#34;toURI: %s%n&#34;</span>, f.<span style="color:#a6e22e">toURI</span>());
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>El siguiente es un programa de ejemplo de muestra que, dado una ruta a un archivo, muestra <strong>información sobre el archivo o directorio</strong>, si existe, qué archivos contiene y más:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> arquivo <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> File(<span style="color:#e6db74">&#34;c:\\home\\otto\\noHayCole.txt&#34;</span>);
+</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Archivo existe: &#34;</span> <span style="color:#f92672">+</span> arquivo.<span style="color:#a6e22e">exists</span>());
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (arquivo.<span style="color:#a6e22e">exists</span>()) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Ruta absoluta: &#34;</span> <span style="color:#f92672">+</span> arquivo.<span style="color:#a6e22e">getAbsolutePath</span>());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Es un directorio: &#34;</span> <span style="color:#f92672">+</span> arquivo.<span style="color:#a6e22e">isDirectory</span>());
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Ruta padre: &#34;</span> <span style="color:#f92672">+</span> arquivo.<span style="color:#a6e22e">getParent</span>());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (arquivo.<span style="color:#a6e22e">isFile</span>()) {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Tamaño: &#34;</span> <span style="color:#f92672">+</span> arquivo.<span style="color:#a6e22e">length</span>());
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Última modificación: &#34;</span> <span style="color:#f92672">+</span> arquivo.<span style="color:#a6e22e">lastModified</span>());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (File subArquivo : arquivo.<span style="color:#a6e22e">listFiles</span>()) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">+</span> subArquivo.<span style="color:#a6e22e">getName</span>());
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Si la ruta proporcionada no apuntara a un archivo, produciría la siguiente salida:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>Archivo existe: false
+</span></span></code></pre></div>
+<p>Si la ruta proporcionada apuntara a un archivo válido, produciría algo similar a lo siguiente:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>Archivo existe: true
+</span></span><span style="display:flex;"><span>Ruta absoluta: c:\home\otto\noHayCole.txt
+</span></span><span style="display:flex;"><span>Es un directorio: false
+</span></span><span style="display:flex;"><span>Ruta padre: c:\home\otto
+</span></span><span style="display:flex;"><span>Tamaño: 14883
+</span></span><span style="display:flex;"><span>Última modificación: 1806860000003
+</span></span></code></pre></div>
+<p>Finalmente, si la ruta proporcionada apuntara a un directorio válido, como c:\home, produciría algo similar a lo siguiente:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>Archivo existe: true
+</span></span><span style="display:flex;"><span>Ruta absoluta: c:\home
+</span></span><span style="display:flex;"><span>Es un directorio: true
+</span></span><span style="display:flex;"><span>Ruta padre: c:\
+</span></span><span style="display:flex;"><span>asisoy.txt
+</span></span><span style="display:flex;"><span>noHayCole.txt
+</span></span><span style="display:flex;"><span>zalandomami.txt
+</span></span></code></pre></div>
+<p>En estos ejemplos, ves que la salida de un programa basado en Entrada/Salida <strong>depende por completo de los directorios y archivos disponibles en tiempo de ejecución en el sistema de archivos subyacente</strong>.</p>
+
+<details open class=" box cstyle notices info">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-info-circle"></i> 
+    Directorio o archivo
+  </summary>
+  <div class="box-content">
+<p>Ojo, <code>/home/otto/noHayCole.txt</code> <strong>podría ser un archivo o un directorio, incluso si tiene una extensión de archivo</strong>. ¡No asumas que es uno u otro a menos que lo puedas comprobar! (por ejemplo, <code>.git</code>)</p>
+  </div>
+</details>
+<h3 id="ejercicios">Ejercicios</h3>
+
+<details open class=" box cstyle notices info">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-pen-square"></i> 
+    Ejercicio 1. Creación y lectura de archivos con File
+  </summary>
+  <div class="box-content">
+<p><em>Debes <strong>trabajar únicamente con métodos de la clase <code>File</code></strong>.</em></p>
+<p>Realiza los siguientes pasos:</p>
+<ol>
+<li><strong>Crea un archivo de texto</strong> llamado <code>prueba.txt</code> en el directorio actual de tu proyecto, sólo si no existe.</li>
+<li><strong>Escribe un programa</strong> que cree un objeto <code>File</code> para el archivo <code>prueba.txt</code> y <strong>compruebe si el archivo existe</strong>.</li>
+<li><strong>Si el archivo existe</strong>, muestra la <strong>ruta absoluta</strong>, <strong>nombre del archivo</strong>, <strong>tamaño</strong>, <strong>última modificación</strong> y <strong>si es un directorio</strong>.</li>
+<li><strong>Si el archivo no existe</strong>, muestra un mensaje que lo indique y crea uno temporal.</li>
+</ol>
+  </div>
+</details>
+
+<details open class=" box cstyle notices info">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-pen-square"></i> 
+    Ejercicio 2.  Mostrar el contenido de un directorio
+  </summary>
+  <div class="box-content">
+<p><em>Debes <strong>trabajar únicamente con métodos de la clase <code>File</code></strong>.</em></p>
+<p>El programa abre una ventana para la selección de un directorio (hazlo también desde teclado si recoge un parámetro) y usando el <strong>método <code>listFiles()</code></strong> de la clase File, <strong>muestra el contenido de ese directorio</strong>, indicando el tamaño de los archivos y si es un directorio o no.
+Además, muestra el tamaño total de los archivos y directorios.</p>
+<p>Muestra en una ventana emergente el resultado y por consola.</p>
+  </div>
+</details>
+<p>A continuación puedes ver algunas soluciones parciales del ejercicio 2. Completa el ejercicio de acuerdo a las indicaciones.</p>
+
+<details class=" box cstyle notices transparent expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right"></i> 
+    Solución parcial con list()
+  </summary>
+  <div class="box-content">
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.File;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ListFiles</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        File directorio <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> File(<span style="color:#e6db74">&#34;C:\\Users\\javhoz\\Documents\\GitHub\\dam2\\&#34;</span>);
+</span></span><span style="display:flex;"><span>        File<span style="color:#f92672">[]</span> archivos <span style="color:#f92672">=</span> directorio.<span style="color:#a6e22e">listFiles</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (File archivo : archivos) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(archivo.<span style="color:#a6e22e">getName</span>() <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">+</span> archivo.<span style="color:#a6e22e">length</span>() <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">+</span> (archivo.<span style="color:#a6e22e">isDirectory</span>() <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;Directorio&#34;</span> : <span style="color:#e6db74">&#34;Archivo&#34;</span>));
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
+</details>
+
+<details class=" box cstyle notices transparent expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right"></i> 
+    Solución parcial con JFileChooser
+  </summary>
+  <div class="box-content">
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.swing.JFileChooser;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.File;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ListFiles</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        JFileChooser fileChooser <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> JFileChooser();
+</span></span><span style="display:flex;"><span>        fileChooser.<span style="color:#a6e22e">setFileSelectionMode</span>(JFileChooser.<span style="color:#a6e22e">DIRECTORIES_ONLY</span>);
+</span></span><span style="display:flex;"><span>        fileChooser.<span style="color:#a6e22e">showOpenDialog</span>(<span style="color:#66d9ef">null</span>);
+</span></span><span style="display:flex;"><span>        File directorio <span style="color:#f92672">=</span> fileChooser.<span style="color:#a6e22e">getSelectedFile</span>();
+</span></span><span style="display:flex;"><span>        File<span style="color:#f92672">[]</span> archivos <span style="color:#f92672">=</span> directorio.<span style="color:#a6e22e">listFiles</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (File archivo : archivos) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(archivo.<span style="color:#a6e22e">getName</span>() <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">+</span> archivo.<span style="color:#a6e22e">length</span>() <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">+</span> (archivo.<span style="color:#a6e22e">isDirectory</span>() <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;Directorio&#34;</span> : <span style="color:#e6db74">&#34;Archivo&#34;</span>));
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
+</details>
+
+<details class=" box cstyle notices transparent expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right"></i> 
+    Solución completa con JFileChooser
+  </summary>
+  <div class="box-content">
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.swing.JFileChooser;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.File;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ListFiles</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        JFileChooser fileChooser <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> JFileChooser();
+</span></span><span style="display:flex;"><span>        fileChooser.<span style="color:#a6e22e">setFileSelectionMode</span>(JFileChooser.<span style="color:#a6e22e">DIRECTORIES_ONLY</span>);
+</span></span><span style="display:flex;"><span>        fileChooser.<span style="color:#a6e22e">showOpenDialog</span>(<span style="color:#66d9ef">null</span>);
+</span></span><span style="display:flex;"><span>        File directorio <span style="color:#f92672">=</span> fileChooser.<span style="color:#a6e22e">getSelectedFile</span>();
+</span></span><span style="display:flex;"><span>        File<span style="color:#f92672">[]</span> archivos <span style="color:#f92672">=</span> directorio.<span style="color:#a6e22e">listFiles</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">long</span> total <span style="color:#f92672">=</span> 0;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (File archivo : archivos) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(archivo.<span style="color:#a6e22e">getName</span>() <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">+</span> archivo.<span style="color:#a6e22e">length</span>() <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">+</span> (archivo.<span style="color:#a6e22e">isDirectory</span>() <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;Directorio&#34;</span> : <span style="color:#e6db74">&#34;Archivo&#34;</span>));
+</span></span><span style="display:flex;"><span>            total <span style="color:#f92672">+=</span> archivo.<span style="color:#a6e22e">length</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Tamaño total: &#34;</span> <span style="color:#f92672">+</span> total);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
+</details>
+<p>El siguiente ejemplo muestra cómo <strong>mostrar el contenido de un directorio</strong>, haciendo uso de la clase que veremos BufferesReader (no Scanner) para la lectura de teclado:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Programa Java que muestra todo el contenido de un directorio</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.BufferedReader;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.File;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.IOException;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.InputStreamReader;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Mostrando el contenido de un directorio</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Contents</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throws</span> IOException
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Introducimos la ruta y el nombre del directorio por teclado:</span>
+</span></span><span style="display:flex;"><span>        BufferedReader br <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedReader(<span style="color:#66d9ef">new</span> InputStreamReader(System.<span style="color:#a6e22e">in</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Introduce la ruta:&#34;</span>);
+</span></span><span style="display:flex;"><span>        String dirpath <span style="color:#f92672">=</span> br.<span style="color:#a6e22e">readLine</span>();
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Introduce el nombre del directorio:&#34;</span>);
+</span></span><span style="display:flex;"><span>        String dname <span style="color:#f92672">=</span> br.<span style="color:#a6e22e">readLine</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// creamos un objeto File a partir de la ruta y el nombre del directorio</span>
+</span></span><span style="display:flex;"><span>        File f <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> File(dirpath, dname);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// si el directorio existe, mostramos su contenido</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (f.<span style="color:#a6e22e">exists</span>()) {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// obtenemos el contenido en un arr[]</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// el array arr[i] representa el nombre cada archivo o directorio</span>
+</span></span><span style="display:flex;"><span>            String arr<span style="color:#f92672">[]</span> <span style="color:#f92672">=</span> f.<span style="color:#a6e22e">list</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Número de entradas en el directorio</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> n <span style="color:#f92672">=</span> arr.<span style="color:#a6e22e">length</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// mostramos cada una de las entradas.</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>                System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(arr<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// Creamos un objeto File para cada entrada y </span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// comprobamos si es un archivo o un directorio.</span>
+</span></span><span style="display:flex;"><span>                File f1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> File(arr<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (f1.<span style="color:#a6e22e">isFile</span>())
+</span></span><span style="display:flex;"><span>                    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;: es un archivo&#34;</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (f1.<span style="color:#a6e22e">isDirectory</span>())
+</span></span><span style="display:flex;"><span>                    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;: es un directorio&#34;</span>);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;El directorio no tiene entradas &#34;</span> <span style="color:#f92672">+</span> n);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Directorio no encontrado&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+
+<details open class=" box cstyle notices info">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-pen-square"></i> 
+    Ejercicio 3.  Gestor de archivos y directorios
+  </summary>
+  <div class="box-content">
+<p>Como en todos los ejercicios anteriores, debes <strong>trabajar únicamente con métodos de la clase <code>File</code></strong>.</p>
+<p>Escribe un programa en Java que funcione como un <strong>gestor básico de archivos y directorios</strong>. El programa debe permitir al usuario realizar las siguientes operaciones:</p>
+<ol>
+<li><strong>Crear</strong> un directorio, empleando la clase JFileChooser para seleccionar la ruta donde se creará.</li>
+<li><strong>Listar</strong> todos los archivos y subdirectorios de un directorio <strong>de forma recursiva</strong>.</li>
+<li><strong>Eliminar</strong> un archivo o directorio. Si es un directorio, eliminar todo su contenido de forma recursiva.</li>
+<li><strong>Mover o renombrar</strong> archivos y directorios.</li>
+</ol>
+<p>El programa debe ofrecer un menú para que el usuario elija la operación que desea realizar. La selección de directorios o archivos debe realizarse con la clase <code>JFileChooser</code>.</p>
+  </div>
+</details>
+<h2 id="6-nuevas-características-del-paquete-javaniofile">6. Nuevas características del paquete <code>java.nio.file</code></h2>
+<p>Aunque la clase <code>java.io.File</code> es útil para muchas operaciones de E/S de archivos, <strong>Java SE 7</strong> <strong>introdujo una nueva API de E/S de archivos en el paquete <code>java.nio.file</code> que proporciona una funcionalidad más rica y más eficiente para trabajar con archivos y directorios</strong>. Este modo de hacerlo lo veremos en el siguiente apartado.</p>
+<p>Antes del lanzamiento de <strong>Java SE 7</strong>, la clase <code>java.io.File</code> era el mecanismo utilizado para la E/S de archivos, pero presentaba varios inconvenientes:</p>
+<ul>
+<li><strong>Muchos métodos no lanzaban excepciones al fallar</strong>, por lo que era imposible obtener un mensaje de error útil. Por ejemplo, si fallaba la eliminación de un archivo, el programa recibía un &ldquo;fallo al eliminar&rdquo;, pero no sabía si era porque el archivo no existía, el usuario no tenía permisos, o había algún otro problema.</li>
+<li>El método <strong><code>rename</code> no funcionaba de manera consistente en diferentes plataformas</strong>.</li>
+<li><strong>No había un soporte real para enlaces simbólicos</strong>.</li>
+<li>Se <strong>requería más soporte para metadatos</strong>, como permisos de archivos, propietario del archivo y otros atributos de seguridad.</li>
+<li>El <strong>acceso a los metadatos de los archivos era ineficiente</strong>.</li>
+<li><strong>Muchos de los métodos no escalaban bien</strong>. Solicitar un listado de directorios grandes en un servidor podía causar bloqueos. Los directorios grandes también podían generar problemas de recursos de memoria, lo que resultaba en una denegación de servicio.</li>
+<li><strong>No era posible escribir código fiable que pudiera recorrer un árbol de archivos recursivamente</strong> y responder adecuadamente si había enlaces simbólicos circulares.</li>
+</ul>
+<p>Aun así, <strong>existe mucho código que usa <code>java.io.File</code> y sigue siendo útil para muchas situaciones</strong>. Aunque lo veremos al detalle, si quisieras aprovechar la funcionalidad de <code>java.nio.file.Path</code> con el menor impacto posible en tu código muestro ejemplos de ello.</p>
+<h3 id="conversión-entre-javaiofile-y-javaniofilepath">Conversión entre <code>java.io.File</code> y <code>java.nio.file.Path</code></h3>
+<p>La <strong>clase <code>java.io.File</code> proporciona el método <code>toPath</code>, que convierte una instancia de estilo antiguo en una instancia <code>java.nio.file.Path</code></strong>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Path entrada <span style="color:#f92672">=</span> file.<span style="color:#a6e22e">toPath</span>();</span></span></code></pre></div>
+<p>De esta forma, puedes aprovechar el conjunto de características que ofrece la clase <code>Path</code>.</p>
+<p>Por ejemplo, si tuvieras algún código que eliminara un archivo:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>file.<span style="color:#a6e22e">delete</span>();</span></span></code></pre></div>
+<p>Podrías modificar este código para usar el método <code>Files.delete</code>, de la siguiente manera:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Path fp <span style="color:#f92672">=</span> file.<span style="color:#a6e22e">toPath</span>();
+</span></span><span style="display:flex;"><span>Files.<span style="color:#a6e22e">delete</span>(fp);</span></span></code></pre></div>
+<p>A la inversa, <strong>el método <code>Path.toFile</code> construye un objeto <code>java.io.File</code> para un objeto <code>Path</code></strong>.</p>
+<h3 id="mapeo-de-la-funcionalidad-de-javaiofile-a-javaniofile">Mapeo de la Funcionalidad de <code>java.io.File</code> a <code>java.nio.file</code></h3>
+<p>Dado que la implementación de la E/S de archivos en Java ha sido completamente re-arquitectada en la versión <strong>Java SE 7</strong>, <strong>no puedes intercambiar un método por otro directamente</strong>. Si deseas usar la rica funcionalidad que ofrece el paquete <code>java.nio.file</code>, la solución más sencilla es <strong>usar el método <code>File.toPath</code></strong>.</p>
+<p><strong>No hay una correspondencia uno a uno entre las dos APIs</strong>, pero la siguiente tabla  da una idea general de qué funcionalidad en la API <code>java.io.File</code> corresponde a la funcionalidad en la API <code>java.nio.file</code>, y te indica dónde puedes obtener más información.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Funcionalidad de <code>java.io.File</code></th>
+          <th>Funcionalidad de <code>java.nio.file</code></th>
+          <th>Uso</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>java.io.File</code></td>
+          <td><code>java.nio.file.Path</code></td>
+          <td>Clase principal de gestión de archivos.</td>
+      </tr>
+      <tr>
+          <td><code>java.io.RandomAccessFile</code></td>
+          <td><code>SeekableByteChannel</code></td>
+          <td>Archivos de Acceso Aleatorio</td>
+      </tr>
+      <tr>
+          <td><code>File.canRead</code>, <code>canWrite</code>, <code>canExecute</code></td>
+          <td><code>Files.isReadable</code>, <code>Files.isWritable</code>, <code>Files.isExecutable</code></td>
+          <td>Verificación de archivo o directorio.</td>
+      </tr>
+      <tr>
+          <td><code>File.isDirectory()</code>, <code>File.isFile()</code>, <code>File.length()</code></td>
+          <td><code>Files.isDirectory(Path, LinkOption...)</code>, <code>Files.isRegularFile(Path, LinkOption...)</code>, <code>Files.size(Path)</code></td>
+          <td>Gestión de Metadatos de archivo/directorio.</td>
+      </tr>
+      <tr>
+          <td><code>File.lastModified()</code>, <code>File.setLastModified(long)</code></td>
+          <td><code>Files.getLastModifiedTime(Path, LinkOption...)</code>, <code>Files.setLastModifiedTime(Path, FileTime)</code></td>
+          <td>Gestión de Metadatos de fecha modificación.</td>
+      </tr>
+      <tr>
+          <td>Métodos que establecen varios atributos (<code>setExecutable</code>, <code>setReadable</code>, <code>setReadOnly</code>, <code>setWritable</code>)</td>
+          <td><code>Files.setAttribute(Path, String, Object, LinkOption...)</code></td>
+          <td>Gestión de Metadatos de atributos de archivo.</td>
+      </tr>
+      <tr>
+          <td><code>new File(parent, &quot;newfile&quot;)</code></td>
+          <td><code>parent.resolve(&quot;newfile&quot;)</code></td>
+          <td>Operaciones con archivos</td>
+      </tr>
+      <tr>
+          <td><code>File.renameTo</code></td>
+          <td><code>Files.move</code></td>
+          <td>Mover un Archivo o Directorio</td>
+      </tr>
+      <tr>
+          <td><code>File.delete</code></td>
+          <td><code>Files.delete</code></td>
+          <td>Eliminar un Archivo o Directorio</td>
+      </tr>
+      <tr>
+          <td><code>File.createNewFile</code></td>
+          <td><code>Files.createFile</code></td>
+          <td>Crear Archivos</td>
+      </tr>
+      <tr>
+          <td><code>File.deleteOnExit</code></td>
+          <td>Opción <code>DELETE_ON_CLOSE</code> especificada en <code>createFile</code></td>
+          <td>Borrado de archivos al salir.</td>
+      </tr>
+      <tr>
+          <td><code>File.createTempFile</code></td>
+          <td><code>Files.createTempFile(Path, String, FileAttributes&lt;?&gt;)</code>, <code>Files.createTempFile(Path, String, String, FileAttributes&lt;?&gt;)</code></td>
+          <td>Crear Archivos temporales.</td>
+      </tr>
+      <tr>
+          <td><code>File.exists</code></td>
+          <td><code>Files.exists</code>, <code>Files.notExists</code></td>
+          <td>Verificar la Existencia de un Archivo o Directorio</td>
+      </tr>
+      <tr>
+          <td><code>File.compareTo</code>, <code>equals</code></td>
+          <td><code>Path.compareTo</code>, <code>equals</code></td>
+          <td>Comparar dos archivos/paths</td>
+      </tr>
+      <tr>
+          <td><code>File.getAbsolutePath</code>, <code>getAbsoluteFile</code></td>
+          <td><code>Path.toAbsolutePath</code></td>
+          <td>Obtención de la ruta absoluta.</td>
+      </tr>
+      <tr>
+          <td><code>File.getCanonicalPath</code>, <code>getCanonicalFile</code></td>
+          <td><code>Path.toRealPath</code> o <code>normalize</code></td>
+          <td>Convertir un Path (toRealPath), Eliminar Redundancias en un Path (normalize)</td>
+      </tr>
+      <tr>
+          <td><code>File.toURI</code></td>
+          <td><code>Path.toURI</code></td>
+          <td>Convertir un path en una URL.</td>
+      </tr>
+      <tr>
+          <td><code>File.isHidden</code></td>
+          <td><code>Files.isHidden</code></td>
+          <td>Saber si está oculto.</td>
+      </tr>
+      <tr>
+          <td><code>File.list</code>, <code>listFiles</code></td>
+          <td><code>Path.newDirectoryStream</code></td>
+          <td>Listar el Contenido de un Directorio</td>
+      </tr>
+      <tr>
+          <td><code>File.mkdir</code>, <code>mkdirs</code></td>
+          <td><code>Files.createDirectory</code></td>
+          <td>Crear directorio/s</td>
+      </tr>
+      <tr>
+          <td><code>File.listRoots</code></td>
+          <td><code>FileSystem.getRootDirectories</code></td>
+          <td>Listar los Directorios Raíz del Sistema de Archivos</td>
+      </tr>
+      <tr>
+          <td><code>File.getTotalSpace</code>, <code>getFreeSpace</code>, <code>getUsableSpace</code></td>
+          <td><code>FileStore.getTotalSpace</code>, <code>getUnallocatedSpace</code>, <code>getUsableSpace</code>, <code>getTotalSpace</code></td>
+          <td>Atributos del Almacenamiento de Archivos</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="7-la-clase-javaiorandomaccessfile">7. La clase java.io.RandomAccessFile</h2>
+<p>La <strong>clase <a href="https://docs.oracle.com/en/java/javase/22/docs/api/java.base/java/io/RandomAccessFile.html" rel="external" target="_blank">RandomAccessFile</a></strong> permite <strong>acceso no secuencial, o aleatorio, al contenido del archivo</strong>.</p>
+<p>Permite <strong>leer y escribir (implementa las interfaces DataInput y DataOutput) en archivos de acceso aleatorio</strong>.
+En el constructor <strong>se especifica el modo de apertura, lectura o escritura</strong>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">new</span> RandomAccessFile(<span style="color:#e6db74">&#34;proba.txt&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>);  <span style="color:#75715e">// Solo lectura</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">new</span> RandomAccessFile(<span style="color:#e6db74">&#34;proba.txt&#34;</span>, <span style="color:#e6db74">&#34;rw&#34;</span>);  <span style="color:#75715e">// Lectura y escritura</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">new</span> RandomAccessFile(<span style="color:#e6db74">&#34;proba.txt&#34;</span>, <span style="color:#e6db74">&#34;rwd&#34;</span>); <span style="color:#f92672">//</span> Lectura y escritura, sincronizado</span></span></code></pre></div>
+<ul>
+<li>
+<p>Emplea la notación de <strong>puntero a archivo para especificar la posición actual en el archivo</strong>.</p>
+</li>
+<li>
+<p>Al crearlo apunta al <strong>principio del archivo</strong>, la <strong>posición 0</strong>.</p>
+</li>
+</ul>
+<p>Las <strong>sucesivas llamadas</strong> a <strong>read</strong> o <strong>write</strong> <strong>modifican la posición del punter</strong>o el número de bytes leídos o escritos, respectivamente.</p>
+<p>Dispone de 3 métodos para modificar la posición del puntero:</p>
+<ul>
+<li><code>int skipBytes(int n)</code>: mueve el puntero hacia delante n bytes.</li>
+<li><code>void seek(long)</code>: sitúa el puntero justo antes del byte especificado.</li>
+<li><code>long getFilePointer()</code>: devuelve la posición actual del puntero a archico.</li>
+</ul>
+<p>Definición de la clase <code>RandomAccessFile</code>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RandomAccessFile</span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">extends</span> Object <span style="color:#66d9ef">implements</span> DataOutput, DataInput, Closeable</span></span></code></pre></div>
+<p>Las instancias de esta clase soportan tanto la <strong>lectura como la escritura en un archivo de acceso aleatorio</strong>. Un archivo de acceso aleatorio se comporta como un <strong>gran array de bytes almacenado en el sistema de archivos</strong>. Existe un tipo de cursor, o índice en el array implícito, llamado <strong>puntero de archivo</strong>; las operaciones de entrada leen bytes comenzando en el puntero de archivo y avanzan el puntero más allá de los bytes leídos.</p>
+<p>Si el archivo de acceso aleatorio se crea en modo de lectura/escritura, entonces las operaciones de salida también están disponibles; las operaciones de salida escriben bytes comenzando en el puntero de archivo y avanzan el puntero más allá de los bytes escritos. Las operaciones de salida que escriben más allá del final actual del array implícito causan que el array se extienda.</p>
+<p>El <strong>puntero de archivo se puede leer mediante el método <code>getFilePointer</code> y establecer mediante el método <code>seek</code></strong>.</p>
+<p>Para todas las rutinas de lectura en esta clase que, <strong>si se alcanza el final del archivo antes de que se haya leído el número deseado de bytes</strong>, se lanza una excepción <strong>EOFException</strong> (que es un tipo de <strong>IOException</strong>).</p>
+<p><strong>Si no se puede leer ningún byte</strong> por alguna razón que no sea el final del archivo, se lanza una <strong>IOException</strong> distinta a <strong>EOFException</strong>. En particular, puede lanzarse una <strong>IOException</strong> si el flujo ha sido cerrado.</p>
+<p>Ejemplo de uso de la clase <code>RandomAccessFile</code>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.*;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RandomAccessFileDemo</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            RandomAccessFile raf <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> RandomAccessFile(<span style="color:#e6db74">&#34;proba.txt&#34;</span>, <span style="color:#e6db74">&#34;rw&#34;</span>);
+</span></span><span style="display:flex;"><span>            raf.<span style="color:#a6e22e">writeUTF</span>(<span style="color:#e6db74">&#34;Hola, mundo!&#34;</span>);
+</span></span><span style="display:flex;"><span>            raf.<span style="color:#a6e22e">seek</span>(0);
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(raf.<span style="color:#a6e22e">readUTF</span>());
+</span></span><span style="display:flex;"><span>            raf.<span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (IOException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<h3 id="escritura-con-randomaccessfile">Escritura con RandomAccessFile</h3>
+<p>Ahora veremos <strong>cómo escribir y editar dentro de un archivo existente</strong>, en lugar de solo escribir en un archivo completamente nuevo o agregar a uno existente. Simplemente: necesitamos acceso aleatorio.</p>
+<p><strong><code>RandomAccessFile</code></strong> nos <strong>permite escribir en una posición específica del archivo</strong>, <strong>dado el desplazamiento (offset) desde el principio del archivo en bytes</strong>.</p>
+<p>Este código escribe un valor entero con un desplazamiento dado desde el principio del archivo:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">writeToPosition</span>(String filename, <span style="color:#66d9ef">int</span> data, <span style="color:#66d9ef">long</span> position) 
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">throws</span> IOException {
+</span></span><span style="display:flex;"><span>    RandomAccessFile writer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> RandomAccessFile(filename, <span style="color:#e6db74">&#34;rw&#34;</span>);
+</span></span><span style="display:flex;"><span>    writer.<span style="color:#a6e22e">seek</span>(position);
+</span></span><span style="display:flex;"><span>    writer.<span style="color:#a6e22e">writeInt</span>(data);
+</span></span><span style="display:flex;"><span>    writer.<span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Si queremos leer el entero almacenado en una ubicación específica, podemos usar este método:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">readFromPosition</span>(String filename, <span style="color:#66d9ef">long</span> position) 
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">throws</span> IOException {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> result <span style="color:#f92672">=</span> 0;
+</span></span><span style="display:flex;"><span>    RandomAccessFile reader <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> RandomAccessFile(filename, <span style="color:#e6db74">&#34;r&#34;</span>);
+</span></span><span style="display:flex;"><span>    reader.<span style="color:#a6e22e">seek</span>(position);
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> reader.<span style="color:#a6e22e">readInt</span>();
+</span></span><span style="display:flex;"><span>    reader.<span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> result;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Para probar nuestras funciones, escribamos un entero, lo editemos, y finalmente lo leamos:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">whenWritingToSpecificPositionInFile_thenCorrect</span>() 
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">throws</span> IOException {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> data1 <span style="color:#f92672">=</span> 2014;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> data2 <span style="color:#f92672">=</span> 1500;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    writeToPosition(fileName, data1, 4);
+</span></span><span style="display:flex;"><span>    assertEquals(data1, readFromPosition(fileName, 4));
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    writeToPosition(fileName2, data2, 4);
+</span></span><span style="display:flex;"><span>    assertEquals(data2, readFromPosition(fileName, 4));
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<h3 id="ejercicios-1">Ejercicios</h3>
+
+<details open class=" box cstyle notices info">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-pen-square"></i> 
+    Ejercicio 4.  Escritura y lectura de archivos con RandomAccessFile
+  </summary>
+  <div class="box-content">
+<p>Escribe un programa que <strong>escriba y lea datos en un archivo</strong> usando la clase <code>RandomAccessFile</code>.</p>
+<ol>
+<li><strong>Crea un archivo de texto</strong> llamado <code>prueba.txt</code> en el directorio actual de tu proyecto, sólo si no existe.</li>
+<li><strong>Escribe un programa</strong> que cree un objeto <code>RandomAccessFile</code> para el archivo <code>prueba.txt</code> y <strong>escriba un mensaje</strong>.</li>
+<li><strong>Lee el mensaje</strong> y <strong>muéstralo por consola</strong>.</li>
+</ol>
+  </div>
+</details>
+
+<details open class=" box cstyle notices info">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-pen-square"></i> 
+    Ejercicio 5.  Escritura y lectura de archivos con RandomAccessFile
+  </summary>
+  <div class="box-content">
+<p>Escribe un programa que utilice la clase <code>RandomAccessFile</code> para escribir en un archivo los números del 1 al 10 y luego los lea desde el archivo. Muestra los números leídos en la consola.</p>
+  </div>
+</details>
+
+<details class=" box cstyle notices transparent expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right"></i> 
+    Solución al ejercicio 5
+  </summary>
+  <div class="box-content">
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.IOException;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.RandomAccessFile;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RandomAccessFileDemo</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            RandomAccessFile raf <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> RandomAccessFile(<span style="color:#e6db74">&#34;prueba.txt&#34;</span>, <span style="color:#e6db74">&#34;rw&#34;</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 1; i <span style="color:#f92672">&lt;=</span> 10; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>                raf.<span style="color:#a6e22e">writeInt</span>(i);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            raf.<span style="color:#a6e22e">seek</span>(0);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 1; i <span style="color:#f92672">&lt;=</span> 10; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>                System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(raf.<span style="color:#a6e22e">readInt</span>());
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            raf.<span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (IOException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
+</details>
+
+<details open class=" box cstyle notices info">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-pen-square"></i> 
+    Ejercicio 6.  Modificación de Contenido en un Archivo Binario con <code>RandomAccessFile</code>
+  </summary>
+  <div class="box-content">
+<p>Escribe un programa en Java que haga lo siguiente:</p>
+<ul>
+<li>Escriba 10 enteros en un archivo llamado &ldquo;datos.bin&rdquo;.</li>
+<li>Permita al usuario modificar el tercer número almacenado en el archivo por otro número.</li>
+<li>Muestra los números antes y después de la modificación en la consola.</li>
+</ul>
+  </div>
+</details>
+
+<details class=" box cstyle notices transparent expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right"></i> 
+    Solución al ejercicio 6
+  </summary>
+  <div class="box-content">
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.RandomAccessFile;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.IOException;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.Scanner;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Ejercicio3</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> (RandomAccessFile raf <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> RandomAccessFile(<span style="color:#e6db74">&#34;datos.bin&#34;</span>, <span style="color:#e6db74">&#34;rw&#34;</span>)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Escribir 10 enteros en el archivo</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 1; i <span style="color:#f92672">&lt;=</span> 10; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>                raf.<span style="color:#a6e22e">writeInt</span>(i);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Leer los números antes de la modificación</span>
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Números antes de la modificación:&#34;</span>);
+</span></span><span style="display:flex;"><span>            raf.<span style="color:#a6e22e">seek</span>(0);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0; i <span style="color:#f92672">&lt;</span> 10; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>                System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(raf.<span style="color:#a6e22e">readInt</span>());
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Solicitar al usuario un nuevo número para el tercer número</span>
+</span></span><span style="display:flex;"><span>            Scanner sc <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scanner(System.<span style="color:#a6e22e">in</span>);
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;Ingrese un nuevo número para reemplazar el tercer número: &#34;</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> nuevoNumero <span style="color:#f92672">=</span> sc.<span style="color:#a6e22e">nextInt</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Modificar el tercer número (posición 2 en base 0, cada entero ocupa 4 bytes)</span>
+</span></span><span style="display:flex;"><span>            raf.<span style="color:#a6e22e">seek</span>(2 <span style="color:#f92672">*</span> 4);
+</span></span><span style="display:flex;"><span>            raf.<span style="color:#a6e22e">writeInt</span>(nuevoNumero);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Leer los números después de la modificación</span>
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Números después de la modificación:&#34;</span>);
+</span></span><span style="display:flex;"><span>            raf.<span style="color:#a6e22e">seek</span>(0);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0; i <span style="color:#f92672">&lt;</span> 10; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>                System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(raf.<span style="color:#a6e22e">readInt</span>());
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (IOException e) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Ocurrió un error de entrada/salida.&#34;</span>);
+</span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
+</details>
+
+  <footer class="footline"></article>
+<footer>
+   <i class='fas fa-user'></i>  <span itemprop="name"> </span>
+
+<i class='fas fa-calendar'></i> Última actualización: 06.06.2025 
+</footer>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<img  src="../../../images/logo-ies.png" style="color:white;  font-size: 20px;" id="logo" href="http://manuais.pages.iessanclemente.net/apuntes/">
+        </div>
+        <search><form action="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Buscar (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Buscar</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Buscar...">
+            <button class="search-clear" type="button" data-search-clear="" title="Borrar búsqueda"><i class="fas fa-times" title="Borrar búsqueda"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/index.html"><a class="padding" href="../../../index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/index.html"><input type="checkbox" id="R-section-0758abab80c2aa84781892223aa808b3" aria-controls="R-subsections-0758abab80c2aa84781892223aa808b3"><label for="R-section-0758abab80c2aa84781892223aa808b3"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 0. Refuerzo y ayudas complementarias</span></label><a class="padding" href="../../../00ayudas/index.html">UD 0. Refuerzo y ayudas complementarias<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-0758abab80c2aa84781892223aa808b3" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/index.html"><input type="checkbox" id="R-section-1b1977ce428c9ac8dab8b72f8979bcb5" aria-controls="R-subsections-1b1977ce428c9ac8dab8b72f8979bcb5"><label for="R-section-1b1977ce428c9ac8dab8b72f8979bcb5"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01 Configuración y despliegue</span></label><a class="padding" href="../../../00ayudas/00configjava/index.html">01 Configuración y despliegue<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1b1977ce428c9ac8dab8b72f8979bcb5" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/01jarfiles/index.html"><a class="padding" href="../../../00ayudas/00configjava/01jarfiles/index.html">01 Archivos Jar<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/02jarwithmaven/index.html"><a class="padding" href="../../../00ayudas/00configjava/02jarwithmaven/index.html">02 Creación de un JAR ejecutable con Java con Apache Maven<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/03dependencias/index.html"><a class="padding" href="../../../00ayudas/00configjava/03dependencias/index.html">03. Dependencias Maven.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/index.html"><input type="checkbox" id="R-section-0ee0a79915535bc59e8b9d0e78f65ef9" aria-controls="R-subsections-0ee0a79915535bc59e8b9d0e78f65ef9"><label for="R-section-0ee0a79915535bc59e8b9d0e78f65ef9"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02 Java General</span></label><a class="padding" href="../../../00ayudas/02javageneral/index.html">02 Java General<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-0ee0a79915535bc59e8b9d0e78f65ef9" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/01streamapi/index.html"><a class="padding" href="../../../00ayudas/02javageneral/01streamapi/index.html">00.01 Java Stream API<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/02urlfiles/index.html"><a class="padding" href="../../../00ayudas/02javageneral/02urlfiles/index.html">00.02 Descarga de archivos de Internet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/03hashcode/index.html"><a class="padding" href="../../../00ayudas/02javageneral/03hashcode/index.html">03 Implementación de hashCode()<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/index.html"><input type="checkbox" id="R-section-8eb2a58628ca595eccda7f8f066488f0" aria-controls="R-subsections-8eb2a58628ca595eccda7f8f066488f0"><label for="R-section-8eb2a58628ca595eccda7f8f066488f0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 03. Layouts en Java Swing &amp; UI</span></label><a class="padding" href="../../../00ayudas/03layouts/index.html">03. Layouts en Java Swing &amp; UI<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8eb2a58628ca595eccda7f8f066488f0" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/00dialogosenswing/index.html"><a class="padding" href="../../../00ayudas/03layouts/00dialogosenswing/index.html">01 Ventanas de entrada de datos, mensajes y archivos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/05gridbaglayout/index.html"><a class="padding" href="../../../00ayudas/03layouts/05gridbaglayout/index.html">05 GridBagLayout<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/index.html"><input type="checkbox" id="R-section-1c69dc8b47fb6fae98603b1968118cf8" aria-controls="R-subsections-1c69dc8b47fb6fae98603b1968118cf8"><label for="R-section-1c69dc8b47fb6fae98603b1968118cf8"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 04. Patrones de diseño</span></label><a class="padding" href="../../../00ayudas/04patronesdisenho/index.html">04. Patrones de diseño<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1c69dc8b47fb6fae98603b1968118cf8" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/01designprinciples/index.html"><a class="padding" href="../../../00ayudas/04patronesdisenho/01designprinciples/index.html">01. Principios de diseño<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/02singleton/index.html"><a class="padding" href="../../../00ayudas/04patronesdisenho/02singleton/index.html">02. Patrón Singleton<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/03objetosinmutables/index.html"><a class="padding" href="../../../00ayudas/04patronesdisenho/03objetosinmutables/index.html">03. Objetos Inmutables<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/index.html"><input type="checkbox" id="R-section-36a825e367dd24b7cccca030c91ea60b" aria-controls="R-subsections-36a825e367dd24b7cccca030c91ea60b"><label for="R-section-36a825e367dd24b7cccca030c91ea60b"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 05. Programación en Kotlin</span></label><a class="padding" href="../../../00ayudas/05kotlin/index.html">05. Programación en Kotlin<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-36a825e367dd24b7cccca030c91ea60b" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/index.html"><input type="checkbox" id="R-section-312a90d18fa918ef04d04e75820d73c0" aria-controls="R-subsections-312a90d18fa918ef04d04e75820d73c0"><label for="R-section-312a90d18fa918ef04d04e75820d73c0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación estructurada básica</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/index.html">Programación estructurada básica<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-312a90d18fa918ef04d04e75820d73c0" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/10.-la_funcion_main/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/10.-la_funcion_main/index.html">La funcion main()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/20.-la_funcion-print-_y-_println/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/20.-la_funcion-print-_y-_println/index.html">La funcion print() y println()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/30.-comentarios/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/30.-comentarios/index.html">Comentarios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/40.-variables-_-literales-_y_-sentencia_-de_-asignación/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/40.-variables-_-literales-_y_-sentencia_-de_-asignaci%c3%b3n/index.html">Variables, literales y sentencia de asignación<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/50.-palabras_reservadas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/50.-palabras_reservadas/index.html">Palabras reservadas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/index.html"><input type="checkbox" id="R-section-94a2bfa5cc4fa0f33d0f2cf1c75e3265" aria-controls="R-subsections-94a2bfa5cc4fa0f33d0f2cf1c75e3265"><label for="R-section-94a2bfa5cc4fa0f33d0f2cf1c75e3265"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú tipos de datos y operadores</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/index.html">tipos de datos y operadores<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-94a2bfa5cc4fa0f33d0f2cf1c75e3265" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/60.tipos_de_datos_basicos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/60.tipos_de_datos_basicos/index.html">Tipos de datos básicos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/70.tipos_numericos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/70.tipos_numericos/index.html">Tipos Numéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/80.tipos_no_-numericos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/80.tipos_no_-numericos/index.html">Tipos básicos  No Numéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/90.conversion_de_tipos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/90.conversion_de_tipos/index.html">Conversión de Tipos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/100.-operadores/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/100.-operadores/index.html">Operadores<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/110.-expresiones_booleanas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/110.-expresiones_booleanas/index.html">Expresiones booleanas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/index.html"><input type="checkbox" id="R-section-840caf4a5c9da596bf4345cae4c798ab" aria-controls="R-subsections-840caf4a5c9da596bf4345cae4c798ab"><label for="R-section-840caf4a5c9da596bf4345cae4c798ab"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú colecciones básicas</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/index.html">colecciones básicas<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-840caf4a5c9da596bf4345cae4c798ab" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/120.-string/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/120.-string/index.html">String<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/130.-listas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/130.-listas/index.html">Listas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/140.rangos-/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/140.rangos-/index.html">Rangos<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/150.-entrada_teclado/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/150.-entrada_teclado/index.html">Entrada de datos por teclado con readln()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/index.html"><input type="checkbox" id="R-section-f79f31fcf5ae1f44691bca6f05e1710f" aria-controls="R-subsections-f79f31fcf5ae1f44691bca6f05e1710f"><label for="R-section-f79f31fcf5ae1f44691bca6f05e1710f"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú control de flujo</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/index.html">control de flujo<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-f79f31fcf5ae1f44691bca6f05e1710f" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/151.-control_de_flujo/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/151.-control_de_flujo/index.html">Control de flujo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/160.-sentencia_condicional_if/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/160.-sentencia_condicional_if/index.html">Sentencia condicional IF<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/190.-sentecia_when/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/190.-sentecia_when/index.html">Sentencia when<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/200.-bucle_for/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/200.-bucle_for/index.html">Bucle for<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/210.-while_y_do_while/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/210.-while_y_do_while/index.html">while y do while<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/220.-variables_locales_y_bloques/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/220.-variables_locales_y_bloques/index.html">variables locales y bloques<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/230.-break_y_continue/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/230.-break_y_continue/index.html">break y continue<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/240.otras_formas_de_iterar/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/240.otras_formas_de_iterar/index.html">Otras formas de iterar<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/250.-funciones/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/250.-funciones/index.html">Funciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/260.el_valor_nulo/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/260.el_valor_nulo/index.html">El valor nulo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/270.-readline/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/270.-readline/index.html">Entrada de datos por teclado con readLine()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/index.html"><input type="checkbox" id="R-section-44784ce5c237bf9124eefe20ce36272f" aria-controls="R-subsections-44784ce5c237bf9124eefe20ce36272f"><label for="R-section-44784ce5c237bf9124eefe20ce36272f"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú más sobre colecciones básicas</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/index.html">más sobre colecciones básicas<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-44784ce5c237bf9124eefe20ce36272f" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/310.-arrays/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/310.-arrays/index.html">Arrays<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/320.-listas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/320.-listas/index.html">Listas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/330.rangos-/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/330.rangos-/index.html">Rangos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/340.mapas-/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/340.mapas-/index.html">Mapas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/350.iterar_sobre_colecciones/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/350.iterar_sobre_colecciones/index.html">Iterar sobre colecciones<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/index.html"><input type="checkbox" id="R-section-1ef1a5ed807dacffeb206c0950804c3a" aria-controls="R-subsections-1ef1a5ed807dacffeb206c0950804c3a"><label for="R-section-1ef1a5ed807dacffeb206c0950804c3a"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación orientada a objetos</span></label><a class="padding" href="../../../00ayudas/05kotlin/02progoo/index.html">Programación orientada a objetos<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1ef1a5ed807dacffeb206c0950804c3a" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1010.objetos_y_clases/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1010.objetos_y_clases/index.html">Objetos y clases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1020.constructores-/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1020.constructores-/index.html">Constructores<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1030.propiedades/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1030.propiedades/index.html">Propiedades<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1040.sobreescribir_tostring/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1040.sobreescribir_tostring/index.html">Sobreescribir toString()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1060.modificadoresvisibilidad/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1060.modificadoresvisibilidad/index.html">modificadores de visibilidad<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1070.enum/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1070.enum/index.html">clases Enum<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1100.composicion/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1100.composicion/index.html">Composición<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1200.herencia/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1200.herencia/index.html">Herencia<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1220.clases_abstractas_interfaces/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1220.clases_abstractas_interfaces/index.html">Clases abstractas e Interfaces<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1240.dataclases/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1240.dataclases/index.html">Data Clases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1250.keywordobject/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1250.keywordobject/index.html">La palabra reservada object. Companion object, objetos singleton y objetos expressions<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1255.excepciones/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1255.excepciones/index.html">Excepciones en Kotlin<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1260.genericos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1260.genericos/index.html">Genéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1265.clausulatypealiases/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1265.clausulatypealiases/index.html">cláusula typealiases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1270.delegacion/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1270.delegacion/index.html">Delegación con cláusula by<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1280.claesanidadaseinternas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1280.claesanidadaseinternas/index.html">Clases anidadas e internas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/index.html"><input type="checkbox" id="R-section-8bbd4a78f07b64e8b2bc4b83b71f1498" aria-controls="R-subsections-8bbd4a78f07b64e8b2bc4b83b71f1498"><label for="R-section-8bbd4a78f07b64e8b2bc4b83b71f1498"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación funcional</span></label><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/index.html">Programación funcional<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8bbd4a78f07b64e8b2bc4b83b71f1498" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2010.funcioneskotlin/index.html"><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/2010.funcioneskotlin/index.html">sintáxis avanzada de las  funciones kotlin<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2020.-basesdepf/index.html"><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/2020.-basesdepf/index.html">algunos conceptos básicos de programación funcional<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2030.funcionesordensuperiorcolecciones/index.html"><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/2030.funcionesordensuperiorcolecciones/index.html">funciones de orden superior y colecciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2040.funcionesordensuperiorysequence/index.html"><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/2040.funcionesordensuperiorysequence/index.html">funciones de orden superior y sequence<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li></ul></li></ul></li>
+            <li class="parent " data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/index.html"><input type="checkbox" id="R-section-cf4ee7bae7fca4e692355524601fe599" aria-controls="R-subsections-cf4ee7bae7fca4e692355524601fe599" checked><label for="R-section-cf4ee7bae7fca4e692355524601fe599"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML</span></label><a class="padding" href="../../index.html">UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-cf4ee7bae7fca4e692355524601fe599" class="collapsible-menu">
+            <li class="parent " data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/index.html"><input type="checkbox" id="R-section-ec127efd28751c1f836952c8dac2374d" aria-controls="R-subsections-ec127efd28751c1f836952c8dac2374d" checked><label for="R-section-ec127efd28751c1f836952c8dac2374d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.01 Java IO. Acceso a ficheros, flujos, serialización de objetos.</span></label><a class="padding" href="../index.html">01.01 Java IO. Acceso a ficheros, flujos, serialización de objetos.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-ec127efd28751c1f836952c8dac2374d" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0100javaiointro/index.html"><a class="padding" href="../0100javaiointro/index.html">01.00 Java IO. Introducción.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="active " data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0101javaiofile/index.html"><a class="padding" href="index.html">01.01 La clase File<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0102randomaccessfile/index.html"><a class="padding" href="../0102randomaccessfile/index.html">01.02 La clase RandomAccessFile<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0103javaiostreams/index.html"><a class="padding" href="../0103javaiostreams/index.html">01.03 Flujos de E/S<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0104bytestream/index.html"><a class="padding" href="../0104bytestream/index.html">01.04 Flujos de byte<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0105characterstream/index.html"><a class="padding" href="../0105characterstream/index.html">01.05 Flujos de caracteres<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0106javaiobuffer/index.html"><a class="padding" href="../0106javaiobuffer/index.html">01.06 Flujos de E/S con Buffer<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0107javaistream/index.html"><a class="padding" href="../0107javaistream/index.html">01.07 Operaciones comunes con flujos de E/S.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0109ejercicios/index.html"><a class="padding" href="../0109ejercicios/index.html">Ejercicios<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/index.html"><input type="checkbox" id="R-section-2d1e1941df73311305891c0dca6583fd" aria-controls="R-subsections-2d1e1941df73311305891c0dca6583fd"><label for="R-section-2d1e1941df73311305891c0dca6583fd"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.02 Java NIO.2</span></label><a class="padding" href="../../02javanio2/index.html">01.02 Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-2d1e1941df73311305891c0dca6583fd" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0202javaniopath/index.html"><a class="padding" href="../../02javanio2/0202javaniopath/index.html">02.01. La interface Path<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0203javaniopathcreate/index.html"><a class="padding" href="../../02javanio2/0203javaniopathcreate/index.html">02.03. Creación de Path<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0204javaniopath/index.html"><a class="padding" href="../../02javanio2/0204javaniopath/index.html">02.04. Operaciones comunes de Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0205javaniopathmethods/index.html"><a class="padding" href="../../02javanio2/0205javaniopathmethods/index.html">02.05. Métodos y con Path Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0206javaniostreams/index.html"><a class="padding" href="../../02javanio2/0206javaniostreams/index.html">02.06. Programación funcional con Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/index.html"><input type="checkbox" id="R-section-662c48eb0e2f97ba0e58c14a690fca47" aria-controls="R-subsections-662c48eb0e2f97ba0e58c14a690fca47"><label for="R-section-662c48eb0e2f97ba0e58c14a690fca47"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.03 JSON en Java</span></label><a class="padding" href="../../03json/index.html">01.03 JSON en Java<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-662c48eb0e2f97ba0e58c14a690fca47" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0300jsonintro/index.html"><a class="padding" href="../../03json/0300jsonintro/index.html">01.00. Introducción a JSON<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0301jsonjs/index.html"><a class="padding" href="../../03json/0301jsonjs/index.html">01.01. JSON con el API JavaScript de Java<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0302jsonlibraries/index.html"><a class="padding" href="../../03json/0302jsonlibraries/index.html">01.02. Bibliotecas JSON para Java<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0304gson/index.html"><a class="padding" href="../../03json/0304gson/index.html">01.03. Gson. Introducción<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0304gsondiagram/index.html"><a class="padding" href="../../03json/0304gsondiagram/index.html">01.03. Gson. Diagrama de clases (e interfaces)<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0305gsoncreate/index.html"><a class="padding" href="../../03json/0305gsoncreate/index.html">01.04. Gson. Creación de instancias Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0306creaciongson/index.html"><a class="padding" href="../../03json/0306creaciongson/index.html">01.05 Gson. Creación y lectura de objetos JSON<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0306transformacion/index.html"><a class="padding" href="../../03json/0306transformacion/index.html">01.06. Gson. Transformación de objetos JSON personalizada<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0307jsonreader01/index.html"><a class="padding" href="../../03json/0307jsonreader01/index.html">01.07 Gson. JsonReader<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0308jsonrename/index.html"><a class="padding" href="../../03json/0308jsonrename/index.html">01.08 Gson. Renombrar atributos <i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0309jsonserialize/index.html"><a class="padding" href="../../03json/0309jsonserialize/index.html">01.09 Resumen Serialización Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0310jsondeserialize/index.html"><a class="padding" href="../../03json/0310jsondeserialize/index.html">01.09 Resumen Deserialización Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/098ejercicio/index.html"><a class="padding" href="../../03json/098ejercicio/index.html">Ejercicio. Trivial<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/0105ejercicios/index.html"><a class="padding" href="../../0105ejercicios/index.html">Ejercicios y recursos<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/index.html"><input type="checkbox" id="R-section-342b2e95b9611e1108f16a11c61cd1f2" aria-controls="R-subsections-342b2e95b9611e1108f16a11c61cd1f2"><label for="R-section-342b2e95b9611e1108f16a11c61cd1f2"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 2. Acceso a BD remotas relacionales</span></label><a class="padding" href="../../../02accesobd/index.html">UD 2. Acceso a BD remotas relacionales<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-342b2e95b9611e1108f16a11c61cd1f2" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/index.html"><input type="checkbox" id="R-section-66326b82828cdbb6e30c77e924342908" aria-controls="R-subsections-66326b82828cdbb6e30c77e924342908"><label for="R-section-66326b82828cdbb6e30c77e924342908"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02.02 JDBC. Introducción a las Bases de datos relacionales.</span></label><a class="padding" href="../../../02accesobd/02db/index.html">02.02 JDBC. Introducción a las Bases de datos relacionales.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-66326b82828cdbb6e30c77e924342908" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0101databases/index.html"><a class="padding" href="../../../02accesobd/02db/0101databases/index.html">02.01. Sistemas gestores de bases de datos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0102introdb/index.html"><a class="padding" href="../../../02accesobd/02db/0102introdb/index.html">02. Introducción a las bases de datos relacionales<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0103postgresql/index.html"><a class="padding" href="../../../02accesobd/02db/0103postgresql/index.html">03. PostgreSQL<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0104postgres01/index.html"><a class="padding" href="../../../02accesobd/02db/0104postgres01/index.html">04. PostgreSQL. Características y Operadores.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/index.html"><input type="checkbox" id="R-section-4b93c45cd959371d7c20dcc7da6d632c" aria-controls="R-subsections-4b93c45cd959371d7c20dcc7da6d632c"><label for="R-section-4b93c45cd959371d7c20dcc7da6d632c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02.03. Procesamiento de sentencias SQL.</span></label><a class="padding" href="../../../02accesobd/03procesandosql/index.html">02.03. Procesamiento de sentencias SQL.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-4b93c45cd959371d7c20dcc7da6d632c" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0101procesamientosql/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0101procesamientosql/index.html">01. Procesamiento de sentencias SQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0102conexiones/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0102conexiones/index.html">02. Conexiones a BD<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0103excepcionessql/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0103excepcionessql/index.html">03. Excepciones SQLException<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0104resultset/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0104resultset/index.html">04. ResultSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0105resultsetbatch/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0105resultsetbatch/index.html">05. Actualizaciones por lotes con ResultSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0106preparedst/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0106preparedst/index.html">06. Prepared Statement<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0107transacciones/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0107transacciones/index.html">07. Transacciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0108clavesgeneradas/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0108clavesgeneradas/index.html">08. Claves Generadas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0109largeobjects/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0109largeobjects/index.html">09. Objectos grandes<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0111rowset/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0111rowset/index.html">11. RowSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0115boletines/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0115boletines/index.html">15. Ejercicios y archivos de la unidad<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/99proyecto/index.html"><a class="padding" href="../../../02accesobd/99proyecto/index.html">Proyecto 1ª evaluación<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/index.html"><input type="checkbox" id="R-section-87c8b6c6cd354a309db816f73d185be0" aria-controls="R-subsections-87c8b6c6cd354a309db816f73d185be0"><label for="R-section-87c8b6c6cd354a309db816f73d185be0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 3. Object/Relational Mapping (ORM). JPA e Hibernate</span></label><a class="padding" href="../../../03orm/index.html">UD 3. Object/Relational Mapping (ORM). JPA e Hibernate<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-87c8b6c6cd354a309db816f73d185be0" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/index.html"><input type="checkbox" id="R-section-5aaca10806a740cf4d784be6e24473b9" aria-controls="R-subsections-5aaca10806a740cf4d784be6e24473b9"><label for="R-section-5aaca10806a740cf4d784be6e24473b9"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 03.01. Jakarta Persistence (JPA).</span></label><a class="padding" href="../../../03orm/jpa/index.html">03.01. Jakarta Persistence (JPA).<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-5aaca10806a740cf4d784be6e24473b9" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/01jpa/index.html"><a class="padding" href="../../../03orm/jpa/01jpa/index.html">01. Jakarta Persistence (JPA).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/02jpavshibernate/index.html"><a class="padding" href="../../../03orm/jpa/02jpavshibernate/index.html">02. JPA vs Hibernate.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/03jpaejercicio/index.html"><a class="padding" href="../../../03orm/jpa/03jpaejercicio/index.html">03. Ejercicio básico de JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/04entitymanager/index.html"><a class="padding" href="../../../03orm/jpa/04entitymanager/index.html">04. Gestión de entidades con EntityManager.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/05mapeoentidades/index.html"><a class="padding" href="../../../03orm/jpa/05mapeoentidades/index.html">05. Mapeo de entidades.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/06relaciones/index.html"><a class="padding" href="../../../03orm/jpa/06relaciones/index.html">06. Relaciones JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/07embedidos/index.html"><a class="padding" href="../../../03orm/jpa/07embedidos/index.html">07. Objetos embebidos.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/08colecciones/index.html"><a class="padding" href="../../../03orm/jpa/08colecciones/index.html">08. Mapeo de colecciones.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/09queries/index.html"><a class="padding" href="../../../03orm/jpa/09queries/index.html">09. Consultas.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/10jpql/index.html"><a class="padding" href="../../../03orm/jpa/10jpql/index.html">10. JPQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/11paginacion/index.html"><a class="padding" href="../../../03orm/jpa/11paginacion/index.html">11. Paginación de consultas.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/12herencia/index.html"><a class="padding" href="../../../03orm/jpa/12herencia/index.html">12. Herencia.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/14ejercicios/index.html"><a class="padding" href="../../../03orm/jpa/14ejercicios/index.html">Ejercicios de la unidad de JPA<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/15boletines/index.html"><a class="padding" href="../../../03orm/jpa/15boletines/index.html">Ejercicios de refuerzo.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/16dependencias/index.html"><a class="padding" href="../../../03orm/jpa/16dependencias/index.html">Dependencias Maven.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/95singleton/index.html"><a class="padding" href="../../../03orm/95singleton/index.html">03.02. Patrón Singleton.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/96ejerciciosrepaso/index.html"><a class="padding" href="../../../03orm/96ejerciciosrepaso/index.html">03.03. Ejercicios de refuerzo (Violín).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/97ejerciciosrepaso2/index.html"><a class="padding" href="../../../03orm/97ejerciciosrepaso2/index.html">03.04 Ejercicios de refuerzo (II)<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/98ejerciciosrepaso3/index.html"><a class="padding" href="../../../03orm/98ejerciciosrepaso3/index.html">03.05 Ejercicios de refuerzo (III)<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/index.html"><input type="checkbox" id="R-section-ffae27028787f9b794af8498ce8bc361" aria-controls="R-subsections-ffae27028787f9b794af8498ce8bc361"><label for="R-section-ffae27028787f9b794af8498ce8bc361"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 4. Spring.</span></label><a class="padding" href="../../../04spring/index.html">UD 4. Spring.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-ffae27028787f9b794af8498ce8bc361" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/01springboot/index.html"><a class="padding" href="../../../04spring/01springboot/index.html">01. Spring Boot.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/02springdata/index.html"><a class="padding" href="../../../04spring/02springdata/index.html">02. Spring Data JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/03practicajpadata/index.html"><a class="padding" href="../../../04spring/03practicajpadata/index.html">03. Práctica con de Spring Data JPA y REST.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/04repositorios/index.html"><a class="padding" href="../../../04spring/04repositorios/index.html">04. Repositorios String Data.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/05paginacion/index.html"><a class="padding" href="../../../04spring/05paginacion/index.html">05. Paginación y Ordenación usando Spring Data JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/06paginacionrest/index.html"><a class="padding" href="../../../04spring/06paginacionrest/index.html">06. Paginación y Ordenación usando Spring Data REST.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/07vaadin/index.html"><a class="padding" href="../../../04spring/07vaadin/index.html">07. Spring Data JPA con Vaadin (práctica).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/08ejecutores/index.html"><a class="padding" href="../../../04spring/08ejecutores/index.html">08. Ejecutores al inicio con Spring Boot<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/09serviciocompo/index.html"><a class="padding" href="../../../04spring/09serviciocompo/index.html">09. Servicios, componentes y repositorios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/10servicios/index.html"><a class="padding" href="../../../04spring/10servicios/index.html">10. Servicios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/index.html"><input type="checkbox" id="R-section-f25e02e15b94f5cb39179f26efa74bfe" aria-controls="R-subsections-f25e02e15b94f5cb39179f26efa74bfe"><label for="R-section-f25e02e15b94f5cb39179f26efa74bfe"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 11. Proyecto Spring. Cuestionarios.</span></label><a class="padding" href="../../../04spring/11proyecto/index.html">11. Proyecto Spring. Cuestionarios.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-f25e02e15b94f5cb39179f26efa74bfe" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/01modelo/index.html"><a class="padding" href="../../../04spring/11proyecto/01modelo/index.html">01. Modelo de datos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/02dto/index.html"><a class="padding" href="../../../04spring/11proyecto/02dto/index.html">02. DTO<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/03repositorios/index.html"><a class="padding" href="../../../04spring/11proyecto/03repositorios/index.html">03. Repositorios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/04controller/index.html"><a class="padding" href="../../../04spring/11proyecto/04controller/index.html">04. Controller<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/05resultados/index.html"><a class="padding" href="../../../04spring/11proyecto/05resultados/index.html">05. Pruebas y mejoras<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/12springproj/index.html"><a class="padding" href="../../../04spring/12springproj/index.html">12. Proyecto Spring. Cuestionarios.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/index.html"><input type="checkbox" id="R-section-a0dc28a495fca757d219f1aec2ecff4c" aria-controls="R-subsections-a0dc28a495fca757d219f1aec2ecff4c"><label for="R-section-a0dc28a495fca757d219f1aec2ecff4c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 5. Bases de datos no SQL. MongoDB</span></label><a class="padding" href="../../../05basesdatosnonsql/index.html">UD 5. Bases de datos no SQL. MongoDB<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-a0dc28a495fca757d219f1aec2ecff4c" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/mongodb/01nosql/index.html"><a class="padding" href="../../../05basesdatosnonsql/mongodb/01nosql/index.html">01. Bases de datos NoSQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/mongodb/03springmongodb/index.html"><a class="padding" href="../../../05basesdatosnonsql/mongodb/03springmongodb/index.html">03. Conexión a MongoDB con String Data MongoDB (práctica).<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/index.html"><input type="checkbox" id="R-section-8d4041f058dd2262e83830e1db38cc6d" aria-controls="R-subsections-8d4041f058dd2262e83830e1db38cc6d"><label for="R-section-8d4041f058dd2262e83830e1db38cc6d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Git</span></label><a class="padding" href="../../../git/index.html">Git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8d4041f058dd2262e83830e1db38cc6d" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/index.html"><input type="checkbox" id="R-section-a87776bdac862bf972ec945bc124b884" aria-controls="R-subsections-a87776bdac862bf972ec945bc124b884"><label for="R-section-a87776bdac862bf972ec945bc124b884"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Introducción git</span></label><a class="padding" href="../../../git/1.introduccion_git/index.html">Introducción git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-a87776bdac862bf972ec945bc124b884" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/1.introduccion_git/index.html"><a class="padding" href="../../../git/1.introduccion_git/1.introduccion_git/index.html">Introducción a git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/2.estados_git/index.html"><a class="padding" href="../../../git/1.introduccion_git/2.estados_git/index.html">Estados de git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/3.instalacion_git/index.html"><a class="padding" href="../../../git/1.introduccion_git/3.instalacion_git/index.html">Instalación de git<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/index.html"><input type="checkbox" id="R-section-b63515bb4dcfe678de9ffac7a29c1e77" aria-controls="R-subsections-b63515bb4dcfe678de9ffac7a29c1e77"><label for="R-section-b63515bb4dcfe678de9ffac7a29c1e77"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Fundamentos git</span></label><a class="padding" href="../../../git/2.fundamentos_git/index.html">Fundamentos git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-b63515bb4dcfe678de9ffac7a29c1e77" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/1.configuracion_git/index.html"><a class="padding" href="../../../git/2.fundamentos_git/1.configuracion_git/index.html">Configuracion de git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/2.inicializar_repo/index.html"><a class="padding" href="../../../git/2.fundamentos_git/2.inicializar_repo/index.html">Inicializando repositorio<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/3.cambios/index.html"><a class="padding" href="../../../git/2.fundamentos_git/3.cambios/index.html">Cambios en el repositorio<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/4.ignorar_archivos/index.html"><a class="padding" href="../../../git/2.fundamentos_git/4.ignorar_archivos/index.html">Archivos Ignorados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/5.checkout/index.html"><a class="padding" href="../../../git/2.fundamentos_git/5.checkout/index.html">Git checkout<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/6.log/index.html"><a class="padding" href="../../../git/2.fundamentos_git/6.log/index.html">Git Log<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/7.archivos_modificados/index.html"><a class="padding" href="../../../git/2.fundamentos_git/7.archivos_modificados/index.html">Archivos modificados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/8.cambios/index.html"><a class="padding" href="../../../git/2.fundamentos_git/8.cambios/index.html">Archivos modificados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/9.eliminar_archivos/index.html"><a class="padding" href="../../../git/2.fundamentos_git/9.eliminar_archivos/index.html">Opciones con archivos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/10.limitar/index.html"><a class="padding" href="../../../git/2.fundamentos_git/10.limitar/index.html">Historial de confirmaciones<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/3.remotos/index.html"><a class="padding" href="../../../git/3.remotos/index.html">Remotos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/4.etiquetado/index.html"><a class="padding" href="../../../git/4.etiquetado/index.html">Etiquetado<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/index.html"><input type="checkbox" id="R-section-d8234a81ae190365829886d9d8a058a7" aria-controls="R-subsections-d8234a81ae190365829886d9d8a058a7"><label for="R-section-d8234a81ae190365829886d9d8a058a7"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Ramas Git</span></label><a class="padding" href="../../../git/5.ramas_git/index.html">Ramas Git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-d8234a81ae190365829886d9d8a058a7" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/1.ramificaciones_git/index.html"><a class="padding" href="../../../git/5.ramas_git/1.ramificaciones_git/index.html">Ramificación<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/2.ramificaciones_remotas/index.html"><a class="padding" href="../../../git/5.ramas_git/2.ramificaciones_remotas/index.html">Ramas Remotas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/6.claves_ssh/index.html"><a class="padding" href="../../../git/6.claves_ssh/index.html">Claves SSH<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">Más</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/"><a class="padding" href="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/" rel="external" target="_blank"><i class='fas fa-fw fa-bookmark'></i>  Cómo editar plantilla<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://www.iessanclemente.net/"><a class="padding" href="https://www.iessanclemente.net/" rel="external" target="_blank"><i class='fas fa-home'></i> IES Tubalcain<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/categories"><a class="padding" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/categories"><i class='fa-fw fas fa-layer-group'></i> Categories<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tags"><a class="padding" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/tags"><i class='fa-fw fas fa-tags'></i> Tags<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+            <li class="R-variantswitcher">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-paint-brush"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <label class="a11y-only" for="R-select-variant">Tema</label>
+                  <select id="R-select-variant">
+                    <option id="R-select-variant-blue" value="blue" selected>Blue</option>
+                    <option id="R-select-variant-relearn-light" value="relearn-light">Relearn Light</option>
+                    <option id="R-select-variant-relearn-dark" value="relearn-dark">Relearn Dark</option>
+                    <option id="R-select-variant-learn" value="learn">Learn</option>
+                    <option id="R-select-variant-neon" value="neon">Neon</option>
+                    <option id="R-select-variant-green" value="green">Green</option>
+                    <option id="R-select-variant-red" value="red">Red</option>
+                  </select>
+                </div>
+                <div class="clear"></div>
+              </div>
+              <script>window.relearn.markVariant();</script>
+            </li>
+            <li class="R-historyclearer">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-history"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <button>Borrar Historial</button>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+<div id="R-footer">
+<div>
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/cc.png" height="30" />
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/by.png"  height="30"/>
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/nc-eu.png"  height="30"/>
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/sa.png" height="30" />
+</div>
+</div>
+      </div>
+    </aside>
+    <script src="../../../js/clipboard/clipboard.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/perfect-scrollbar/perfect-scrollbar.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/theme.min3c2e.js?1749199978" defer></script>
+  </body>
+
+<!-- Mirrored from manuais.pages.iessanclemente.net/plantillas/dam/ad/01accesoficheros/01javaio/0101javaiofile/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Sep 2025 20:45:33 GMT -->
+</html>

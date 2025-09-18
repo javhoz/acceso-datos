@@ -1,0 +1,20 @@
+HTTrack3.49-2+htsswf+htsjava launched on Wed, 17 Sep 2025 22:44:25 at https://manuais.pages.iessanclemente.net/plantillas/dam/ad/index.html +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwr2C2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://manuais.pages.iessanclemente.net/plantillas/dam/ad/index.html -O1 "C:\Users\Javi\Desktop\AD\AD" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+22:44:26	Warning: 	Found for https://manuais.pages.iessanclemente.net/robots.txt
+22:44:26	Warning: 	File has moved from https://manuais.pages.iessanclemente.net/robots.txt to https://projects.pages.iessanclemente.net/auth?domain=https://manuais.pages.iessanclemente.net&root_namespace_id=&state=gnCFWnvF8Kckym6lFj1mIA==
+22:45:30	Error: 	"Error when decompressing" (-1) at link https://manuais.pages.iessanclemente.net/plantillas/dam/ad/00ayudas/05kotlin/01progestructurada/40.-variables-_-literales-_y_-sentencia_-de_-asignación/index.html (from https://manuais.pages.iessanclemente.net/plantillas/dam/ad/index.html)
+22:45:39	Warning: 	Moved Permanently for manuais.pages.iessanclemente.net/robots.txt
+22:45:39	Warning: 	File has moved from manuais.pages.iessanclemente.net/robots.txt to https://manuais.pages.iessanclemente.net:/robots.txt
+22:45:39	Warning: 	Moved Permanently for manuais.pages.iessanclemente.net/plantillas/dam/ad/categories/
+22:45:39	Warning: 	File has moved from manuais.pages.iessanclemente.net/plantillas/dam/ad/categories/ to https://manuais.pages.iessanclemente.net:/plantillas/dam/ad/categories/
+22:45:39	Warning: 	Moved Permanently for manuais.pages.iessanclemente.net/plantillas/dam/ad/tags/
+22:45:39	Warning: 	File has moved from manuais.pages.iessanclemente.net/plantillas/dam/ad/tags/ to https://manuais.pages.iessanclemente.net:/plantillas/dam/ad/tags/
+
+HTTrack Website Copier/3.49-2 mirror complete in 1 minutes 14 seconds : 218 links scanned, 213 files written (29348202 bytes overall) [6927550 bytes received at 93615 bytes/sec], 26923941 bytes transferred using HTTP compression in 199 files, ratio 16%, 37.1 requests per connection
+(1 errors, 8 warnings, 0 messages)
