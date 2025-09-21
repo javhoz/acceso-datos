@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  
+<!-- Mirrored from manuais.pages.iessanclemente.net/plantillas/dam/ad/01accesoficheros/01javaio/0107javaistream/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Sep 2025 20:45:33 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.140.2">
+    <meta name="generator" content="Relearn 7.6.1+0b83617ee9da5253aafcf11807b256da7d88d709">
+    <meta name="description" content="1. Operaciones con Flujos de E/S 1.1. Lectura y escritura de Datos 1.2. Cierre de flujos 1.3. Cierre de flujos envueltos en otro flujo (con buffer) 1.4. Manipulación de flujos de entrada: Mark, Reset y Skip mark() y reset() skip() 1.5. Flushing de flujos de salida (Output Streams) 2. Resumen de métodos más comunes de flujos de E/S 1. Operaciones con Flujos de E/S Aunque existen muchas clases de flujos, muchas de ellas comparten las mismas operaciones. En esta sección, revisaremos los métodos comunes entre varias clases de flujos. En la siguiente sección, cubriremos clases de flujos específicas.">
+    <meta name="author" content="IES Tubalcain">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <meta name="twitter:title" content="01.07 Operaciones comunes con flujos de E/S. :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta name="twitter:description" content="1. Operaciones con Flujos de E/S 1.1. Lectura y escritura de Datos 1.2. Cierre de flujos 1.3. Cierre de flujos envueltos en otro flujo (con buffer) 1.4. Manipulación de flujos de entrada: Mark, Reset y Skip mark() y reset() skip() 1.5. Flushing de flujos de salida (Output Streams) 2. Resumen de métodos más comunes de flujos de E/S 1. Operaciones con Flujos de E/S Aunque existen muchas clases de flujos, muchas de ellas comparten las mismas operaciones. En esta sección, revisaremos los métodos comunes entre varias clases de flujos. En la siguiente sección, cubriremos clases de flujos específicas.">
+    <meta property="og:url" content="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0107javaistream/index.html">
+    <meta property="og:site_name" content="IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta property="og:title" content="01.07 Operaciones comunes con flujos de E/S. :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta property="og:description" content="1. Operaciones con Flujos de E/S 1.1. Lectura y escritura de Datos 1.2. Cierre de flujos 1.3. Cierre de flujos envueltos en otro flujo (con buffer) 1.4. Manipulación de flujos de entrada: Mark, Reset y Skip mark() y reset() skip() 1.5. Flushing de flujos de salida (Output Streams) 2. Resumen de métodos más comunes de flujos de E/S 1. Operaciones con Flujos de E/S Aunque existen muchas clases de flujos, muchas de ellas comparten las mismas operaciones. En esta sección, revisaremos los métodos comunes entre varias clases de flujos. En la siguiente sección, cubriremos clases de flujos específicas.">
+    <meta property="og:locale" content="es">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML">
+    <meta property="article:modified_time" content="2025-06-06T08:52:43+00:00">
+    <meta property="og:image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <meta itemprop="name" content="01.07 Operaciones comunes con flujos de E/S. :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta itemprop="description" content="1. Operaciones con Flujos de E/S 1.1. Lectura y escritura de Datos 1.2. Cierre de flujos 1.3. Cierre de flujos envueltos en otro flujo (con buffer) 1.4. Manipulación de flujos de entrada: Mark, Reset y Skip mark() y reset() skip() 1.5. Flushing de flujos de salida (Output Streams) 2. Resumen de métodos más comunes de flujos de E/S 1. Operaciones con Flujos de E/S Aunque existen muchas clases de flujos, muchas de ellas comparten las mismas operaciones. En esta sección, revisaremos los métodos comunes entre varias clases de flujos. En la siguiente sección, cubriremos clases de flujos específicas.">
+    <meta itemprop="dateModified" content="2025-06-06T08:52:43+00:00">
+    <meta itemprop="wordCount" content="1960">
+    <meta itemprop="image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <title>01.07 Operaciones comunes con flujos de E/S. :: IES Tubalcain - Acceso a datos (2º DAM)</title>
+    <link href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/01accesoficheros/01javaio/0107javaistream/index.xml" rel="alternate" type="application/rss+xml" title="01.07 Operaciones comunes con flujos de E/S. :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <link href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/01accesoficheros/01javaio/0107javaistream/index.print.html" rel="alternate" type="text/html" title="01.07 Operaciones comunes con flujos de E/S. :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <link href="../../../fonts/fontawesome/css/fontawesome-all.min3c2e.css?1749199978" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../../fonts/fontawesome/css/fontawesome-all.min3c2e.css?1749199978" rel="stylesheet"></noscript>
+    <link href="../../../css/perfect-scrollbar/perfect-scrollbar.min3c2e.css?1749199978" rel="stylesheet">
+    <link href="../../../css/theme.min3c2e.css?1749199978" rel="stylesheet">
+    <link href="../../../css/format-html.min3c2e.css?1749199978" rel="stylesheet" id="R-format-style">
+    <link href="../../../css/auto-complete/auto-complete.min3c2e.css?1749199978" rel="stylesheet">
+    <script src="../../../js/auto-complete/auto-complete.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.stemmer.support.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.multi.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.es.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/search.min3c2e.js?1749199978" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='#\/01accesoficheros\/01javaio\/0107javaistream\/index.html';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='';
+      window.relearn.contentLangs=['es'];
+      window.relearn.index_js_url="../../../searchindex.es3c2e.js?1749199978";
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // variant stuff
+      window.relearn.themevariants = [ 'blue', 'relearn-light', 'relearn-dark', 'learn', 'neon', 'green', 'red' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copiar en el portapapeles`;
+      window.T_Copied_to_clipboard = `¡Copiado al portapapeles!`;
+      window.T_Copy_link_to_clipboard = `Copiar enlace al portapapeles`;
+      window.T_Link_copied_to_clipboard = `¡Enlace copiado al portapapeles!`;
+      window.T_Reset_view = `Restablecer vista`;
+      window.T_View_reset = `¡Ver reajuste!`;
+      window.T_No_results_found = `No se han encontrado resultados para "{0}"`;
+      window.T_N_results_found = `{1} resultados encontrados para "{0}"`;
+    </script><style>
+    :root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+}
+
+@media screen and (max-width: 70.5rem) {
+    #R-sidebar {
+        min-width: var(--INTERNAL-MENU-WIDTH-S);
+        max-width: var(--INTERNAL-MENU-WIDTH-S);
+        width: var(--INTERNAL-MENU-WIDTH-S);
+    }
+    #R-body {
+        margin-inline-start: var(--INTERNAL-MENU-WIDTH-S);
+        min-width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+        max-width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+        width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+    }
+}
+@media screen and (max-width: 70.5rem) {
+     
+
+    .mobile-support #R-sidebar {
+        inset-inline-start: calc( -1 * var(--INTERNAL-MENU-WIDTH-S) );
+        min-width: var(--INTERNAL-MENU-WIDTH-S);
+        max-width: var(--INTERNAL-MENU-WIDTH-S);
+        width: var(--INTERNAL-MENU-WIDTH-S);
+    }
+    .mobile-support #navshow{
+        display: inline;
+    }
+    .mobile-support #R-body {
+        min-width: 100%;
+        max-width: 100%;
+        width: 100%;
+    }
+    .mobile-support #R-body {
+        margin-inline-start: 0;
+    }
+    .mobile-support.sidebar-flyout {
+        overflow: hidden;
+    }
+    .mobile-support.sidebar-flyout #R-sidebar {
+        inset-inline-start: 0;
+        z-index: 90;
+    }
+    .mobile-support.sidebar-flyout #R-body {
+        margin-inline-start: var(--INTERNAL-MENU-WIDTH-S);
+        overflow: hidden;
+    }
+    .mobile-support.sidebar-flyout #R-body-overlay{
+        background-color: rgba( 134, 134, 134, .5 );
+        bottom: 0;
+        cursor: pointer;
+        height: 100vh;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 190;
+    }
+}
+
+</style>
+
+
+  </head>
+  <body class="mobile-support html" data-url="../../../01accesoficheros/01javaio/0107javaistream/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menú (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Tabla de contenido (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#1-operaciones-con-flujos-de-es">1. Operaciones con Flujos de E/S</a>
+      <ul>
+        <li><a href="#11-lectura-y-escritura-de-datos">1.1. Lectura y escritura de Datos</a></li>
+        <li><a href="#12-cierre-de-flujos">1.2. Cierre de flujos</a></li>
+        <li><a href="#13-cierre-de-flujos-envueltos-en-otro-flujo-con-buffer">1.3. Cierre de flujos envueltos en otro flujo (con buffer)</a></li>
+        <li><a href="#14-manipulación-de-flujos-de-entrada-mark-reset-y-skip">1.4. Manipulación de flujos de entrada: Mark, Reset y Skip</a></li>
+        <li><a href="#15-flushing--de-flujos-de-salida-output-streams">1.5. Flushing  de flujos de salida (Output Streams)</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-resumen-de-métodos-más-comunes-de-flujos-de-es">2. Resumen de métodos más comunes de flujos de E/S</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../../index.html"><span itemprop="name">Acceso a datos</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../index.html"><span itemprop="name">UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../index.html"><span itemprop="name">01.01 Java IO. Acceso a ficheros, flujos, serialización de objetos.</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">01.07 Operaciones comunes con flujos de E/S.</span><meta itemprop="position" content="4"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/01accesoficheros/01javaio/0107javaistream/index.print.html" title="Imprimir todo el capítulo (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../0106javaiobuffer/index.html" title="01.06 Flujos de E/S con Buffer (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../0109ejercicios/index.html" title="Ejercicios (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Más"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 01accesoficheros" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="0107-operaciones-comunes-con-flujos-de-es">01.07 Operaciones comunes con flujos de E/S.</h1>
+
+<!-- TOC -->
+<ul>
+<li><a href="index.html#1-operaciones-con-flujos-de-es">1. Operaciones con Flujos de E/S</a>
+<ul>
+<li><a href="index.html#11-lectura-y-escritura-de-datos">1.1. Lectura y escritura de Datos</a></li>
+<li><a href="index.html#12-cierre-de-flujos">1.2. Cierre de flujos</a></li>
+<li><a href="index.html#13-cierre-de-flujos-envueltos-en-otro-flujo-con-buffer">1.3. Cierre de flujos envueltos en otro flujo (con buffer)</a></li>
+<li><a href="index.html#14-manipulación-de-flujos-de-entrada-mark-reset-y-skip">1.4. Manipulación de flujos de entrada: Mark, Reset y Skip</a>
+<ul>
+<li><a href="index.html#mark-y-reset"><em>mark() y reset()</em></a></li>
+<li><a href="index.html#skip"><em>skip()</em></a></li>
+</ul>
+</li>
+<li><a href="index.html#15-flushing--de-flujos-de-salida-output-streams">1.5. Flushing  de flujos de salida (Output Streams)</a></li>
+</ul>
+</li>
+<li><a href="index.html#2-resumen-de-métodos-más-comunes-de-flujos-de-es">2. Resumen de métodos más comunes de flujos de E/S</a></li>
+</ul>
+<!-- TOC -->
+<hr>
+<h2 id="1-operaciones-con-flujos-de-es">1. Operaciones con Flujos de E/S</h2>
+<p>Aunque existen muchas clases de flujos, muchas de ellas comparten las mismas operaciones. En esta sección, revisaremos los <strong>métodos comunes entre varias clases de flujos</strong>. En la siguiente sección, cubriremos clases de flujos específicas.</p>
+<h3 id="11-lectura-y-escritura-de-datos">1.1. Lectura y escritura de Datos</h3>
+<p>Los flujos de E/S se tratan de leer y escribir datos, por lo que no debería sorprendernos que los métodos más importantes sean <code>read()</code> y <code>write()</code>. Tanto <code>InputStream</code> como <code>Reader</code> declaran el siguiente método para leer datos de bytes de un flujo:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// InputStream y Reader</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">read</span>() <span style="color:#66d9ef">throws</span> IOException</span></span></code></pre></div>
+<p>Del mismo modo, <code>OutputStream</code> y <code>Writer</code> definen el siguiente método para escribir un byte en el flujo:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// OutputStream y Writer</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">write</span>(<span style="color:#66d9ef">int</span> b) <span style="color:#66d9ef">throws</span> IOException</span></span></code></pre></div>
+<p>Espera un momento. Dijimos que estamos leyendo y escribiendo bytes, ¿entonces por qué los métodos usan <code>int</code> en lugar de <code>byte</code>? Recuerda, <strong>el tipo de dato <code>byte</code> tiene un rango de 256 caracteres. Se necesitaba un valor adicional para indicar el final de un flujo</strong>. Los autores de Java decidieron usar un tipo de dato más grande, <strong><code>int</code>, para que valores especiales como -1 indiquen el final de un flujo</strong>. Las clases de flujos de salida también utilizan <code>int</code> para ser coherentes con las clases de flujos de entrada.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Ejemplo de métodos copyStream() que leen desde un InputStream o Reader</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// y escriben en un OutputStream o Writer, respectivamente. En ambos ejemplos,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// -1 se usa para indicar el final del flujo.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">copyStream</span>(InputStream in, OutputStream out) <span style="color:#66d9ef">throws</span> IOException {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> b;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> ((b <span style="color:#f92672">=</span> in.<span style="color:#a6e22e">read</span>()) <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span>1) {
+</span></span><span style="display:flex;"><span>        out.<span style="color:#a6e22e">write</span>(b);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">copyStream</span>(Reader in, Writer out) <span style="color:#66d9ef">throws</span> IOException {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> b;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> ((b <span style="color:#f92672">=</span> in.<span style="color:#a6e22e">read</span>()) <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span>1) {
+</span></span><span style="display:flex;"><span>        out.<span style="color:#a6e22e">write</span>(b);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Las <strong>clases de flujos de bytes también incluyen <mark>métodos sobrecargados para leer y escribir múltiples bytes a la vez</mark></strong>.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// InputStream</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">read</span>(<span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> b) <span style="color:#66d9ef">throws</span> IOException
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">read</span>(<span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> b, <span style="color:#66d9ef">int</span> offset, <span style="color:#66d9ef">int</span> length) <span style="color:#66d9ef">throws</span> IOException
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// OutputStream</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">write</span>(<span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> b) <span style="color:#66d9ef">throws</span> IOException
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">write</span>(<span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> b, <span style="color:#66d9ef">int</span> offset, <span style="color:#66d9ef">int</span> length) <span style="color:#66d9ef">throws</span> IOException</span></span></code></pre></div>
+<p>Los <strong>valores de <code>offset</code> y <code>length</code> se aplican al array en sí</strong>. Por ejemplo, un <code>offset</code> de 5 y una longitud de 3 indican que el flujo debería leer hasta 3 bytes de datos y colocarlos en el array comenzando desde la posición 5.</p>
+<p>Existen <strong>métodos equivalentes para las clases de flujos de caracteres que usan <code>char</code> en lugar de <code>byte</code></strong>.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Reader</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">read</span>(<span style="color:#66d9ef">char</span><span style="color:#f92672">[]</span> c) <span style="color:#66d9ef">throws</span> IOException
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">read</span>(<span style="color:#66d9ef">char</span><span style="color:#f92672">[]</span> c, <span style="color:#66d9ef">int</span> offset, <span style="color:#66d9ef">int</span> length) <span style="color:#66d9ef">throws</span> IOException
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Writer</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">write</span>(<span style="color:#66d9ef">char</span><span style="color:#f92672">[]</span> c) <span style="color:#66d9ef">throws</span> IOException
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">write</span>(<span style="color:#66d9ef">char</span><span style="color:#f92672">[]</span> c, <span style="color:#66d9ef">int</span> offset, <span style="color:#66d9ef">int</span> length) <span style="color:#66d9ef">throws</span> IOException</span></span></code></pre></div>
+<h3 id="12-cierre-de-flujos">1.2. Cierre de flujos</h3>
+<p>Todos los flujos de E/S incluyen un método para <strong>liberar cualquier recurso dentro del flujo cuando ya no se necesita</strong>.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Todas las clases de flujos de E/S</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">close</span>() <span style="color:#66d9ef">throws</span> IOException</span></span></code></pre></div>
+<p>Dado que <strong>los flujos se consideran recursos, es fundamental que todos los flujos de E/S se cierren después de su uso, para evitar posibles fugas de recursos</strong>.</p>
+<p>Dado que <strong>todos los flujos de E/S <mark>implementan la interfaz <code>Closeable</code></mark></strong>, <strong>la mejor manera de hacerlo es con una declaración <code>try-with-resources</code></strong>.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">try</span> (<span style="color:#66d9ef">var</span> fis <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileInputStream(<span style="color:#e6db74">&#34;datos.txt&#34;</span>)) {
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">print</span>(fis.<span style="color:#a6e22e">read</span>());
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>En muchos sistemas de archivos, <strong>no cerrar un archivo correctamente podría dejarlo bloqueado por el sistema operativo, impidiendo que otros procesos lo lean o escriban hasta que el programa se termine</strong>. EN la medida de lo posible, <strong>cerraremos los recursos del flujo usando la sintaxis de try-with-resources</strong>, ya que esta es la forma preferida de cerrar recursos en Java. También <strong>utilizaremos <code>var</code> para acortar las declaraciones</strong> , ya que estas declaraciones pueden volverse bastante largas (en el aula suelo poner el nombre de clase para poner el tipo concreto y que lo conozcáis, pero es <strong>mejor hacerlo con var</strong>).</p>
+<p>¿Y si necesitas pasar un flujo a un método? Eso está bien, pero el <strong><mark>flujo debe cerrarse en el método que lo creó</mark></strong>.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printData</span>(InputStream is) <span style="color:#66d9ef">throws</span> IOException {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> b;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> ((b <span style="color:#f92672">=</span> is.<span style="color:#a6e22e">read</span>()) <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span>1) {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">print</span>(b);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">readFile</span>(String fileName) <span style="color:#66d9ef">throws</span> IOException {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> (<span style="color:#66d9ef">var</span> fis <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileInputStream(fileName)) {
+</span></span><span style="display:flex;"><span>        printData(fis);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>En este ejemplo, el flujo se crea y se cierra en el método <code>readFile()</code>, mientras que <code>printData()</code> procesa su contenido.</p>
+<h3 id="13-cierre-de-flujos-envueltos-en-otro-flujo-con-buffer">1.3. Cierre de flujos envueltos en otro flujo (con buffer)</h3>
+<p>Cuando trabajas con un flujo envuelto (con buffer), <strong><mark>solo necesitas usar <code>close()</code> en el objeto superior</mark>.</strong> Al hacerlo, <strong>se cerrarán los flujos subyacentes</strong>.</p>
+<p>El siguiente ejemplo es válido y resultará en tres llamadas separadas a <code>close()</code>, pero es innecesario:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">try</span> (<span style="color:#66d9ef">var</span> fis <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileOutputStream(<span style="color:#e6db74">&#34;zoo-banner.txt&#34;</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Innecesario</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">var</span> bis <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedOutputStream(fis);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">var</span> ois <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ObjectOutputStream(bis)) {
+</span></span><span style="display:flex;"><span>     ois.<span style="color:#a6e22e">writeObject</span>(<span style="color:#e6db74">&#34;Hola&#34;</span>);
+</span></span><span style="display:flex;"><span> }</span></span></code></pre></div>
+<p>En cambio, podemos confiar en que <code>ObjectOutputStream</code> cierre <code>BufferedOutputStream</code> y <code>FileOutputStream</code>. Lo siguiente llamará solo a un método <code>close()</code> en lugar de tres:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span> <span style="color:#66d9ef">try</span> (<span style="color:#66d9ef">var</span> ois <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ObjectOutputStream(
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">new</span> BufferedOutputStream(
+</span></span><span style="display:flex;"><span>             <span style="color:#66d9ef">new</span> FileOutputStream(<span style="color:#e6db74">&#34;zoo-banner.txt&#34;</span>)))) {
+</span></span><span style="display:flex;"><span>     ois.<span style="color:#a6e22e">writeObject</span>(<span style="color:#e6db74">&#34;Hola&#34;</span>);
+</span></span><span style="display:flex;"><span> }</span></span></code></pre></div>
+<h3 id="14-manipulación-de-flujos-de-entrada-mark-reset-y-skip">1.4. Manipulación de flujos de entrada: Mark, Reset y Skip</h3>
+<p>Todas las clases de flujos de entrada incluyen los siguientes métodos para <strong>manipular el <mark>orden en el que se leen los datos de un flujo</mark></strong>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// InputStream y Reader</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">markSupported</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">mark</span>(<span style="color:#66d9ef">int</span> readLimit);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">reset</span>() <span style="color:#66d9ef">throws</span> IOException;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">long</span> <span style="color:#a6e22e">skip</span>(<span style="color:#66d9ef">long</span> n) <span style="color:#66d9ef">throws</span> IOException;</span></span></code></pre></div>
+<p>Los métodos <strong><code>mark()</code> y <code>reset()</code> devuelven un flujo a una posición anterior</strong>.</p>
+<p>Antes de llamar a cualquiera de estos métodos, debes llamar al método <strong><code>markSupported()</code>, que devuelve <code>true</code> solo si <code>mark()</code> es compatible</strong>.</p>
+<p>El <strong>método <code>skip()</code></strong> es bastante simple; básicamente, <strong>lee datos del flujo y descarta el contenido</strong>.</p>
+<h4 id="mark-y-reset"><em>mark() y reset()</em></h4>
+<p>Supongamos que tenemos una instancia de <code>InputStream</code> cuyos próximos valores son &ldquo;LEON&rdquo;. Considera el siguiente fragmento de código:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">readData</span>(InputStream is) <span style="color:#66d9ef">throws</span> IOException {
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">print</span>((<span style="color:#66d9ef">char</span>) is.<span style="color:#a6e22e">read</span>()); <span style="color:#75715e">// L</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (is.<span style="color:#a6e22e">markSupported</span>()) {
+</span></span><span style="display:flex;"><span>        is.<span style="color:#a6e22e">mark</span>(100); <span style="color:#75715e">// Marca hasta 100 bytes</span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">print</span>((<span style="color:#66d9ef">char</span>) is.<span style="color:#a6e22e">read</span>()); <span style="color:#75715e">// E</span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">print</span>((<span style="color:#66d9ef">char</span>) is.<span style="color:#a6e22e">read</span>()); <span style="color:#75715e">// O</span>
+</span></span><span style="display:flex;"><span>        is.<span style="color:#a6e22e">reset</span>(); <span style="color:#75715e">// Restablece el flujo a la posición antes de E</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">print</span>((<span style="color:#66d9ef">char</span>) is.<span style="color:#a6e22e">read</span>()); <span style="color:#75715e">// E</span>
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">print</span>((<span style="color:#66d9ef">char</span>) is.<span style="color:#a6e22e">read</span>()); <span style="color:#75715e">// O</span>
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">print</span>((<span style="color:#66d9ef">char</span>) is.<span style="color:#a6e22e">read</span>()); <span style="color:#75715e">// N</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>El fragmento de código imprimirá &ldquo;LEOEON&rdquo; si <code>mark()</code> es compatible, y &ldquo;LEON&rdquo; en caso contrario. Es una buena práctica organizar las operaciones <code>read()</code> de modo que el flujo termine en la misma posición, independientemente de si <code>mark()</code> es compatible o no.</p>
+<p>¿Y qué hay del <strong>valor 100 que pasamos al método <code>mark()</code></strong>? Este valor <strong>se llama <code>readLimit</code></strong>. Le indica al flujo que esperamos <strong>llamar a <code>reset()</code> después de leer como máximo 100 bytes</strong>. Si el programa llama a <code>reset()</code> después de leer más de 100 bytes al llamar a <code>mark(100)</code>, entonces <strong>podría lanzar una excepción, dependiendo de la clase de flujo</strong>.</p>
+<h4 id="skip"><em>skip()</em></h4>
+<p>Supongamos que tenemos una instancia de <code>InputStream</code> cuyos próximos valores son &ldquo;TIGRES&rdquo;. Considera el siguiente fragmento de código:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">print</span>((<span style="color:#66d9ef">char</span>) is.<span style="color:#a6e22e">read</span>()); <span style="color:#75715e">// T</span>
+</span></span><span style="display:flex;"><span>is.<span style="color:#a6e22e">skip</span>(2); <span style="color:#75715e">// Salta I y G</span>
+</span></span><span style="display:flex;"><span>is.<span style="color:#a6e22e">read</span>(); <span style="color:#75715e">// Lee R pero no lo muestra</span>
+</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">print</span>((<span style="color:#66d9ef">char</span>) is.<span style="color:#a6e22e">read</span>()); <span style="color:#75715e">// E</span>
+</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">print</span>((<span style="color:#66d9ef">char</span>) is.<span style="color:#a6e22e">read</span>()); <span style="color:#f92672">//</span> S</span></span></code></pre></div>
+<p>Este código imprimirá &ldquo;TES&rdquo; en tiempo de ejecución. Hemos saltado dos caracteres, I y G. También leímos R pero no lo almacenamos en ninguna parte, por lo que se comporta como si hubiéramos llamado a <code>skip(1)</code>.</p>
+<p>El <strong>valor devuelto por <code>skip()</code> nos indica cuántos valores se omitieron realmente</strong> . Por ejemplo, si estamos cerca del final del flujo y llamamos a <code>skip(1000)</code>, el valor de retorno podría ser 20, lo que indica que <strong>se alcanzó el final del flujo después de omitir</strong> 20 valores. Usar el valor devuelto por <code>skip()</code> es importante si necesitas llevar un registro de dónde estás en un flujo y cuántos bytes se han procesado.</p>
+<h3 id="15-flushing--de-flujos-de-salida-output-streams">1.5. Flushing  de flujos de salida (Output Streams)</h3>
+<p>Cuando se escribe datos en un flujo de salida, el sistema operativo subyacente <strong>no garantiza que los datos se escriban inmediatamente en el sistema de archivos</strong>. En muchos sistemas operativos, los <strong>datos pueden almacenarse en la memoria</strong>, y la escritura se produce solo después de que se llena una caché temporal o después de un cierto período de tiempo.</p>
+<p><strong>Si los datos se almacenan en la memoria y la aplicación termina de manera inesperada, los datos se perderán</strong>, ya que nunca se escribieron en el sistema de archivos. Para abordar esto, <strong><mark>todas las clases de flujos de salida proporcionan un método <code>flush()</code></mark>, que solicita que todos los datos acumulados se escriban de inmediato en el disco</strong>.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// OutputStream y Writer</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">flush</span>() <span style="color:#66d9ef">throws</span> IOException</span></span></code></pre></div>
+<p>En el siguiente ejemplo, se escriben 1000 caracteres en un flujo de archivo. Las llamadas a <strong><code>flush()</code> aseguran que los datos se envíen al disco</strong> duro al menos una vez cada 100 caracteres. La JVM o el sistema operativo son libres de enviar los datos con más frecuencia.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">try</span> (<span style="color:#66d9ef">var</span> fos <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileOutputStream(fileName)) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0; i <span style="color:#f92672">&lt;</span> 1000; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>        fos.<span style="color:#a6e22e">write</span>(<span style="color:#e6db74">&#39;a&#39;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">%</span> 100 <span style="color:#f92672">==</span> 0) {
+</span></span><span style="display:flex;"><span>            fos.<span style="color:#a6e22e">flush</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>El método <strong><code>flush()</code> ayuda a reducir la cantidad de datos perdidos si la aplicación termina de manera inesperada</strong>. Sin embargo, no es gratuito. Cada vez que se usa, <strong>puede causar un retraso perceptible en la aplicación, especialmente para archivos grandes</strong>. A menos que los datos que estés escribiendo sean extremadamente críticos, el método <strong><code>flush()</code> solo debe usarse de manera intermitente</strong>. Por ejemplo, no es necesario llamarlo después de cada escritura.</p>
+<p>Tampoco es necesario llamar al método <code>flush()</code> cuando hayas terminado de escribir datos, ya que <strong>==el método <code>close()</code> lo hará automáticamente=0</strong>.</p>
+<h2 id="2-resumen-de-métodos-más-comunes-de-flujos-de-es">2. Resumen de métodos más comunes de flujos de E/S</h2>
+<p>La <strong>Tabla 3</strong> revisa los <strong>métodos comunes de flujos que debes conocer para este apartado</strong>.</p>
+<p>Para los métodos <code>read()</code> y <code>write()</code> que toman arrays primitivos, el tipo de parámetro del método depende del tipo de flujo. Los flujos de bytes que terminan en <code>InputStream</code>/<code>OutputStream</code> utilizan <code>byte[]</code>, mientras que los flujos de caracteres que terminan en <code>Reader</code>/<code>Writer</code> utilizan <code>char[]</code>.</p>
+<p><strong>Tabla 3:</strong> Métodos de flujos de E/S más importantes</p>
+<table>
+  <thead>
+      <tr>
+          <th><strong>Flujo</strong></th>
+          <th><strong>Nombre del Método</strong></th>
+          <th><strong>Descripción</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Todos los flujos</td>
+          <td><code>void close()</code></td>
+          <td>Cierra el flujo y libera los recursos</td>
+      </tr>
+      <tr>
+          <td>Todos los flujos de entrada</td>
+          <td><code>int read()</code></td>
+          <td>Lee un solo byte o devuelve -1 si no hay bytes disponibles</td>
+      </tr>
+      <tr>
+          <td><code>InputStream</code></td>
+          <td><code>int read(byte[] b)</code></td>
+          <td>Lee valores en un búfer. Devuelve el número de bytes leídos</td>
+      </tr>
+      <tr>
+          <td><code>Reader</code></td>
+          <td><code>int read(char[] c)</code></td>
+          <td>Lee valores en un búfer. Devuelve el número de bytes leídos</td>
+      </tr>
+      <tr>
+          <td><code>InputStream</code></td>
+          <td><code>int read(byte[] b, int offset, int length)</code></td>
+          <td>Lee hasta <code>length</code> valores en un búfer, comenzando desde la posición <code>offset</code>. Devuelve el número de bytes leídos</td>
+      </tr>
+      <tr>
+          <td><code>Reader</code></td>
+          <td><code>int read(char[] c, int offset, int length)</code></td>
+          <td>ee hasta <code>length</code> valores en un búfer, comenzando desde la posición <code>offset</code>. Devuelve el número de bytes leídos</td>
+      </tr>
+      <tr>
+          <td>Todos los flujos de salida</td>
+          <td><code>void write(int)</code></td>
+          <td>Escribe un solo byte</td>
+      </tr>
+      <tr>
+          <td><code>OutputStream</code></td>
+          <td><code>void write (byte[] b)</code></td>
+          <td>Escribe un array de valores en el flujo</td>
+      </tr>
+      <tr>
+          <td><code>Writer</code></td>
+          <td><code>void write(char[] c)</code></td>
+          <td>Escribe un array de valores en el flujo</td>
+      </tr>
+      <tr>
+          <td><code>OutpuStream</code></td>
+          <td><code>void write(byte[] c, int offset, int length)</code></td>
+          <td>Escribe length valores del array en un flujo, empezando desde el índice offset</td>
+      </tr>
+      <tr>
+          <td><code>Writer</code></td>
+          <td><code>void write(char[] c, int offset, int length)</code></td>
+          <td>Escribe <code>length</code> valores del array en un flujo, empezando desde el índice offset-</td>
+      </tr>
+      <tr>
+          <td>Todos los flujos de entrada</td>
+          <td><code>boolean markSupported()</code></td>
+          <td>Devuelve <code>true</code> si la clase de flujo admite <code>mark()</code></td>
+      </tr>
+      <tr>
+          <td>Todos los flujos de entrada</td>
+          <td><code>void mark(int readLimit)</code></td>
+          <td>Marca la posición actual en el flujo</td>
+      </tr>
+      <tr>
+          <td>Todos los flujos de entrada</td>
+          <td><code>void reset()</code></td>
+          <td>Intenta restablecer el flujo a la posición marcada</td>
+      </tr>
+      <tr>
+          <td>Todos los flujos de entrada</td>
+          <td><code>long skip(long n)</code></td>
+          <td>Lee y descarta un número especificado de caracteres</td>
+      </tr>
+      <tr>
+          <td>Todos los flujos de salida</td>
+          <td><code>void flush()</code></td>
+          <td>Vacía los datos acumulados a través del flujo</td>
+      </tr>
+  </tbody>
+</table>
+
+  <footer class="footline"></article>
+<footer>
+   <i class='fas fa-user'></i>  <span itemprop="name"> </span>
+
+<i class='fas fa-calendar'></i> Última actualización: 06.06.2025 
+</footer>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<img  src="../../../images/logo-ies.png" style="color:white;  font-size: 20px;" id="logo" href="http://manuais.pages.iessanclemente.net/apuntes/">
+        </div>
+        <search><form action="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Buscar (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Buscar</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Buscar...">
+            <button class="search-clear" type="button" data-search-clear="" title="Borrar búsqueda"><i class="fas fa-times" title="Borrar búsqueda"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/index.html"><a class="padding" href="../../../index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/index.html"><input type="checkbox" id="R-section-0758abab80c2aa84781892223aa808b3" aria-controls="R-subsections-0758abab80c2aa84781892223aa808b3"><label for="R-section-0758abab80c2aa84781892223aa808b3"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 0. Refuerzo y ayudas complementarias</span></label><a class="padding" href="../../../00ayudas/index.html">UD 0. Refuerzo y ayudas complementarias<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-0758abab80c2aa84781892223aa808b3" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/index.html"><input type="checkbox" id="R-section-1b1977ce428c9ac8dab8b72f8979bcb5" aria-controls="R-subsections-1b1977ce428c9ac8dab8b72f8979bcb5"><label for="R-section-1b1977ce428c9ac8dab8b72f8979bcb5"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01 Configuración y despliegue</span></label><a class="padding" href="../../../00ayudas/00configjava/index.html">01 Configuración y despliegue<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1b1977ce428c9ac8dab8b72f8979bcb5" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/01jarfiles/index.html"><a class="padding" href="../../../00ayudas/00configjava/01jarfiles/index.html">01 Archivos Jar<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/02jarwithmaven/index.html"><a class="padding" href="../../../00ayudas/00configjava/02jarwithmaven/index.html">02 Creación de un JAR ejecutable con Java con Apache Maven<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/03dependencias/index.html"><a class="padding" href="../../../00ayudas/00configjava/03dependencias/index.html">03. Dependencias Maven.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/index.html"><input type="checkbox" id="R-section-0ee0a79915535bc59e8b9d0e78f65ef9" aria-controls="R-subsections-0ee0a79915535bc59e8b9d0e78f65ef9"><label for="R-section-0ee0a79915535bc59e8b9d0e78f65ef9"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02 Java General</span></label><a class="padding" href="../../../00ayudas/02javageneral/index.html">02 Java General<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-0ee0a79915535bc59e8b9d0e78f65ef9" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/01streamapi/index.html"><a class="padding" href="../../../00ayudas/02javageneral/01streamapi/index.html">00.01 Java Stream API<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/02urlfiles/index.html"><a class="padding" href="../../../00ayudas/02javageneral/02urlfiles/index.html">00.02 Descarga de archivos de Internet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/03hashcode/index.html"><a class="padding" href="../../../00ayudas/02javageneral/03hashcode/index.html">03 Implementación de hashCode()<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/index.html"><input type="checkbox" id="R-section-8eb2a58628ca595eccda7f8f066488f0" aria-controls="R-subsections-8eb2a58628ca595eccda7f8f066488f0"><label for="R-section-8eb2a58628ca595eccda7f8f066488f0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 03. Layouts en Java Swing &amp; UI</span></label><a class="padding" href="../../../00ayudas/03layouts/index.html">03. Layouts en Java Swing &amp; UI<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8eb2a58628ca595eccda7f8f066488f0" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/00dialogosenswing/index.html"><a class="padding" href="../../../00ayudas/03layouts/00dialogosenswing/index.html">01 Ventanas de entrada de datos, mensajes y archivos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/05gridbaglayout/index.html"><a class="padding" href="../../../00ayudas/03layouts/05gridbaglayout/index.html">05 GridBagLayout<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/index.html"><input type="checkbox" id="R-section-1c69dc8b47fb6fae98603b1968118cf8" aria-controls="R-subsections-1c69dc8b47fb6fae98603b1968118cf8"><label for="R-section-1c69dc8b47fb6fae98603b1968118cf8"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 04. Patrones de diseño</span></label><a class="padding" href="../../../00ayudas/04patronesdisenho/index.html">04. Patrones de diseño<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1c69dc8b47fb6fae98603b1968118cf8" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/01designprinciples/index.html"><a class="padding" href="../../../00ayudas/04patronesdisenho/01designprinciples/index.html">01. Principios de diseño<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/02singleton/index.html"><a class="padding" href="../../../00ayudas/04patronesdisenho/02singleton/index.html">02. Patrón Singleton<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/03objetosinmutables/index.html"><a class="padding" href="../../../00ayudas/04patronesdisenho/03objetosinmutables/index.html">03. Objetos Inmutables<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/index.html"><input type="checkbox" id="R-section-36a825e367dd24b7cccca030c91ea60b" aria-controls="R-subsections-36a825e367dd24b7cccca030c91ea60b"><label for="R-section-36a825e367dd24b7cccca030c91ea60b"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 05. Programación en Kotlin</span></label><a class="padding" href="../../../00ayudas/05kotlin/index.html">05. Programación en Kotlin<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-36a825e367dd24b7cccca030c91ea60b" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/index.html"><input type="checkbox" id="R-section-312a90d18fa918ef04d04e75820d73c0" aria-controls="R-subsections-312a90d18fa918ef04d04e75820d73c0"><label for="R-section-312a90d18fa918ef04d04e75820d73c0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación estructurada básica</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/index.html">Programación estructurada básica<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-312a90d18fa918ef04d04e75820d73c0" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/10.-la_funcion_main/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/10.-la_funcion_main/index.html">La funcion main()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/20.-la_funcion-print-_y-_println/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/20.-la_funcion-print-_y-_println/index.html">La funcion print() y println()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/30.-comentarios/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/30.-comentarios/index.html">Comentarios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/40.-variables-_-literales-_y_-sentencia_-de_-asignación/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/40.-variables-_-literales-_y_-sentencia_-de_-asignaci%c3%b3n/index.html">Variables, literales y sentencia de asignación<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/50.-palabras_reservadas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/50.-palabras_reservadas/index.html">Palabras reservadas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/index.html"><input type="checkbox" id="R-section-94a2bfa5cc4fa0f33d0f2cf1c75e3265" aria-controls="R-subsections-94a2bfa5cc4fa0f33d0f2cf1c75e3265"><label for="R-section-94a2bfa5cc4fa0f33d0f2cf1c75e3265"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú tipos de datos y operadores</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/index.html">tipos de datos y operadores<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-94a2bfa5cc4fa0f33d0f2cf1c75e3265" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/60.tipos_de_datos_basicos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/60.tipos_de_datos_basicos/index.html">Tipos de datos básicos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/70.tipos_numericos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/70.tipos_numericos/index.html">Tipos Numéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/80.tipos_no_-numericos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/80.tipos_no_-numericos/index.html">Tipos básicos  No Numéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/90.conversion_de_tipos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/90.conversion_de_tipos/index.html">Conversión de Tipos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/100.-operadores/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/100.-operadores/index.html">Operadores<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/110.-expresiones_booleanas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/110.-expresiones_booleanas/index.html">Expresiones booleanas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/index.html"><input type="checkbox" id="R-section-840caf4a5c9da596bf4345cae4c798ab" aria-controls="R-subsections-840caf4a5c9da596bf4345cae4c798ab"><label for="R-section-840caf4a5c9da596bf4345cae4c798ab"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú colecciones básicas</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/index.html">colecciones básicas<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-840caf4a5c9da596bf4345cae4c798ab" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/120.-string/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/120.-string/index.html">String<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/130.-listas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/130.-listas/index.html">Listas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/140.rangos-/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/140.rangos-/index.html">Rangos<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/150.-entrada_teclado/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/150.-entrada_teclado/index.html">Entrada de datos por teclado con readln()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/index.html"><input type="checkbox" id="R-section-f79f31fcf5ae1f44691bca6f05e1710f" aria-controls="R-subsections-f79f31fcf5ae1f44691bca6f05e1710f"><label for="R-section-f79f31fcf5ae1f44691bca6f05e1710f"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú control de flujo</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/index.html">control de flujo<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-f79f31fcf5ae1f44691bca6f05e1710f" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/151.-control_de_flujo/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/151.-control_de_flujo/index.html">Control de flujo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/160.-sentencia_condicional_if/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/160.-sentencia_condicional_if/index.html">Sentencia condicional IF<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/190.-sentecia_when/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/190.-sentecia_when/index.html">Sentencia when<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/200.-bucle_for/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/200.-bucle_for/index.html">Bucle for<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/210.-while_y_do_while/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/210.-while_y_do_while/index.html">while y do while<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/220.-variables_locales_y_bloques/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/220.-variables_locales_y_bloques/index.html">variables locales y bloques<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/230.-break_y_continue/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/230.-break_y_continue/index.html">break y continue<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/240.otras_formas_de_iterar/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/240.otras_formas_de_iterar/index.html">Otras formas de iterar<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/250.-funciones/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/250.-funciones/index.html">Funciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/260.el_valor_nulo/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/260.el_valor_nulo/index.html">El valor nulo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/270.-readline/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/270.-readline/index.html">Entrada de datos por teclado con readLine()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/index.html"><input type="checkbox" id="R-section-44784ce5c237bf9124eefe20ce36272f" aria-controls="R-subsections-44784ce5c237bf9124eefe20ce36272f"><label for="R-section-44784ce5c237bf9124eefe20ce36272f"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú más sobre colecciones básicas</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/index.html">más sobre colecciones básicas<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-44784ce5c237bf9124eefe20ce36272f" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/310.-arrays/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/310.-arrays/index.html">Arrays<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/320.-listas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/320.-listas/index.html">Listas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/330.rangos-/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/330.rangos-/index.html">Rangos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/340.mapas-/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/340.mapas-/index.html">Mapas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/350.iterar_sobre_colecciones/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/350.iterar_sobre_colecciones/index.html">Iterar sobre colecciones<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/index.html"><input type="checkbox" id="R-section-1ef1a5ed807dacffeb206c0950804c3a" aria-controls="R-subsections-1ef1a5ed807dacffeb206c0950804c3a"><label for="R-section-1ef1a5ed807dacffeb206c0950804c3a"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación orientada a objetos</span></label><a class="padding" href="../../../00ayudas/05kotlin/02progoo/index.html">Programación orientada a objetos<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1ef1a5ed807dacffeb206c0950804c3a" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1010.objetos_y_clases/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1010.objetos_y_clases/index.html">Objetos y clases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1020.constructores-/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1020.constructores-/index.html">Constructores<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1030.propiedades/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1030.propiedades/index.html">Propiedades<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1040.sobreescribir_tostring/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1040.sobreescribir_tostring/index.html">Sobreescribir toString()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1060.modificadoresvisibilidad/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1060.modificadoresvisibilidad/index.html">modificadores de visibilidad<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1070.enum/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1070.enum/index.html">clases Enum<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1100.composicion/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1100.composicion/index.html">Composición<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1200.herencia/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1200.herencia/index.html">Herencia<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1220.clases_abstractas_interfaces/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1220.clases_abstractas_interfaces/index.html">Clases abstractas e Interfaces<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1240.dataclases/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1240.dataclases/index.html">Data Clases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1250.keywordobject/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1250.keywordobject/index.html">La palabra reservada object. Companion object, objetos singleton y objetos expressions<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1255.excepciones/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1255.excepciones/index.html">Excepciones en Kotlin<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1260.genericos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1260.genericos/index.html">Genéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1265.clausulatypealiases/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1265.clausulatypealiases/index.html">cláusula typealiases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1270.delegacion/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1270.delegacion/index.html">Delegación con cláusula by<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1280.claesanidadaseinternas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1280.claesanidadaseinternas/index.html">Clases anidadas e internas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/index.html"><input type="checkbox" id="R-section-8bbd4a78f07b64e8b2bc4b83b71f1498" aria-controls="R-subsections-8bbd4a78f07b64e8b2bc4b83b71f1498"><label for="R-section-8bbd4a78f07b64e8b2bc4b83b71f1498"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación funcional</span></label><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/index.html">Programación funcional<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8bbd4a78f07b64e8b2bc4b83b71f1498" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2010.funcioneskotlin/index.html"><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/2010.funcioneskotlin/index.html">sintáxis avanzada de las  funciones kotlin<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2020.-basesdepf/index.html"><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/2020.-basesdepf/index.html">algunos conceptos básicos de programación funcional<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2030.funcionesordensuperiorcolecciones/index.html"><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/2030.funcionesordensuperiorcolecciones/index.html">funciones de orden superior y colecciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2040.funcionesordensuperiorysequence/index.html"><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/2040.funcionesordensuperiorysequence/index.html">funciones de orden superior y sequence<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li></ul></li></ul></li>
+            <li class="parent " data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/index.html"><input type="checkbox" id="R-section-cf4ee7bae7fca4e692355524601fe599" aria-controls="R-subsections-cf4ee7bae7fca4e692355524601fe599" checked><label for="R-section-cf4ee7bae7fca4e692355524601fe599"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML</span></label><a class="padding" href="../../index.html">UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-cf4ee7bae7fca4e692355524601fe599" class="collapsible-menu">
+            <li class="parent " data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/index.html"><input type="checkbox" id="R-section-ec127efd28751c1f836952c8dac2374d" aria-controls="R-subsections-ec127efd28751c1f836952c8dac2374d" checked><label for="R-section-ec127efd28751c1f836952c8dac2374d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.01 Java IO. Acceso a ficheros, flujos, serialización de objetos.</span></label><a class="padding" href="../index.html">01.01 Java IO. Acceso a ficheros, flujos, serialización de objetos.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-ec127efd28751c1f836952c8dac2374d" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0100javaiointro/index.html"><a class="padding" href="../0100javaiointro/index.html">01.00 Java IO. Introducción.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0101javaiofile/index.html"><a class="padding" href="../0101javaiofile/index.html">01.01 La clase File<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0102randomaccessfile/index.html"><a class="padding" href="../0102randomaccessfile/index.html">01.02 La clase RandomAccessFile<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0103javaiostreams/index.html"><a class="padding" href="../0103javaiostreams/index.html">01.03 Flujos de E/S<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0104bytestream/index.html"><a class="padding" href="../0104bytestream/index.html">01.04 Flujos de byte<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0105characterstream/index.html"><a class="padding" href="../0105characterstream/index.html">01.05 Flujos de caracteres<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0106javaiobuffer/index.html"><a class="padding" href="../0106javaiobuffer/index.html">01.06 Flujos de E/S con Buffer<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="active " data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0107javaistream/index.html"><a class="padding" href="index.html">01.07 Operaciones comunes con flujos de E/S.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0109ejercicios/index.html"><a class="padding" href="../0109ejercicios/index.html">Ejercicios<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/index.html"><input type="checkbox" id="R-section-2d1e1941df73311305891c0dca6583fd" aria-controls="R-subsections-2d1e1941df73311305891c0dca6583fd"><label for="R-section-2d1e1941df73311305891c0dca6583fd"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.02 Java NIO.2</span></label><a class="padding" href="../../02javanio2/index.html">01.02 Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-2d1e1941df73311305891c0dca6583fd" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0202javaniopath/index.html"><a class="padding" href="../../02javanio2/0202javaniopath/index.html">02.01. La interface Path<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0203javaniopathcreate/index.html"><a class="padding" href="../../02javanio2/0203javaniopathcreate/index.html">02.03. Creación de Path<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0204javaniopath/index.html"><a class="padding" href="../../02javanio2/0204javaniopath/index.html">02.04. Operaciones comunes de Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0205javaniopathmethods/index.html"><a class="padding" href="../../02javanio2/0205javaniopathmethods/index.html">02.05. Métodos y con Path Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0206javaniostreams/index.html"><a class="padding" href="../../02javanio2/0206javaniostreams/index.html">02.06. Programación funcional con Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/index.html"><input type="checkbox" id="R-section-662c48eb0e2f97ba0e58c14a690fca47" aria-controls="R-subsections-662c48eb0e2f97ba0e58c14a690fca47"><label for="R-section-662c48eb0e2f97ba0e58c14a690fca47"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.03 JSON en Java</span></label><a class="padding" href="../../03json/index.html">01.03 JSON en Java<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-662c48eb0e2f97ba0e58c14a690fca47" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0300jsonintro/index.html"><a class="padding" href="../../03json/0300jsonintro/index.html">01.00. Introducción a JSON<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0301jsonjs/index.html"><a class="padding" href="../../03json/0301jsonjs/index.html">01.01. JSON con el API JavaScript de Java<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0302jsonlibraries/index.html"><a class="padding" href="../../03json/0302jsonlibraries/index.html">01.02. Bibliotecas JSON para Java<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0304gson/index.html"><a class="padding" href="../../03json/0304gson/index.html">01.03. Gson. Introducción<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0304gsondiagram/index.html"><a class="padding" href="../../03json/0304gsondiagram/index.html">01.03. Gson. Diagrama de clases (e interfaces)<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0305gsoncreate/index.html"><a class="padding" href="../../03json/0305gsoncreate/index.html">01.04. Gson. Creación de instancias Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0306creaciongson/index.html"><a class="padding" href="../../03json/0306creaciongson/index.html">01.05 Gson. Creación y lectura de objetos JSON<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0306transformacion/index.html"><a class="padding" href="../../03json/0306transformacion/index.html">01.06. Gson. Transformación de objetos JSON personalizada<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0307jsonreader01/index.html"><a class="padding" href="../../03json/0307jsonreader01/index.html">01.07 Gson. JsonReader<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0308jsonrename/index.html"><a class="padding" href="../../03json/0308jsonrename/index.html">01.08 Gson. Renombrar atributos <i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0309jsonserialize/index.html"><a class="padding" href="../../03json/0309jsonserialize/index.html">01.09 Resumen Serialización Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0310jsondeserialize/index.html"><a class="padding" href="../../03json/0310jsondeserialize/index.html">01.09 Resumen Deserialización Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/098ejercicio/index.html"><a class="padding" href="../../03json/098ejercicio/index.html">Ejercicio. Trivial<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/0105ejercicios/index.html"><a class="padding" href="../../0105ejercicios/index.html">Ejercicios y recursos<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/index.html"><input type="checkbox" id="R-section-342b2e95b9611e1108f16a11c61cd1f2" aria-controls="R-subsections-342b2e95b9611e1108f16a11c61cd1f2"><label for="R-section-342b2e95b9611e1108f16a11c61cd1f2"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 2. Acceso a BD remotas relacionales</span></label><a class="padding" href="../../../02accesobd/index.html">UD 2. Acceso a BD remotas relacionales<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-342b2e95b9611e1108f16a11c61cd1f2" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/index.html"><input type="checkbox" id="R-section-66326b82828cdbb6e30c77e924342908" aria-controls="R-subsections-66326b82828cdbb6e30c77e924342908"><label for="R-section-66326b82828cdbb6e30c77e924342908"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02.02 JDBC. Introducción a las Bases de datos relacionales.</span></label><a class="padding" href="../../../02accesobd/02db/index.html">02.02 JDBC. Introducción a las Bases de datos relacionales.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-66326b82828cdbb6e30c77e924342908" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0101databases/index.html"><a class="padding" href="../../../02accesobd/02db/0101databases/index.html">02.01. Sistemas gestores de bases de datos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0102introdb/index.html"><a class="padding" href="../../../02accesobd/02db/0102introdb/index.html">02. Introducción a las bases de datos relacionales<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0103postgresql/index.html"><a class="padding" href="../../../02accesobd/02db/0103postgresql/index.html">03. PostgreSQL<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0104postgres01/index.html"><a class="padding" href="../../../02accesobd/02db/0104postgres01/index.html">04. PostgreSQL. Características y Operadores.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/index.html"><input type="checkbox" id="R-section-4b93c45cd959371d7c20dcc7da6d632c" aria-controls="R-subsections-4b93c45cd959371d7c20dcc7da6d632c"><label for="R-section-4b93c45cd959371d7c20dcc7da6d632c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02.03. Procesamiento de sentencias SQL.</span></label><a class="padding" href="../../../02accesobd/03procesandosql/index.html">02.03. Procesamiento de sentencias SQL.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-4b93c45cd959371d7c20dcc7da6d632c" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0101procesamientosql/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0101procesamientosql/index.html">01. Procesamiento de sentencias SQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0102conexiones/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0102conexiones/index.html">02. Conexiones a BD<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0103excepcionessql/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0103excepcionessql/index.html">03. Excepciones SQLException<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0104resultset/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0104resultset/index.html">04. ResultSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0105resultsetbatch/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0105resultsetbatch/index.html">05. Actualizaciones por lotes con ResultSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0106preparedst/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0106preparedst/index.html">06. Prepared Statement<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0107transacciones/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0107transacciones/index.html">07. Transacciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0108clavesgeneradas/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0108clavesgeneradas/index.html">08. Claves Generadas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0109largeobjects/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0109largeobjects/index.html">09. Objectos grandes<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0111rowset/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0111rowset/index.html">11. RowSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0115boletines/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0115boletines/index.html">15. Ejercicios y archivos de la unidad<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/99proyecto/index.html"><a class="padding" href="../../../02accesobd/99proyecto/index.html">Proyecto 1ª evaluación<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/index.html"><input type="checkbox" id="R-section-87c8b6c6cd354a309db816f73d185be0" aria-controls="R-subsections-87c8b6c6cd354a309db816f73d185be0"><label for="R-section-87c8b6c6cd354a309db816f73d185be0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 3. Object/Relational Mapping (ORM). JPA e Hibernate</span></label><a class="padding" href="../../../03orm/index.html">UD 3. Object/Relational Mapping (ORM). JPA e Hibernate<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-87c8b6c6cd354a309db816f73d185be0" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/index.html"><input type="checkbox" id="R-section-5aaca10806a740cf4d784be6e24473b9" aria-controls="R-subsections-5aaca10806a740cf4d784be6e24473b9"><label for="R-section-5aaca10806a740cf4d784be6e24473b9"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 03.01. Jakarta Persistence (JPA).</span></label><a class="padding" href="../../../03orm/jpa/index.html">03.01. Jakarta Persistence (JPA).<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-5aaca10806a740cf4d784be6e24473b9" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/01jpa/index.html"><a class="padding" href="../../../03orm/jpa/01jpa/index.html">01. Jakarta Persistence (JPA).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/02jpavshibernate/index.html"><a class="padding" href="../../../03orm/jpa/02jpavshibernate/index.html">02. JPA vs Hibernate.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/03jpaejercicio/index.html"><a class="padding" href="../../../03orm/jpa/03jpaejercicio/index.html">03. Ejercicio básico de JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/04entitymanager/index.html"><a class="padding" href="../../../03orm/jpa/04entitymanager/index.html">04. Gestión de entidades con EntityManager.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/05mapeoentidades/index.html"><a class="padding" href="../../../03orm/jpa/05mapeoentidades/index.html">05. Mapeo de entidades.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/06relaciones/index.html"><a class="padding" href="../../../03orm/jpa/06relaciones/index.html">06. Relaciones JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/07embedidos/index.html"><a class="padding" href="../../../03orm/jpa/07embedidos/index.html">07. Objetos embebidos.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/08colecciones/index.html"><a class="padding" href="../../../03orm/jpa/08colecciones/index.html">08. Mapeo de colecciones.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/09queries/index.html"><a class="padding" href="../../../03orm/jpa/09queries/index.html">09. Consultas.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/10jpql/index.html"><a class="padding" href="../../../03orm/jpa/10jpql/index.html">10. JPQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/11paginacion/index.html"><a class="padding" href="../../../03orm/jpa/11paginacion/index.html">11. Paginación de consultas.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/12herencia/index.html"><a class="padding" href="../../../03orm/jpa/12herencia/index.html">12. Herencia.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/14ejercicios/index.html"><a class="padding" href="../../../03orm/jpa/14ejercicios/index.html">Ejercicios de la unidad de JPA<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/15boletines/index.html"><a class="padding" href="../../../03orm/jpa/15boletines/index.html">Ejercicios de refuerzo.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/16dependencias/index.html"><a class="padding" href="../../../03orm/jpa/16dependencias/index.html">Dependencias Maven.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/95singleton/index.html"><a class="padding" href="../../../03orm/95singleton/index.html">03.02. Patrón Singleton.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/96ejerciciosrepaso/index.html"><a class="padding" href="../../../03orm/96ejerciciosrepaso/index.html">03.03. Ejercicios de refuerzo (Violín).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/97ejerciciosrepaso2/index.html"><a class="padding" href="../../../03orm/97ejerciciosrepaso2/index.html">03.04 Ejercicios de refuerzo (II)<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/98ejerciciosrepaso3/index.html"><a class="padding" href="../../../03orm/98ejerciciosrepaso3/index.html">03.05 Ejercicios de refuerzo (III)<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/index.html"><input type="checkbox" id="R-section-ffae27028787f9b794af8498ce8bc361" aria-controls="R-subsections-ffae27028787f9b794af8498ce8bc361"><label for="R-section-ffae27028787f9b794af8498ce8bc361"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 4. Spring.</span></label><a class="padding" href="../../../04spring/index.html">UD 4. Spring.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-ffae27028787f9b794af8498ce8bc361" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/01springboot/index.html"><a class="padding" href="../../../04spring/01springboot/index.html">01. Spring Boot.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/02springdata/index.html"><a class="padding" href="../../../04spring/02springdata/index.html">02. Spring Data JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/03practicajpadata/index.html"><a class="padding" href="../../../04spring/03practicajpadata/index.html">03. Práctica con de Spring Data JPA y REST.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/04repositorios/index.html"><a class="padding" href="../../../04spring/04repositorios/index.html">04. Repositorios String Data.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/05paginacion/index.html"><a class="padding" href="../../../04spring/05paginacion/index.html">05. Paginación y Ordenación usando Spring Data JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/06paginacionrest/index.html"><a class="padding" href="../../../04spring/06paginacionrest/index.html">06. Paginación y Ordenación usando Spring Data REST.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/07vaadin/index.html"><a class="padding" href="../../../04spring/07vaadin/index.html">07. Spring Data JPA con Vaadin (práctica).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/08ejecutores/index.html"><a class="padding" href="../../../04spring/08ejecutores/index.html">08. Ejecutores al inicio con Spring Boot<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/09serviciocompo/index.html"><a class="padding" href="../../../04spring/09serviciocompo/index.html">09. Servicios, componentes y repositorios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/10servicios/index.html"><a class="padding" href="../../../04spring/10servicios/index.html">10. Servicios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/index.html"><input type="checkbox" id="R-section-f25e02e15b94f5cb39179f26efa74bfe" aria-controls="R-subsections-f25e02e15b94f5cb39179f26efa74bfe"><label for="R-section-f25e02e15b94f5cb39179f26efa74bfe"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 11. Proyecto Spring. Cuestionarios.</span></label><a class="padding" href="../../../04spring/11proyecto/index.html">11. Proyecto Spring. Cuestionarios.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-f25e02e15b94f5cb39179f26efa74bfe" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/01modelo/index.html"><a class="padding" href="../../../04spring/11proyecto/01modelo/index.html">01. Modelo de datos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/02dto/index.html"><a class="padding" href="../../../04spring/11proyecto/02dto/index.html">02. DTO<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/03repositorios/index.html"><a class="padding" href="../../../04spring/11proyecto/03repositorios/index.html">03. Repositorios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/04controller/index.html"><a class="padding" href="../../../04spring/11proyecto/04controller/index.html">04. Controller<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/05resultados/index.html"><a class="padding" href="../../../04spring/11proyecto/05resultados/index.html">05. Pruebas y mejoras<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/12springproj/index.html"><a class="padding" href="../../../04spring/12springproj/index.html">12. Proyecto Spring. Cuestionarios.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/index.html"><input type="checkbox" id="R-section-a0dc28a495fca757d219f1aec2ecff4c" aria-controls="R-subsections-a0dc28a495fca757d219f1aec2ecff4c"><label for="R-section-a0dc28a495fca757d219f1aec2ecff4c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 5. Bases de datos no SQL. MongoDB</span></label><a class="padding" href="../../../05basesdatosnonsql/index.html">UD 5. Bases de datos no SQL. MongoDB<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-a0dc28a495fca757d219f1aec2ecff4c" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/mongodb/01nosql/index.html"><a class="padding" href="../../../05basesdatosnonsql/mongodb/01nosql/index.html">01. Bases de datos NoSQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/mongodb/03springmongodb/index.html"><a class="padding" href="../../../05basesdatosnonsql/mongodb/03springmongodb/index.html">03. Conexión a MongoDB con String Data MongoDB (práctica).<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/index.html"><input type="checkbox" id="R-section-8d4041f058dd2262e83830e1db38cc6d" aria-controls="R-subsections-8d4041f058dd2262e83830e1db38cc6d"><label for="R-section-8d4041f058dd2262e83830e1db38cc6d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Git</span></label><a class="padding" href="../../../git/index.html">Git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8d4041f058dd2262e83830e1db38cc6d" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/index.html"><input type="checkbox" id="R-section-a87776bdac862bf972ec945bc124b884" aria-controls="R-subsections-a87776bdac862bf972ec945bc124b884"><label for="R-section-a87776bdac862bf972ec945bc124b884"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Introducción git</span></label><a class="padding" href="../../../git/1.introduccion_git/index.html">Introducción git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-a87776bdac862bf972ec945bc124b884" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/1.introduccion_git/index.html"><a class="padding" href="../../../git/1.introduccion_git/1.introduccion_git/index.html">Introducción a git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/2.estados_git/index.html"><a class="padding" href="../../../git/1.introduccion_git/2.estados_git/index.html">Estados de git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/3.instalacion_git/index.html"><a class="padding" href="../../../git/1.introduccion_git/3.instalacion_git/index.html">Instalación de git<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/index.html"><input type="checkbox" id="R-section-b63515bb4dcfe678de9ffac7a29c1e77" aria-controls="R-subsections-b63515bb4dcfe678de9ffac7a29c1e77"><label for="R-section-b63515bb4dcfe678de9ffac7a29c1e77"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Fundamentos git</span></label><a class="padding" href="../../../git/2.fundamentos_git/index.html">Fundamentos git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-b63515bb4dcfe678de9ffac7a29c1e77" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/1.configuracion_git/index.html"><a class="padding" href="../../../git/2.fundamentos_git/1.configuracion_git/index.html">Configuracion de git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/2.inicializar_repo/index.html"><a class="padding" href="../../../git/2.fundamentos_git/2.inicializar_repo/index.html">Inicializando repositorio<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/3.cambios/index.html"><a class="padding" href="../../../git/2.fundamentos_git/3.cambios/index.html">Cambios en el repositorio<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/4.ignorar_archivos/index.html"><a class="padding" href="../../../git/2.fundamentos_git/4.ignorar_archivos/index.html">Archivos Ignorados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/5.checkout/index.html"><a class="padding" href="../../../git/2.fundamentos_git/5.checkout/index.html">Git checkout<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/6.log/index.html"><a class="padding" href="../../../git/2.fundamentos_git/6.log/index.html">Git Log<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/7.archivos_modificados/index.html"><a class="padding" href="../../../git/2.fundamentos_git/7.archivos_modificados/index.html">Archivos modificados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/8.cambios/index.html"><a class="padding" href="../../../git/2.fundamentos_git/8.cambios/index.html">Archivos modificados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/9.eliminar_archivos/index.html"><a class="padding" href="../../../git/2.fundamentos_git/9.eliminar_archivos/index.html">Opciones con archivos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/10.limitar/index.html"><a class="padding" href="../../../git/2.fundamentos_git/10.limitar/index.html">Historial de confirmaciones<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/3.remotos/index.html"><a class="padding" href="../../../git/3.remotos/index.html">Remotos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/4.etiquetado/index.html"><a class="padding" href="../../../git/4.etiquetado/index.html">Etiquetado<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/index.html"><input type="checkbox" id="R-section-d8234a81ae190365829886d9d8a058a7" aria-controls="R-subsections-d8234a81ae190365829886d9d8a058a7"><label for="R-section-d8234a81ae190365829886d9d8a058a7"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Ramas Git</span></label><a class="padding" href="../../../git/5.ramas_git/index.html">Ramas Git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-d8234a81ae190365829886d9d8a058a7" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/1.ramificaciones_git/index.html"><a class="padding" href="../../../git/5.ramas_git/1.ramificaciones_git/index.html">Ramificación<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/2.ramificaciones_remotas/index.html"><a class="padding" href="../../../git/5.ramas_git/2.ramificaciones_remotas/index.html">Ramas Remotas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/6.claves_ssh/index.html"><a class="padding" href="../../../git/6.claves_ssh/index.html">Claves SSH<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">Más</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/"><a class="padding" href="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/" rel="external" target="_blank"><i class='fas fa-fw fa-bookmark'></i>  Cómo editar plantilla<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://www.iessanclemente.net/"><a class="padding" href="https://www.iessanclemente.net/" rel="external" target="_blank"><i class='fas fa-home'></i> IES Tubalcain<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/categories"><a class="padding" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/categories"><i class='fa-fw fas fa-layer-group'></i> Categories<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tags"><a class="padding" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/tags"><i class='fa-fw fas fa-tags'></i> Tags<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+            <li class="R-variantswitcher">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-paint-brush"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <label class="a11y-only" for="R-select-variant">Tema</label>
+                  <select id="R-select-variant">
+                    <option id="R-select-variant-blue" value="blue" selected>Blue</option>
+                    <option id="R-select-variant-relearn-light" value="relearn-light">Relearn Light</option>
+                    <option id="R-select-variant-relearn-dark" value="relearn-dark">Relearn Dark</option>
+                    <option id="R-select-variant-learn" value="learn">Learn</option>
+                    <option id="R-select-variant-neon" value="neon">Neon</option>
+                    <option id="R-select-variant-green" value="green">Green</option>
+                    <option id="R-select-variant-red" value="red">Red</option>
+                  </select>
+                </div>
+                <div class="clear"></div>
+              </div>
+              <script>window.relearn.markVariant();</script>
+            </li>
+            <li class="R-historyclearer">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-history"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <button>Borrar Historial</button>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+<div id="R-footer">
+<div>
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/cc.png" height="30" />
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/by.png"  height="30"/>
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/nc-eu.png"  height="30"/>
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/sa.png" height="30" />
+</div>
+</div>
+      </div>
+    </aside>
+    <script src="../../../js/clipboard/clipboard.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/perfect-scrollbar/perfect-scrollbar.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/theme.min3c2e.js?1749199978" defer></script>
+  </body>
+
+<!-- Mirrored from manuais.pages.iessanclemente.net/plantillas/dam/ad/01accesoficheros/01javaio/0107javaistream/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Sep 2025 20:45:33 GMT -->
+</html>

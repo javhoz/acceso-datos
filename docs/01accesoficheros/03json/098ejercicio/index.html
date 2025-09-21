@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  
+<!-- Mirrored from manuais.pages.iessanclemente.net/plantillas/dam/ad/01accesoficheros/03json/098ejercicio/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Sep 2025 20:45:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.140.2">
+    <meta name="generator" content="Relearn 7.6.1+0b83617ee9da5253aafcf11807b256da7d88d709">
+    <meta name="description" content="Modelo de datos 1. Clase final Opcion Atributos Constructor Métodos (funciones miembro): 3. Clase final Categoria Atributos Constructores Métodos 2. Clase Pregunta Constructor Funciones miembro 3. Clase PreguntaMultiple implanta la interface Predicate&lt;Int&gt; Atributos Constructores Funciones miembro 4. Clase PreguntaVerdaderoFalso Atributos Constructores Métodos 5. Clase AppTrivial Conversión a JSON Se desea realizar una aplicación para gestionar Preguntas de Trivial. La aplicación debe permitir la creación de preguntas de dos tipos elección múltiple y verdadero falso.">
+    <meta name="author" content="IES Tubalcain">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <meta name="twitter:title" content="Ejercicio. Trivial :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta name="twitter:description" content="Modelo de datos 1. Clase final Opcion Atributos Constructor Métodos (funciones miembro): 3. Clase final Categoria Atributos Constructores Métodos 2. Clase Pregunta Constructor Funciones miembro 3. Clase PreguntaMultiple implanta la interface Predicate&lt;Int&gt; Atributos Constructores Funciones miembro 4. Clase PreguntaVerdaderoFalso Atributos Constructores Métodos 5. Clase AppTrivial Conversión a JSON Se desea realizar una aplicación para gestionar Preguntas de Trivial. La aplicación debe permitir la creación de preguntas de dos tipos elección múltiple y verdadero falso.">
+    <meta property="og:url" content="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/098ejercicio/index.html">
+    <meta property="og:site_name" content="IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta property="og:title" content="Ejercicio. Trivial :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta property="og:description" content="Modelo de datos 1. Clase final Opcion Atributos Constructor Métodos (funciones miembro): 3. Clase final Categoria Atributos Constructores Métodos 2. Clase Pregunta Constructor Funciones miembro 3. Clase PreguntaMultiple implanta la interface Predicate&lt;Int&gt; Atributos Constructores Funciones miembro 4. Clase PreguntaVerdaderoFalso Atributos Constructores Métodos 5. Clase AppTrivial Conversión a JSON Se desea realizar una aplicación para gestionar Preguntas de Trivial. La aplicación debe permitir la creación de preguntas de dos tipos elección múltiple y verdadero falso.">
+    <meta property="og:locale" content="es">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML">
+    <meta property="article:modified_time" content="2025-06-06T08:52:43+00:00">
+    <meta property="og:image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <meta itemprop="name" content="Ejercicio. Trivial :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta itemprop="description" content="Modelo de datos 1. Clase final Opcion Atributos Constructor Métodos (funciones miembro): 3. Clase final Categoria Atributos Constructores Métodos 2. Clase Pregunta Constructor Funciones miembro 3. Clase PreguntaMultiple implanta la interface Predicate&lt;Int&gt; Atributos Constructores Funciones miembro 4. Clase PreguntaVerdaderoFalso Atributos Constructores Métodos 5. Clase AppTrivial Conversión a JSON Se desea realizar una aplicación para gestionar Preguntas de Trivial. La aplicación debe permitir la creación de preguntas de dos tipos elección múltiple y verdadero falso.">
+    <meta itemprop="dateModified" content="2025-06-06T08:52:43+00:00">
+    <meta itemprop="wordCount" content="1663">
+    <meta itemprop="image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <title>Ejercicio. Trivial :: IES Tubalcain - Acceso a datos (2º DAM)</title>
+    <link href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/01accesoficheros/03json/098ejercicio/index.xml" rel="alternate" type="application/rss+xml" title="Ejercicio. Trivial :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <link href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/01accesoficheros/03json/098ejercicio/index.print.html" rel="alternate" type="text/html" title="Ejercicio. Trivial :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <link href="../../../fonts/fontawesome/css/fontawesome-all.min3c2e.css?1749199978" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../../fonts/fontawesome/css/fontawesome-all.min3c2e.css?1749199978" rel="stylesheet"></noscript>
+    <link href="../../../css/perfect-scrollbar/perfect-scrollbar.min3c2e.css?1749199978" rel="stylesheet">
+    <link href="../../../css/theme.min3c2e.css?1749199978" rel="stylesheet">
+    <link href="../../../css/format-html.min3c2e.css?1749199978" rel="stylesheet" id="R-format-style">
+    <link href="../../../css/auto-complete/auto-complete.min3c2e.css?1749199978" rel="stylesheet">
+    <script src="../../../js/auto-complete/auto-complete.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.stemmer.support.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.multi.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.es.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/search.min3c2e.js?1749199978" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='#\/01accesoficheros\/03json\/098ejercicio\/index.html';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='';
+      window.relearn.contentLangs=['es'];
+      window.relearn.index_js_url="../../../searchindex.es3c2e.js?1749199978";
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // variant stuff
+      window.relearn.themevariants = [ 'blue', 'relearn-light', 'relearn-dark', 'learn', 'neon', 'green', 'red' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copiar en el portapapeles`;
+      window.T_Copied_to_clipboard = `¡Copiado al portapapeles!`;
+      window.T_Copy_link_to_clipboard = `Copiar enlace al portapapeles`;
+      window.T_Link_copied_to_clipboard = `¡Enlace copiado al portapapeles!`;
+      window.T_Reset_view = `Restablecer vista`;
+      window.T_View_reset = `¡Ver reajuste!`;
+      window.T_No_results_found = `No se han encontrado resultados para "{0}"`;
+      window.T_N_results_found = `{1} resultados encontrados para "{0}"`;
+    </script><style>
+    :root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+}
+
+@media screen and (max-width: 70.5rem) {
+    #R-sidebar {
+        min-width: var(--INTERNAL-MENU-WIDTH-S);
+        max-width: var(--INTERNAL-MENU-WIDTH-S);
+        width: var(--INTERNAL-MENU-WIDTH-S);
+    }
+    #R-body {
+        margin-inline-start: var(--INTERNAL-MENU-WIDTH-S);
+        min-width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+        max-width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+        width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+    }
+}
+@media screen and (max-width: 70.5rem) {
+     
+
+    .mobile-support #R-sidebar {
+        inset-inline-start: calc( -1 * var(--INTERNAL-MENU-WIDTH-S) );
+        min-width: var(--INTERNAL-MENU-WIDTH-S);
+        max-width: var(--INTERNAL-MENU-WIDTH-S);
+        width: var(--INTERNAL-MENU-WIDTH-S);
+    }
+    .mobile-support #navshow{
+        display: inline;
+    }
+    .mobile-support #R-body {
+        min-width: 100%;
+        max-width: 100%;
+        width: 100%;
+    }
+    .mobile-support #R-body {
+        margin-inline-start: 0;
+    }
+    .mobile-support.sidebar-flyout {
+        overflow: hidden;
+    }
+    .mobile-support.sidebar-flyout #R-sidebar {
+        inset-inline-start: 0;
+        z-index: 90;
+    }
+    .mobile-support.sidebar-flyout #R-body {
+        margin-inline-start: var(--INTERNAL-MENU-WIDTH-S);
+        overflow: hidden;
+    }
+    .mobile-support.sidebar-flyout #R-body-overlay{
+        background-color: rgba( 134, 134, 134, .5 );
+        bottom: 0;
+        cursor: pointer;
+        height: 100vh;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 190;
+    }
+}
+
+</style>
+
+
+  </head>
+  <body class="mobile-support html" data-url="../../../01accesoficheros/03json/098ejercicio/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menú (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Tabla de contenido (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#modelo-de-datos">Modelo de datos</a>
+      <ul>
+        <li><a href="#1-clase-final-opcion">1. Clase final <code>Opcion</code></a></li>
+        <li><a href="#3-clase-final-categoria">3. Clase final <code>Categoria</code></a></li>
+        <li><a href="#2-clase-pregunta">2. Clase <code>Pregunta</code></a></li>
+        <li><a href="#3-clase-preguntamultiple-implanta-la-interface-predicateint">3. Clase <code>PreguntaMultiple</code> implanta la interface <code>Predicate&lt;Int&gt;</code></a></li>
+        <li><a href="#4-clase-preguntaverdaderofalso">4. Clase <code>PreguntaVerdaderoFalso</code></a></li>
+        <li><a href="#5-clase-apptrivial">5. Clase <code>AppTrivial</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#conversión-a-json">Conversión a JSON</a></li>
+    <li><a href="#adaptadores-de-tipo-personalizados">Adaptadores de tipo personalizados</a>
+      <ul>
+        <li><a href="#1-jsonserializer">1. JsonSerializer</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../../index.html"><span itemprop="name">Acceso a datos</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../index.html"><span itemprop="name">UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../index.html"><span itemprop="name">01.03 JSON en Java</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Ejercicio. Trivial</span><meta itemprop="position" content="4"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/01accesoficheros/03json/098ejercicio/index.print.html" title="Imprimir todo el capítulo (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../0310jsondeserialize/index.html" title="01.09 Resumen Deserialización Gson (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../0105ejercicios/index.html" title="Ejercicios y recursos (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Más"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 01accesoficheros" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="ejercicio-trivial">Ejercicio. Trivial</h1>
+
+<!-- TOC -->
+<ul>
+<li><a href="index.html#modelo-de-datos">Modelo de datos</a>
+<ul>
+<li><a href="index.html#1-clase-final-opcion">1. Clase final <code>Opcion</code></a>
+<ul>
+<li><a href="index.html#atributos">Atributos</a></li>
+<li><a href="index.html#constructor">Constructor</a></li>
+<li><a href="index.html#métodos-funciones-miembro">Métodos (funciones miembro):</a></li>
+</ul>
+</li>
+<li><a href="index.html#3-clase-final-categoria">3. Clase final <code>Categoria</code></a>
+<ul>
+<li><a href="index.html#atributos-1">Atributos</a></li>
+<li><a href="index.html#constructores">Constructores</a></li>
+<li><a href="index.html#métodos">Métodos</a></li>
+</ul>
+</li>
+<li><a href="index.html#2-clase-pregunta">2. Clase <code>Pregunta</code></a>
+<ul>
+<li><a href="index.html#constructor-1">Constructor</a></li>
+<li><a href="index.html#funciones-miembro">Funciones miembro</a></li>
+</ul>
+</li>
+<li><a href="index.html#3-clase-preguntamultiple-implanta-la-interface-predicateint">3. Clase <code>PreguntaMultiple</code> implanta la interface <code>Predicate&lt;Int&gt;</code></a>
+<ul>
+<li><a href="index.html#atributos-2">Atributos</a></li>
+<li><a href="index.html#constructores-1">Constructores</a></li>
+<li><a href="index.html#funciones-miembro-1">Funciones miembro</a></li>
+</ul>
+</li>
+<li><a href="index.html#4-clase-preguntaverdaderofalso">4. Clase <code>PreguntaVerdaderoFalso</code></a>
+<ul>
+<li><a href="index.html#atributos-3">Atributos</a></li>
+<li><a href="index.html#constructores-2">Constructores</a></li>
+<li><a href="index.html#métodos-1">Métodos</a></li>
+</ul>
+</li>
+<li><a href="index.html#5-clase-apptrivial">5. Clase <code>AppTrivial</code></a></li>
+</ul>
+</li>
+<li><a href="index.html#conversión-a-json">Conversión a JSON</a></li>
+</ul>
+<!-- TOC -->
+<p>Se desea realizar una aplicación para gestionar Preguntas de Trivial. La aplicación debe permitir la creación de preguntas de dos tipos elección múltiple y verdadero falso.</p>
+<p>Emplearemos como base la estructura de datos del api <a href="https://opentdb.com/api_config.php" rel="external" target="_blank">Open Trivia Database</a> que proporciona preguntas en formato JSON.</p>
+<p>A modo de ejemplo, podéis consultar el siguiente JSON:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;response_code&#34;</span>: <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;results&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;multiple&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;difficulty&#34;</span>: <span style="color:#e6db74">&#34;medium&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;category&#34;</span>: <span style="color:#e6db74">&#34;Science: Computers&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;question&#34;</span>: <span style="color:#e6db74">&#34;What is the correct term for the metal object in between the CPU and the CPU fan within a computer system?&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;correct_answer&#34;</span>: <span style="color:#e6db74">&#34;Heat Sink&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;incorrect_answers&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;CPU Vent&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Temperature Decipator&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Heat Vent&#34;</span>
+</span></span><span style="display:flex;"><span>      ]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>O una de verdadero o falso:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;response_code&#34;</span>: <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;results&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;boolean&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;difficulty&#34;</span>: <span style="color:#e6db74">&#34;medium&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;category&#34;</span>: <span style="color:#e6db74">&#34;Science: Computers&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;question&#34;</span>: <span style="color:#e6db74">&#34;The programming language &#39;Python&#39; is based off a modified version of &#39;JavaScript&#39;.&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;correct_answer&#34;</span>: <span style="color:#e6db74">&#34;False&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;incorrect_answers&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;True&#34;</span>
+</span></span><span style="display:flex;"><span>      ]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<h2 id="modelo-de-datos">Modelo de datos</h2>
+<p>De momento implanta las opciones como una lista de cadenas en la clase Pregunta.</p>
+<pre class="mermaid align-center ">classDiagram
+direction BT
+class Pregunta
+class PreguntaMultiple
+class PreguntaVerdaderoFalso
+PreguntaMultiple  --&gt;  Pregunta 
+PreguntaMultiple &#34;1&#34; *--&gt; &#34;opciones *&#34; Opcion 
+PreguntaVerdaderoFalso  --&gt;  Pregunta </pre>
+<h3 id="1-clase-final-opcion">1. Clase final <code>Opcion</code></h3>
+<p>Clase final que representa <strong>cada una de las opciones de una pregunta tipo test</strong>.</p>
+<h4 id="atributos">Atributos</h4>
+<ul>
+<li><code>enunciado</code>: con el enunciado de la opción de la pregunta tipo test.</li>
+<li><code>correcta</code>: que indica si es una opción correcta o no.</li>
+</ul>
+<h4 id="constructor">Constructor</h4>
+<ul>
+<li>Un constructor sin parámetros.</li>
+<li>Un constructor que recoge el enunciado, marcándola como incorrecta.</li>
+<li>Un constructor que recoge el enunciado y si es correcta o no.</li>
+</ul>
+<h4 id="métodos-funciones-miembro">Métodos (funciones miembro):</h4>
+<ul>
+<li>Sobrescribe <code>toString</code> para que devuelva el enunciado. Si la opción es correcta devuelve el enunciado con un <code>[*]</code> al final de la cadena. Verifica nulos.</li>
+</ul>
+<hr>
+<h3 id="3-clase-final-categoria">3. Clase final <code>Categoria</code></h3>
+<p>Clase <code>Categoria</code> con un único atributo  llamado <code>nombre</code> que recoja el nombre de la categoría de la pregunta. La clase debe tener:</p>
+<h4 id="atributos-1">Atributos</h4>
+<ul>
+<li>Una contante DEFAULT_CATEGORY con el valor &ldquo;General&rdquo; que se empleará como categoría por defecto.</li>
+<li>Un atributo final <code>nombre</code> para el nombre de la categoría.</li>
+</ul>
+<h4 id="constructores">Constructores</h4>
+<ul>
+<li>Un constructor que recoge el nombre de la categoría.</li>
+<li>Un constructo por defecto que inicializa el nombre a &ldquo;Sin categoría&rdquo;.</li>
+</ul>
+<h4 id="métodos">Métodos</h4>
+<ul>
+<li>Sobrescribe los métodos <code>equals</code> y <code>hashCode</code> para que dos categorías sean iguales si tienen el mismo nombre.</li>
+<li>Sobrescribe el método <code>toString</code> para que devuelva el nombre de la categoría.</li>
+</ul>
+<h3 id="2-clase-pregunta">2. Clase <code>Pregunta</code></h3>
+<p>Clase <code>Pregunta</code> implementa la interfaz <code>Comparable&lt;Pregunta&gt;</code> y <code>Serializable</code>. Las preguntas tienen:</p>
+<ul>
+<li>
+<p>Identificador de la pregunta, de tipo <code>Long</code> (clase contenedora): <strong><code>idPregunta</code></strong>. Es <strong>mutable</strong>. En primera instancia no lo vamos a emplear pero es necesario para futuras ampliaciones.</p>
+</li>
+<li>
+<p><code>TipoPregunta</code>: enumeración con los valores <code>BOOLEAN</code> y <code>MULTIPLE</code>. La enumeración debe tener:</p>
+<ul>
+<li>Un atributo <code>tipoPregunta</code> que guarde el tipo de pregunta en forma de cadena, que tendrá los valores <code>Verdadero/Falso</code> y <code>Multiple</code>.</li>
+<li>un método <code>getTipoPregunta()</code> que devuelva el tipo de pregunta.</li>
+<li>Un <strong>método estático que recoja una cadena y devuelva el tipo de pregunta</strong> de tipo enumerado: <code>public static TipoPregunta getTipoPregunta(String tipoPregunta)</code></li>
+</ul>
+</li>
+<li>
+<p><code>dificultad</code>, de tipo <code>Dificultad</code>: enumeración con los valores <code>EASY</code>, <code>MEDIUM</code>, <code>HARD</code>. La enumeración debe tener:</p>
+</li>
+<li>
+<p>Un atributo <code>dificultad</code> que guarde la dificultad de la pregunta en forma de cadena.</p>
+</li>
+<li>
+<p>un método <code>getDificultad</code> que devuelva la dificultad de la pregunta.</p>
+</li>
+<li>
+<p>Un método estático <code>getDificultad</code> que recoja una cadena y devuelva la dificultad de la pregunta de tipo enumerado.</p>
+</li>
+<li>
+<p><code>categoria</code>: de tipo <code>Categoria</code></p>
+</li>
+<li>
+<p><code>pregunta</code>: enunciado de la pregunta.</p>
+</li>
+</ul>
+<h4 id="constructor-1">Constructor</h4>
+<p>Dos constructores:</p>
+<ul>
+<li>Un <strong>constructor por defecto</strong>.</li>
+<li>Un constructor que recoge el enunciado de la <code>pregunta</code>.</li>
+</ul>
+<p>Los <strong>métodos set devolverán una referencia al propio objeto</strong> para poder concatenar las asignaciones. Si se hace así, hay que hacerlo de manera explícita, con <code>return this</code>, facilitando la creación de objetos y evitando la necesidad de crear varios constructores con muchos parámetros.</p>
+<h4 id="funciones-miembro">Funciones miembro</h4>
+<p>A ser posible, los métodos set <strong>deben devolver una referencia al propio objeto para poder concatenar las asignaciones</strong>. Si se hace así hay que hacerlo de manera explícita, con <code>return this</code>.</p>
+<ul>
+<li>Método <code>toString</code> que devuelve el número y el enunciado de la pregunta. Con el siguiente formato: <em>número. Enunciado con la primera en mayúscula</em>.</li>
+<li>Método <code>compareTo</code> que compara dos preguntas por su enunciado, tipo de pregunta, dificultad y categoría. <strong>Si el enunciado es igual, se comparará por tipo de pregunta, dificultad y categoría</strong>.</li>
+<li>Sobrescribe los métodos <code>equals</code> y <code>hashCode</code> para que dos preguntas sean iguales si tienen el mismo enunciado, tipo de pregunta, dificultad y categoría (en concordancia con el método <code>compareTo</code>).</li>
+</ul>
+<hr>
+<h3 id="3-clase-preguntamultiple-implanta-la-interface-predicateint">3. Clase <code>PreguntaMultiple</code> implanta la interface <code>Predicate&lt;Int&gt;</code></h3>
+<p>Clase <code>PreguntaMultiple</code> que hereda de <code>Pregunta</code> e implementa la interfaz <code>Predicate&lt;Int&gt;</code>.
+Un predicado es una interfaz funcional con un método que devuelve un valor <code>booleano</code> (<code>test</code>). En este caso, la función <code>test</code> devuelve verdadero si el número de la respuesta correcta es igual al número pasado como parámetro. Por ejemplo, si se llama a <code>test(3)</code> y la respuesta correcta a la pregunta es 3, devolverá verdadero:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> pregunta <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PreguntaMultiple(<span style="color:#e6db74">&#34;¿Cuál es la capital de España?&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(pregunta.<span style="color:#a6e22e">test</span>(3)); <span style="color:#f92672">//</span> <span style="color:#66d9ef">true</span></span></span></code></pre></div>
+<p>Las preguntas multichoice tiene únicamente una lista de tipo <code>Opcion</code>.</p>
+<h4 id="atributos-2">Atributos</h4>
+<ul>
+<li><code>opciones</code>: lista de preguntas, de tipo <code>Opcion</code>.</li>
+</ul>
+<h4 id="constructores-1">Constructores</h4>
+<ul>
+<li>Un <strong>constructor por defecto</strong> que inicializa la lista de preguntas.</li>
+<li>Uno que recoge la pregunta <code>enunciado</code>, creando la lista.</li>
+</ul>
+<h4 id="funciones-miembro-1">Funciones miembro</h4>
+<p>El método <code>set</code> y el método <code>addOpcion</code>/<code>addOpciones</code> <strong>deben devolver una referencia al propio objeto para poder concatenar las asignaciones</strong>. Si se hace así hay que hacerlo de manera explícita, con <code>return this</code>.</p>
+<ul>
+<li><code>addOpcion</code>: recoge una opción (de tipo <code>Opcion</code>) y la añade.</li>
+<li><code>addOpciones</code>: recoge una lista de opciones (de tipo <code>Opcion</code>) y las añade a la lista actual.</li>
+<li>get y set para el atributo <code>opciones</code>.</li>
+<li><code>getNumCorrectas</code>: devuelve el número de opciones correctas de la pregunta.</li>
+<li><code>public int getPuntos(List&lt;Integer&gt; marcadas)</code>: recoge una lista de enteros con los números de las opciones marcadas (pueden marcar varias) y devuelve los puntos obtenidos. Las incorrectas cuentan negativo. Y ten en cuenta que se considera un punto por pregunta correcta.</li>
+</ul>
+<p>Para ello, debes &ldquo;recorrer&rdquo; la lista de opciones (<code>marcadas</code>) y comprobar si es correcta o no, llevando cuenta de las correctas y las incorrectas:
+Los puntos se calculan con la fórmula:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> puntos <span style="color:#f92672">=</span> (marcadasBien<span style="color:#f92672">-</span>marcadasMal)<span style="color:#f92672">/</span>numCorrectas;</span></span></code></pre></div>
+<ul>
+<li><code>toString</code>: devuelve el enunciado (invoca al toString de la clase padre) y la lista de opciones con el número de opción:</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>1. ¿Cuál es la capital de España?
+</span></span><span style="display:flex;"><span>    a. Madrid
+</span></span><span style="display:flex;"><span>    b. Barcelona
+</span></span><span style="display:flex;"><span>    c. Sevilla
+</span></span><span style="display:flex;"><span>    d. Valencia</span></span></code></pre></div>
+<p>Emplea la clase <strong>StringBuilder para crear la cadena o una estrategia lo más eficiente posible</strong>.</p>
+<ul>
+<li><code>test</code>: implantación del método test de la interfaz. Recoge el Integer y devuelve verdadero si la opción seleccionada es correcta. Comprueba que el valor recogido es un valor válido entre 0 y el número de opciones, además de comprobar que esa opción no es nula (obviamente, en Kotlin esa verificación no es precisa y se realiza de manera más sencilla con el operador <code>?.</code>)</li>
+</ul>
+<hr>
+<h3 id="4-clase-preguntaverdaderofalso">4. Clase <code>PreguntaVerdaderoFalso</code></h3>
+<p>Clase <code>PreguntaVerdaderoFalso</code> que hereda de <code>Pregunta</code> e implementa la interfaz <code>Predicate&lt;Boolean&gt;</code>.</p>
+<p>Las preguntas verdadero/falso sólo tiene un booleano que indica si la respuesta es verdadera o falsa.</p>
+<h4 id="atributos-3">Atributos</h4>
+<ul>
+<li><code>respuesta</code>: booleano que indica si la respuesta es verdadera o falsa.</li>
+</ul>
+<h4 id="constructores-2">Constructores</h4>
+<ul>
+<li>Un constructor por defecto.</li>
+<li>Un constructor que recoge el enunciado de la <code>pregunta</code>.</li>
+<li>Un constructor que recoge el enunciado de la <code>pregunta</code> y si es correcta o no.</li>
+</ul>
+<h4 id="métodos-1">Métodos</h4>
+<ul>
+<li><code>toString</code>: devuelve el enunciado (invoca al toString de la clase padre) con las opciones <em>verdadero</em> y <em>falso</em>, marcando la correcta con un asterisco al final de la cadena.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>1. ¿La capital de España es Madrid?
+</span></span><span style="display:flex;"><span>    a. Verdadero [*]
+</span></span><span style="display:flex;"><span>    b. Falso</span></span></code></pre></div>
+<ul>
+<li><code>test</code>: implantación del método test de la interfaz. Recoge el Boolean y devuelve verdadero si la opción seleccionada es correcta.</li>
+</ul>
+<h3 id="5-clase-apptrivial">5. Clase <code>AppTrivial</code></h3>
+<p>Esta clase debe crear varias preguntas de trivial y mostrarlas por pantalla.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>1. ¿Cuál el pais más extenso del mundo?
+</span></span><span style="display:flex;"><span>    a. Rusia
+</span></span><span style="display:flex;"><span>    b. Canadá
+</span></span><span style="display:flex;"><span>    c. China
+</span></span><span style="display:flex;"><span>    d. Estados Unidos
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>2. ¿Es Kotlin un lenguaje de programación?
+</span></span><span style="display:flex;"><span>    a. Verdadero
+</span></span><span style="display:flex;"><span>    b. Falso</span></span></code></pre></div>
+<h2 id="conversión-a-json">Conversión a JSON</h2>
+<p>Emplea la librería <code>Gson</code> para convertir las preguntas a JSON y viceversa, tanto en cadenas como en ficheros.
+Hazlo con preguntas tipo test y con preguntas verdadero/falso.</p>
+<p>Estudia el resultado mostrado. ¿Es coherente con lo esperado?</p>
+<h2 id="adaptadores-de-tipo-personalizados">Adaptadores de tipo personalizados</h2>
+<h3 id="1-jsonserializer">1. JsonSerializer</h3>
+<p>a. Crear un <strong>adaptador de tipo personalizado para la enumeración <code>TipoPregunta</code> que ponga el tipo de pregunta como una cadena en minúsculas</strong> dentro del objeto JSON de Pregunta. Por ejemplo, si el tipo de pregunta es <code>MULTIPLE</code>, el JSON resultante sería:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;tipoPregunta&#34;</span>: <span style="color:#e6db74">&#34;multiple&#34;</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Hazlo con e<strong>xpresiones lambda y con una clase anónima</strong>.</p>
+<p>b. Implementa un adaptador de tipo personalizado para la enumeración TipoPregunta que <strong>convierta el tipo de pregunta a un objeto JSON</strong> con el siguiente formato:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;tipoPregunta&#34;</span>: <span style="color:#e6db74">&#34;Multiple&#34;</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>c. Realiza el mismo tipo de adaptación que apartado a pero con la enumeración <code>Dificultad</code>.</p>
+<p>d. Implementa un adaptador de tipo personalizado, <code>CategoriaAdapter</code>, para la clase <code>Categoria</code> que convierta la categoría a una cadena:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;categoria&#34;</span>: <span style="color:#e6db74">&#34;General&#34;</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>e. Implementa un adaptador de tipo personalizado, <code>PreguntaAdapter</code>, para la clase <code>Pregunta</code> que convierta con el siguiente formato:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;multiple&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;difficulty&#34;</span>: <span style="color:#e6db74">&#34;easy&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;category&#34;</span>: <span style="color:#e6db74">&#34;Programación&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;question&#34;</span>: <span style="color:#e6db74">&#34;¿Cuál de los siguientes lenguajes de programación es orientado a objetos puro?&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;options&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;enunciado&#34;</span>: <span style="color:#e6db74">&#34;Java&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;correcta&#34;</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;enunciado&#34;</span>: <span style="color:#e6db74">&#34;Modula-2&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;correcta&#34;</span>: <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;enunciado&#34;</span>: <span style="color:#e6db74">&#34;Python&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;correcta&#34;</span>: <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;enunciado&#34;</span>: <span style="color:#e6db74">&#34;C&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;correcta&#34;</span>: <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Ayuda: el adaptador de  tipo personalizado JsonSerializer<Pregunta> para la clase <code>Pregunta</code> debe tener en cuenta que el tipo de pregunta es <code>multiple</code> o <code>boolean</code> y debe instanciar la clase correspondiente. Además, el método <code>serialize</code> debe devolver un objeto JSON con el formato indicado (JsonObjetc objeto = new JsonObject()).</p>
+<p>f. Implementa un adaptador de tipo personalizado, <code>PreguntaMultipleAdapter</code>, para la clase <code>PreguntaMultiple</code> que convierta con el siguiente formato:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;multiple&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;difficulty&#34;</span>: <span style="color:#e6db74">&#34;easy&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;category&#34;</span>: <span style="color:#e6db74">&#34;Programación&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;question&#34;</span>: <span style="color:#e6db74">&#34;¿Cuál de los siguientes lenguajes de programación es orientado a objetos puro?&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;correct_answer&#34;</span>: <span style="color:#e6db74">&#34;Java&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;incorrect_answers&#34;</span>: [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Modula-2&#34;</span>, <span style="color:#e6db74">&#34;Python&#34;</span>, <span style="color:#e6db74">&#34;C&#34;</span>
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+
+  <footer class="footline"></article>
+<footer>
+   <i class='fas fa-user'></i>  <span itemprop="name"> </span>
+
+<i class='fas fa-calendar'></i> Última actualización: 06.06.2025 
+</footer>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<img  src="../../../images/logo-ies.png" style="color:white;  font-size: 20px;" id="logo" href="http://manuais.pages.iessanclemente.net/apuntes/">
+        </div>
+        <search><form action="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Buscar (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Buscar</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Buscar...">
+            <button class="search-clear" type="button" data-search-clear="" title="Borrar búsqueda"><i class="fas fa-times" title="Borrar búsqueda"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/index.html"><a class="padding" href="../../../index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/index.html"><input type="checkbox" id="R-section-0758abab80c2aa84781892223aa808b3" aria-controls="R-subsections-0758abab80c2aa84781892223aa808b3"><label for="R-section-0758abab80c2aa84781892223aa808b3"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 0. Refuerzo y ayudas complementarias</span></label><a class="padding" href="../../../00ayudas/index.html">UD 0. Refuerzo y ayudas complementarias<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-0758abab80c2aa84781892223aa808b3" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/index.html"><input type="checkbox" id="R-section-1b1977ce428c9ac8dab8b72f8979bcb5" aria-controls="R-subsections-1b1977ce428c9ac8dab8b72f8979bcb5"><label for="R-section-1b1977ce428c9ac8dab8b72f8979bcb5"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01 Configuración y despliegue</span></label><a class="padding" href="../../../00ayudas/00configjava/index.html">01 Configuración y despliegue<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1b1977ce428c9ac8dab8b72f8979bcb5" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/01jarfiles/index.html"><a class="padding" href="../../../00ayudas/00configjava/01jarfiles/index.html">01 Archivos Jar<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/02jarwithmaven/index.html"><a class="padding" href="../../../00ayudas/00configjava/02jarwithmaven/index.html">02 Creación de un JAR ejecutable con Java con Apache Maven<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/03dependencias/index.html"><a class="padding" href="../../../00ayudas/00configjava/03dependencias/index.html">03. Dependencias Maven.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/index.html"><input type="checkbox" id="R-section-0ee0a79915535bc59e8b9d0e78f65ef9" aria-controls="R-subsections-0ee0a79915535bc59e8b9d0e78f65ef9"><label for="R-section-0ee0a79915535bc59e8b9d0e78f65ef9"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02 Java General</span></label><a class="padding" href="../../../00ayudas/02javageneral/index.html">02 Java General<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-0ee0a79915535bc59e8b9d0e78f65ef9" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/01streamapi/index.html"><a class="padding" href="../../../00ayudas/02javageneral/01streamapi/index.html">00.01 Java Stream API<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/02urlfiles/index.html"><a class="padding" href="../../../00ayudas/02javageneral/02urlfiles/index.html">00.02 Descarga de archivos de Internet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/03hashcode/index.html"><a class="padding" href="../../../00ayudas/02javageneral/03hashcode/index.html">03 Implementación de hashCode()<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/index.html"><input type="checkbox" id="R-section-8eb2a58628ca595eccda7f8f066488f0" aria-controls="R-subsections-8eb2a58628ca595eccda7f8f066488f0"><label for="R-section-8eb2a58628ca595eccda7f8f066488f0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 03. Layouts en Java Swing &amp; UI</span></label><a class="padding" href="../../../00ayudas/03layouts/index.html">03. Layouts en Java Swing &amp; UI<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8eb2a58628ca595eccda7f8f066488f0" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/00dialogosenswing/index.html"><a class="padding" href="../../../00ayudas/03layouts/00dialogosenswing/index.html">01 Ventanas de entrada de datos, mensajes y archivos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/05gridbaglayout/index.html"><a class="padding" href="../../../00ayudas/03layouts/05gridbaglayout/index.html">05 GridBagLayout<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/index.html"><input type="checkbox" id="R-section-1c69dc8b47fb6fae98603b1968118cf8" aria-controls="R-subsections-1c69dc8b47fb6fae98603b1968118cf8"><label for="R-section-1c69dc8b47fb6fae98603b1968118cf8"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 04. Patrones de diseño</span></label><a class="padding" href="../../../00ayudas/04patronesdisenho/index.html">04. Patrones de diseño<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1c69dc8b47fb6fae98603b1968118cf8" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/01designprinciples/index.html"><a class="padding" href="../../../00ayudas/04patronesdisenho/01designprinciples/index.html">01. Principios de diseño<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/02singleton/index.html"><a class="padding" href="../../../00ayudas/04patronesdisenho/02singleton/index.html">02. Patrón Singleton<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/03objetosinmutables/index.html"><a class="padding" href="../../../00ayudas/04patronesdisenho/03objetosinmutables/index.html">03. Objetos Inmutables<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/index.html"><input type="checkbox" id="R-section-36a825e367dd24b7cccca030c91ea60b" aria-controls="R-subsections-36a825e367dd24b7cccca030c91ea60b"><label for="R-section-36a825e367dd24b7cccca030c91ea60b"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 05. Programación en Kotlin</span></label><a class="padding" href="../../../00ayudas/05kotlin/index.html">05. Programación en Kotlin<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-36a825e367dd24b7cccca030c91ea60b" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/index.html"><input type="checkbox" id="R-section-312a90d18fa918ef04d04e75820d73c0" aria-controls="R-subsections-312a90d18fa918ef04d04e75820d73c0"><label for="R-section-312a90d18fa918ef04d04e75820d73c0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación estructurada básica</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/index.html">Programación estructurada básica<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-312a90d18fa918ef04d04e75820d73c0" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/10.-la_funcion_main/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/10.-la_funcion_main/index.html">La funcion main()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/20.-la_funcion-print-_y-_println/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/20.-la_funcion-print-_y-_println/index.html">La funcion print() y println()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/30.-comentarios/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/30.-comentarios/index.html">Comentarios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/40.-variables-_-literales-_y_-sentencia_-de_-asignación/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/40.-variables-_-literales-_y_-sentencia_-de_-asignaci%c3%b3n/index.html">Variables, literales y sentencia de asignación<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/50.-palabras_reservadas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/50.-palabras_reservadas/index.html">Palabras reservadas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/index.html"><input type="checkbox" id="R-section-94a2bfa5cc4fa0f33d0f2cf1c75e3265" aria-controls="R-subsections-94a2bfa5cc4fa0f33d0f2cf1c75e3265"><label for="R-section-94a2bfa5cc4fa0f33d0f2cf1c75e3265"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú tipos de datos y operadores</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/index.html">tipos de datos y operadores<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-94a2bfa5cc4fa0f33d0f2cf1c75e3265" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/60.tipos_de_datos_basicos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/60.tipos_de_datos_basicos/index.html">Tipos de datos básicos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/70.tipos_numericos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/70.tipos_numericos/index.html">Tipos Numéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/80.tipos_no_-numericos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/80.tipos_no_-numericos/index.html">Tipos básicos  No Numéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/90.conversion_de_tipos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/90.conversion_de_tipos/index.html">Conversión de Tipos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/100.-operadores/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/100.-operadores/index.html">Operadores<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/110.-expresiones_booleanas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/110.-expresiones_booleanas/index.html">Expresiones booleanas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/index.html"><input type="checkbox" id="R-section-840caf4a5c9da596bf4345cae4c798ab" aria-controls="R-subsections-840caf4a5c9da596bf4345cae4c798ab"><label for="R-section-840caf4a5c9da596bf4345cae4c798ab"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú colecciones básicas</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/index.html">colecciones básicas<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-840caf4a5c9da596bf4345cae4c798ab" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/120.-string/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/120.-string/index.html">String<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/130.-listas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/130.-listas/index.html">Listas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/140.rangos-/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/140.rangos-/index.html">Rangos<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/150.-entrada_teclado/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/150.-entrada_teclado/index.html">Entrada de datos por teclado con readln()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/index.html"><input type="checkbox" id="R-section-f79f31fcf5ae1f44691bca6f05e1710f" aria-controls="R-subsections-f79f31fcf5ae1f44691bca6f05e1710f"><label for="R-section-f79f31fcf5ae1f44691bca6f05e1710f"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú control de flujo</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/index.html">control de flujo<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-f79f31fcf5ae1f44691bca6f05e1710f" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/151.-control_de_flujo/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/151.-control_de_flujo/index.html">Control de flujo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/160.-sentencia_condicional_if/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/160.-sentencia_condicional_if/index.html">Sentencia condicional IF<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/190.-sentecia_when/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/190.-sentecia_when/index.html">Sentencia when<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/200.-bucle_for/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/200.-bucle_for/index.html">Bucle for<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/210.-while_y_do_while/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/210.-while_y_do_while/index.html">while y do while<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/220.-variables_locales_y_bloques/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/220.-variables_locales_y_bloques/index.html">variables locales y bloques<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/230.-break_y_continue/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/230.-break_y_continue/index.html">break y continue<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/240.otras_formas_de_iterar/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/240.otras_formas_de_iterar/index.html">Otras formas de iterar<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/250.-funciones/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/250.-funciones/index.html">Funciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/260.el_valor_nulo/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/260.el_valor_nulo/index.html">El valor nulo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/270.-readline/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/270.-readline/index.html">Entrada de datos por teclado con readLine()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/index.html"><input type="checkbox" id="R-section-44784ce5c237bf9124eefe20ce36272f" aria-controls="R-subsections-44784ce5c237bf9124eefe20ce36272f"><label for="R-section-44784ce5c237bf9124eefe20ce36272f"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú más sobre colecciones básicas</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/index.html">más sobre colecciones básicas<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-44784ce5c237bf9124eefe20ce36272f" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/310.-arrays/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/310.-arrays/index.html">Arrays<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/320.-listas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/320.-listas/index.html">Listas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/330.rangos-/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/330.rangos-/index.html">Rangos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/340.mapas-/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/340.mapas-/index.html">Mapas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/350.iterar_sobre_colecciones/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/350.iterar_sobre_colecciones/index.html">Iterar sobre colecciones<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/index.html"><input type="checkbox" id="R-section-1ef1a5ed807dacffeb206c0950804c3a" aria-controls="R-subsections-1ef1a5ed807dacffeb206c0950804c3a"><label for="R-section-1ef1a5ed807dacffeb206c0950804c3a"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación orientada a objetos</span></label><a class="padding" href="../../../00ayudas/05kotlin/02progoo/index.html">Programación orientada a objetos<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1ef1a5ed807dacffeb206c0950804c3a" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1010.objetos_y_clases/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1010.objetos_y_clases/index.html">Objetos y clases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1020.constructores-/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1020.constructores-/index.html">Constructores<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1030.propiedades/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1030.propiedades/index.html">Propiedades<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1040.sobreescribir_tostring/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1040.sobreescribir_tostring/index.html">Sobreescribir toString()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1060.modificadoresvisibilidad/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1060.modificadoresvisibilidad/index.html">modificadores de visibilidad<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1070.enum/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1070.enum/index.html">clases Enum<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1100.composicion/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1100.composicion/index.html">Composición<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1200.herencia/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1200.herencia/index.html">Herencia<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1220.clases_abstractas_interfaces/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1220.clases_abstractas_interfaces/index.html">Clases abstractas e Interfaces<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1240.dataclases/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1240.dataclases/index.html">Data Clases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1250.keywordobject/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1250.keywordobject/index.html">La palabra reservada object. Companion object, objetos singleton y objetos expressions<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1255.excepciones/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1255.excepciones/index.html">Excepciones en Kotlin<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1260.genericos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1260.genericos/index.html">Genéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1265.clausulatypealiases/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1265.clausulatypealiases/index.html">cláusula typealiases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1270.delegacion/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1270.delegacion/index.html">Delegación con cláusula by<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1280.claesanidadaseinternas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1280.claesanidadaseinternas/index.html">Clases anidadas e internas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/index.html"><input type="checkbox" id="R-section-8bbd4a78f07b64e8b2bc4b83b71f1498" aria-controls="R-subsections-8bbd4a78f07b64e8b2bc4b83b71f1498"><label for="R-section-8bbd4a78f07b64e8b2bc4b83b71f1498"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación funcional</span></label><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/index.html">Programación funcional<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8bbd4a78f07b64e8b2bc4b83b71f1498" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2010.funcioneskotlin/index.html"><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/2010.funcioneskotlin/index.html">sintáxis avanzada de las  funciones kotlin<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2020.-basesdepf/index.html"><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/2020.-basesdepf/index.html">algunos conceptos básicos de programación funcional<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2030.funcionesordensuperiorcolecciones/index.html"><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/2030.funcionesordensuperiorcolecciones/index.html">funciones de orden superior y colecciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2040.funcionesordensuperiorysequence/index.html"><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/2040.funcionesordensuperiorysequence/index.html">funciones de orden superior y sequence<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li></ul></li></ul></li>
+            <li class="parent " data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/index.html"><input type="checkbox" id="R-section-cf4ee7bae7fca4e692355524601fe599" aria-controls="R-subsections-cf4ee7bae7fca4e692355524601fe599" checked><label for="R-section-cf4ee7bae7fca4e692355524601fe599"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML</span></label><a class="padding" href="../../index.html">UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-cf4ee7bae7fca4e692355524601fe599" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/index.html"><input type="checkbox" id="R-section-ec127efd28751c1f836952c8dac2374d" aria-controls="R-subsections-ec127efd28751c1f836952c8dac2374d"><label for="R-section-ec127efd28751c1f836952c8dac2374d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.01 Java IO. Acceso a ficheros, flujos, serialización de objetos.</span></label><a class="padding" href="../../01javaio/index.html">01.01 Java IO. Acceso a ficheros, flujos, serialización de objetos.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-ec127efd28751c1f836952c8dac2374d" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0100javaiointro/index.html"><a class="padding" href="../../01javaio/0100javaiointro/index.html">01.00 Java IO. Introducción.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0101javaiofile/index.html"><a class="padding" href="../../01javaio/0101javaiofile/index.html">01.01 La clase File<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0102randomaccessfile/index.html"><a class="padding" href="../../01javaio/0102randomaccessfile/index.html">01.02 La clase RandomAccessFile<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0103javaiostreams/index.html"><a class="padding" href="../../01javaio/0103javaiostreams/index.html">01.03 Flujos de E/S<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0104bytestream/index.html"><a class="padding" href="../../01javaio/0104bytestream/index.html">01.04 Flujos de byte<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0105characterstream/index.html"><a class="padding" href="../../01javaio/0105characterstream/index.html">01.05 Flujos de caracteres<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0106javaiobuffer/index.html"><a class="padding" href="../../01javaio/0106javaiobuffer/index.html">01.06 Flujos de E/S con Buffer<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0107javaistream/index.html"><a class="padding" href="../../01javaio/0107javaistream/index.html">01.07 Operaciones comunes con flujos de E/S.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0109ejercicios/index.html"><a class="padding" href="../../01javaio/0109ejercicios/index.html">Ejercicios<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/index.html"><input type="checkbox" id="R-section-2d1e1941df73311305891c0dca6583fd" aria-controls="R-subsections-2d1e1941df73311305891c0dca6583fd"><label for="R-section-2d1e1941df73311305891c0dca6583fd"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.02 Java NIO.2</span></label><a class="padding" href="../../02javanio2/index.html">01.02 Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-2d1e1941df73311305891c0dca6583fd" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0202javaniopath/index.html"><a class="padding" href="../../02javanio2/0202javaniopath/index.html">02.01. La interface Path<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0203javaniopathcreate/index.html"><a class="padding" href="../../02javanio2/0203javaniopathcreate/index.html">02.03. Creación de Path<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0204javaniopath/index.html"><a class="padding" href="../../02javanio2/0204javaniopath/index.html">02.04. Operaciones comunes de Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0205javaniopathmethods/index.html"><a class="padding" href="../../02javanio2/0205javaniopathmethods/index.html">02.05. Métodos y con Path Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0206javaniostreams/index.html"><a class="padding" href="../../02javanio2/0206javaniostreams/index.html">02.06. Programación funcional con Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="parent " data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/index.html"><input type="checkbox" id="R-section-662c48eb0e2f97ba0e58c14a690fca47" aria-controls="R-subsections-662c48eb0e2f97ba0e58c14a690fca47" checked><label for="R-section-662c48eb0e2f97ba0e58c14a690fca47"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.03 JSON en Java</span></label><a class="padding" href="../index.html">01.03 JSON en Java<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-662c48eb0e2f97ba0e58c14a690fca47" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0300jsonintro/index.html"><a class="padding" href="../0300jsonintro/index.html">01.00. Introducción a JSON<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0301jsonjs/index.html"><a class="padding" href="../0301jsonjs/index.html">01.01. JSON con el API JavaScript de Java<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0302jsonlibraries/index.html"><a class="padding" href="../0302jsonlibraries/index.html">01.02. Bibliotecas JSON para Java<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0304gson/index.html"><a class="padding" href="../0304gson/index.html">01.03. Gson. Introducción<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0304gsondiagram/index.html"><a class="padding" href="../0304gsondiagram/index.html">01.03. Gson. Diagrama de clases (e interfaces)<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0305gsoncreate/index.html"><a class="padding" href="../0305gsoncreate/index.html">01.04. Gson. Creación de instancias Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0306creaciongson/index.html"><a class="padding" href="../0306creaciongson/index.html">01.05 Gson. Creación y lectura de objetos JSON<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0306transformacion/index.html"><a class="padding" href="../0306transformacion/index.html">01.06. Gson. Transformación de objetos JSON personalizada<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0307jsonreader01/index.html"><a class="padding" href="../0307jsonreader01/index.html">01.07 Gson. JsonReader<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0308jsonrename/index.html"><a class="padding" href="../0308jsonrename/index.html">01.08 Gson. Renombrar atributos <i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0309jsonserialize/index.html"><a class="padding" href="../0309jsonserialize/index.html">01.09 Resumen Serialización Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0310jsondeserialize/index.html"><a class="padding" href="../0310jsondeserialize/index.html">01.09 Resumen Deserialización Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="active " data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/098ejercicio/index.html"><a class="padding" href="index.html">Ejercicio. Trivial<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/0105ejercicios/index.html"><a class="padding" href="../../0105ejercicios/index.html">Ejercicios y recursos<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/index.html"><input type="checkbox" id="R-section-342b2e95b9611e1108f16a11c61cd1f2" aria-controls="R-subsections-342b2e95b9611e1108f16a11c61cd1f2"><label for="R-section-342b2e95b9611e1108f16a11c61cd1f2"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 2. Acceso a BD remotas relacionales</span></label><a class="padding" href="../../../02accesobd/index.html">UD 2. Acceso a BD remotas relacionales<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-342b2e95b9611e1108f16a11c61cd1f2" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/index.html"><input type="checkbox" id="R-section-66326b82828cdbb6e30c77e924342908" aria-controls="R-subsections-66326b82828cdbb6e30c77e924342908"><label for="R-section-66326b82828cdbb6e30c77e924342908"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02.02 JDBC. Introducción a las Bases de datos relacionales.</span></label><a class="padding" href="../../../02accesobd/02db/index.html">02.02 JDBC. Introducción a las Bases de datos relacionales.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-66326b82828cdbb6e30c77e924342908" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0101databases/index.html"><a class="padding" href="../../../02accesobd/02db/0101databases/index.html">02.01. Sistemas gestores de bases de datos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0102introdb/index.html"><a class="padding" href="../../../02accesobd/02db/0102introdb/index.html">02. Introducción a las bases de datos relacionales<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0103postgresql/index.html"><a class="padding" href="../../../02accesobd/02db/0103postgresql/index.html">03. PostgreSQL<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0104postgres01/index.html"><a class="padding" href="../../../02accesobd/02db/0104postgres01/index.html">04. PostgreSQL. Características y Operadores.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/index.html"><input type="checkbox" id="R-section-4b93c45cd959371d7c20dcc7da6d632c" aria-controls="R-subsections-4b93c45cd959371d7c20dcc7da6d632c"><label for="R-section-4b93c45cd959371d7c20dcc7da6d632c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02.03. Procesamiento de sentencias SQL.</span></label><a class="padding" href="../../../02accesobd/03procesandosql/index.html">02.03. Procesamiento de sentencias SQL.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-4b93c45cd959371d7c20dcc7da6d632c" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0101procesamientosql/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0101procesamientosql/index.html">01. Procesamiento de sentencias SQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0102conexiones/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0102conexiones/index.html">02. Conexiones a BD<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0103excepcionessql/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0103excepcionessql/index.html">03. Excepciones SQLException<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0104resultset/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0104resultset/index.html">04. ResultSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0105resultsetbatch/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0105resultsetbatch/index.html">05. Actualizaciones por lotes con ResultSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0106preparedst/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0106preparedst/index.html">06. Prepared Statement<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0107transacciones/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0107transacciones/index.html">07. Transacciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0108clavesgeneradas/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0108clavesgeneradas/index.html">08. Claves Generadas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0109largeobjects/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0109largeobjects/index.html">09. Objectos grandes<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0111rowset/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0111rowset/index.html">11. RowSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0115boletines/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0115boletines/index.html">15. Ejercicios y archivos de la unidad<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/99proyecto/index.html"><a class="padding" href="../../../02accesobd/99proyecto/index.html">Proyecto 1ª evaluación<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/index.html"><input type="checkbox" id="R-section-87c8b6c6cd354a309db816f73d185be0" aria-controls="R-subsections-87c8b6c6cd354a309db816f73d185be0"><label for="R-section-87c8b6c6cd354a309db816f73d185be0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 3. Object/Relational Mapping (ORM). JPA e Hibernate</span></label><a class="padding" href="../../../03orm/index.html">UD 3. Object/Relational Mapping (ORM). JPA e Hibernate<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-87c8b6c6cd354a309db816f73d185be0" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/index.html"><input type="checkbox" id="R-section-5aaca10806a740cf4d784be6e24473b9" aria-controls="R-subsections-5aaca10806a740cf4d784be6e24473b9"><label for="R-section-5aaca10806a740cf4d784be6e24473b9"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 03.01. Jakarta Persistence (JPA).</span></label><a class="padding" href="../../../03orm/jpa/index.html">03.01. Jakarta Persistence (JPA).<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-5aaca10806a740cf4d784be6e24473b9" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/01jpa/index.html"><a class="padding" href="../../../03orm/jpa/01jpa/index.html">01. Jakarta Persistence (JPA).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/02jpavshibernate/index.html"><a class="padding" href="../../../03orm/jpa/02jpavshibernate/index.html">02. JPA vs Hibernate.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/03jpaejercicio/index.html"><a class="padding" href="../../../03orm/jpa/03jpaejercicio/index.html">03. Ejercicio básico de JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/04entitymanager/index.html"><a class="padding" href="../../../03orm/jpa/04entitymanager/index.html">04. Gestión de entidades con EntityManager.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/05mapeoentidades/index.html"><a class="padding" href="../../../03orm/jpa/05mapeoentidades/index.html">05. Mapeo de entidades.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/06relaciones/index.html"><a class="padding" href="../../../03orm/jpa/06relaciones/index.html">06. Relaciones JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/07embedidos/index.html"><a class="padding" href="../../../03orm/jpa/07embedidos/index.html">07. Objetos embebidos.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/08colecciones/index.html"><a class="padding" href="../../../03orm/jpa/08colecciones/index.html">08. Mapeo de colecciones.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/09queries/index.html"><a class="padding" href="../../../03orm/jpa/09queries/index.html">09. Consultas.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/10jpql/index.html"><a class="padding" href="../../../03orm/jpa/10jpql/index.html">10. JPQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/11paginacion/index.html"><a class="padding" href="../../../03orm/jpa/11paginacion/index.html">11. Paginación de consultas.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/12herencia/index.html"><a class="padding" href="../../../03orm/jpa/12herencia/index.html">12. Herencia.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/14ejercicios/index.html"><a class="padding" href="../../../03orm/jpa/14ejercicios/index.html">Ejercicios de la unidad de JPA<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/15boletines/index.html"><a class="padding" href="../../../03orm/jpa/15boletines/index.html">Ejercicios de refuerzo.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/16dependencias/index.html"><a class="padding" href="../../../03orm/jpa/16dependencias/index.html">Dependencias Maven.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/95singleton/index.html"><a class="padding" href="../../../03orm/95singleton/index.html">03.02. Patrón Singleton.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/96ejerciciosrepaso/index.html"><a class="padding" href="../../../03orm/96ejerciciosrepaso/index.html">03.03. Ejercicios de refuerzo (Violín).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/97ejerciciosrepaso2/index.html"><a class="padding" href="../../../03orm/97ejerciciosrepaso2/index.html">03.04 Ejercicios de refuerzo (II)<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/98ejerciciosrepaso3/index.html"><a class="padding" href="../../../03orm/98ejerciciosrepaso3/index.html">03.05 Ejercicios de refuerzo (III)<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/index.html"><input type="checkbox" id="R-section-ffae27028787f9b794af8498ce8bc361" aria-controls="R-subsections-ffae27028787f9b794af8498ce8bc361"><label for="R-section-ffae27028787f9b794af8498ce8bc361"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 4. Spring.</span></label><a class="padding" href="../../../04spring/index.html">UD 4. Spring.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-ffae27028787f9b794af8498ce8bc361" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/01springboot/index.html"><a class="padding" href="../../../04spring/01springboot/index.html">01. Spring Boot.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/02springdata/index.html"><a class="padding" href="../../../04spring/02springdata/index.html">02. Spring Data JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/03practicajpadata/index.html"><a class="padding" href="../../../04spring/03practicajpadata/index.html">03. Práctica con de Spring Data JPA y REST.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/04repositorios/index.html"><a class="padding" href="../../../04spring/04repositorios/index.html">04. Repositorios String Data.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/05paginacion/index.html"><a class="padding" href="../../../04spring/05paginacion/index.html">05. Paginación y Ordenación usando Spring Data JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/06paginacionrest/index.html"><a class="padding" href="../../../04spring/06paginacionrest/index.html">06. Paginación y Ordenación usando Spring Data REST.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/07vaadin/index.html"><a class="padding" href="../../../04spring/07vaadin/index.html">07. Spring Data JPA con Vaadin (práctica).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/08ejecutores/index.html"><a class="padding" href="../../../04spring/08ejecutores/index.html">08. Ejecutores al inicio con Spring Boot<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/09serviciocompo/index.html"><a class="padding" href="../../../04spring/09serviciocompo/index.html">09. Servicios, componentes y repositorios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/10servicios/index.html"><a class="padding" href="../../../04spring/10servicios/index.html">10. Servicios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/index.html"><input type="checkbox" id="R-section-f25e02e15b94f5cb39179f26efa74bfe" aria-controls="R-subsections-f25e02e15b94f5cb39179f26efa74bfe"><label for="R-section-f25e02e15b94f5cb39179f26efa74bfe"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 11. Proyecto Spring. Cuestionarios.</span></label><a class="padding" href="../../../04spring/11proyecto/index.html">11. Proyecto Spring. Cuestionarios.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-f25e02e15b94f5cb39179f26efa74bfe" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/01modelo/index.html"><a class="padding" href="../../../04spring/11proyecto/01modelo/index.html">01. Modelo de datos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/02dto/index.html"><a class="padding" href="../../../04spring/11proyecto/02dto/index.html">02. DTO<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/03repositorios/index.html"><a class="padding" href="../../../04spring/11proyecto/03repositorios/index.html">03. Repositorios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/04controller/index.html"><a class="padding" href="../../../04spring/11proyecto/04controller/index.html">04. Controller<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/05resultados/index.html"><a class="padding" href="../../../04spring/11proyecto/05resultados/index.html">05. Pruebas y mejoras<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/12springproj/index.html"><a class="padding" href="../../../04spring/12springproj/index.html">12. Proyecto Spring. Cuestionarios.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/index.html"><input type="checkbox" id="R-section-a0dc28a495fca757d219f1aec2ecff4c" aria-controls="R-subsections-a0dc28a495fca757d219f1aec2ecff4c"><label for="R-section-a0dc28a495fca757d219f1aec2ecff4c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 5. Bases de datos no SQL. MongoDB</span></label><a class="padding" href="../../../05basesdatosnonsql/index.html">UD 5. Bases de datos no SQL. MongoDB<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-a0dc28a495fca757d219f1aec2ecff4c" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/mongodb/01nosql/index.html"><a class="padding" href="../../../05basesdatosnonsql/mongodb/01nosql/index.html">01. Bases de datos NoSQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/mongodb/03springmongodb/index.html"><a class="padding" href="../../../05basesdatosnonsql/mongodb/03springmongodb/index.html">03. Conexión a MongoDB con String Data MongoDB (práctica).<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/index.html"><input type="checkbox" id="R-section-8d4041f058dd2262e83830e1db38cc6d" aria-controls="R-subsections-8d4041f058dd2262e83830e1db38cc6d"><label for="R-section-8d4041f058dd2262e83830e1db38cc6d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Git</span></label><a class="padding" href="../../../git/index.html">Git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8d4041f058dd2262e83830e1db38cc6d" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/index.html"><input type="checkbox" id="R-section-a87776bdac862bf972ec945bc124b884" aria-controls="R-subsections-a87776bdac862bf972ec945bc124b884"><label for="R-section-a87776bdac862bf972ec945bc124b884"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Introducción git</span></label><a class="padding" href="../../../git/1.introduccion_git/index.html">Introducción git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-a87776bdac862bf972ec945bc124b884" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/1.introduccion_git/index.html"><a class="padding" href="../../../git/1.introduccion_git/1.introduccion_git/index.html">Introducción a git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/2.estados_git/index.html"><a class="padding" href="../../../git/1.introduccion_git/2.estados_git/index.html">Estados de git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/3.instalacion_git/index.html"><a class="padding" href="../../../git/1.introduccion_git/3.instalacion_git/index.html">Instalación de git<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/index.html"><input type="checkbox" id="R-section-b63515bb4dcfe678de9ffac7a29c1e77" aria-controls="R-subsections-b63515bb4dcfe678de9ffac7a29c1e77"><label for="R-section-b63515bb4dcfe678de9ffac7a29c1e77"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Fundamentos git</span></label><a class="padding" href="../../../git/2.fundamentos_git/index.html">Fundamentos git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-b63515bb4dcfe678de9ffac7a29c1e77" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/1.configuracion_git/index.html"><a class="padding" href="../../../git/2.fundamentos_git/1.configuracion_git/index.html">Configuracion de git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/2.inicializar_repo/index.html"><a class="padding" href="../../../git/2.fundamentos_git/2.inicializar_repo/index.html">Inicializando repositorio<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/3.cambios/index.html"><a class="padding" href="../../../git/2.fundamentos_git/3.cambios/index.html">Cambios en el repositorio<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/4.ignorar_archivos/index.html"><a class="padding" href="../../../git/2.fundamentos_git/4.ignorar_archivos/index.html">Archivos Ignorados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/5.checkout/index.html"><a class="padding" href="../../../git/2.fundamentos_git/5.checkout/index.html">Git checkout<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/6.log/index.html"><a class="padding" href="../../../git/2.fundamentos_git/6.log/index.html">Git Log<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/7.archivos_modificados/index.html"><a class="padding" href="../../../git/2.fundamentos_git/7.archivos_modificados/index.html">Archivos modificados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/8.cambios/index.html"><a class="padding" href="../../../git/2.fundamentos_git/8.cambios/index.html">Archivos modificados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/9.eliminar_archivos/index.html"><a class="padding" href="../../../git/2.fundamentos_git/9.eliminar_archivos/index.html">Opciones con archivos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/10.limitar/index.html"><a class="padding" href="../../../git/2.fundamentos_git/10.limitar/index.html">Historial de confirmaciones<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/3.remotos/index.html"><a class="padding" href="../../../git/3.remotos/index.html">Remotos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/4.etiquetado/index.html"><a class="padding" href="../../../git/4.etiquetado/index.html">Etiquetado<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/index.html"><input type="checkbox" id="R-section-d8234a81ae190365829886d9d8a058a7" aria-controls="R-subsections-d8234a81ae190365829886d9d8a058a7"><label for="R-section-d8234a81ae190365829886d9d8a058a7"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Ramas Git</span></label><a class="padding" href="../../../git/5.ramas_git/index.html">Ramas Git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-d8234a81ae190365829886d9d8a058a7" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/1.ramificaciones_git/index.html"><a class="padding" href="../../../git/5.ramas_git/1.ramificaciones_git/index.html">Ramificación<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/2.ramificaciones_remotas/index.html"><a class="padding" href="../../../git/5.ramas_git/2.ramificaciones_remotas/index.html">Ramas Remotas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/6.claves_ssh/index.html"><a class="padding" href="../../../git/6.claves_ssh/index.html">Claves SSH<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">Más</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/"><a class="padding" href="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/" rel="external" target="_blank"><i class='fas fa-fw fa-bookmark'></i>  Cómo editar plantilla<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://www.iessanclemente.net/"><a class="padding" href="https://www.iessanclemente.net/" rel="external" target="_blank"><i class='fas fa-home'></i> IES Tubalcain<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/categories"><a class="padding" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/categories"><i class='fa-fw fas fa-layer-group'></i> Categories<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tags"><a class="padding" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/tags"><i class='fa-fw fas fa-tags'></i> Tags<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+            <li class="R-variantswitcher">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-paint-brush"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <label class="a11y-only" for="R-select-variant">Tema</label>
+                  <select id="R-select-variant">
+                    <option id="R-select-variant-blue" value="blue" selected>Blue</option>
+                    <option id="R-select-variant-relearn-light" value="relearn-light">Relearn Light</option>
+                    <option id="R-select-variant-relearn-dark" value="relearn-dark">Relearn Dark</option>
+                    <option id="R-select-variant-learn" value="learn">Learn</option>
+                    <option id="R-select-variant-neon" value="neon">Neon</option>
+                    <option id="R-select-variant-green" value="green">Green</option>
+                    <option id="R-select-variant-red" value="red">Red</option>
+                  </select>
+                </div>
+                <div class="clear"></div>
+              </div>
+              <script>window.relearn.markVariant();</script>
+            </li>
+            <li class="R-historyclearer">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-history"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <button>Borrar Historial</button>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+<div id="R-footer">
+<div>
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/cc.png" height="30" />
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/by.png"  height="30"/>
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/nc-eu.png"  height="30"/>
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/sa.png" height="30" />
+</div>
+</div>
+      </div>
+    </aside>
+    <script src="../../../js/clipboard/clipboard.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/perfect-scrollbar/perfect-scrollbar.min3c2e.js?1749199978" defer></script>
+    <script src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/js/js-yaml/js-yaml.min.js?1749199978" defer></script>
+    <script src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/js/d3/d3-color.min.js?1749199978" defer></script>
+    <script src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/js/d3/d3-dispatch.min.js?1749199978" defer></script>
+    <script src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/js/d3/d3-drag.min.js?1749199978" defer></script>
+    <script src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/js/d3/d3-ease.min.js?1749199978" defer></script>
+    <script src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/js/d3/d3-interpolate.min.js?1749199978" defer></script>
+    <script src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/js/d3/d3-selection.min.js?1749199978" defer></script>
+    <script src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/js/d3/d3-timer.min.js?1749199978" defer></script>
+    <script src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/js/d3/d3-transition.min.js?1749199978" defer></script>
+    <script src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/js/d3/d3-zoom.min.js?1749199978" defer></script>
+    <script src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/js/mermaid/mermaid.min.js?1749199978" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"securityLevel\": \"loose\" }");
+    </script>
+    <script src="../../../js/theme.min3c2e.js?1749199978" defer></script>
+  </body>
+
+<!-- Mirrored from manuais.pages.iessanclemente.net/plantillas/dam/ad/01accesoficheros/03json/098ejercicio/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Sep 2025 20:45:34 GMT -->
+</html>

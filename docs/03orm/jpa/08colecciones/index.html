@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  
+<!-- Mirrored from manuais.pages.iessanclemente.net/plantillas/dam/ad/03orm/jpa/08colecciones/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Sep 2025 20:45:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.140.2">
+    <meta name="generator" content="Relearn 7.6.1+0b83617ee9da5253aafcf11807b256da7d88d709">
+    <meta name="description" content="1. Relaciones y colecciones de elementos (@ElementCollection) 2. Tabla de colección: @CollectionTable 2.1 Columnas de colección: @Column 3. Ordenación de colecciones 3.1. @OrderBy 3.2. @OrderColumn 4. Generación de claves primarias para colecciones de elementos: @CollectionId (Hibernate) (*) 5. Ejemplo de mapeo de colecciones 6. One-to-many vs @ElementCollection Anotaciones One to Many Anotación ElementCollection Resumen 1. Relaciones y colecciones de elementos (@ElementCollection) https://jakarta.ee/specifications/persistence/3.1/apidocs/jakarta.persistence/jakarta/persistence/elementcollection Cuando hablamos de mapear colecciones hay tres tipos de objetos que pueden contener colecciones:">
+    <meta name="author" content="IES Tubalcain">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <meta name="twitter:title" content="08. Mapeo de colecciones. :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta name="twitter:description" content="1. Relaciones y colecciones de elementos (@ElementCollection) 2. Tabla de colección: @CollectionTable 2.1 Columnas de colección: @Column 3. Ordenación de colecciones 3.1. @OrderBy 3.2. @OrderColumn 4. Generación de claves primarias para colecciones de elementos: @CollectionId (Hibernate) (*) 5. Ejemplo de mapeo de colecciones 6. One-to-many vs @ElementCollection Anotaciones One to Many Anotación ElementCollection Resumen 1. Relaciones y colecciones de elementos (@ElementCollection) https://jakarta.ee/specifications/persistence/3.1/apidocs/jakarta.persistence/jakarta/persistence/elementcollection Cuando hablamos de mapear colecciones hay tres tipos de objetos que pueden contener colecciones:">
+    <meta property="og:url" content="https://manuais.pages.iessanclemente.net/03orm/jpa/08colecciones/index.html">
+    <meta property="og:site_name" content="IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta property="og:title" content="08. Mapeo de colecciones. :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta property="og:description" content="1. Relaciones y colecciones de elementos (@ElementCollection) 2. Tabla de colección: @CollectionTable 2.1 Columnas de colección: @Column 3. Ordenación de colecciones 3.1. @OrderBy 3.2. @OrderColumn 4. Generación de claves primarias para colecciones de elementos: @CollectionId (Hibernate) (*) 5. Ejemplo de mapeo de colecciones 6. One-to-many vs @ElementCollection Anotaciones One to Many Anotación ElementCollection Resumen 1. Relaciones y colecciones de elementos (@ElementCollection) https://jakarta.ee/specifications/persistence/3.1/apidocs/jakarta.persistence/jakarta/persistence/elementcollection Cuando hablamos de mapear colecciones hay tres tipos de objetos que pueden contener colecciones:">
+    <meta property="og:locale" content="es">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="UD 3. Object/Relational Mapping (ORM). JPA e Hibernate">
+    <meta property="article:modified_time" content="2025-06-06T08:52:44+00:00">
+    <meta property="og:image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <meta itemprop="name" content="08. Mapeo de colecciones. :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta itemprop="description" content="1. Relaciones y colecciones de elementos (@ElementCollection) 2. Tabla de colección: @CollectionTable 2.1 Columnas de colección: @Column 3. Ordenación de colecciones 3.1. @OrderBy 3.2. @OrderColumn 4. Generación de claves primarias para colecciones de elementos: @CollectionId (Hibernate) (*) 5. Ejemplo de mapeo de colecciones 6. One-to-many vs @ElementCollection Anotaciones One to Many Anotación ElementCollection Resumen 1. Relaciones y colecciones de elementos (@ElementCollection) https://jakarta.ee/specifications/persistence/3.1/apidocs/jakarta.persistence/jakarta/persistence/elementcollection Cuando hablamos de mapear colecciones hay tres tipos de objetos que pueden contener colecciones:">
+    <meta itemprop="dateModified" content="2025-06-06T08:52:44+00:00">
+    <meta itemprop="wordCount" content="2464">
+    <meta itemprop="image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <title>08. Mapeo de colecciones. :: IES Tubalcain - Acceso a datos (2º DAM)</title>
+    <link href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/03orm/jpa/08colecciones/index.xml" rel="alternate" type="application/rss+xml" title="08. Mapeo de colecciones. :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <link href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/03orm/jpa/08colecciones/index.print.html" rel="alternate" type="text/html" title="08. Mapeo de colecciones. :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <link href="../../../fonts/fontawesome/css/fontawesome-all.min3c2e.css?1749199978" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../../fonts/fontawesome/css/fontawesome-all.min3c2e.css?1749199978" rel="stylesheet"></noscript>
+    <link href="../../../css/perfect-scrollbar/perfect-scrollbar.min3c2e.css?1749199978" rel="stylesheet">
+    <link href="../../../css/theme.min3c2e.css?1749199978" rel="stylesheet">
+    <link href="../../../css/format-html.min3c2e.css?1749199978" rel="stylesheet" id="R-format-style">
+    <link href="../../../css/auto-complete/auto-complete.min3c2e.css?1749199978" rel="stylesheet">
+    <script src="../../../js/auto-complete/auto-complete.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.stemmer.support.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.multi.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.es.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/search.min3c2e.js?1749199978" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='#\/03orm\/jpa\/08colecciones\/index.html';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='';
+      window.relearn.contentLangs=['es'];
+      window.relearn.index_js_url="../../../searchindex.es3c2e.js?1749199978";
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // variant stuff
+      window.relearn.themevariants = [ 'blue', 'relearn-light', 'relearn-dark', 'learn', 'neon', 'green', 'red' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copiar en el portapapeles`;
+      window.T_Copied_to_clipboard = `¡Copiado al portapapeles!`;
+      window.T_Copy_link_to_clipboard = `Copiar enlace al portapapeles`;
+      window.T_Link_copied_to_clipboard = `¡Enlace copiado al portapapeles!`;
+      window.T_Reset_view = `Restablecer vista`;
+      window.T_View_reset = `¡Ver reajuste!`;
+      window.T_No_results_found = `No se han encontrado resultados para "{0}"`;
+      window.T_N_results_found = `{1} resultados encontrados para "{0}"`;
+    </script><style>
+    :root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+}
+
+@media screen and (max-width: 70.5rem) {
+    #R-sidebar {
+        min-width: var(--INTERNAL-MENU-WIDTH-S);
+        max-width: var(--INTERNAL-MENU-WIDTH-S);
+        width: var(--INTERNAL-MENU-WIDTH-S);
+    }
+    #R-body {
+        margin-inline-start: var(--INTERNAL-MENU-WIDTH-S);
+        min-width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+        max-width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+        width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+    }
+}
+@media screen and (max-width: 70.5rem) {
+     
+
+    .mobile-support #R-sidebar {
+        inset-inline-start: calc( -1 * var(--INTERNAL-MENU-WIDTH-S) );
+        min-width: var(--INTERNAL-MENU-WIDTH-S);
+        max-width: var(--INTERNAL-MENU-WIDTH-S);
+        width: var(--INTERNAL-MENU-WIDTH-S);
+    }
+    .mobile-support #navshow{
+        display: inline;
+    }
+    .mobile-support #R-body {
+        min-width: 100%;
+        max-width: 100%;
+        width: 100%;
+    }
+    .mobile-support #R-body {
+        margin-inline-start: 0;
+    }
+    .mobile-support.sidebar-flyout {
+        overflow: hidden;
+    }
+    .mobile-support.sidebar-flyout #R-sidebar {
+        inset-inline-start: 0;
+        z-index: 90;
+    }
+    .mobile-support.sidebar-flyout #R-body {
+        margin-inline-start: var(--INTERNAL-MENU-WIDTH-S);
+        overflow: hidden;
+    }
+    .mobile-support.sidebar-flyout #R-body-overlay{
+        background-color: rgba( 134, 134, 134, .5 );
+        bottom: 0;
+        cursor: pointer;
+        height: 100vh;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 190;
+    }
+}
+
+</style>
+
+
+  </head>
+  <body class="mobile-support html" data-url="../../../03orm/jpa/08colecciones/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menú (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Tabla de contenido (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#1-relaciones-y-colecciones-de-elementos-elementcollection">1. Relaciones y colecciones de elementos (<code>@ElementCollection</code>)</a></li>
+    <li><a href="#2-tabla-de-colección-collectiontable">2. Tabla de colección: <code>@CollectionTable</code></a>
+      <ul>
+        <li><a href="#21-columnas-de-colección-column">2.1 Columnas de colección: <code>@Column</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#3-ordenación-de-colecciones">3. Ordenación de colecciones</a>
+      <ul>
+        <li><a href="#31-orderby">3.1. <code>@OrderBy</code></a></li>
+        <li><a href="#32-ordercolumn">3.2. <code>@OrderColumn</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#4-generación-de-claves-primarias-para-colecciones-de-elementos-collectionid-hibernate-">4. Generación de claves primarias para colecciones de elementos: <code>@CollectionId</code> (Hibernate) (*)</a></li>
+    <li><a href="#5-ejemplo-de-mapeo-de-colecciones">5. Ejemplo de mapeo de colecciones</a></li>
+    <li><a href="#6-one-to-many-vs-elementcollection">6. One-to-many vs <code>@ElementCollection</code></a>
+      <ul>
+        <li><a href="#anotaciones-one-to-many">Anotaciones One to Many</a></li>
+        <li><a href="#anotación-elementcollection">Anotación ElementCollection</a></li>
+      </ul>
+    </li>
+    <li><a href="#resumen">Resumen</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../../index.html"><span itemprop="name">Acceso a datos</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../index.html"><span itemprop="name">UD 3. Object/Relational Mapping (ORM). JPA e Hibernate</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../index.html"><span itemprop="name">03.01. Jakarta Persistence (JPA).</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">08. Mapeo de colecciones.</span><meta itemprop="position" content="4"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/03orm/jpa/08colecciones/index.print.html" title="Imprimir todo el capítulo (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../07embedidos/index.html" title="07. Objetos embebidos. (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../09queries/index.html" title="09. Consultas. (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Más"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 03orm" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="08-mapeo-de-colecciones">08. Mapeo de colecciones.</h1>
+
+<!-- TOC -->
+<ul>
+<li><a href="index.html#1-relaciones-y-colecciones-de-elementos-elementcollection">1. Relaciones y colecciones de elementos (<code>@ElementCollection</code>)</a></li>
+<li><a href="index.html#2-tabla-de-colección-collectiontable">2. Tabla de colección: <code>@CollectionTable</code></a>
+<ul>
+<li><a href="index.html#21-columnas-de-colección-column">2.1 Columnas de colección: <code>@Column</code></a></li>
+</ul>
+</li>
+<li><a href="index.html#3-ordenación-de-colecciones">3. Ordenación de colecciones</a>
+<ul>
+<li><a href="index.html#31-orderby">3.1. <code>@OrderBy</code></a></li>
+<li><a href="index.html#32-ordercolumn">3.2. <code>@OrderColumn</code></a></li>
+</ul>
+</li>
+<li><a href="index.html#4-generación-de-claves-primarias-para-colecciones-de-elementos-collectionid-hibernate-">4. Generación de claves primarias para colecciones de elementos: <code>@CollectionId</code> (Hibernate) (*)</a></li>
+<li><a href="index.html#5-ejemplo-de-mapeo-de-colecciones">5. Ejemplo de mapeo de colecciones</a></li>
+<li><a href="index.html#6-one-to-many-vs-elementcollection">6. One-to-many vs <code>@ElementCollection</code></a>
+<ul>
+<li><a href="index.html#anotaciones-one-to-many">Anotaciones One to Many</a></li>
+<li><a href="index.html#anotación-elementcollection">Anotación ElementCollection</a></li>
+</ul>
+</li>
+<li><a href="index.html#resumen">Resumen</a></li>
+</ul>
+<!-- TOC -->
+<h2 id="1-relaciones-y-colecciones-de-elementos-elementcollection">1. Relaciones y colecciones de elementos (<code>@ElementCollection</code>)</h2>
+<ul>
+<li><a href="https://jakarta.ee/specifications/persistence/3.1/apidocs/jakarta.persistence/jakarta/persistence/elementcollection" rel="external" target="_blank">https://jakarta.ee/specifications/persistence/3.1/apidocs/jakarta.persistence/jakarta/persistence/elementcollection</a></li>
+</ul>
+<p>Cuando hablamos de mapear colecciones hay <strong>tres tipos de objetos que pueden contener colecciones</strong>:</p>
+<ul>
+<li><strong>Entidades</strong> (<code>@OneToMany</code> o <code>@ManyToMany</code>).</li>
+<li><strong>Elementos embebidos</strong> (<code>@ElementCollection</code>)</li>
+<li><strong>Elementos básicos</strong> (<code>@ElementCollection</code>)</li>
+</ul>
+<p>Sin embargo, las <strong>colecciones de elementos embebidos y básicos no se consideran relaciones</strong>. Son colecciones de elementos que se denominan <strong>colecciones de elementos</strong>, pues, a diferencia de las relaciones, que se relacionan con entidades independientes, <strong>las colecciones de elementos  contienen objetos que dependen de la entidad que los referencia</strong>.</p>
+<p><strong>Sólo pueden ser obtenidos a través de la entidad que los contiene</strong>.</p>
+<p>La <a href="https://jakarta.ee/specifications/persistence/3.1/apidocs/jakarta.persistence/jakarta/persistence/elementcollection" rel="external" target="_blank">anotación <code>@ElementCollection</code></a> se utiliza para <strong>mapear colecciones de elementos embebidos o básicos</strong>.
+Dispones de dos elementos opcionales:</p>
+<ul>
+<li>
+<p><code>targetClass</code>: de <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Class.html" rel="external" target="_blank">tipo Class</a> indica la clase básica o embebida del elemento de la colección. Es opcional si el tipo de elementos de la colección se indica con genéricos, obligatorio en caso contrario.</p>
+</li>
+<li>
+<p><code>fetch</code>: de <a href="https://jakarta.ee/specifications/persistence/3.1/apidocs/jakarta.persistence/jakarta/persistence/fetchtype" rel="external" target="_blank">tipo <code>FechType</code></a> tipo de carga de los elementos de la colección, perezosa o ansiosa. <strong>Por defecto es perezosa</strong>.</p>
+</li>
+</ul>
+<p>En el siguiente ejemplo se requiere indicar la clase de los elementos de la colección con el atributo <code>targetClass</code>, pues es una colección sin genéricos (perezosa es el valor por defecto):</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#a6e22e">@Entity</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Persona</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Id</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">long</span> id;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> String nombre;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@ElementCollection</span>(targetClass<span style="color:#f92672">=</span>Vacaciones.<span style="color:#a6e22e">class</span>, fetch<span style="color:#f92672">=</span>FetchType.<span style="color:#a6e22e">LAZY</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> Collection vacaciones;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    }</span></span></code></pre></div>
+<p>Por ejemplo con lista de cadenas de texto con genéricos (ambos atributos son opcionales):</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#a6e22e">@Entity</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Persona</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Id</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">long</span> id;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> String nombre;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@ElementCollection</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> telefonos;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    }</span></span></code></pre></div>
+<p>En este caso, la colección de teléfonos es una colección de elementos básicos. No es una relación, pues los <strong>teléfonos no son entidades independientes, sino que dependen de la persona que los referencia</strong>.</p>
+<p>También podría ser un <strong>conjunto (Set) de elementos</strong>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#a6e22e">@Entity</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Persona</span> {
+</span></span><span style="display:flex;"><span>       <span style="color:#a6e22e">@Id</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">protected</span> String numeroSeguridadSocial;
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">protected</span> String nombre;
+</span></span><span style="display:flex;"><span>       <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#a6e22e">@ElementCollection</span>  
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">protected</span> Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> apodos <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashSet();
+</span></span><span style="display:flex;"><span>       <span style="color:#75715e">//  ...</span>
+</span></span><span style="display:flex;"><span>    } </span></span></code></pre></div>
+<p>O una <strong>colección de elementos embebidos</strong>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#a6e22e">@Embeddable</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Vacaciones</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Temporal</span>(TemporalType.<span style="color:#a6e22e">DATE</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> Calendar fechaInicio;
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Column</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;duracionDias&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> duracion;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Entity</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Persona</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Id</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">long</span> idPersona;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> String nombre;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@ElementCollection</span>(targerClass<span style="color:#f92672">=</span>Vacaciones.<span style="color:#a6e22e">class</span>, fetch<span style="color:#f92672">=</span>FetchType.<span style="color:#a6e22e">LAZY</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> Collection vacaciones;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@ElementCollection</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">protected</span> Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> apodos <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashSet();
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    }</span></span></code></pre></div>
+<p>En el ejemplo anterior, la <strong><a href="https://jakarta.ee/specifications/persistence/3.1/apidocs/jakarta.persistence/jakarta/persistence/elementcollection" rel="external" target="_blank">anotación <code>@ElementCollection</code></a> incluye el atributo <code>targetClass</code> que indica la clase de los elementos de la colección</strong> porque no se ha indicado el tipo de elementos que contiene la colección.</p>
+<h2 id="2-tabla-de-colección-collectiontable">2. Tabla de colección: <code>@CollectionTable</code></h2>
+<p>La anotación <a href="https://jakarta.ee/specifications/persistence/3.1/apidocs/jakarta.persistence/jakarta/persistence/collectiontable" rel="external" target="_blank"><code>@CollectionTable</code></a> se utiliza para <strong>especificar la tabla de la colección</strong>.</p>
+<p>En el caso de las colecciones de elementos embebidos, los elementos no son entidades, por lo que no tendrá asociada una tabla, sin embargo, al no ser posible almacenar varios elementos en la misma columna, <strong>las colecciones de elementos embebidos y tipos básicos (algunos sistemas gestores de base de datos disponen de tipo de datos para ARRAY) requieren una tabla independiente denominada &ldquo;Tabla de colección&rdquo; que almacena los elementos de la colección</strong>.</p>
+<p>Es posible <strong>especificar la tabla de la colección con la <a href="https://jakarta.ee/specifications/persistence/3.1/apidocs/jakarta.persistence/jakarta/persistence/collectiontable" rel="external" target="_blank">anotación <code>@CollectionTable</code></a></strong>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#a6e22e">@Entity</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Persona</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Id</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">long</span> id;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> String nombre;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@ElementCollection</span>(targerClass<span style="color:#f92672">=</span>Vacaciones.<span style="color:#a6e22e">class</span>, fetch<span style="color:#f92672">=</span>FetchType.<span style="color:#a6e22e">LAZY</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@CollectionTable</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Vacaciones&#34;</span>, joinColumns<span style="color:#f92672">=</span><span style="color:#a6e22e">@JoinColumn</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;idPersona&#34;</span>))
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> Collection vacaciones;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    }</span></span></code></pre></div>
+<p>En este caso, la tabla <code>Vacaciones</code> almacenará los elementos de la colección <code>vacaciones</code> de la entidad <code>Persona</code>. La tabla <code>Vacaciones</code> tendrá una columna <code>idPersona</code> que será la clave foránea que relacionará los elementos de la colección con la entidad <code>Persona</code>.</p>
+<p>Si no se especifica la tabla de la colección, se utilizará una <strong>tabla por defecto con el nombre de la entidad y el nombre de la propiedad de la colección separados por un guion bajo</strong>. Por ejemplo, si no se especifica la tabla de la colección, la tabla por defecto de la colección <code>vacaciones</code> de la entidad <code>Persona</code> se llamará <code>Persona_Vacaciones</code>.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#a6e22e">@Entity</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Persona</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Id</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">long</span> id;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> String nombre;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@ElementCollection</span>(targerClass<span style="color:#f92672">=</span>Vacaciones.<span style="color:#a6e22e">class</span>, fetch<span style="color:#f92672">=</span>FetchType.<span style="color:#a6e22e">LAZY</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> Collection vacaciones;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    }</span></span></code></pre></div>
+<h3 id="21-columnas-de-colección-column">2.1 Columnas de colección: <code>@Column</code></h3>
+<p>Por defecto, las columnas de la tabla de la colección tendrán el mismo nombre que la propiedad de la colección. Sin embargo, <strong>se pueden especificar las columnas de la tabla de colección con la <a href="https://jakarta.ee/specifications/persistence/3.1/apidocs/jakarta.persistence/jakarta/persistence/column" rel="external" target="_blank">anotación <code>@Column</code></a></strong>.</p>
+<ul>
+<li>Con <strong>colecciones de tipo básico</strong>, el nombre de a columna se obtiene de nombre de campo o propiedad de la colección.
+<ul>
+<li>Se puede sobrescribir con la anotación <code>@Column</code> indicando el nombre de la columna.</li>
+</ul>
+</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@ElementCollection</span> <span style="color:#75715e">// usa la tabla por defecto: Persona_telefonos</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Column</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;telefono&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> telefonos;</span></span></code></pre></div>
+<ul>
+<li>Con <strong>colecciones de clases embebidas</strong> los nombres de las columnas se corresponden con los de las propiedades de la clase embebida.
+<ul>
+<li>Se puedes sobrescribir con la anotación <code>@AttributeOverride</code> o <code>@AttributeOverrides</code> indicando el nombre de la columna (si tiene referencias a otras entidades puede sobrescribirse con <code>@AssociationOverride</code> o <code>@AssociationOverrides</code>).</li>
+</ul>
+</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@ElementCollection</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@CollectionTable</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Residencia&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@AttributeOverrides</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@AttributeOverride</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;calle&#34;</span>, column<span style="color:#f92672">=</span><span style="color:#a6e22e">@Column</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;calleCasa&#34;</span>)), <span style="color:#a6e22e">@AttributeOverride</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ciudad&#34;</span>, column<span style="color:#f92672">=</span><span style="color:#a6e22e">@Column</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ciudadCasa&#34;</span>)), <span style="color:#a6e22e">@AttributeOverride</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;provincia&#34;</span>, column<span style="color:#f92672">=</span><span style="color:#a6e22e">@Column</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;provinciaCasa&#34;</span>))
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> Set<span style="color:#f92672">&lt;</span>Direccion<span style="color:#f92672">&gt;</span> direcciones <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashSet();</span></span></code></pre></div>
+<p>En el siguiente ejemplo completo se detalla cómo se pueden <strong>especificar las columnas de la tabla de colección con la anotación <code>@Column</code></strong>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Embeddable</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Direccion</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> String calle;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> String ciudad;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> String provincia;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Entity</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Persona</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Id</span> <span style="color:#66d9ef">protected</span> String numeroSeguridadSocial;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> String nombre;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> Direccion casa;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//   ...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@ElementCollection</span>  <span style="color:#75715e">// usa la tabla por defecto: Persona_Alias</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Column</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;nombre&#34;</span>, length<span style="color:#f92672">=</span>50)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> alias <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashSet();
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//   ...</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Entity</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Medico</span> <span style="color:#66d9ef">extends</span> Persona {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@ElementCollection</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@CollectionTable</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Casa&#34;</span>) <span style="color:#75715e">// usa el nombre por defecto de la clave foránea.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@AttributeOverrides</span>({
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">@AttributeOverride</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;calle&#34;</span>, column<span style="color:#f92672">=</span><span style="color:#a6e22e">@Column</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;calleCasa&#34;</span>)),
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">@AttributeOverride</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ciudad&#34;</span>, column<span style="color:#f92672">=</span><span style="color:#a6e22e">@Column</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ciudadCasa&#34;</span>)),
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">@AttributeOverride</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;provincia&#34;</span>, column<span style="color:#f92672">=</span><span style="color:#a6e22e">@Column</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;provinciaCasa&#34;</span>))
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> Set<span style="color:#f92672">&lt;</span>Direccion<span style="color:#f92672">&gt;</span> casas <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashSet();
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">//  ...</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>En el ejemplo anterior hemos sobrescrito los nombres de las columnas de la tabla de colección <code>Casa</code> con la anotación <code>@AttributeOverride</code> y <code>@AttributeOverrides</code>.</p>
+<h2 id="3-ordenación-de-colecciones">3. Ordenación de colecciones</h2>
+<h3 id="31-orderby">3.1. <code>@OrderBy</code></h3>
+<p>La anotación <code>@OrderBy</code> se utiliza para <strong>ordenar los elementos de una colección</strong>. Se <strong>puede aplicar a colecciones de elementos básicos o embebidos, así como cualquier relación multivaluada (<code>@OneToMany</code>, <code>@ManyToMany</code>) de tipo List</strong>.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#a6e22e">@Entity</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Persona</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Id</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">long</span> id;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> String nombre;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@ElementCollection</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@OrderBy</span>(<span style="color:#e6db74">&#34;fechaInicio DESC&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> List<span style="color:#f92672">&lt;</span>Vacaciones<span style="color:#f92672">&gt;</span> vacaciones;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    }</span></span></code></pre></div>
+<p>En este caso, la colección <code>vacaciones</code> se ordenará por la fecha de inicio de las vacaciones en orden descendente.</p>
+<p>El <strong>elemento de la anotación <code>@OrderBy</code> es una lista de nombres de propiedades separados por comas</strong>, que se utilizan para ordenar los elementos de la colección.</p>
+<p>La sintaxis es la siguiente:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#a6e22e">@OrderBy</span>(<span style="color:#e6db74">&#34;propiedad1 [ASC|DESC], propiedad2 [ASC|DESC], ...&#34;</span>)</span></span></code></pre></div>
+<p>Si no se especifica <code>ASC</code> o <code>DESC</code>, el orden <strong>por defecto es ascendente (<code>ASC</code>)</strong>.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ebnf" data-lang="ebnf"><span style="display:flex;"><span><span style="color:#66d9ef">orderby_list</span><span style="color:#960050;background-color:#1e0010">::</span><span style="color:#f92672">=</span> <span style="color:#66d9ef">orderby_item </span>[,<span style="color:#66d9ef">orderby_item</span>]<span style="color:#960050;background-color:#1e0010">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">orderby_item</span><span style="color:#960050;background-color:#1e0010">::=</span> [<span style="color:#66d9ef">property_or_field_name</span>] [<span style="color:#66d9ef">ASC </span>| <span style="color:#66d9ef">DESC</span>]</span></span></code></pre></div>
+<p>Si no se especifica <code>@OrderBy</code> en una asociación de una entidad  con una colección de elementos, <strong>el orden por defecto es el orden de la clave primaria</strong>.</p>
+<p>Para <strong>referir a una propiedad de un elemento embebido, se puede utilizar la notación de punto</strong>. Por ejemplo:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#a6e22e">@Entity</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Persona</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Id</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">long</span> idPersona;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> String nome;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@ElementCollection</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@OrderBy</span>(<span style="color:#e6db74">&#34;rua ASC&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> List<span style="color:#f92672">&lt;</span>Direccion<span style="color:#f92672">&gt;</span> direccions;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    }</span></span></code></pre></div>
+<p>En este caso, la colección <code>direccions</code> se ordenará por la <code>rua</code> de las direcciones en orden ascendente.</p>
+<p>Si se quiere ordenar por una propiedad de un elemento embebido, <strong>se puede utilizar la notación de punto</strong>. Por ejemplo:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Entity</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Persona</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@ElementCollection</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@OrderBy</span>(<span style="color:#e6db74">&#34;codigoPostal.codigoProvincia, codigoPostal.codigoConcello&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Set<span style="color:#f92672">&lt;</span>Direccion<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getResidencias</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//...</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Embeddable</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Direccion</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> String rua;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> String cidade;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> String provincia;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Embedded</span> <span style="color:#66d9ef">protected</span> CodigoPostal codigoPostal;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Embeddable</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CodigoPostal</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> String codigoProvincia;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> String codigoConcello;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Para ordenar por varias propiedades, se pueden especificar varias propiedades separadas por comas. Por ejemplo:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#a6e22e">@Entity</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Persona</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Id</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">long</span> id;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> String nombre;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@ElementCollection</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@OrderBy</span>(<span style="color:#e6db74">&#34;fechaInicio DESC, duracion ASC&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> List<span style="color:#f92672">&lt;</span>Vacaciones<span style="color:#f92672">&gt;</span> vacaciones;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    }</span></span></code></pre></div>
+<p>La ordenación puede realizarse para cualquier <strong>relación multivaluada de tipo List</strong>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Entity</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Curso</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@ManyToMany</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@OrderBy</span>(<span style="color:#e6db74">&#34;apelidos ASC&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> List<span style="color:#f92672">&lt;</span>Estudante<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getEstudantes</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//...</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Entity</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Estudante</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@ManyToMany</span>(mappedBy<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;estudantes&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@OrderBy</span> <span style="color:#75715e">// ordena por clave primaria</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> List<span style="color:#f92672">&lt;</span>Curso<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getCurso</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//...</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<h3 id="32-ordercolumn">3.2. <code>@OrderColumn</code></h3>
+<p>Otro tipo de ordenación es por medio de la anotación <mark><code>@OrderColumn</code> que se utiliza para <strong>ordenar los elementos de una colección</strong></mark>. Se <strong>puede aplicar a colecciones de elementos básicos o embebidos, así como cualquier relación multivaluada (<code>@OneToMany</code>, <code>@ManyToMany</code>) de tipo List</strong>.</p>
+<p>El <strong>uso de <code>@OrderColumn</code> es incompatible con <code>@OrderBy</code></strong> (uno u otro, no ambos).</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#a6e22e">@Entity</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Estudiante</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Id</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">long</span> idEstudiante;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> String nombre;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@OneToMany</span>(mappedBy<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;estudiante&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@OrderColumn</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;nombre&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> List<span style="color:#f92672">&lt;</span>Materia<span style="color:#f92672">&gt;</span> materias;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    }</span></span></code></pre></div>
+<p>Si no se especifica el nombre de la columna, <strong>se utilizará el nombre de la propiedad de la colección seguido de &ldquo;_ORDER&rdquo;</strong>.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#a6e22e">@Entity</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Estudiante</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Id</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">long</span> idEstudiante;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> String nombre;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@OneToMany</span>(mappedBy<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;estudiante&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@OrderColumn</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> List<span style="color:#f92672">&lt;</span>Materia<span style="color:#f92672">&gt;</span> materias;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    }</span></span></code></pre></div>
+<h2 id="4-generación-de-claves-primarias-para-colecciones-de-elementos-collectionid-hibernate-">4. Generación de claves primarias para colecciones de elementos: <code>@CollectionId</code> (Hibernate) (*)</h2>
+<p>A modo de curiosidad, se puede mencionar que existe una anotación <code>@CollectionId</code> que se utiliza para <strong>generar claves primarias para las colecciones de elementos</strong> en Hibernate (no en JPA, por lo que <strong>este apartado no es relevante para el examen</strong>).</p>
+<p>La <strong><a href="https://docs.jboss.org/hibernate/orm/6.4/javadocs/org/hibernate/annotations/CollectionId.html" rel="external" target="_blank">anotación <code>@CollectionId</code></a> es exclusiva de Hibernate</strong> se utiliza para <strong>generar claves primarias para las colecciones de elementos</strong>. Se puede aplicar a colecciones de elementos básicos o embebidos.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#a6e22e">@Entity</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Persona</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Id</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">long</span> id;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> String nombre;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@ElementCollection</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@CollectionId</span>(columns<span style="color:#f92672">=</span><span style="color:#a6e22e">@Column</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;idVacaciones&#34;</span>), type<span style="color:#f92672">=</span><span style="color:#a6e22e">@Type</span>(type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;long&#34;</span>), generator<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sequence&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> Collection vacaciones;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    }</span></span></code></pre></div>
+<p>En este caso, la colección <code>vacaciones</code> tendrá una clave primaria generada por una secuencia.</p>
+<h2 id="5-ejemplo-de-mapeo-de-colecciones">5. Ejemplo de mapeo de colecciones</h2>
+<p>En el siguiente ejemplo se muestra cómo mapear una colección de elementos básicos y una colección de elementos embebidos:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#a6e22e">@Entity</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Persona</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Id</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">long</span> idPersona;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> String nombre;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@ElementCollection</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@CollectionTable</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Vacaciones&#34;</span>, joinColumns<span style="color:#f92672">=</span><span style="color:#a6e22e">@JoinColumn</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;idPersona&#34;</span>))
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Column</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fechaInicio&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> Collection<span style="color:#f92672">&lt;</span>Date<span style="color:#f92672">&gt;</span> vacaciones;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@ElementCollection</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@CollectionTable</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Direccion&#34;</span>, joinColumns<span style="color:#f92672">=</span><span style="color:#a6e22e">@JoinColumn</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;idPersona&#34;</span>))
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@AttributeOverrides</span>({
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">@AttributeOverride</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;calle&#34;</span>, column<span style="color:#f92672">=</span><span style="color:#a6e22e">@Column</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;calleCasa&#34;</span>)),
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">@AttributeOverride</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ciudad&#34;</span>, column<span style="color:#f92672">=</span><span style="color:#a6e22e">@Column</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ciudadCasa&#34;</span>)),
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">@AttributeOverride</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;provincia&#34;</span>, column<span style="color:#f92672">=</span><span style="color:#a6e22e">@Column</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;provinciaCasa&#34;</span>))
+</span></span><span style="display:flex;"><span>        })
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> Collection<span style="color:#f92672">&lt;</span>Direccion<span style="color:#f92672">&gt;</span> direcciones;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    }</span></span></code></pre></div>
+<p>En este caso, la entidad <code>Persona</code> tiene una colección de fechas de vacaciones y una colección de direcciones. La tabla <code>Vacaciones</code> almacenará las fechas de vacaciones y la tabla <code>Direccion</code> almacenará las direcciones de la entidad <code>Persona</code>.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#a6e22e">@Entity</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Curso</span> {
+</span></span><span style="display:flex;"><span>       <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#a6e22e">@ManyToMany</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#a6e22e">@OrderBy</span>(<span style="color:#e6db74">&#34;apelidos ASC&#34;</span>)
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">public</span> List<span style="color:#f92672">&lt;</span>Estudiante<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getEstudiantes</span>() {
+</span></span><span style="display:flex;"><span>       <span style="color:#75715e">//    ...</span>
+</span></span><span style="display:flex;"><span>       };
+</span></span><span style="display:flex;"><span>       <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    }</span></span></code></pre></div>
+<p>En este caso, la colección <code>estudiantes</code> se ordenará por el apellido de los estudiantes en orden ascendente.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Entity</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Estudiante</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//    ...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@ManyToMany</span>(mappedBy<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;estudiantes&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@OrderBy</span> <span style="color:#75715e">// ordena por clave primaria</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> List<span style="color:#f92672">&lt;</span>Curso<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getCurso</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//...</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// </span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//   ...</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<h2 id="6-one-to-many-vs-elementcollection">6. One-to-many vs <code>@ElementCollection</code></h2>
+<h3 id="anotaciones-one-to-many">Anotaciones One to Many</h3>
+<p>Necesitamos usar anotaciones <strong>One to Many</strong> <mark>si creamos una <strong>relación entre dos entidades (TABLAS)</strong></mark>.</p>
+<p>Podemos representar <code>Tienda</code>, la tienda tiene muchas sucursales, y ambas son una entidad, lo que significa que ambas tienen una tabla dentro de nuestra base de datos.</p>
+<p><strong>Tienda.java</strong></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Entity</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Table</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;tienda&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Tienda</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Id</span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@GeneratedValue</span>(strategy <span style="color:#f92672">=</span> GenerationType.<span style="color:#a6e22e">IDENTITY</span>)    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Long idTienda;    
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Column</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;nome&#34;</span>)    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String nome; 
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Column</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;url&#34;</span>)    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String url;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@OneToMany</span>(mappedBy <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;tienda&#34;</span> , cascade <span style="color:#f92672">=</span> CascadeType.<span style="color:#a6e22e">ALL</span>)       
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Set<span style="color:#f92672">&lt;</span>Sucursal<span style="color:#f92672">&gt;</span> sucursales <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashSet<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Y <strong>Sucursal.java</strong></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Entity</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Table</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;sucursal&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Sucursal</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Id</span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@GeneratedValue</span>(strategy <span style="color:#f92672">=</span> GenerationType.<span style="color:#a6e22e">IDENTITY</span>)    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Long idSucursal;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Column</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;nome&#34;</span>)    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String nome;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Column</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;url&#34;</span>)    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String url;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@ManyToOne</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Tienda tienda;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Después de ejecutar el código, el proveedor de persistencia (Hibernate,..) creará dos tablas dentro de tu base de datos, la primera llamada <code>tienda</code> y la segunda llamada <code>sucursal</code>.</p>
+<p>Ahora necesitamos crear un repositorio o una clase DAO para ambas entidades para insertar y obtener los datos de la base de datos.</p>
+<p>Si usamos String Boot, podemos usar <code>@Repository</code> para crear un componente Repositorio (lo veremos más adelante).
+Podemos usar <code>@Repository</code> para crear un componente Repositorio.</p>
+<p><strong>TiendaRepository.java</strong></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Repository</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">TiendaRepository</span> <span style="color:#66d9ef">extends</span> JpaRepository<span style="color:#f92672">&lt;</span>Tienda,Long<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Y ahora necesitamos crear un Repositorio para la entidad <code>Sucursal</code>.</p>
+<p><strong>SucursalRepository.java</strong></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Repository</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">SucursalRepository</span> <span style="color:#66d9ef">extends</span> JpaRepository<span style="color:#f92672">&lt;</span>Sucursal,Long<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Y después de eso, tenemos una nueva relación entre Tienda y Sucursal.</p>
+<h3 id="anotación-elementcollection">Anotación ElementCollection</h3>
+<p><mark><code>@ElementCollection</code> es una anotación JPA estándar</mark> (anteriormente con Hibernate se empleaba la anotación propietaria <code>CollectionOfElements</code>).</p>
+<p>Significa que la colección no es una colección de entidades, sino <strong>una colección de tipos simples</strong> (cadenas, etc.) <strong>o una colección de elementos integrables/embebidos</strong> (clase anotada con <code>@Embeddable</code>).</p>
+<p>También significa que <strong>los elementos son propiedad completamente de las entidades que los contienen</strong>: se modifican cuando se modifica la entidad, se eliminan cuando se elimina la entidad, etc. <strong>No pueden tener su propio ciclo de vida</strong>.</p>
+<p>Ahora veremos cómo podemos implementar con colección de elementos.</p>
+<p>La anotación más simple, <code>@ElementCollection</code>, le dice al compilador que estamos asignando una colección, en la que <code>@CollectionTable</code> proporciona el nombre de la tabla objetivo, y luego <code>@JoinColumn</code> especifica la columna real que unimos como se muestra a continuación:</p>
+<p>Del último ejemplo, ahora tenemos dos entidades <code>Tienda</code> y <code>Sucursal</code>, y la relación entre ellas, y añadiremos una nueva clase llamada <code>Producto</code>.</p>
+<p><strong>Producto.java:</strong></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Embeddable</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Producto</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// no necesitamos usar id porque no es una entidad</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Column</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;nome&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String nome;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Column</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;precio&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Double precio;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Y ahora añadimos una nueva anotación <code>Elementcollection</code> en la clase <code>Tienda</code> y un objeto <code>producto</code> de la clase <code>Producto</code>.</p>
+<p><strong>Tienda.java</strong></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Entity</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Table</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;tienda&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Tienda</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Id</span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@GeneratedValue</span>(strategy <span style="color:#f92672">=</span> GenerationType.<span style="color:#a6e22e">IDENTITY</span>)    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Long idTienda;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Column</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;nome&#34;</span>)    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String nome;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Column</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;url&#34;</span>)    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String url;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@OneToMany</span>(mappedBy <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;tienda&#34;</span> , cascade <span style="color:#f92672">=</span> CascadeType.<span style="color:#a6e22e">ALL</span>)       
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Set<span style="color:#f92672">&lt;</span>Sucursal<span style="color:#f92672">&gt;</span> sucursales <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashSet<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@ElementCollection</span>(fetch <span style="color:#f92672">=</span> FetchType.<span style="color:#a6e22e">LAZY</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@CollectionTable</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ProductoTienda&#34;</span>, joinColumns <span style="color:#f92672">=</span> <span style="color:#a6e22e">@JoinColumn</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;idTienda&#34;</span>, nullable <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>), uniqueConstraints <span style="color:#f92672">=</span> <span style="color:#a6e22e">@UniqueConstraint</span>(columnNames <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;idTienda&#34;</span>}))
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Set<span style="color:#f92672">&lt;</span>Product<span style="color:#f92672">&gt;</span> products <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashSet<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Y ahora después de crearlo <strong>la tabla de <code>Producto</code> tiene <code>idTienda</code> como clave primaria</strong>. Pero <strong>es una clave foránea de la tabla de tienda y no una clave primaria para la tabla de productos</strong>.</p>
+<p>El <strong>objeto <code>Embeddable</code> no tiene un Repositorio/DAO porque depende de la entidad</strong>, por ejemplo, <strong>el producto embebido depende de la entidad de la Tienda. Y podemos insertarlo sin usar el Repositorio de la Tienda</strong>.</p>
+<p><strong>La diferencia entre ambos enfoques:</strong></p>
+<p><strong>Entidad:</strong></p>
+<p>Cuando creamos una entidad, podemos relacionarla con el repositorio/DAO JPA para escribir nuestra consulta o usar la consulta integrada de JPA.</p>
+<p>Embeddable:</p>
+<p>Cuando creamos una clase integrable, debe relacionarse con cualquier clase de entidad, porque <strong>depende de la clase de entidad. y no podemos crear un repositorio</strong>.</p>
+<h2 id="resumen">Resumen</h2>
+<ul>
+<li><code>@ElementCollection</code>, por otro lado, es muy similar a <code>@OneToMany</code> excepto que el <strong>objeto objetivo no es una entidad</strong>.</li>
+<li>Con <code>@ElementCollection</code>, <strong>no podemos consultar, persistir o fusionar (merge) objetos objetivo de forma independiente de su objeto principal</strong>.</li>
+<li><strong>No admite operaciones de cascada</strong>. Esto significa que <strong>los objetos objetivo siempre se persisten, se fusionan o se eliminan junto con su objeto principal</strong>.</li>
+<li><strong><code>@ElementCollection</code> es una forma fácil de definir una colección con objetos simples/básicos</strong>. <strong><code>@OneToMany</code> es el mejor para casos de uso complejos en los que se requiere un control detallado</strong>.</li>
+</ul>
+
+  <footer class="footline"></article>
+<footer>
+   <i class='fas fa-user'></i>  <span itemprop="name"> </span>
+
+<i class='fas fa-calendar'></i> Última actualización: 06.06.2025 
+</footer>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<img  src="../../../images/logo-ies.png" style="color:white;  font-size: 20px;" id="logo" href="http://manuais.pages.iessanclemente.net/apuntes/">
+        </div>
+        <search><form action="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Buscar (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Buscar</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Buscar...">
+            <button class="search-clear" type="button" data-search-clear="" title="Borrar búsqueda"><i class="fas fa-times" title="Borrar búsqueda"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/index.html"><a class="padding" href="../../../index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/index.html"><input type="checkbox" id="R-section-0758abab80c2aa84781892223aa808b3" aria-controls="R-subsections-0758abab80c2aa84781892223aa808b3"><label for="R-section-0758abab80c2aa84781892223aa808b3"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 0. Refuerzo y ayudas complementarias</span></label><a class="padding" href="../../../00ayudas/index.html">UD 0. Refuerzo y ayudas complementarias<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-0758abab80c2aa84781892223aa808b3" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/index.html"><input type="checkbox" id="R-section-1b1977ce428c9ac8dab8b72f8979bcb5" aria-controls="R-subsections-1b1977ce428c9ac8dab8b72f8979bcb5"><label for="R-section-1b1977ce428c9ac8dab8b72f8979bcb5"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01 Configuración y despliegue</span></label><a class="padding" href="../../../00ayudas/00configjava/index.html">01 Configuración y despliegue<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1b1977ce428c9ac8dab8b72f8979bcb5" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/01jarfiles/index.html"><a class="padding" href="../../../00ayudas/00configjava/01jarfiles/index.html">01 Archivos Jar<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/02jarwithmaven/index.html"><a class="padding" href="../../../00ayudas/00configjava/02jarwithmaven/index.html">02 Creación de un JAR ejecutable con Java con Apache Maven<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/03dependencias/index.html"><a class="padding" href="../../../00ayudas/00configjava/03dependencias/index.html">03. Dependencias Maven.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/index.html"><input type="checkbox" id="R-section-0ee0a79915535bc59e8b9d0e78f65ef9" aria-controls="R-subsections-0ee0a79915535bc59e8b9d0e78f65ef9"><label for="R-section-0ee0a79915535bc59e8b9d0e78f65ef9"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02 Java General</span></label><a class="padding" href="../../../00ayudas/02javageneral/index.html">02 Java General<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-0ee0a79915535bc59e8b9d0e78f65ef9" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/01streamapi/index.html"><a class="padding" href="../../../00ayudas/02javageneral/01streamapi/index.html">00.01 Java Stream API<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/02urlfiles/index.html"><a class="padding" href="../../../00ayudas/02javageneral/02urlfiles/index.html">00.02 Descarga de archivos de Internet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/03hashcode/index.html"><a class="padding" href="../../../00ayudas/02javageneral/03hashcode/index.html">03 Implementación de hashCode()<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/index.html"><input type="checkbox" id="R-section-8eb2a58628ca595eccda7f8f066488f0" aria-controls="R-subsections-8eb2a58628ca595eccda7f8f066488f0"><label for="R-section-8eb2a58628ca595eccda7f8f066488f0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 03. Layouts en Java Swing &amp; UI</span></label><a class="padding" href="../../../00ayudas/03layouts/index.html">03. Layouts en Java Swing &amp; UI<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8eb2a58628ca595eccda7f8f066488f0" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/00dialogosenswing/index.html"><a class="padding" href="../../../00ayudas/03layouts/00dialogosenswing/index.html">01 Ventanas de entrada de datos, mensajes y archivos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/05gridbaglayout/index.html"><a class="padding" href="../../../00ayudas/03layouts/05gridbaglayout/index.html">05 GridBagLayout<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/index.html"><input type="checkbox" id="R-section-1c69dc8b47fb6fae98603b1968118cf8" aria-controls="R-subsections-1c69dc8b47fb6fae98603b1968118cf8"><label for="R-section-1c69dc8b47fb6fae98603b1968118cf8"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 04. Patrones de diseño</span></label><a class="padding" href="../../../00ayudas/04patronesdisenho/index.html">04. Patrones de diseño<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1c69dc8b47fb6fae98603b1968118cf8" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/01designprinciples/index.html"><a class="padding" href="../../../00ayudas/04patronesdisenho/01designprinciples/index.html">01. Principios de diseño<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/02singleton/index.html"><a class="padding" href="../../../00ayudas/04patronesdisenho/02singleton/index.html">02. Patrón Singleton<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/03objetosinmutables/index.html"><a class="padding" href="../../../00ayudas/04patronesdisenho/03objetosinmutables/index.html">03. Objetos Inmutables<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/index.html"><input type="checkbox" id="R-section-36a825e367dd24b7cccca030c91ea60b" aria-controls="R-subsections-36a825e367dd24b7cccca030c91ea60b"><label for="R-section-36a825e367dd24b7cccca030c91ea60b"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 05. Programación en Kotlin</span></label><a class="padding" href="../../../00ayudas/05kotlin/index.html">05. Programación en Kotlin<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-36a825e367dd24b7cccca030c91ea60b" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/index.html"><input type="checkbox" id="R-section-312a90d18fa918ef04d04e75820d73c0" aria-controls="R-subsections-312a90d18fa918ef04d04e75820d73c0"><label for="R-section-312a90d18fa918ef04d04e75820d73c0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación estructurada básica</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/index.html">Programación estructurada básica<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-312a90d18fa918ef04d04e75820d73c0" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/10.-la_funcion_main/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/10.-la_funcion_main/index.html">La funcion main()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/20.-la_funcion-print-_y-_println/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/20.-la_funcion-print-_y-_println/index.html">La funcion print() y println()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/30.-comentarios/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/30.-comentarios/index.html">Comentarios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/40.-variables-_-literales-_y_-sentencia_-de_-asignación/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/40.-variables-_-literales-_y_-sentencia_-de_-asignaci%c3%b3n/index.html">Variables, literales y sentencia de asignación<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/50.-palabras_reservadas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/50.-palabras_reservadas/index.html">Palabras reservadas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/index.html"><input type="checkbox" id="R-section-94a2bfa5cc4fa0f33d0f2cf1c75e3265" aria-controls="R-subsections-94a2bfa5cc4fa0f33d0f2cf1c75e3265"><label for="R-section-94a2bfa5cc4fa0f33d0f2cf1c75e3265"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú tipos de datos y operadores</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/index.html">tipos de datos y operadores<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-94a2bfa5cc4fa0f33d0f2cf1c75e3265" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/60.tipos_de_datos_basicos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/60.tipos_de_datos_basicos/index.html">Tipos de datos básicos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/70.tipos_numericos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/70.tipos_numericos/index.html">Tipos Numéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/80.tipos_no_-numericos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/80.tipos_no_-numericos/index.html">Tipos básicos  No Numéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/90.conversion_de_tipos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/90.conversion_de_tipos/index.html">Conversión de Tipos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/100.-operadores/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/100.-operadores/index.html">Operadores<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/110.-expresiones_booleanas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/110.-expresiones_booleanas/index.html">Expresiones booleanas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/index.html"><input type="checkbox" id="R-section-840caf4a5c9da596bf4345cae4c798ab" aria-controls="R-subsections-840caf4a5c9da596bf4345cae4c798ab"><label for="R-section-840caf4a5c9da596bf4345cae4c798ab"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú colecciones básicas</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/index.html">colecciones básicas<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-840caf4a5c9da596bf4345cae4c798ab" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/120.-string/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/120.-string/index.html">String<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/130.-listas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/130.-listas/index.html">Listas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/140.rangos-/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/140.rangos-/index.html">Rangos<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/150.-entrada_teclado/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/150.-entrada_teclado/index.html">Entrada de datos por teclado con readln()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/index.html"><input type="checkbox" id="R-section-f79f31fcf5ae1f44691bca6f05e1710f" aria-controls="R-subsections-f79f31fcf5ae1f44691bca6f05e1710f"><label for="R-section-f79f31fcf5ae1f44691bca6f05e1710f"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú control de flujo</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/index.html">control de flujo<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-f79f31fcf5ae1f44691bca6f05e1710f" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/151.-control_de_flujo/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/151.-control_de_flujo/index.html">Control de flujo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/160.-sentencia_condicional_if/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/160.-sentencia_condicional_if/index.html">Sentencia condicional IF<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/190.-sentecia_when/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/190.-sentecia_when/index.html">Sentencia when<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/200.-bucle_for/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/200.-bucle_for/index.html">Bucle for<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/210.-while_y_do_while/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/210.-while_y_do_while/index.html">while y do while<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/220.-variables_locales_y_bloques/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/220.-variables_locales_y_bloques/index.html">variables locales y bloques<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/230.-break_y_continue/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/230.-break_y_continue/index.html">break y continue<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/240.otras_formas_de_iterar/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/240.otras_formas_de_iterar/index.html">Otras formas de iterar<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/250.-funciones/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/250.-funciones/index.html">Funciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/260.el_valor_nulo/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/260.el_valor_nulo/index.html">El valor nulo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/270.-readline/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/270.-readline/index.html">Entrada de datos por teclado con readLine()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/index.html"><input type="checkbox" id="R-section-44784ce5c237bf9124eefe20ce36272f" aria-controls="R-subsections-44784ce5c237bf9124eefe20ce36272f"><label for="R-section-44784ce5c237bf9124eefe20ce36272f"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú más sobre colecciones básicas</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/index.html">más sobre colecciones básicas<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-44784ce5c237bf9124eefe20ce36272f" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/310.-arrays/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/310.-arrays/index.html">Arrays<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/320.-listas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/320.-listas/index.html">Listas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/330.rangos-/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/330.rangos-/index.html">Rangos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/340.mapas-/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/340.mapas-/index.html">Mapas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/350.iterar_sobre_colecciones/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/350.iterar_sobre_colecciones/index.html">Iterar sobre colecciones<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/index.html"><input type="checkbox" id="R-section-1ef1a5ed807dacffeb206c0950804c3a" aria-controls="R-subsections-1ef1a5ed807dacffeb206c0950804c3a"><label for="R-section-1ef1a5ed807dacffeb206c0950804c3a"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación orientada a objetos</span></label><a class="padding" href="../../../00ayudas/05kotlin/02progoo/index.html">Programación orientada a objetos<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1ef1a5ed807dacffeb206c0950804c3a" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1010.objetos_y_clases/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1010.objetos_y_clases/index.html">Objetos y clases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1020.constructores-/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1020.constructores-/index.html">Constructores<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1030.propiedades/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1030.propiedades/index.html">Propiedades<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1040.sobreescribir_tostring/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1040.sobreescribir_tostring/index.html">Sobreescribir toString()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1060.modificadoresvisibilidad/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1060.modificadoresvisibilidad/index.html">modificadores de visibilidad<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1070.enum/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1070.enum/index.html">clases Enum<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1100.composicion/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1100.composicion/index.html">Composición<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1200.herencia/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1200.herencia/index.html">Herencia<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1220.clases_abstractas_interfaces/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1220.clases_abstractas_interfaces/index.html">Clases abstractas e Interfaces<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1240.dataclases/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1240.dataclases/index.html">Data Clases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1250.keywordobject/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1250.keywordobject/index.html">La palabra reservada object. Companion object, objetos singleton y objetos expressions<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1255.excepciones/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1255.excepciones/index.html">Excepciones en Kotlin<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1260.genericos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1260.genericos/index.html">Genéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1265.clausulatypealiases/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1265.clausulatypealiases/index.html">cláusula typealiases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1270.delegacion/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1270.delegacion/index.html">Delegación con cláusula by<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1280.claesanidadaseinternas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1280.claesanidadaseinternas/index.html">Clases anidadas e internas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/index.html"><input type="checkbox" id="R-section-8bbd4a78f07b64e8b2bc4b83b71f1498" aria-controls="R-subsections-8bbd4a78f07b64e8b2bc4b83b71f1498"><label for="R-section-8bbd4a78f07b64e8b2bc4b83b71f1498"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación funcional</span></label><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/index.html">Programación funcional<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8bbd4a78f07b64e8b2bc4b83b71f1498" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2010.funcioneskotlin/index.html"><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/2010.funcioneskotlin/index.html">sintáxis avanzada de las  funciones kotlin<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2020.-basesdepf/index.html"><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/2020.-basesdepf/index.html">algunos conceptos básicos de programación funcional<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2030.funcionesordensuperiorcolecciones/index.html"><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/2030.funcionesordensuperiorcolecciones/index.html">funciones de orden superior y colecciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2040.funcionesordensuperiorysequence/index.html"><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/2040.funcionesordensuperiorysequence/index.html">funciones de orden superior y sequence<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li></ul></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/index.html"><input type="checkbox" id="R-section-cf4ee7bae7fca4e692355524601fe599" aria-controls="R-subsections-cf4ee7bae7fca4e692355524601fe599"><label for="R-section-cf4ee7bae7fca4e692355524601fe599"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML</span></label><a class="padding" href="../../../01accesoficheros/index.html">UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-cf4ee7bae7fca4e692355524601fe599" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/index.html"><input type="checkbox" id="R-section-ec127efd28751c1f836952c8dac2374d" aria-controls="R-subsections-ec127efd28751c1f836952c8dac2374d"><label for="R-section-ec127efd28751c1f836952c8dac2374d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.01 Java IO. Acceso a ficheros, flujos, serialización de objetos.</span></label><a class="padding" href="../../../01accesoficheros/01javaio/index.html">01.01 Java IO. Acceso a ficheros, flujos, serialización de objetos.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-ec127efd28751c1f836952c8dac2374d" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0100javaiointro/index.html"><a class="padding" href="../../../01accesoficheros/01javaio/0100javaiointro/index.html">01.00 Java IO. Introducción.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0101javaiofile/index.html"><a class="padding" href="../../../01accesoficheros/01javaio/0101javaiofile/index.html">01.01 La clase File<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0102randomaccessfile/index.html"><a class="padding" href="../../../01accesoficheros/01javaio/0102randomaccessfile/index.html">01.02 La clase RandomAccessFile<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0103javaiostreams/index.html"><a class="padding" href="../../../01accesoficheros/01javaio/0103javaiostreams/index.html">01.03 Flujos de E/S<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0104bytestream/index.html"><a class="padding" href="../../../01accesoficheros/01javaio/0104bytestream/index.html">01.04 Flujos de byte<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0105characterstream/index.html"><a class="padding" href="../../../01accesoficheros/01javaio/0105characterstream/index.html">01.05 Flujos de caracteres<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0106javaiobuffer/index.html"><a class="padding" href="../../../01accesoficheros/01javaio/0106javaiobuffer/index.html">01.06 Flujos de E/S con Buffer<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0107javaistream/index.html"><a class="padding" href="../../../01accesoficheros/01javaio/0107javaistream/index.html">01.07 Operaciones comunes con flujos de E/S.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0109ejercicios/index.html"><a class="padding" href="../../../01accesoficheros/01javaio/0109ejercicios/index.html">Ejercicios<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/index.html"><input type="checkbox" id="R-section-2d1e1941df73311305891c0dca6583fd" aria-controls="R-subsections-2d1e1941df73311305891c0dca6583fd"><label for="R-section-2d1e1941df73311305891c0dca6583fd"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.02 Java NIO.2</span></label><a class="padding" href="../../../01accesoficheros/02javanio2/index.html">01.02 Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-2d1e1941df73311305891c0dca6583fd" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0202javaniopath/index.html"><a class="padding" href="../../../01accesoficheros/02javanio2/0202javaniopath/index.html">02.01. La interface Path<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0203javaniopathcreate/index.html"><a class="padding" href="../../../01accesoficheros/02javanio2/0203javaniopathcreate/index.html">02.03. Creación de Path<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0204javaniopath/index.html"><a class="padding" href="../../../01accesoficheros/02javanio2/0204javaniopath/index.html">02.04. Operaciones comunes de Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0205javaniopathmethods/index.html"><a class="padding" href="../../../01accesoficheros/02javanio2/0205javaniopathmethods/index.html">02.05. Métodos y con Path Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0206javaniostreams/index.html"><a class="padding" href="../../../01accesoficheros/02javanio2/0206javaniostreams/index.html">02.06. Programación funcional con Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/index.html"><input type="checkbox" id="R-section-662c48eb0e2f97ba0e58c14a690fca47" aria-controls="R-subsections-662c48eb0e2f97ba0e58c14a690fca47"><label for="R-section-662c48eb0e2f97ba0e58c14a690fca47"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.03 JSON en Java</span></label><a class="padding" href="../../../01accesoficheros/03json/index.html">01.03 JSON en Java<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-662c48eb0e2f97ba0e58c14a690fca47" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0300jsonintro/index.html"><a class="padding" href="../../../01accesoficheros/03json/0300jsonintro/index.html">01.00. Introducción a JSON<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0301jsonjs/index.html"><a class="padding" href="../../../01accesoficheros/03json/0301jsonjs/index.html">01.01. JSON con el API JavaScript de Java<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0302jsonlibraries/index.html"><a class="padding" href="../../../01accesoficheros/03json/0302jsonlibraries/index.html">01.02. Bibliotecas JSON para Java<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0304gson/index.html"><a class="padding" href="../../../01accesoficheros/03json/0304gson/index.html">01.03. Gson. Introducción<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0304gsondiagram/index.html"><a class="padding" href="../../../01accesoficheros/03json/0304gsondiagram/index.html">01.03. Gson. Diagrama de clases (e interfaces)<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0305gsoncreate/index.html"><a class="padding" href="../../../01accesoficheros/03json/0305gsoncreate/index.html">01.04. Gson. Creación de instancias Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0306creaciongson/index.html"><a class="padding" href="../../../01accesoficheros/03json/0306creaciongson/index.html">01.05 Gson. Creación y lectura de objetos JSON<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0306transformacion/index.html"><a class="padding" href="../../../01accesoficheros/03json/0306transformacion/index.html">01.06. Gson. Transformación de objetos JSON personalizada<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0307jsonreader01/index.html"><a class="padding" href="../../../01accesoficheros/03json/0307jsonreader01/index.html">01.07 Gson. JsonReader<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0308jsonrename/index.html"><a class="padding" href="../../../01accesoficheros/03json/0308jsonrename/index.html">01.08 Gson. Renombrar atributos <i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0309jsonserialize/index.html"><a class="padding" href="../../../01accesoficheros/03json/0309jsonserialize/index.html">01.09 Resumen Serialización Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0310jsondeserialize/index.html"><a class="padding" href="../../../01accesoficheros/03json/0310jsondeserialize/index.html">01.09 Resumen Deserialización Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/098ejercicio/index.html"><a class="padding" href="../../../01accesoficheros/03json/098ejercicio/index.html">Ejercicio. Trivial<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/0105ejercicios/index.html"><a class="padding" href="../../../01accesoficheros/0105ejercicios/index.html">Ejercicios y recursos<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/index.html"><input type="checkbox" id="R-section-342b2e95b9611e1108f16a11c61cd1f2" aria-controls="R-subsections-342b2e95b9611e1108f16a11c61cd1f2"><label for="R-section-342b2e95b9611e1108f16a11c61cd1f2"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 2. Acceso a BD remotas relacionales</span></label><a class="padding" href="../../../02accesobd/index.html">UD 2. Acceso a BD remotas relacionales<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-342b2e95b9611e1108f16a11c61cd1f2" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/index.html"><input type="checkbox" id="R-section-66326b82828cdbb6e30c77e924342908" aria-controls="R-subsections-66326b82828cdbb6e30c77e924342908"><label for="R-section-66326b82828cdbb6e30c77e924342908"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02.02 JDBC. Introducción a las Bases de datos relacionales.</span></label><a class="padding" href="../../../02accesobd/02db/index.html">02.02 JDBC. Introducción a las Bases de datos relacionales.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-66326b82828cdbb6e30c77e924342908" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0101databases/index.html"><a class="padding" href="../../../02accesobd/02db/0101databases/index.html">02.01. Sistemas gestores de bases de datos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0102introdb/index.html"><a class="padding" href="../../../02accesobd/02db/0102introdb/index.html">02. Introducción a las bases de datos relacionales<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0103postgresql/index.html"><a class="padding" href="../../../02accesobd/02db/0103postgresql/index.html">03. PostgreSQL<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0104postgres01/index.html"><a class="padding" href="../../../02accesobd/02db/0104postgres01/index.html">04. PostgreSQL. Características y Operadores.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/index.html"><input type="checkbox" id="R-section-4b93c45cd959371d7c20dcc7da6d632c" aria-controls="R-subsections-4b93c45cd959371d7c20dcc7da6d632c"><label for="R-section-4b93c45cd959371d7c20dcc7da6d632c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02.03. Procesamiento de sentencias SQL.</span></label><a class="padding" href="../../../02accesobd/03procesandosql/index.html">02.03. Procesamiento de sentencias SQL.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-4b93c45cd959371d7c20dcc7da6d632c" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0101procesamientosql/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0101procesamientosql/index.html">01. Procesamiento de sentencias SQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0102conexiones/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0102conexiones/index.html">02. Conexiones a BD<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0103excepcionessql/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0103excepcionessql/index.html">03. Excepciones SQLException<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0104resultset/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0104resultset/index.html">04. ResultSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0105resultsetbatch/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0105resultsetbatch/index.html">05. Actualizaciones por lotes con ResultSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0106preparedst/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0106preparedst/index.html">06. Prepared Statement<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0107transacciones/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0107transacciones/index.html">07. Transacciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0108clavesgeneradas/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0108clavesgeneradas/index.html">08. Claves Generadas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0109largeobjects/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0109largeobjects/index.html">09. Objectos grandes<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0111rowset/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0111rowset/index.html">11. RowSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0115boletines/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0115boletines/index.html">15. Ejercicios y archivos de la unidad<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/99proyecto/index.html"><a class="padding" href="../../../02accesobd/99proyecto/index.html">Proyecto 1ª evaluación<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="parent " data-nav-id="https://manuais.pages.iessanclemente.net/03orm/index.html"><input type="checkbox" id="R-section-87c8b6c6cd354a309db816f73d185be0" aria-controls="R-subsections-87c8b6c6cd354a309db816f73d185be0" checked><label for="R-section-87c8b6c6cd354a309db816f73d185be0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 3. Object/Relational Mapping (ORM). JPA e Hibernate</span></label><a class="padding" href="../../index.html">UD 3. Object/Relational Mapping (ORM). JPA e Hibernate<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-87c8b6c6cd354a309db816f73d185be0" class="collapsible-menu">
+            <li class="parent " data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/index.html"><input type="checkbox" id="R-section-5aaca10806a740cf4d784be6e24473b9" aria-controls="R-subsections-5aaca10806a740cf4d784be6e24473b9" checked><label for="R-section-5aaca10806a740cf4d784be6e24473b9"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 03.01. Jakarta Persistence (JPA).</span></label><a class="padding" href="../index.html">03.01. Jakarta Persistence (JPA).<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-5aaca10806a740cf4d784be6e24473b9" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/01jpa/index.html"><a class="padding" href="../01jpa/index.html">01. Jakarta Persistence (JPA).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/02jpavshibernate/index.html"><a class="padding" href="../02jpavshibernate/index.html">02. JPA vs Hibernate.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/03jpaejercicio/index.html"><a class="padding" href="../03jpaejercicio/index.html">03. Ejercicio básico de JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/04entitymanager/index.html"><a class="padding" href="../04entitymanager/index.html">04. Gestión de entidades con EntityManager.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/05mapeoentidades/index.html"><a class="padding" href="../05mapeoentidades/index.html">05. Mapeo de entidades.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/06relaciones/index.html"><a class="padding" href="../06relaciones/index.html">06. Relaciones JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/07embedidos/index.html"><a class="padding" href="../07embedidos/index.html">07. Objetos embebidos.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="active " data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/08colecciones/index.html"><a class="padding" href="index.html">08. Mapeo de colecciones.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/09queries/index.html"><a class="padding" href="../09queries/index.html">09. Consultas.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/10jpql/index.html"><a class="padding" href="../10jpql/index.html">10. JPQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/11paginacion/index.html"><a class="padding" href="../11paginacion/index.html">11. Paginación de consultas.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/12herencia/index.html"><a class="padding" href="../12herencia/index.html">12. Herencia.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/14ejercicios/index.html"><a class="padding" href="../14ejercicios/index.html">Ejercicios de la unidad de JPA<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/15boletines/index.html"><a class="padding" href="../15boletines/index.html">Ejercicios de refuerzo.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/16dependencias/index.html"><a class="padding" href="../16dependencias/index.html">Dependencias Maven.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/95singleton/index.html"><a class="padding" href="../../95singleton/index.html">03.02. Patrón Singleton.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/96ejerciciosrepaso/index.html"><a class="padding" href="../../96ejerciciosrepaso/index.html">03.03. Ejercicios de refuerzo (Violín).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/97ejerciciosrepaso2/index.html"><a class="padding" href="../../97ejerciciosrepaso2/index.html">03.04 Ejercicios de refuerzo (II)<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/98ejerciciosrepaso3/index.html"><a class="padding" href="../../98ejerciciosrepaso3/index.html">03.05 Ejercicios de refuerzo (III)<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/index.html"><input type="checkbox" id="R-section-ffae27028787f9b794af8498ce8bc361" aria-controls="R-subsections-ffae27028787f9b794af8498ce8bc361"><label for="R-section-ffae27028787f9b794af8498ce8bc361"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 4. Spring.</span></label><a class="padding" href="../../../04spring/index.html">UD 4. Spring.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-ffae27028787f9b794af8498ce8bc361" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/01springboot/index.html"><a class="padding" href="../../../04spring/01springboot/index.html">01. Spring Boot.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/02springdata/index.html"><a class="padding" href="../../../04spring/02springdata/index.html">02. Spring Data JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/03practicajpadata/index.html"><a class="padding" href="../../../04spring/03practicajpadata/index.html">03. Práctica con de Spring Data JPA y REST.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/04repositorios/index.html"><a class="padding" href="../../../04spring/04repositorios/index.html">04. Repositorios String Data.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/05paginacion/index.html"><a class="padding" href="../../../04spring/05paginacion/index.html">05. Paginación y Ordenación usando Spring Data JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/06paginacionrest/index.html"><a class="padding" href="../../../04spring/06paginacionrest/index.html">06. Paginación y Ordenación usando Spring Data REST.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/07vaadin/index.html"><a class="padding" href="../../../04spring/07vaadin/index.html">07. Spring Data JPA con Vaadin (práctica).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/08ejecutores/index.html"><a class="padding" href="../../../04spring/08ejecutores/index.html">08. Ejecutores al inicio con Spring Boot<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/09serviciocompo/index.html"><a class="padding" href="../../../04spring/09serviciocompo/index.html">09. Servicios, componentes y repositorios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/10servicios/index.html"><a class="padding" href="../../../04spring/10servicios/index.html">10. Servicios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/index.html"><input type="checkbox" id="R-section-f25e02e15b94f5cb39179f26efa74bfe" aria-controls="R-subsections-f25e02e15b94f5cb39179f26efa74bfe"><label for="R-section-f25e02e15b94f5cb39179f26efa74bfe"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 11. Proyecto Spring. Cuestionarios.</span></label><a class="padding" href="../../../04spring/11proyecto/index.html">11. Proyecto Spring. Cuestionarios.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-f25e02e15b94f5cb39179f26efa74bfe" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/01modelo/index.html"><a class="padding" href="../../../04spring/11proyecto/01modelo/index.html">01. Modelo de datos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/02dto/index.html"><a class="padding" href="../../../04spring/11proyecto/02dto/index.html">02. DTO<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/03repositorios/index.html"><a class="padding" href="../../../04spring/11proyecto/03repositorios/index.html">03. Repositorios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/04controller/index.html"><a class="padding" href="../../../04spring/11proyecto/04controller/index.html">04. Controller<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/05resultados/index.html"><a class="padding" href="../../../04spring/11proyecto/05resultados/index.html">05. Pruebas y mejoras<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/12springproj/index.html"><a class="padding" href="../../../04spring/12springproj/index.html">12. Proyecto Spring. Cuestionarios.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/index.html"><input type="checkbox" id="R-section-a0dc28a495fca757d219f1aec2ecff4c" aria-controls="R-subsections-a0dc28a495fca757d219f1aec2ecff4c"><label for="R-section-a0dc28a495fca757d219f1aec2ecff4c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 5. Bases de datos no SQL. MongoDB</span></label><a class="padding" href="../../../05basesdatosnonsql/index.html">UD 5. Bases de datos no SQL. MongoDB<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-a0dc28a495fca757d219f1aec2ecff4c" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/mongodb/01nosql/index.html"><a class="padding" href="../../../05basesdatosnonsql/mongodb/01nosql/index.html">01. Bases de datos NoSQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/mongodb/03springmongodb/index.html"><a class="padding" href="../../../05basesdatosnonsql/mongodb/03springmongodb/index.html">03. Conexión a MongoDB con String Data MongoDB (práctica).<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/index.html"><input type="checkbox" id="R-section-8d4041f058dd2262e83830e1db38cc6d" aria-controls="R-subsections-8d4041f058dd2262e83830e1db38cc6d"><label for="R-section-8d4041f058dd2262e83830e1db38cc6d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Git</span></label><a class="padding" href="../../../git/index.html">Git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8d4041f058dd2262e83830e1db38cc6d" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/index.html"><input type="checkbox" id="R-section-a87776bdac862bf972ec945bc124b884" aria-controls="R-subsections-a87776bdac862bf972ec945bc124b884"><label for="R-section-a87776bdac862bf972ec945bc124b884"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Introducción git</span></label><a class="padding" href="../../../git/1.introduccion_git/index.html">Introducción git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-a87776bdac862bf972ec945bc124b884" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/1.introduccion_git/index.html"><a class="padding" href="../../../git/1.introduccion_git/1.introduccion_git/index.html">Introducción a git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/2.estados_git/index.html"><a class="padding" href="../../../git/1.introduccion_git/2.estados_git/index.html">Estados de git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/3.instalacion_git/index.html"><a class="padding" href="../../../git/1.introduccion_git/3.instalacion_git/index.html">Instalación de git<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/index.html"><input type="checkbox" id="R-section-b63515bb4dcfe678de9ffac7a29c1e77" aria-controls="R-subsections-b63515bb4dcfe678de9ffac7a29c1e77"><label for="R-section-b63515bb4dcfe678de9ffac7a29c1e77"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Fundamentos git</span></label><a class="padding" href="../../../git/2.fundamentos_git/index.html">Fundamentos git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-b63515bb4dcfe678de9ffac7a29c1e77" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/1.configuracion_git/index.html"><a class="padding" href="../../../git/2.fundamentos_git/1.configuracion_git/index.html">Configuracion de git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/2.inicializar_repo/index.html"><a class="padding" href="../../../git/2.fundamentos_git/2.inicializar_repo/index.html">Inicializando repositorio<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/3.cambios/index.html"><a class="padding" href="../../../git/2.fundamentos_git/3.cambios/index.html">Cambios en el repositorio<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/4.ignorar_archivos/index.html"><a class="padding" href="../../../git/2.fundamentos_git/4.ignorar_archivos/index.html">Archivos Ignorados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/5.checkout/index.html"><a class="padding" href="../../../git/2.fundamentos_git/5.checkout/index.html">Git checkout<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/6.log/index.html"><a class="padding" href="../../../git/2.fundamentos_git/6.log/index.html">Git Log<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/7.archivos_modificados/index.html"><a class="padding" href="../../../git/2.fundamentos_git/7.archivos_modificados/index.html">Archivos modificados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/8.cambios/index.html"><a class="padding" href="../../../git/2.fundamentos_git/8.cambios/index.html">Archivos modificados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/9.eliminar_archivos/index.html"><a class="padding" href="../../../git/2.fundamentos_git/9.eliminar_archivos/index.html">Opciones con archivos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/10.limitar/index.html"><a class="padding" href="../../../git/2.fundamentos_git/10.limitar/index.html">Historial de confirmaciones<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/3.remotos/index.html"><a class="padding" href="../../../git/3.remotos/index.html">Remotos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/4.etiquetado/index.html"><a class="padding" href="../../../git/4.etiquetado/index.html">Etiquetado<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/index.html"><input type="checkbox" id="R-section-d8234a81ae190365829886d9d8a058a7" aria-controls="R-subsections-d8234a81ae190365829886d9d8a058a7"><label for="R-section-d8234a81ae190365829886d9d8a058a7"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Ramas Git</span></label><a class="padding" href="../../../git/5.ramas_git/index.html">Ramas Git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-d8234a81ae190365829886d9d8a058a7" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/1.ramificaciones_git/index.html"><a class="padding" href="../../../git/5.ramas_git/1.ramificaciones_git/index.html">Ramificación<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/2.ramificaciones_remotas/index.html"><a class="padding" href="../../../git/5.ramas_git/2.ramificaciones_remotas/index.html">Ramas Remotas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/6.claves_ssh/index.html"><a class="padding" href="../../../git/6.claves_ssh/index.html">Claves SSH<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">Más</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/"><a class="padding" href="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/" rel="external" target="_blank"><i class='fas fa-fw fa-bookmark'></i>  Cómo editar plantilla<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://www.iessanclemente.net/"><a class="padding" href="https://www.iessanclemente.net/" rel="external" target="_blank"><i class='fas fa-home'></i> IES Tubalcain<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/categories"><a class="padding" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/categories"><i class='fa-fw fas fa-layer-group'></i> Categories<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tags"><a class="padding" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/tags"><i class='fa-fw fas fa-tags'></i> Tags<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+            <li class="R-variantswitcher">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-paint-brush"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <label class="a11y-only" for="R-select-variant">Tema</label>
+                  <select id="R-select-variant">
+                    <option id="R-select-variant-blue" value="blue" selected>Blue</option>
+                    <option id="R-select-variant-relearn-light" value="relearn-light">Relearn Light</option>
+                    <option id="R-select-variant-relearn-dark" value="relearn-dark">Relearn Dark</option>
+                    <option id="R-select-variant-learn" value="learn">Learn</option>
+                    <option id="R-select-variant-neon" value="neon">Neon</option>
+                    <option id="R-select-variant-green" value="green">Green</option>
+                    <option id="R-select-variant-red" value="red">Red</option>
+                  </select>
+                </div>
+                <div class="clear"></div>
+              </div>
+              <script>window.relearn.markVariant();</script>
+            </li>
+            <li class="R-historyclearer">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-history"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <button>Borrar Historial</button>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+<div id="R-footer">
+<div>
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/cc.png" height="30" />
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/by.png"  height="30"/>
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/nc-eu.png"  height="30"/>
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/sa.png" height="30" />
+</div>
+</div>
+      </div>
+    </aside>
+    <script src="../../../js/clipboard/clipboard.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/perfect-scrollbar/perfect-scrollbar.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/theme.min3c2e.js?1749199978" defer></script>
+  </body>
+
+<!-- Mirrored from manuais.pages.iessanclemente.net/plantillas/dam/ad/03orm/jpa/08colecciones/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Sep 2025 20:45:36 GMT -->
+</html>

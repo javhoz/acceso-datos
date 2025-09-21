@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  
+<!-- Mirrored from manuais.pages.iessanclemente.net/plantillas/dam/ad/00ayudas/04patronesdisenho/02singleton/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Sep 2025 20:45:30 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.140.2">
+    <meta name="generator" content="Relearn 7.6.1+0b83617ee9da5253aafcf11807b256da7d88d709">
+    <meta name="description" content="1. El Patrón Singleton 2. Tipos de implementación del patrón Singleton 1. Inicialización en la decleración 2. Usando bloques static 3. Instanciación “perezosa” de Singleton Singleton en varias computadoras 4. Thread Safe Singleton 5. Singletons con bloqueo de doble comprobación (Double‐Checked Locking) Conclusión 1. El Patrón Singleton En muchos casos, precisamos crear un objeto en memoria sólo una vez en una aplicación y compartirlo entre varias clases. Un ejemplo podría ser una conexión a una base de datos, pero sucede con frecuenta con otro tipo de recursos compartidos.">
+    <meta name="author" content="IES Tubalcain">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <meta name="twitter:title" content="02. Patrón Singleton :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta name="twitter:description" content="1. El Patrón Singleton 2. Tipos de implementación del patrón Singleton 1. Inicialización en la decleración 2. Usando bloques static 3. Instanciación “perezosa” de Singleton Singleton en varias computadoras 4. Thread Safe Singleton 5. Singletons con bloqueo de doble comprobación (Double‐Checked Locking) Conclusión 1. El Patrón Singleton En muchos casos, precisamos crear un objeto en memoria sólo una vez en una aplicación y compartirlo entre varias clases. Un ejemplo podría ser una conexión a una base de datos, pero sucede con frecuenta con otro tipo de recursos compartidos.">
+    <meta property="og:url" content="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/02singleton/index.html">
+    <meta property="og:site_name" content="IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta property="og:title" content="02. Patrón Singleton :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta property="og:description" content="1. El Patrón Singleton 2. Tipos de implementación del patrón Singleton 1. Inicialización en la decleración 2. Usando bloques static 3. Instanciación “perezosa” de Singleton Singleton en varias computadoras 4. Thread Safe Singleton 5. Singletons con bloqueo de doble comprobación (Double‐Checked Locking) Conclusión 1. El Patrón Singleton En muchos casos, precisamos crear un objeto en memoria sólo una vez en una aplicación y compartirlo entre varias clases. Un ejemplo podría ser una conexión a una base de datos, pero sucede con frecuenta con otro tipo de recursos compartidos.">
+    <meta property="og:locale" content="es">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="UD 0. Refuerzo y ayudas complementarias">
+    <meta property="article:modified_time" content="2025-06-06T08:52:43+00:00">
+    <meta property="og:image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <meta itemprop="name" content="02. Patrón Singleton :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta itemprop="description" content="1. El Patrón Singleton 2. Tipos de implementación del patrón Singleton 1. Inicialización en la decleración 2. Usando bloques static 3. Instanciación “perezosa” de Singleton Singleton en varias computadoras 4. Thread Safe Singleton 5. Singletons con bloqueo de doble comprobación (Double‐Checked Locking) Conclusión 1. El Patrón Singleton En muchos casos, precisamos crear un objeto en memoria sólo una vez en una aplicación y compartirlo entre varias clases. Un ejemplo podría ser una conexión a una base de datos, pero sucede con frecuenta con otro tipo de recursos compartidos.">
+    <meta itemprop="dateModified" content="2025-06-06T08:52:43+00:00">
+    <meta itemprop="wordCount" content="2864">
+    <meta itemprop="image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <title>02. Patrón Singleton :: IES Tubalcain - Acceso a datos (2º DAM)</title>
+    <link href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/00ayudas/04patronesdisenho/02singleton/index.xml" rel="alternate" type="application/rss+xml" title="02. Patrón Singleton :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <link href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/00ayudas/04patronesdisenho/02singleton/index.print.html" rel="alternate" type="text/html" title="02. Patrón Singleton :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <link href="../../../fonts/fontawesome/css/fontawesome-all.min3c2e.css?1749199978" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../../fonts/fontawesome/css/fontawesome-all.min3c2e.css?1749199978" rel="stylesheet"></noscript>
+    <link href="../../../css/perfect-scrollbar/perfect-scrollbar.min3c2e.css?1749199978" rel="stylesheet">
+    <link href="../../../css/theme.min3c2e.css?1749199978" rel="stylesheet">
+    <link href="../../../css/format-html.min3c2e.css?1749199978" rel="stylesheet" id="R-format-style">
+    <link href="../../../css/auto-complete/auto-complete.min3c2e.css?1749199978" rel="stylesheet">
+    <script src="../../../js/auto-complete/auto-complete.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.stemmer.support.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.multi.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.es.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/search.min3c2e.js?1749199978" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='#\/00ayudas\/04patronesdisenho\/02singleton\/index.html';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='';
+      window.relearn.contentLangs=['es'];
+      window.relearn.index_js_url="../../../searchindex.es3c2e.js?1749199978";
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // variant stuff
+      window.relearn.themevariants = [ 'blue', 'relearn-light', 'relearn-dark', 'learn', 'neon', 'green', 'red' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copiar en el portapapeles`;
+      window.T_Copied_to_clipboard = `¡Copiado al portapapeles!`;
+      window.T_Copy_link_to_clipboard = `Copiar enlace al portapapeles`;
+      window.T_Link_copied_to_clipboard = `¡Enlace copiado al portapapeles!`;
+      window.T_Reset_view = `Restablecer vista`;
+      window.T_View_reset = `¡Ver reajuste!`;
+      window.T_No_results_found = `No se han encontrado resultados para "{0}"`;
+      window.T_N_results_found = `{1} resultados encontrados para "{0}"`;
+    </script><style>
+    :root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+}
+
+@media screen and (max-width: 70.5rem) {
+    #R-sidebar {
+        min-width: var(--INTERNAL-MENU-WIDTH-S);
+        max-width: var(--INTERNAL-MENU-WIDTH-S);
+        width: var(--INTERNAL-MENU-WIDTH-S);
+    }
+    #R-body {
+        margin-inline-start: var(--INTERNAL-MENU-WIDTH-S);
+        min-width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+        max-width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+        width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+    }
+}
+@media screen and (max-width: 70.5rem) {
+     
+
+    .mobile-support #R-sidebar {
+        inset-inline-start: calc( -1 * var(--INTERNAL-MENU-WIDTH-S) );
+        min-width: var(--INTERNAL-MENU-WIDTH-S);
+        max-width: var(--INTERNAL-MENU-WIDTH-S);
+        width: var(--INTERNAL-MENU-WIDTH-S);
+    }
+    .mobile-support #navshow{
+        display: inline;
+    }
+    .mobile-support #R-body {
+        min-width: 100%;
+        max-width: 100%;
+        width: 100%;
+    }
+    .mobile-support #R-body {
+        margin-inline-start: 0;
+    }
+    .mobile-support.sidebar-flyout {
+        overflow: hidden;
+    }
+    .mobile-support.sidebar-flyout #R-sidebar {
+        inset-inline-start: 0;
+        z-index: 90;
+    }
+    .mobile-support.sidebar-flyout #R-body {
+        margin-inline-start: var(--INTERNAL-MENU-WIDTH-S);
+        overflow: hidden;
+    }
+    .mobile-support.sidebar-flyout #R-body-overlay{
+        background-color: rgba( 134, 134, 134, .5 );
+        bottom: 0;
+        cursor: pointer;
+        height: 100vh;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 190;
+    }
+}
+
+</style>
+
+
+  </head>
+  <body class="mobile-support html" data-url="../../../00ayudas/04patronesdisenho/02singleton/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menú (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Tabla de contenido (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#1-el-patrón-singleton">1. El Patrón Singleton</a></li>
+    <li><a href="#2-tipos-de-implementación-del-patrón-singleton">2. Tipos de implementación del patrón Singleton</a>
+      <ul>
+        <li><a href="#1-inicialización-en-la-decleración">1. Inicialización en la decleración</a></li>
+        <li><a href="#2-usando-bloques-static">2. Usando bloques <em>static</em></a></li>
+        <li><a href="#3-instanciación-perezosa-de-singleton">3. Instanciación &ldquo;perezosa&rdquo; de Singleton</a></li>
+        <li><a href="#4-thread-safe-singleton">4. Thread Safe Singleton</a></li>
+        <li><a href="#5-singletons-con-bloqueo-de-doble-comprobación-doublechecked-locking">5. Singletons con bloqueo de doble comprobación (<em>Double‐Checked Locking</em>)</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusión">Conclusión</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../../index.html"><span itemprop="name">Acceso a datos</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../index.html"><span itemprop="name">UD 0. Refuerzo y ayudas complementarias</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../index.html"><span itemprop="name">04. Patrones de diseño</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">02. Patrón Singleton</span><meta itemprop="position" content="4"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/00ayudas/04patronesdisenho/02singleton/index.print.html" title="Imprimir todo el capítulo (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../01designprinciples/index.html" title="01. Principios de diseño (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../03objetosinmutables/index.html" title="03. Objetos Inmutables (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Más"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 00ayudas" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="02-patrón-singleton">02. Patrón Singleton</h1>
+
+<ul>
+<li><a href="index.html#1-el-patrón-singleton">1. El Patrón Singleton</a></li>
+<li><a href="index.html#2-tipos-de-implementación-del-patrón-singleton">2. Tipos de implementación del patrón Singleton</a>
+<ul>
+<li><a href="index.html#1-inicialización-en-la-decleración">1. Inicialización en la decleración</a></li>
+<li><a href="index.html#2-usando-bloques-static">2. Usando bloques <em>static</em></a></li>
+<li><a href="index.html#3-instanciación-perezosa-de-singleton">3. Instanciación &ldquo;perezosa&rdquo; de Singleton</a>
+<ul>
+<li><a href="index.html#singleton-en-varias-computadoras">Singleton en varias computadoras</a></li>
+</ul>
+</li>
+<li><a href="index.html#4-thread-safe-singleton">4. Thread Safe Singleton</a></li>
+<li><a href="index.html#5-singletons-con-bloqueo-de-doble-comprobación-doublechecked-locking">5. Singletons con bloqueo de doble comprobación (<em>Double‐Checked Locking</em>)</a></li>
+</ul>
+</li>
+<li><a href="index.html#conclusión">Conclusión</a></li>
+</ul>
+<hr>
+<h2 id="1-el-patrón-singleton">1. El Patrón Singleton</h2>
+<p>En muchos casos, precisamos <strong>crear un objeto en memoria sólo una vez en una aplicación</strong> y <strong>compartirlo entre varias clases</strong>. Un ejemplo podría ser una conexión a una base de datos, pero sucede con frecuenta con otro tipo de recursos compartidos.</p>
+<p>Por ejemplo, podríamos querer gestionar la cantidad de comida disponible para la alimentación de los animales de un zoológico en todas las clases que lo utilizan. Podríamos pasar el mismo objeto compartido <code>ComidaManager</code> a cada clase y método que lo utiliza, aunque esto crearía muchos punteros adicionales y podría ser difícil de gestionar si el objeto se utiliza en toda la aplicación. Al <strong>crear un objeto singleton <code>ComidaManager</code>, centralizamos los datos y eliminamos la necesidad de pasarlos por toda la aplicación</strong>.</p>
+<ul>
+<li>
+<p>El <strong>patrón singleton es un patrón de creación que permite sólo una instancia de un objeto en memoria dentro de una aplicación, compartida por todas las clases y hilos dentro de la aplicación</strong>.</p>
+</li>
+<li>
+<p>El objeto disponible globalmente creado por el patrón singleton se denomina <strong>objeto singleton</strong>.</p>
+</li>
+<li>
+<p>Los singleton <strong>también pueden mejorar el rendimiento cargando datos reutilizables que de otro modo serían costosos de almacenar y recargar cada vez que se necesitan</strong>.</p>
+</li>
+</ul>
+<p>Una implementación sencilla de clase <code>ComidaManager</code> con un patrón singleton básico:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AlmacenComida</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> cantidad <span style="color:#f92672">=</span> 0;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">AlmacenComida</span>() {} <span style="color:#75715e">// Privado, se crea como atributo estático:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> AlmacenComida instancia <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> AlmacenComida(); <span style="color:#75715e">// static: único.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Método público único para obtener la instancia:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> AlmacenComida <span style="color:#a6e22e">getInstance</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> instancia;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">synchronized</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addComida</span>(<span style="color:#66d9ef">int</span> cantidad) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">cantidad</span> <span style="color:#f92672">+=</span> cantidad;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">synchronized</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">removeComida</span>(<span style="color:#66d9ef">int</span> cantidad) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">cantidad</span> <span style="color:#f92672">&lt;</span> cantidad) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">cantidad</span> <span style="color:#f92672">-=</span> cantidad;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">synchronized</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getCantidadComida</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> cantidad;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<ul>
+<li>Los <strong>singleton</strong> en Java se crean como <strong>atributos privados estáticos dentro de la clase</strong>, a menudo con el nombre <code>instance</code> (o instancia).</li>
+<li>Se <strong>accede a ellos a través de un único método público estático</strong>, a menudo <strong>llamado <code>getInstance()</code></strong>, que devuelve la referencia al objeto singleton.</li>
+<li>Todos los c<strong>onstructores en una clase singleton se declaran como privados</strong>, lo que garantiza que <strong>ninguna otra clase pueda instanciar otra versión de la clase</strong>. Al marcar los constructores como privados, hemos marcado implícitamente la <strong>clase como final</strong>.</li>
+</ul>
+<p><em>Recuerda que cada clase requiere al menos un constructor, con el constructor por defecto si no se proporciona ninguno. Además, la primera línea de cualquier constructor es una llamada a un constructor padre <code>super()</code>. Si todos <strong>los constructores se declaran privados en la clase singleton</strong>, entonces es imposible crear una subclase con un constructor válido; por lo tanto, la <strong>clase singleton es final</strong>.</em></p>
+<ul>
+<li>Se añade el modificador <code>synchronized</code> a <code>addComida()</code>, <code>removeComida()</code> y <code>getCantidadComida()</code>, para evitar que dos procesos ejecuten el mismo método exactamente al mismo tiempo y haya inconsistencias.</li>
+</ul>
+<p>En el ejemplo <code>AlmacenComida</code>, un proceso que quiera usar este singleton primero llama a <code>getInstance()</code> y luego llama al método público necesario:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">EntrenadorLlamas</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">alimentarLlamas</span>(<span style="color:#66d9ef">int</span> numeroLlamas) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> cantidadNecesaria <span style="color:#f92672">=</span> 5 <span style="color:#f92672">*</span> numeroLlamas;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        AlmacenComida AlmacenComida <span style="color:#f92672">=</span> AlmacenComida.<span style="color:#a6e22e">getInstance</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (AlmacenComida.<span style="color:#a6e22e">getCantidadComida</span>() <span style="color:#f92672">&lt;</span> cantidadNecesaria) {
+</span></span><span style="display:flex;"><span>            AlmacenComida.<span style="color:#a6e22e">addComida</span>(cantidadNecesaria <span style="color:#f92672">+</span> 10);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">boolean</span> alimentadas <span style="color:#f92672">=</span> AlmacenComida.<span style="color:#a6e22e">removeComida</span>(cantidadNecesaria);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (alimentadas)
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Las llamas han sido alimentadas&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> alimentadas;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Un aspecto a tener en cuenta es que <strong>puede haber varias clases en la aplicación que requieran el objeto Singleton</strong>.<br>
+En el ejemplo, equivaldría a muchas instancias de <code>EntrenadorLlamas</code> pero sólo una instancia del objeto Singleton, <code>AlmacenComida</code>.<br>
+El boolean devuelto por <code>removeComida()</code>, permite comprobar si hay disponible.<br>
+En nuestro primer ejemplo de <code>AlmacenComida</code>, instanciamos el objeto singleton directamente en la definición de la referencia de instancia.</p>
+<h2 id="2-tipos-de-implementación-del-patrón-singleton">2. Tipos de implementación del patrón Singleton</h2>
+<p>Se puede instanciar un singleton de varios modos:</p>
+<p>a) En la <strong>declaración del objeto</strong>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> ClaseSingleton instancia <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ClaseSingleton();</span></span></code></pre></div>
+<p>b)  Utilizando un <strong>bloque de inicialización estático</strong>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> ClaseSingleton instancia;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> {
+</span></span><span style="display:flex;"><span>        instancia <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ClaseSingleton();
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Realizar pasos adicionales</span>
+</span></span><span style="display:flex;"><span>    }</span></span></code></pre></div>
+<p>c) <strong>Instanciación &ldquo;perezosa&rdquo; de Singleton</strong>. Se realiza en la primera llamada a la invocación del método getInstance:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> ClaseSingleton instancia;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">ClaseSingleton</span>() {
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> ClaseSingleton <span style="color:#a6e22e">getInstance</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (instancia <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>            instancia <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ClaseSingleton(); <span style="color:#75715e">// ¡NO ES SEGURO PARA HILOS!</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> instancia;
+</span></span><span style="display:flex;"><span>    }</span></span></code></pre></div>
+<p>Por ejemplo:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Instanciación usando un bloque estático</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RegistroPersonal</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> RegistroPersonal instancia;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> {
+</span></span><span style="display:flex;"><span>        instancia <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> RegistroPersonal();
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Realizar pasos adicionales</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">RegistroPersonal</span>() {
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> RegistroPersonal <span style="color:#a6e22e">getInstance</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> instancia;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Métodos de acceso a datos</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Tanto la clase <code>RegistroPersonal</code> como la clase anterior <code>AlmacenComida</code> instancian el <strong>singleton en el momento en que se carga la clase</strong>. Sin embargo, a diferencia de la clase <code>AlmacenComida</code>, la clase <code>RegistroPersonal</code> instancía el singleton como parte de un bloque de inicialización estático.</p>
+<p>Aunque <strong>estas dos implementaciones son equivalentes</strong>, ya que ambas crean el singleton cuando se carga la clase, el <strong>bloque de inicialización estático permite realizar pasos adicionales para configurar el singleton después de que se ha creado</strong>. También permite gestionar casos en los que el constructor de <code>RegistroPersonal</code> lanza una excepción.<br>
+Dado que el singleton se crea cuando se carga la clase, <strong>permite marcar la como final, lo que garantiza que sólo se creará una instancia dentro de la aplicación</strong>.</p>
+
+<details open class=" box cstyle notices tip">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-pen-square"></i> 
+    Cuándo usar singleton
+  </summary>
+  <div class="box-content">
+<p>Los singletons se utilizan en situaciones donde <strong>necesitamos acceso a un conjunto único de datos en toda una aplicación</strong>. Por ejemplo: datos de configuración de la aplicación o las cachés de datos reutilizables se implementan comúnmente mediante singletons. Los singletons también se pueden utilizar para c<strong>oordinar el acceso a recursos compartidos, como coordinar el acceso de escritura a un archivo o acceso a bases de datos</strong>.</p>
+  </div>
+</details>
+<p>Hay muchas formas de hacer esto en Java. Todas estas formas difieren en su implementación del patrón, pero al final, todas logran el mismo resultado final de una única instancia.</p>
+<h3 id="1-inicialización-en-la-decleración">1. Inicialización en la decleración</h3>
+<p>Es el método más sencillo de crear una clase singleton. El objeto de la clase <strong>se crea cuando se carga en la memoria por la JVM, asignando directamente la referencia de una instancia</strong>.</p>
+<p>Puede utilizarse cuando el programa siempre usará una instancia de esta clase, o el costo de crear la instancia no es demasiado grande en términos de recursos y tiempo.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Código Java para crear una clase singleton mediante</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// &#34;Inicialización Ansiosa&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ClaseSingletonAD</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// instancia pública inicializada al cargar la clase</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> ClaseSingletonAD instance <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ClaseSingletonAD();
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">ClaseSingletonAD</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// constructor privado</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> ClaseSingletonAD <span style="color:#a6e22e">getInstance</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> instance;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p><strong>Ventajas/inconvenientes:</strong></p>
+<ul>
+<li>Muy <strong>sencilla</strong> de implementar.</li>
+<li>Puede llevar al <strong>desperdicio de recursos</strong>, ya que la instancia de la clase <strong>se crea siempre</strong>, ya sea que se necesite o no.</li>
+<li>También se <strong>pierde tiempo de CPU</strong> en la <strong>creación de la instancia si no es necesaria</strong>.</li>
+<li><strong>No es posible manejar excepciones</strong>.</li>
+</ul>
+<h3 id="2-usando-bloques-static">2. Usando bloques <em>static</em></h3>
+<p>Es muy similar al caso anterior. La única diferencia es que <strong>el objeto se crea en un bloque estático para que se  pueda tener acceso a su creación</strong>, <strong>como el manejo de excepciones</strong>. De esta manera, el objeto <strong>también se crea en el momento de la carga de la clase</strong>.</p>
+<p>Puede utilizarse cuando hay posibilidad de excepciones al crear el objeto con inicialización ansiosa.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Código Java para crear una clase singleton</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Usando bloque estático</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ClaseSingletonAD</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// instancia pública</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> ClaseSingletonAD instance;
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">ClaseSingletonAD</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// constructor privado</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">static</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// bloque estático para inicializar la instancia</span>
+</span></span><span style="display:flex;"><span>    instance <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ClaseSingletonAD();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p><strong>Ventanjas e inconvenientes:</strong></p>
+<ul>
+<li>Muy <strong>sencillo</strong> de implementar.</li>
+<li>No es necesario implementar el método <code>getInstance()</code>. <strong>La instancia se puede acceder directamente</strong>.</li>
+<li>Las <strong>excepciones se pueden manejar</strong> en el bloque estático.</li>
+<li>Puede llevar al <strong>desperdicio de recursos</strong>, ya que la instancia de la clase se crea siempre, ya sea que se necesite o no.</li>
+<li>También se <strong>pierde tiempo de CPU en la creación de la instancia si no es necesaria</strong>.</li>
+</ul>
+<h3 id="3-instanciación-perezosa-de-singleton">3. Instanciación &ldquo;perezosa&rdquo; de Singleton</h3>
+<p>En este método, el objeto <strong>se crea sólo si es necesario</strong>. Esto puede evitar el desperdicio de recursos.</p>
+<p>El objeto se <strong>crea en la implementación del método <code>getInstance()</code> que devuelva la instancia</strong>. Hay una comprobación de nulidad, y si el objeto no está creado, entonces se crea; de lo contrario, se devuelve el creado previamente.</p>
+<p>Dado que el objeto se crea dentro de un método, se garantiza que el objeto no se creará a menos que sea necesario. La instancia se mantiene privada para que nadie pueda acceder directamente a ella.</p>
+<p>Puede utilizarse <strong>en un entorno de un solo hilo porque varios hilos pueden romper la propiedad singleton al acceder al método <code>getInstance()</code> simultáneamente y crear varios objetos</strong>.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// inicialización perezosa (Lazy initialization)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ClaseSingletonAD</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// instancia privada</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// sólo accesible desde el méttodo getInstance()</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> ClaseSingletonAD instance;
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">ClaseSingletonAD</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// constructor privado</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//devuelve la instancia de la clase</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> ClaseSingletonAD <span style="color:#a6e22e">getInstance</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (instance <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// si la instancia es nula se inicializa</span>
+</span></span><span style="display:flex;"><span>      instance <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ClaseSingletonAD();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> instance;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Por ejemplo:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Instanciación perezosa</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RastreadorTicketsVisitantes</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> RastreadorTicketsVisitantes instancia;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">RastreadorTicketsVisitantes</span>() {
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> RastreadorTicketsVisitantes <span style="color:#a6e22e">getInstance</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (instancia <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>            instancia <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> RastreadorTicketsVisitantes(); <span style="color:#75715e">// ¡NO ES SEGURO PARA HILOS!</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> instancia;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Métodos de acceso a datos</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>El <code>RastreadorTicketsVisitantes</code>, al igual que nuestras clases singleton, declara sólo constructores privados, crea una instancia de singleton y devuelve el singleton con un método <code>getInstance()</code>. Sin embargo, la clase <code>RastreadorTicketsVisitantes</code> <strong>crea el objeto singleton primera vez que un cliente lo solicita</strong>. Crear un objeto reutilizable la primera vez que se solicita es un patrón de diseño de software conocido como instanciación perezosa (<em>Lazy Instantiation</em>), que se usa a menudo junto con el patrón singleton.</p>
+<p><strong>Ventajas:</strong>
+La instanciación perezosa <strong>reduce el uso de memoria y mejora el rendimiento cuando se inicia una aplicación</strong>. De hecho, sin instanciación perezosa, la mayoría de los sistemas operativos y aplicaciones que ejecutas tardarían significativamente más en cargarse y consumirían mucha más memoria, quizás más memoria de la disponible en tu computadora.</p>
+<p><strong>Inconveniente:</strong>&quot;
+El inconveniente de la instanciación perezosa es que los usuarios <strong>pueden notar un retraso notable la primera vez que se necesita un tipo particular de recurso</strong>, como una conexión a una base de datos.</p>
+<p><em>Por ejemplo, muchas herramientas libres IDEs de desarrollo, como <strong>Eclipse</strong>, a menudo muestran un ligero retraso la primera vez que se abre un archivo Java en una ventana del editor después de iniciar el programa. Sin embargo, el retraso desaparece cuando se abren archivos Java adicionales. Este es un ejemplo de instanciación perezosa, ya que Eclipse <strong>sólo carga las bibliotecas para analizar y presentar archivos Java la primera vez que se abre un archivo Java</strong>.</em></p>
+<ul>
+<li>El objeto <strong>se crea sólo si es necesario</strong>. Puede superar el desperdicio de recursos y tiempo de CPU.</li>
+<li>El <strong>manejo de excepciones</strong> también es posible en el método.</li>
+<li>Se debe <strong>verificar la condición de nulo cada vez</strong>.</li>
+<li>La instancia no se puede acceder directamente.</li>
+<li>En un <strong>entorno multithread, puede romper la propiedad singleton</strong>.</li>
+</ul>
+<h4 id="singleton-en-varias-computadoras">Singleton en varias computadoras</h4>
+<p>En principio, los singletons son siempre únicos. Cuando se escriben aplicaciones que se ejecutan en varias computadoras, la solución estática de singleton comienza a requerir consideraciones especiales, ya que cada computadora tendría su propio JVM. En esas situaciones, aún se podría usar el patrón singleton, aunque podría implementarse con una base de datos o <strong>un servidor de colas en lugar de como un objeto estático</strong>.</p>
+<h3 id="4-thread-safe-singleton">4. Thread Safe Singleton</h3>
+<ul>
+<li>
+<p>Implementar verdaderamente el patrón singleton, debemos asegurarnos de que <strong>sólo se cree una instancia del singleton</strong> y está garantizado con el modelo anterior en entornos con un úncio hilo de ejecución.</p>
+</li>
+<li>
+<p>Marcar el constructor como privado evita que el singleton sea creado por otras clases, pero también <strong>se necesita asegurar que el objeto singleton sólo se crea una vez dentro de la propia clase singleton</strong>.</p>
+</li>
+</ul>
+<p>Se garantiza en los ejemplos de las clases <code>AlmacenComida</code> y <code>RegistroPersonal</code> utilizando el modificador <code>final</code> en la referencia estática.</p>
+<p>Pero, en la <strong>instanciación perezosa</strong> en la clase <code>RastreadorTicketsVisitantes</code>, el compilador <strong>no permite asignar el modificador <code>final</code> a la referencia estática</strong>.</p>
+<ul>
+<li>La implementación de <code>RastreadorTicketsVisitantes</code>, como se muestra, <strong>no se considera segura para hilos de ejecución (Threads)</strong>, ya que dos hilos podrían llamar a <code>getInstance()</code> al mismo tiempo, lo que daría lugar a la creación dos objetos. Después de que ambos hilos terminen de ejecutarse, sólo se establecerá y utilizará un objeto por otros hilos en adelante, pero el objeto que recibieron los dos hilos iniciales puede no ser el mismo.</li>
+</ul>
+<p>La seguridad de hilos (<em><strong>Thread safety</strong></em>) es la propiedad de un objeto que **garantiza una ejecución segura por parte de múltiples hilos al mismo tiempo mediante el uso del modificador <code>synchronized**</code> (por ejemplo, es la diferencia entre <code>StringBuilder</code> y <code>StringBuffer</code>). Hace que el método <code>getInstance()</code> sea sincronizado para que múltiples hilos no puedan acceder a él simultáneamente.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">synchronized</span> RastreadorTicketsVisitantes <span style="color:#a6e22e">getInstance</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (instancia <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>        instancia <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> RastreadorTicketsVisitantes();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> instancia;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>El método <code>getInstance()</code> ahora está <strong>sincronizado, lo que significa que sólo se permitirá que un hilo entre en el método a la vez, asegurando que sólo se cree un objeto</strong>.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Programa Java para crear una clase Singleton</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// segura para subprocesos</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ClaseSingletonAD</span> 
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// instancia privada, para que sólo pueda ser</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// accedida por el método getInstance()</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> ClaseSingletonAD instance;
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">ClaseSingletonAD</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// constructor privado</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// método sincronizado para controlar el acceso simultáneo</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">synchronized</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> ClaseSingletonAD <span style="color:#a6e22e">getInstance</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (instance <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// si la instancia es nula, inicializar</span>
+</span></span><span style="display:flex;"><span>      instance <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ClaseSingletonAD();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> instance;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p><strong>Ventajas e inconvenientes:</strong></p>
+<ul>
+<li>La inicialización perezosa se implanta.</li>
+<li>También es seguro para threads.</li>
+<li>El método <strong><code>getInstance()</code> está sincronizado</strong>, por lo que provoca un <strong>rendimiento lento, ya que varios hilos no pueden acceder a él simultáneamente</strong>.</li>
+</ul>
+<h3 id="5-singletons-con-bloqueo-de-doble-comprobación-doublechecked-locking">5. Singletons con bloqueo de doble comprobación (<em>Double‐Checked Locking</em>)</h3>
+<p>La implementación sincronizada de <code>getInstance()</code>, aunque evita correctamente la creación de varios objetos singleton, <strong>tiene el problema de que cada llamada a este método requerirá sincronización</strong>. En la práctica, esto <strong>puede ser costoso y afectar el rendimiento</strong>.</p>
+<p>La <strong>sincronización sólo es necesaria la primera vez que se crea el objeto</strong>. La solución es utilizar el doble bloqueo, un <strong>patrón de diseño en el que primero probamos si se necesita sincronización antes de adquirir cualquier bloqueo</strong>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">volatile</span> ClaseSingleton instance;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> ClaseSingleton <span style="color:#a6e22e">getInstance</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (instance <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">synchronized</span> (ClaseSingleton.<span style="color:#a6e22e">class</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (instance <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>                instance <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ClaseSingleton();
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> instance;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Se añade el modificador <code>volatile</code> al objeto singleton. Esta palabra clave <strong>evita un caso sutil donde el compilador intenta optimizar el código de manera que el objeto se acceda antes de que termine de construirse</strong>.</p>
+<p>Esta <strong>solución es mejor</strong> que la versión anterior, ya que realiza el paso de <strong>sincronización sólo cuando el singleton no existe</strong>. El singleton se accede miles de veces durante muchas horas o días, esto significa que sólo las primeras llamadas requerirían sincronización, y el resto no.</p>
+<ul>
+<li>Realiza <strong>inicialización perezosa</strong>.</li>
+<li>Es <strong>thread-safe</strong></li>
+<li>Mejora el rendimiento, porque <strong>reduce la sincronización</strong>.</li>
+<li>La <strong>primera vez puede afectar al rendimiento</strong>.</li>
+</ul>
+<h2 id="conclusión">Conclusión</h2>
+<p>Singleton es un patrón de diseño útil para permitir sólo una instancia de su clase, pero los errores comunes pueden permitir que se cree más de una instancia sin darse cuenta.</p>
+<p>El propósito del Singleton es <strong>controlar la creación de objetos, limitando el número a uno pero permitiendo la flexibilidad de crear más objetos si la situación cambia</strong>. Dado que sólo hay una instancia de Singleton, cualquier campo de instancia de un Singleton aparecerá sólo una vez por clase, al igual que los campos estáticos.</p>
+<p>Los singleton a menudo controlan el <strong>acceso a recursos como conexiones de bases de datos o sockets</strong>. Por ejemplo, si se tiene una licencia para una sola conexión para su base de datos o su controlador JDBC tiene problemas con subprocesos múltiples, Singleton se asegura de que sólo se realice una conexión o que sólo un subproceso pueda acceder a la conexión a la vez. <strong>Si añaden conexiones de base de datos o se utiliza un controlador JDBC que permite subprocesos múltiples, Singleton se puede ajustar fácilmente para permitir más conexiones</strong>.</p>
+<p>Además, los <strong>Singleton pueden tener estado</strong>; en este caso, su función es servir como depósito único del Estado. Si está implementando un contador que necesita dar números secuenciales y únicos (como la máquina que da números en la tienda de delicatessen), el contador debe ser globalmente único. El Singleton puede retener el número y sincronizar el acceso; Si más adelante desea mantener contadores en una base de datos para lograr persistencia, puede cambiar la implementación privada de Singleton sin cambiar la interfaz.</p>
+<p>Por otro lado, los Singleton también pueden <strong>proporcionar funciones de utilidad que no necesitan más información que sus parámetros</strong>. En ese caso, no hay necesidad de crear instancias de múltiples objetos que no tienen ninguna razón para su existencia, por lo que un Singleton es apropiado.</p>
+
+  <footer class="footline"></article>
+<footer>
+   <i class='fas fa-user'></i>  <span itemprop="name"> </span>
+
+<i class='fas fa-calendar'></i> Última actualización: 06.06.2025 
+</footer>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<img  src="../../../images/logo-ies.png" style="color:white;  font-size: 20px;" id="logo" href="http://manuais.pages.iessanclemente.net/apuntes/">
+        </div>
+        <search><form action="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Buscar (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Buscar</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Buscar...">
+            <button class="search-clear" type="button" data-search-clear="" title="Borrar búsqueda"><i class="fas fa-times" title="Borrar búsqueda"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/index.html"><a class="padding" href="../../../index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/index.html"><input type="checkbox" id="R-section-0758abab80c2aa84781892223aa808b3" aria-controls="R-subsections-0758abab80c2aa84781892223aa808b3" checked><label for="R-section-0758abab80c2aa84781892223aa808b3"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 0. Refuerzo y ayudas complementarias</span></label><a class="padding" href="../../index.html">UD 0. Refuerzo y ayudas complementarias<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-0758abab80c2aa84781892223aa808b3" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/index.html"><input type="checkbox" id="R-section-1b1977ce428c9ac8dab8b72f8979bcb5" aria-controls="R-subsections-1b1977ce428c9ac8dab8b72f8979bcb5"><label for="R-section-1b1977ce428c9ac8dab8b72f8979bcb5"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01 Configuración y despliegue</span></label><a class="padding" href="../../00configjava/index.html">01 Configuración y despliegue<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1b1977ce428c9ac8dab8b72f8979bcb5" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/01jarfiles/index.html"><a class="padding" href="../../00configjava/01jarfiles/index.html">01 Archivos Jar<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/02jarwithmaven/index.html"><a class="padding" href="../../00configjava/02jarwithmaven/index.html">02 Creación de un JAR ejecutable con Java con Apache Maven<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/03dependencias/index.html"><a class="padding" href="../../00configjava/03dependencias/index.html">03. Dependencias Maven.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/index.html"><input type="checkbox" id="R-section-0ee0a79915535bc59e8b9d0e78f65ef9" aria-controls="R-subsections-0ee0a79915535bc59e8b9d0e78f65ef9"><label for="R-section-0ee0a79915535bc59e8b9d0e78f65ef9"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02 Java General</span></label><a class="padding" href="../../02javageneral/index.html">02 Java General<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-0ee0a79915535bc59e8b9d0e78f65ef9" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/01streamapi/index.html"><a class="padding" href="../../02javageneral/01streamapi/index.html">00.01 Java Stream API<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/02urlfiles/index.html"><a class="padding" href="../../02javageneral/02urlfiles/index.html">00.02 Descarga de archivos de Internet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/03hashcode/index.html"><a class="padding" href="../../02javageneral/03hashcode/index.html">03 Implementación de hashCode()<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/index.html"><input type="checkbox" id="R-section-8eb2a58628ca595eccda7f8f066488f0" aria-controls="R-subsections-8eb2a58628ca595eccda7f8f066488f0"><label for="R-section-8eb2a58628ca595eccda7f8f066488f0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 03. Layouts en Java Swing &amp; UI</span></label><a class="padding" href="../../03layouts/index.html">03. Layouts en Java Swing &amp; UI<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8eb2a58628ca595eccda7f8f066488f0" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/00dialogosenswing/index.html"><a class="padding" href="../../03layouts/00dialogosenswing/index.html">01 Ventanas de entrada de datos, mensajes y archivos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/05gridbaglayout/index.html"><a class="padding" href="../../03layouts/05gridbaglayout/index.html">05 GridBagLayout<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="parent " data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/index.html"><input type="checkbox" id="R-section-1c69dc8b47fb6fae98603b1968118cf8" aria-controls="R-subsections-1c69dc8b47fb6fae98603b1968118cf8" checked><label for="R-section-1c69dc8b47fb6fae98603b1968118cf8"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 04. Patrones de diseño</span></label><a class="padding" href="../index.html">04. Patrones de diseño<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1c69dc8b47fb6fae98603b1968118cf8" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/01designprinciples/index.html"><a class="padding" href="../01designprinciples/index.html">01. Principios de diseño<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="active " data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/02singleton/index.html"><a class="padding" href="index.html">02. Patrón Singleton<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/03objetosinmutables/index.html"><a class="padding" href="../03objetosinmutables/index.html">03. Objetos Inmutables<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/index.html"><input type="checkbox" id="R-section-36a825e367dd24b7cccca030c91ea60b" aria-controls="R-subsections-36a825e367dd24b7cccca030c91ea60b"><label for="R-section-36a825e367dd24b7cccca030c91ea60b"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 05. Programación en Kotlin</span></label><a class="padding" href="../../05kotlin/index.html">05. Programación en Kotlin<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-36a825e367dd24b7cccca030c91ea60b" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/index.html"><input type="checkbox" id="R-section-312a90d18fa918ef04d04e75820d73c0" aria-controls="R-subsections-312a90d18fa918ef04d04e75820d73c0"><label for="R-section-312a90d18fa918ef04d04e75820d73c0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación estructurada básica</span></label><a class="padding" href="../../05kotlin/01progestructurada/index.html">Programación estructurada básica<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-312a90d18fa918ef04d04e75820d73c0" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/10.-la_funcion_main/index.html"><a class="padding" href="../../05kotlin/01progestructurada/10.-la_funcion_main/index.html">La funcion main()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/20.-la_funcion-print-_y-_println/index.html"><a class="padding" href="../../05kotlin/01progestructurada/20.-la_funcion-print-_y-_println/index.html">La funcion print() y println()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/30.-comentarios/index.html"><a class="padding" href="../../05kotlin/01progestructurada/30.-comentarios/index.html">Comentarios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/40.-variables-_-literales-_y_-sentencia_-de_-asignación/index.html"><a class="padding" href="../../05kotlin/01progestructurada/40.-variables-_-literales-_y_-sentencia_-de_-asignaci%c3%b3n/index.html">Variables, literales y sentencia de asignación<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/50.-palabras_reservadas/index.html"><a class="padding" href="../../05kotlin/01progestructurada/50.-palabras_reservadas/index.html">Palabras reservadas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/index.html"><input type="checkbox" id="R-section-94a2bfa5cc4fa0f33d0f2cf1c75e3265" aria-controls="R-subsections-94a2bfa5cc4fa0f33d0f2cf1c75e3265"><label for="R-section-94a2bfa5cc4fa0f33d0f2cf1c75e3265"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú tipos de datos y operadores</span></label><a class="padding" href="../../05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/index.html">tipos de datos y operadores<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-94a2bfa5cc4fa0f33d0f2cf1c75e3265" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/60.tipos_de_datos_basicos/index.html"><a class="padding" href="../../05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/60.tipos_de_datos_basicos/index.html">Tipos de datos básicos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/70.tipos_numericos/index.html"><a class="padding" href="../../05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/70.tipos_numericos/index.html">Tipos Numéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/80.tipos_no_-numericos/index.html"><a class="padding" href="../../05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/80.tipos_no_-numericos/index.html">Tipos básicos  No Numéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/90.conversion_de_tipos/index.html"><a class="padding" href="../../05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/90.conversion_de_tipos/index.html">Conversión de Tipos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/100.-operadores/index.html"><a class="padding" href="../../05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/100.-operadores/index.html">Operadores<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/110.-expresiones_booleanas/index.html"><a class="padding" href="../../05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/110.-expresiones_booleanas/index.html">Expresiones booleanas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/index.html"><input type="checkbox" id="R-section-840caf4a5c9da596bf4345cae4c798ab" aria-controls="R-subsections-840caf4a5c9da596bf4345cae4c798ab"><label for="R-section-840caf4a5c9da596bf4345cae4c798ab"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú colecciones básicas</span></label><a class="padding" href="../../05kotlin/01progestructurada/coleccionesbasicas/index.html">colecciones básicas<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-840caf4a5c9da596bf4345cae4c798ab" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/120.-string/index.html"><a class="padding" href="../../05kotlin/01progestructurada/coleccionesbasicas/120.-string/index.html">String<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/130.-listas/index.html"><a class="padding" href="../../05kotlin/01progestructurada/coleccionesbasicas/130.-listas/index.html">Listas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/140.rangos-/index.html"><a class="padding" href="../../05kotlin/01progestructurada/coleccionesbasicas/140.rangos-/index.html">Rangos<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/150.-entrada_teclado/index.html"><a class="padding" href="../../05kotlin/01progestructurada/150.-entrada_teclado/index.html">Entrada de datos por teclado con readln()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/index.html"><input type="checkbox" id="R-section-f79f31fcf5ae1f44691bca6f05e1710f" aria-controls="R-subsections-f79f31fcf5ae1f44691bca6f05e1710f"><label for="R-section-f79f31fcf5ae1f44691bca6f05e1710f"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú control de flujo</span></label><a class="padding" href="../../05kotlin/01progestructurada/control_de_-flujo/index.html">control de flujo<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-f79f31fcf5ae1f44691bca6f05e1710f" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/151.-control_de_flujo/index.html"><a class="padding" href="../../05kotlin/01progestructurada/control_de_-flujo/151.-control_de_flujo/index.html">Control de flujo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/160.-sentencia_condicional_if/index.html"><a class="padding" href="../../05kotlin/01progestructurada/control_de_-flujo/160.-sentencia_condicional_if/index.html">Sentencia condicional IF<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/190.-sentecia_when/index.html"><a class="padding" href="../../05kotlin/01progestructurada/control_de_-flujo/190.-sentecia_when/index.html">Sentencia when<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/200.-bucle_for/index.html"><a class="padding" href="../../05kotlin/01progestructurada/control_de_-flujo/200.-bucle_for/index.html">Bucle for<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/210.-while_y_do_while/index.html"><a class="padding" href="../../05kotlin/01progestructurada/control_de_-flujo/210.-while_y_do_while/index.html">while y do while<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/220.-variables_locales_y_bloques/index.html"><a class="padding" href="../../05kotlin/01progestructurada/control_de_-flujo/220.-variables_locales_y_bloques/index.html">variables locales y bloques<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/230.-break_y_continue/index.html"><a class="padding" href="../../05kotlin/01progestructurada/control_de_-flujo/230.-break_y_continue/index.html">break y continue<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/240.otras_formas_de_iterar/index.html"><a class="padding" href="../../05kotlin/01progestructurada/control_de_-flujo/240.otras_formas_de_iterar/index.html">Otras formas de iterar<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/250.-funciones/index.html"><a class="padding" href="../../05kotlin/01progestructurada/250.-funciones/index.html">Funciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/260.el_valor_nulo/index.html"><a class="padding" href="../../05kotlin/01progestructurada/260.el_valor_nulo/index.html">El valor nulo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/270.-readline/index.html"><a class="padding" href="../../05kotlin/01progestructurada/270.-readline/index.html">Entrada de datos por teclado con readLine()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/index.html"><input type="checkbox" id="R-section-44784ce5c237bf9124eefe20ce36272f" aria-controls="R-subsections-44784ce5c237bf9124eefe20ce36272f"><label for="R-section-44784ce5c237bf9124eefe20ce36272f"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú más sobre colecciones básicas</span></label><a class="padding" href="../../05kotlin/01progestructurada/mas_sobre_colecciones_basicas/index.html">más sobre colecciones básicas<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-44784ce5c237bf9124eefe20ce36272f" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/310.-arrays/index.html"><a class="padding" href="../../05kotlin/01progestructurada/mas_sobre_colecciones_basicas/310.-arrays/index.html">Arrays<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/320.-listas/index.html"><a class="padding" href="../../05kotlin/01progestructurada/mas_sobre_colecciones_basicas/320.-listas/index.html">Listas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/330.rangos-/index.html"><a class="padding" href="../../05kotlin/01progestructurada/mas_sobre_colecciones_basicas/330.rangos-/index.html">Rangos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/340.mapas-/index.html"><a class="padding" href="../../05kotlin/01progestructurada/mas_sobre_colecciones_basicas/340.mapas-/index.html">Mapas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/350.iterar_sobre_colecciones/index.html"><a class="padding" href="../../05kotlin/01progestructurada/mas_sobre_colecciones_basicas/350.iterar_sobre_colecciones/index.html">Iterar sobre colecciones<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/index.html"><input type="checkbox" id="R-section-1ef1a5ed807dacffeb206c0950804c3a" aria-controls="R-subsections-1ef1a5ed807dacffeb206c0950804c3a"><label for="R-section-1ef1a5ed807dacffeb206c0950804c3a"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación orientada a objetos</span></label><a class="padding" href="../../05kotlin/02progoo/index.html">Programación orientada a objetos<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1ef1a5ed807dacffeb206c0950804c3a" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1010.objetos_y_clases/index.html"><a class="padding" href="../../05kotlin/02progoo/1010.objetos_y_clases/index.html">Objetos y clases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1020.constructores-/index.html"><a class="padding" href="../../05kotlin/02progoo/1020.constructores-/index.html">Constructores<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1030.propiedades/index.html"><a class="padding" href="../../05kotlin/02progoo/1030.propiedades/index.html">Propiedades<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1040.sobreescribir_tostring/index.html"><a class="padding" href="../../05kotlin/02progoo/1040.sobreescribir_tostring/index.html">Sobreescribir toString()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1060.modificadoresvisibilidad/index.html"><a class="padding" href="../../05kotlin/02progoo/1060.modificadoresvisibilidad/index.html">modificadores de visibilidad<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1070.enum/index.html"><a class="padding" href="../../05kotlin/02progoo/1070.enum/index.html">clases Enum<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1100.composicion/index.html"><a class="padding" href="../../05kotlin/02progoo/1100.composicion/index.html">Composición<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1200.herencia/index.html"><a class="padding" href="../../05kotlin/02progoo/1200.herencia/index.html">Herencia<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1220.clases_abstractas_interfaces/index.html"><a class="padding" href="../../05kotlin/02progoo/1220.clases_abstractas_interfaces/index.html">Clases abstractas e Interfaces<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1240.dataclases/index.html"><a class="padding" href="../../05kotlin/02progoo/1240.dataclases/index.html">Data Clases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1250.keywordobject/index.html"><a class="padding" href="../../05kotlin/02progoo/1250.keywordobject/index.html">La palabra reservada object. Companion object, objetos singleton y objetos expressions<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1255.excepciones/index.html"><a class="padding" href="../../05kotlin/02progoo/1255.excepciones/index.html">Excepciones en Kotlin<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1260.genericos/index.html"><a class="padding" href="../../05kotlin/02progoo/1260.genericos/index.html">Genéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1265.clausulatypealiases/index.html"><a class="padding" href="../../05kotlin/02progoo/1265.clausulatypealiases/index.html">cláusula typealiases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1270.delegacion/index.html"><a class="padding" href="../../05kotlin/02progoo/1270.delegacion/index.html">Delegación con cláusula by<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1280.claesanidadaseinternas/index.html"><a class="padding" href="../../05kotlin/02progoo/1280.claesanidadaseinternas/index.html">Clases anidadas e internas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/index.html"><input type="checkbox" id="R-section-8bbd4a78f07b64e8b2bc4b83b71f1498" aria-controls="R-subsections-8bbd4a78f07b64e8b2bc4b83b71f1498"><label for="R-section-8bbd4a78f07b64e8b2bc4b83b71f1498"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación funcional</span></label><a class="padding" href="../../05kotlin/03progfuncional/index.html">Programación funcional<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8bbd4a78f07b64e8b2bc4b83b71f1498" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2010.funcioneskotlin/index.html"><a class="padding" href="../../05kotlin/03progfuncional/2010.funcioneskotlin/index.html">sintáxis avanzada de las  funciones kotlin<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2020.-basesdepf/index.html"><a class="padding" href="../../05kotlin/03progfuncional/2020.-basesdepf/index.html">algunos conceptos básicos de programación funcional<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2030.funcionesordensuperiorcolecciones/index.html"><a class="padding" href="../../05kotlin/03progfuncional/2030.funcionesordensuperiorcolecciones/index.html">funciones de orden superior y colecciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2040.funcionesordensuperiorysequence/index.html"><a class="padding" href="../../05kotlin/03progfuncional/2040.funcionesordensuperiorysequence/index.html">funciones de orden superior y sequence<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li></ul></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/index.html"><input type="checkbox" id="R-section-cf4ee7bae7fca4e692355524601fe599" aria-controls="R-subsections-cf4ee7bae7fca4e692355524601fe599"><label for="R-section-cf4ee7bae7fca4e692355524601fe599"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML</span></label><a class="padding" href="../../../01accesoficheros/index.html">UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-cf4ee7bae7fca4e692355524601fe599" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/index.html"><input type="checkbox" id="R-section-ec127efd28751c1f836952c8dac2374d" aria-controls="R-subsections-ec127efd28751c1f836952c8dac2374d"><label for="R-section-ec127efd28751c1f836952c8dac2374d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.01 Java IO. Acceso a ficheros, flujos, serialización de objetos.</span></label><a class="padding" href="../../../01accesoficheros/01javaio/index.html">01.01 Java IO. Acceso a ficheros, flujos, serialización de objetos.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-ec127efd28751c1f836952c8dac2374d" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0100javaiointro/index.html"><a class="padding" href="../../../01accesoficheros/01javaio/0100javaiointro/index.html">01.00 Java IO. Introducción.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0101javaiofile/index.html"><a class="padding" href="../../../01accesoficheros/01javaio/0101javaiofile/index.html">01.01 La clase File<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0102randomaccessfile/index.html"><a class="padding" href="../../../01accesoficheros/01javaio/0102randomaccessfile/index.html">01.02 La clase RandomAccessFile<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0103javaiostreams/index.html"><a class="padding" href="../../../01accesoficheros/01javaio/0103javaiostreams/index.html">01.03 Flujos de E/S<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0104bytestream/index.html"><a class="padding" href="../../../01accesoficheros/01javaio/0104bytestream/index.html">01.04 Flujos de byte<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0105characterstream/index.html"><a class="padding" href="../../../01accesoficheros/01javaio/0105characterstream/index.html">01.05 Flujos de caracteres<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0106javaiobuffer/index.html"><a class="padding" href="../../../01accesoficheros/01javaio/0106javaiobuffer/index.html">01.06 Flujos de E/S con Buffer<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0107javaistream/index.html"><a class="padding" href="../../../01accesoficheros/01javaio/0107javaistream/index.html">01.07 Operaciones comunes con flujos de E/S.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0109ejercicios/index.html"><a class="padding" href="../../../01accesoficheros/01javaio/0109ejercicios/index.html">Ejercicios<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/index.html"><input type="checkbox" id="R-section-2d1e1941df73311305891c0dca6583fd" aria-controls="R-subsections-2d1e1941df73311305891c0dca6583fd"><label for="R-section-2d1e1941df73311305891c0dca6583fd"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.02 Java NIO.2</span></label><a class="padding" href="../../../01accesoficheros/02javanio2/index.html">01.02 Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-2d1e1941df73311305891c0dca6583fd" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0202javaniopath/index.html"><a class="padding" href="../../../01accesoficheros/02javanio2/0202javaniopath/index.html">02.01. La interface Path<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0203javaniopathcreate/index.html"><a class="padding" href="../../../01accesoficheros/02javanio2/0203javaniopathcreate/index.html">02.03. Creación de Path<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0204javaniopath/index.html"><a class="padding" href="../../../01accesoficheros/02javanio2/0204javaniopath/index.html">02.04. Operaciones comunes de Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0205javaniopathmethods/index.html"><a class="padding" href="../../../01accesoficheros/02javanio2/0205javaniopathmethods/index.html">02.05. Métodos y con Path Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0206javaniostreams/index.html"><a class="padding" href="../../../01accesoficheros/02javanio2/0206javaniostreams/index.html">02.06. Programación funcional con Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/index.html"><input type="checkbox" id="R-section-662c48eb0e2f97ba0e58c14a690fca47" aria-controls="R-subsections-662c48eb0e2f97ba0e58c14a690fca47"><label for="R-section-662c48eb0e2f97ba0e58c14a690fca47"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.03 JSON en Java</span></label><a class="padding" href="../../../01accesoficheros/03json/index.html">01.03 JSON en Java<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-662c48eb0e2f97ba0e58c14a690fca47" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0300jsonintro/index.html"><a class="padding" href="../../../01accesoficheros/03json/0300jsonintro/index.html">01.00. Introducción a JSON<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0301jsonjs/index.html"><a class="padding" href="../../../01accesoficheros/03json/0301jsonjs/index.html">01.01. JSON con el API JavaScript de Java<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0302jsonlibraries/index.html"><a class="padding" href="../../../01accesoficheros/03json/0302jsonlibraries/index.html">01.02. Bibliotecas JSON para Java<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0304gson/index.html"><a class="padding" href="../../../01accesoficheros/03json/0304gson/index.html">01.03. Gson. Introducción<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0304gsondiagram/index.html"><a class="padding" href="../../../01accesoficheros/03json/0304gsondiagram/index.html">01.03. Gson. Diagrama de clases (e interfaces)<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0305gsoncreate/index.html"><a class="padding" href="../../../01accesoficheros/03json/0305gsoncreate/index.html">01.04. Gson. Creación de instancias Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0306creaciongson/index.html"><a class="padding" href="../../../01accesoficheros/03json/0306creaciongson/index.html">01.05 Gson. Creación y lectura de objetos JSON<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0306transformacion/index.html"><a class="padding" href="../../../01accesoficheros/03json/0306transformacion/index.html">01.06. Gson. Transformación de objetos JSON personalizada<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0307jsonreader01/index.html"><a class="padding" href="../../../01accesoficheros/03json/0307jsonreader01/index.html">01.07 Gson. JsonReader<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0308jsonrename/index.html"><a class="padding" href="../../../01accesoficheros/03json/0308jsonrename/index.html">01.08 Gson. Renombrar atributos <i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0309jsonserialize/index.html"><a class="padding" href="../../../01accesoficheros/03json/0309jsonserialize/index.html">01.09 Resumen Serialización Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0310jsondeserialize/index.html"><a class="padding" href="../../../01accesoficheros/03json/0310jsondeserialize/index.html">01.09 Resumen Deserialización Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/098ejercicio/index.html"><a class="padding" href="../../../01accesoficheros/03json/098ejercicio/index.html">Ejercicio. Trivial<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/0105ejercicios/index.html"><a class="padding" href="../../../01accesoficheros/0105ejercicios/index.html">Ejercicios y recursos<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/index.html"><input type="checkbox" id="R-section-342b2e95b9611e1108f16a11c61cd1f2" aria-controls="R-subsections-342b2e95b9611e1108f16a11c61cd1f2"><label for="R-section-342b2e95b9611e1108f16a11c61cd1f2"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 2. Acceso a BD remotas relacionales</span></label><a class="padding" href="../../../02accesobd/index.html">UD 2. Acceso a BD remotas relacionales<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-342b2e95b9611e1108f16a11c61cd1f2" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/index.html"><input type="checkbox" id="R-section-66326b82828cdbb6e30c77e924342908" aria-controls="R-subsections-66326b82828cdbb6e30c77e924342908"><label for="R-section-66326b82828cdbb6e30c77e924342908"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02.02 JDBC. Introducción a las Bases de datos relacionales.</span></label><a class="padding" href="../../../02accesobd/02db/index.html">02.02 JDBC. Introducción a las Bases de datos relacionales.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-66326b82828cdbb6e30c77e924342908" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0101databases/index.html"><a class="padding" href="../../../02accesobd/02db/0101databases/index.html">02.01. Sistemas gestores de bases de datos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0102introdb/index.html"><a class="padding" href="../../../02accesobd/02db/0102introdb/index.html">02. Introducción a las bases de datos relacionales<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0103postgresql/index.html"><a class="padding" href="../../../02accesobd/02db/0103postgresql/index.html">03. PostgreSQL<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0104postgres01/index.html"><a class="padding" href="../../../02accesobd/02db/0104postgres01/index.html">04. PostgreSQL. Características y Operadores.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/index.html"><input type="checkbox" id="R-section-4b93c45cd959371d7c20dcc7da6d632c" aria-controls="R-subsections-4b93c45cd959371d7c20dcc7da6d632c"><label for="R-section-4b93c45cd959371d7c20dcc7da6d632c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02.03. Procesamiento de sentencias SQL.</span></label><a class="padding" href="../../../02accesobd/03procesandosql/index.html">02.03. Procesamiento de sentencias SQL.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-4b93c45cd959371d7c20dcc7da6d632c" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0101procesamientosql/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0101procesamientosql/index.html">01. Procesamiento de sentencias SQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0102conexiones/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0102conexiones/index.html">02. Conexiones a BD<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0103excepcionessql/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0103excepcionessql/index.html">03. Excepciones SQLException<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0104resultset/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0104resultset/index.html">04. ResultSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0105resultsetbatch/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0105resultsetbatch/index.html">05. Actualizaciones por lotes con ResultSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0106preparedst/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0106preparedst/index.html">06. Prepared Statement<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0107transacciones/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0107transacciones/index.html">07. Transacciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0108clavesgeneradas/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0108clavesgeneradas/index.html">08. Claves Generadas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0109largeobjects/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0109largeobjects/index.html">09. Objectos grandes<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0111rowset/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0111rowset/index.html">11. RowSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0115boletines/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0115boletines/index.html">15. Ejercicios y archivos de la unidad<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/99proyecto/index.html"><a class="padding" href="../../../02accesobd/99proyecto/index.html">Proyecto 1ª evaluación<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/index.html"><input type="checkbox" id="R-section-87c8b6c6cd354a309db816f73d185be0" aria-controls="R-subsections-87c8b6c6cd354a309db816f73d185be0"><label for="R-section-87c8b6c6cd354a309db816f73d185be0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 3. Object/Relational Mapping (ORM). JPA e Hibernate</span></label><a class="padding" href="../../../03orm/index.html">UD 3. Object/Relational Mapping (ORM). JPA e Hibernate<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-87c8b6c6cd354a309db816f73d185be0" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/index.html"><input type="checkbox" id="R-section-5aaca10806a740cf4d784be6e24473b9" aria-controls="R-subsections-5aaca10806a740cf4d784be6e24473b9"><label for="R-section-5aaca10806a740cf4d784be6e24473b9"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 03.01. Jakarta Persistence (JPA).</span></label><a class="padding" href="../../../03orm/jpa/index.html">03.01. Jakarta Persistence (JPA).<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-5aaca10806a740cf4d784be6e24473b9" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/01jpa/index.html"><a class="padding" href="../../../03orm/jpa/01jpa/index.html">01. Jakarta Persistence (JPA).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/02jpavshibernate/index.html"><a class="padding" href="../../../03orm/jpa/02jpavshibernate/index.html">02. JPA vs Hibernate.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/03jpaejercicio/index.html"><a class="padding" href="../../../03orm/jpa/03jpaejercicio/index.html">03. Ejercicio básico de JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/04entitymanager/index.html"><a class="padding" href="../../../03orm/jpa/04entitymanager/index.html">04. Gestión de entidades con EntityManager.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/05mapeoentidades/index.html"><a class="padding" href="../../../03orm/jpa/05mapeoentidades/index.html">05. Mapeo de entidades.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/06relaciones/index.html"><a class="padding" href="../../../03orm/jpa/06relaciones/index.html">06. Relaciones JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/07embedidos/index.html"><a class="padding" href="../../../03orm/jpa/07embedidos/index.html">07. Objetos embebidos.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/08colecciones/index.html"><a class="padding" href="../../../03orm/jpa/08colecciones/index.html">08. Mapeo de colecciones.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/09queries/index.html"><a class="padding" href="../../../03orm/jpa/09queries/index.html">09. Consultas.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/10jpql/index.html"><a class="padding" href="../../../03orm/jpa/10jpql/index.html">10. JPQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/11paginacion/index.html"><a class="padding" href="../../../03orm/jpa/11paginacion/index.html">11. Paginación de consultas.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/12herencia/index.html"><a class="padding" href="../../../03orm/jpa/12herencia/index.html">12. Herencia.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/14ejercicios/index.html"><a class="padding" href="../../../03orm/jpa/14ejercicios/index.html">Ejercicios de la unidad de JPA<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/15boletines/index.html"><a class="padding" href="../../../03orm/jpa/15boletines/index.html">Ejercicios de refuerzo.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/16dependencias/index.html"><a class="padding" href="../../../03orm/jpa/16dependencias/index.html">Dependencias Maven.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/95singleton/index.html"><a class="padding" href="../../../03orm/95singleton/index.html">03.02. Patrón Singleton.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/96ejerciciosrepaso/index.html"><a class="padding" href="../../../03orm/96ejerciciosrepaso/index.html">03.03. Ejercicios de refuerzo (Violín).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/97ejerciciosrepaso2/index.html"><a class="padding" href="../../../03orm/97ejerciciosrepaso2/index.html">03.04 Ejercicios de refuerzo (II)<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/98ejerciciosrepaso3/index.html"><a class="padding" href="../../../03orm/98ejerciciosrepaso3/index.html">03.05 Ejercicios de refuerzo (III)<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/index.html"><input type="checkbox" id="R-section-ffae27028787f9b794af8498ce8bc361" aria-controls="R-subsections-ffae27028787f9b794af8498ce8bc361"><label for="R-section-ffae27028787f9b794af8498ce8bc361"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 4. Spring.</span></label><a class="padding" href="../../../04spring/index.html">UD 4. Spring.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-ffae27028787f9b794af8498ce8bc361" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/01springboot/index.html"><a class="padding" href="../../../04spring/01springboot/index.html">01. Spring Boot.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/02springdata/index.html"><a class="padding" href="../../../04spring/02springdata/index.html">02. Spring Data JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/03practicajpadata/index.html"><a class="padding" href="../../../04spring/03practicajpadata/index.html">03. Práctica con de Spring Data JPA y REST.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/04repositorios/index.html"><a class="padding" href="../../../04spring/04repositorios/index.html">04. Repositorios String Data.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/05paginacion/index.html"><a class="padding" href="../../../04spring/05paginacion/index.html">05. Paginación y Ordenación usando Spring Data JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/06paginacionrest/index.html"><a class="padding" href="../../../04spring/06paginacionrest/index.html">06. Paginación y Ordenación usando Spring Data REST.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/07vaadin/index.html"><a class="padding" href="../../../04spring/07vaadin/index.html">07. Spring Data JPA con Vaadin (práctica).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/08ejecutores/index.html"><a class="padding" href="../../../04spring/08ejecutores/index.html">08. Ejecutores al inicio con Spring Boot<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/09serviciocompo/index.html"><a class="padding" href="../../../04spring/09serviciocompo/index.html">09. Servicios, componentes y repositorios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/10servicios/index.html"><a class="padding" href="../../../04spring/10servicios/index.html">10. Servicios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/index.html"><input type="checkbox" id="R-section-f25e02e15b94f5cb39179f26efa74bfe" aria-controls="R-subsections-f25e02e15b94f5cb39179f26efa74bfe"><label for="R-section-f25e02e15b94f5cb39179f26efa74bfe"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 11. Proyecto Spring. Cuestionarios.</span></label><a class="padding" href="../../../04spring/11proyecto/index.html">11. Proyecto Spring. Cuestionarios.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-f25e02e15b94f5cb39179f26efa74bfe" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/01modelo/index.html"><a class="padding" href="../../../04spring/11proyecto/01modelo/index.html">01. Modelo de datos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/02dto/index.html"><a class="padding" href="../../../04spring/11proyecto/02dto/index.html">02. DTO<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/03repositorios/index.html"><a class="padding" href="../../../04spring/11proyecto/03repositorios/index.html">03. Repositorios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/04controller/index.html"><a class="padding" href="../../../04spring/11proyecto/04controller/index.html">04. Controller<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/05resultados/index.html"><a class="padding" href="../../../04spring/11proyecto/05resultados/index.html">05. Pruebas y mejoras<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/12springproj/index.html"><a class="padding" href="../../../04spring/12springproj/index.html">12. Proyecto Spring. Cuestionarios.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/index.html"><input type="checkbox" id="R-section-a0dc28a495fca757d219f1aec2ecff4c" aria-controls="R-subsections-a0dc28a495fca757d219f1aec2ecff4c"><label for="R-section-a0dc28a495fca757d219f1aec2ecff4c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 5. Bases de datos no SQL. MongoDB</span></label><a class="padding" href="../../../05basesdatosnonsql/index.html">UD 5. Bases de datos no SQL. MongoDB<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-a0dc28a495fca757d219f1aec2ecff4c" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/mongodb/01nosql/index.html"><a class="padding" href="../../../05basesdatosnonsql/mongodb/01nosql/index.html">01. Bases de datos NoSQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/mongodb/03springmongodb/index.html"><a class="padding" href="../../../05basesdatosnonsql/mongodb/03springmongodb/index.html">03. Conexión a MongoDB con String Data MongoDB (práctica).<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/index.html"><input type="checkbox" id="R-section-8d4041f058dd2262e83830e1db38cc6d" aria-controls="R-subsections-8d4041f058dd2262e83830e1db38cc6d"><label for="R-section-8d4041f058dd2262e83830e1db38cc6d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Git</span></label><a class="padding" href="../../../git/index.html">Git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8d4041f058dd2262e83830e1db38cc6d" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/index.html"><input type="checkbox" id="R-section-a87776bdac862bf972ec945bc124b884" aria-controls="R-subsections-a87776bdac862bf972ec945bc124b884"><label for="R-section-a87776bdac862bf972ec945bc124b884"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Introducción git</span></label><a class="padding" href="../../../git/1.introduccion_git/index.html">Introducción git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-a87776bdac862bf972ec945bc124b884" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/1.introduccion_git/index.html"><a class="padding" href="../../../git/1.introduccion_git/1.introduccion_git/index.html">Introducción a git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/2.estados_git/index.html"><a class="padding" href="../../../git/1.introduccion_git/2.estados_git/index.html">Estados de git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/3.instalacion_git/index.html"><a class="padding" href="../../../git/1.introduccion_git/3.instalacion_git/index.html">Instalación de git<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/index.html"><input type="checkbox" id="R-section-b63515bb4dcfe678de9ffac7a29c1e77" aria-controls="R-subsections-b63515bb4dcfe678de9ffac7a29c1e77"><label for="R-section-b63515bb4dcfe678de9ffac7a29c1e77"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Fundamentos git</span></label><a class="padding" href="../../../git/2.fundamentos_git/index.html">Fundamentos git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-b63515bb4dcfe678de9ffac7a29c1e77" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/1.configuracion_git/index.html"><a class="padding" href="../../../git/2.fundamentos_git/1.configuracion_git/index.html">Configuracion de git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/2.inicializar_repo/index.html"><a class="padding" href="../../../git/2.fundamentos_git/2.inicializar_repo/index.html">Inicializando repositorio<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/3.cambios/index.html"><a class="padding" href="../../../git/2.fundamentos_git/3.cambios/index.html">Cambios en el repositorio<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/4.ignorar_archivos/index.html"><a class="padding" href="../../../git/2.fundamentos_git/4.ignorar_archivos/index.html">Archivos Ignorados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/5.checkout/index.html"><a class="padding" href="../../../git/2.fundamentos_git/5.checkout/index.html">Git checkout<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/6.log/index.html"><a class="padding" href="../../../git/2.fundamentos_git/6.log/index.html">Git Log<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/7.archivos_modificados/index.html"><a class="padding" href="../../../git/2.fundamentos_git/7.archivos_modificados/index.html">Archivos modificados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/8.cambios/index.html"><a class="padding" href="../../../git/2.fundamentos_git/8.cambios/index.html">Archivos modificados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/9.eliminar_archivos/index.html"><a class="padding" href="../../../git/2.fundamentos_git/9.eliminar_archivos/index.html">Opciones con archivos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/10.limitar/index.html"><a class="padding" href="../../../git/2.fundamentos_git/10.limitar/index.html">Historial de confirmaciones<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/3.remotos/index.html"><a class="padding" href="../../../git/3.remotos/index.html">Remotos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/4.etiquetado/index.html"><a class="padding" href="../../../git/4.etiquetado/index.html">Etiquetado<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/index.html"><input type="checkbox" id="R-section-d8234a81ae190365829886d9d8a058a7" aria-controls="R-subsections-d8234a81ae190365829886d9d8a058a7"><label for="R-section-d8234a81ae190365829886d9d8a058a7"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Ramas Git</span></label><a class="padding" href="../../../git/5.ramas_git/index.html">Ramas Git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-d8234a81ae190365829886d9d8a058a7" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/1.ramificaciones_git/index.html"><a class="padding" href="../../../git/5.ramas_git/1.ramificaciones_git/index.html">Ramificación<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/2.ramificaciones_remotas/index.html"><a class="padding" href="../../../git/5.ramas_git/2.ramificaciones_remotas/index.html">Ramas Remotas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/6.claves_ssh/index.html"><a class="padding" href="../../../git/6.claves_ssh/index.html">Claves SSH<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">Más</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/"><a class="padding" href="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/" rel="external" target="_blank"><i class='fas fa-fw fa-bookmark'></i>  Cómo editar plantilla<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://www.iessanclemente.net/"><a class="padding" href="https://www.iessanclemente.net/" rel="external" target="_blank"><i class='fas fa-home'></i> IES Tubalcain<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/categories"><a class="padding" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/categories"><i class='fa-fw fas fa-layer-group'></i> Categories<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tags"><a class="padding" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/tags"><i class='fa-fw fas fa-tags'></i> Tags<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+            <li class="R-variantswitcher">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-paint-brush"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <label class="a11y-only" for="R-select-variant">Tema</label>
+                  <select id="R-select-variant">
+                    <option id="R-select-variant-blue" value="blue" selected>Blue</option>
+                    <option id="R-select-variant-relearn-light" value="relearn-light">Relearn Light</option>
+                    <option id="R-select-variant-relearn-dark" value="relearn-dark">Relearn Dark</option>
+                    <option id="R-select-variant-learn" value="learn">Learn</option>
+                    <option id="R-select-variant-neon" value="neon">Neon</option>
+                    <option id="R-select-variant-green" value="green">Green</option>
+                    <option id="R-select-variant-red" value="red">Red</option>
+                  </select>
+                </div>
+                <div class="clear"></div>
+              </div>
+              <script>window.relearn.markVariant();</script>
+            </li>
+            <li class="R-historyclearer">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-history"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <button>Borrar Historial</button>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+<div id="R-footer">
+<div>
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/cc.png" height="30" />
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/by.png"  height="30"/>
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/nc-eu.png"  height="30"/>
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/sa.png" height="30" />
+</div>
+</div>
+      </div>
+    </aside>
+    <script src="../../../js/clipboard/clipboard.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/perfect-scrollbar/perfect-scrollbar.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/theme.min3c2e.js?1749199978" defer></script>
+  </body>
+
+<!-- Mirrored from manuais.pages.iessanclemente.net/plantillas/dam/ad/00ayudas/04patronesdisenho/02singleton/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Sep 2025 20:45:30 GMT -->
+</html>

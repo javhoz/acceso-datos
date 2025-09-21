@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Acceso a datos :: IES Tubalcain - Acceso a datos (2º DAM)</title>
+    <link>/index.html</link>
+    <description>Introducción y objetivos Comenzamos Unidades didácticas Primera evaluación UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML. (UD. 1) UD 2. Acceso a BD locales y remotas relacionales. Creación de una interfaz web sencilla (Vaadin y/o Thymeleaf) UD 3. Herramientas de mapeo objeto-relacional (ORM). Segunda evaluación UD 4. Bases de datos no SQL. MongoDB UD 5. Bases de datos nativas XML. Bases de datos orientadas a objeto. BD objeto-relacionales UD 6. Programación de componentes de acceso a datos Parciales y evaluación Examen final Referencias Introducción y objetivos Este módulo profesional amplía la formación necesaria para desempeñar la función de desarrollador de aplicaciones multiplataforma, en la parte de Acceso a Datos. La función de desarrollador de aplicaciones multiplataforma incluye aspectos como:</description>
+    <generator>Hugo</generator>
+    <language>es</language>
+    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>UD 0. Refuerzo y ayudas complementarias</title>
+      <link>/00ayudas/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/00ayudas/index.html</guid>
+      <description>UD 0. Java General. Refuerzo y ayudas complementarias Esta unidad es una unidad en la que se incluirá materia de ayuda y adicional que se considere necesario.</description>
+    </item>
+    <item>
+      <title>UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML</title>
+      <link>/01accesoficheros/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/01accesoficheros/index.html</guid>
+      <description>UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML En esta unidad estudiaremos:&#xA;Java I/O: https://docs.oracle.com/en/java/javase/22/docs/api/java.base/java/io/package-summary.html Java NIO.2: https://docs.oracle.com/en/java/javase/22/docs/api/java.base/java/nio/package-summary.html JSON con Java (con la biblioteca GSON y una introducción de Moshi): https://github.com/google/gson, https://github.com/square/moshi XML con Java: procesadores DOM y SAX, las clases específicas para el tratamiento de la información contenida en un fichero XML, las clases específicas para la vinculación de objetos, las bibliotecas para conversión de documentos XML a otros formatos. Gestión de información almacenada en ficheros, flujos, haciendo especial hincapié en los formatos JSON y algo de XML mediante aplicaciones informáticas escritas en Java.</description>
+    </item>
+    <item>
+      <title>UD 2. Acceso a BD remotas relacionales</title>
+      <link>/02accesobd/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/02accesobd/index.html</guid>
+      <description>UD 2. Acceso a BD remotas relacionales. Creación de una interfaz web sencilla (Vaadin)</description>
+    </item>
+    <item>
+      <title>UD 3. Object/Relational Mapping (ORM). JPA e Hibernate</title>
+      <link>/03orm/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/03orm/index.html</guid>
+      <description>Introducción ORM Persistencia en Sistemas de Bases de Datos Técnicas de persistencia Introducción ORM La persistencia consiste en almacenar los datos de forma permanente.&#xA;La persistencia se puede realizar mediante ficheros (planos, XML, JSON,…) o sistemas de base de datos (relacionales, orientados a objetos, JSON, XML, etc.).&#xA;En esta unidad vamos a estudiar el almacenamiento en bases de datos relacionales por medio de mapeo objeto-relacional (ORM) y su implementación en Java mediante JPA con Hibernate o EclipseLink, entre otross.</description>
+    </item>
+    <item>
+      <title>UD 4. Spring.</title>
+      <link>/04spring/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/04spring/index.html</guid>
+      <description>Spring Framework Introducción a Spring El Framework Spring es un framework popular y ampliamente utilizado para construir aplicaciones web y empresariales.&#xA;A lo largo de los años, el Framework Spring ha crecido exponencialmente al abordar las necesidades de las aplicaciones empresariales modernas, como seguridad, soporte para almacenes de datos NoSQL, gestión de big data, procesamiento por lotes, integración con otros sistemas, y más. Junto con sus proyectos secundarios, Spring se ha convertido en una plataforma viable para construir aplicaciones empresariales.</description>
+    </item>
+    <item>
+      <title>UD 5. Bases de datos no SQL. MongoDB</title>
+      <link>/05basesdatosnonsql/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/05basesdatosnonsql/index.html</guid>
+      <description>UD 4. Bases de datos no SQL. MongoDB 1. ¿Qué son las bases de datos NoSQL? Durante un cuarto de siglo, las bases de datos relacionales (RDBMS) han sido el modelo dominante para la gestión de bases de datos. Pero, hoy en día, las bases de datos no relacionales, “cloud” o “NoSQL” están ganando terreno como modelo alternativo para la gestión de bases de datos.&#xA;En el mundo de la tecnología de bases de datos, existen dos tipos principales de bases de datos:</description>
+    </item>
+    <item>
+      <title>Git</title>
+      <link>/git/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/git/index.html</guid>
+      <description>Lista de vídeos Enlace a los vídeos sobre GIT&#xA;Nota importante Todos los contenidos sobre GIT son basados en el libro oficial Pro GIt v2</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  
+<!-- Mirrored from manuais.pages.iessanclemente.net/plantillas/dam/ad/03orm/jpa/07embedidos/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Sep 2025 20:45:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.140.2">
+    <meta name="generator" content="Relearn 7.6.1+0b83617ee9da5253aafcf11807b256da7d88d709">
+    <meta name="description" content="1. Objetos embebidos: @Embeddable 2. Sustitución de atributos embebidos: @AttributeOverride 2.1. Sustitución de múltiples atributos embebidos: @AttributeOverrides Ejercicio 7.1. Elementos embebidos. 4. ManyToMany usando una clave compuesta 4.1. Modelando Atributos de Relación 4.2. Creando una Clave Compuesta en JPA: @Embeddable 4.3. Utilizando una Clave Compuesta en JPA. @EmbeddedId 4.4. Características Adicionales Ejercicio 7.2. Clave compuesta en una relación de muchos a muchos. 4.5. La anotación @IdClass Mapeando el estado de la relación 4.6 La anotación EmbeddedId (repaso) 4.7. @IdClass vs @EmbeddedId Ejercicio 7.3. Entidades principales de base de datos de películas. 1. Objetos embebidos: @Embeddable Un objeto embebido es un objeto que no tiene identidad propia y que es parte de una entidad.">
+    <meta name="author" content="IES Tubalcain">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <meta name="twitter:title" content="07. Objetos embebidos. :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta name="twitter:description" content="1. Objetos embebidos: @Embeddable 2. Sustitución de atributos embebidos: @AttributeOverride 2.1. Sustitución de múltiples atributos embebidos: @AttributeOverrides Ejercicio 7.1. Elementos embebidos. 4. ManyToMany usando una clave compuesta 4.1. Modelando Atributos de Relación 4.2. Creando una Clave Compuesta en JPA: @Embeddable 4.3. Utilizando una Clave Compuesta en JPA. @EmbeddedId 4.4. Características Adicionales Ejercicio 7.2. Clave compuesta en una relación de muchos a muchos. 4.5. La anotación @IdClass Mapeando el estado de la relación 4.6 La anotación EmbeddedId (repaso) 4.7. @IdClass vs @EmbeddedId Ejercicio 7.3. Entidades principales de base de datos de películas. 1. Objetos embebidos: @Embeddable Un objeto embebido es un objeto que no tiene identidad propia y que es parte de una entidad.">
+    <meta property="og:url" content="https://manuais.pages.iessanclemente.net/03orm/jpa/07embedidos/index.html">
+    <meta property="og:site_name" content="IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta property="og:title" content="07. Objetos embebidos. :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta property="og:description" content="1. Objetos embebidos: @Embeddable 2. Sustitución de atributos embebidos: @AttributeOverride 2.1. Sustitución de múltiples atributos embebidos: @AttributeOverrides Ejercicio 7.1. Elementos embebidos. 4. ManyToMany usando una clave compuesta 4.1. Modelando Atributos de Relación 4.2. Creando una Clave Compuesta en JPA: @Embeddable 4.3. Utilizando una Clave Compuesta en JPA. @EmbeddedId 4.4. Características Adicionales Ejercicio 7.2. Clave compuesta en una relación de muchos a muchos. 4.5. La anotación @IdClass Mapeando el estado de la relación 4.6 La anotación EmbeddedId (repaso) 4.7. @IdClass vs @EmbeddedId Ejercicio 7.3. Entidades principales de base de datos de películas. 1. Objetos embebidos: @Embeddable Un objeto embebido es un objeto que no tiene identidad propia y que es parte de una entidad.">
+    <meta property="og:locale" content="es">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="UD 3. Object/Relational Mapping (ORM). JPA e Hibernate">
+    <meta property="article:modified_time" content="2025-06-06T08:52:44+00:00">
+    <meta property="og:image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <meta itemprop="name" content="07. Objetos embebidos. :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta itemprop="description" content="1. Objetos embebidos: @Embeddable 2. Sustitución de atributos embebidos: @AttributeOverride 2.1. Sustitución de múltiples atributos embebidos: @AttributeOverrides Ejercicio 7.1. Elementos embebidos. 4. ManyToMany usando una clave compuesta 4.1. Modelando Atributos de Relación 4.2. Creando una Clave Compuesta en JPA: @Embeddable 4.3. Utilizando una Clave Compuesta en JPA. @EmbeddedId 4.4. Características Adicionales Ejercicio 7.2. Clave compuesta en una relación de muchos a muchos. 4.5. La anotación @IdClass Mapeando el estado de la relación 4.6 La anotación EmbeddedId (repaso) 4.7. @IdClass vs @EmbeddedId Ejercicio 7.3. Entidades principales de base de datos de películas. 1. Objetos embebidos: @Embeddable Un objeto embebido es un objeto que no tiene identidad propia y que es parte de una entidad.">
+    <meta itemprop="dateModified" content="2025-06-06T08:52:44+00:00">
+    <meta itemprop="wordCount" content="4248">
+    <meta itemprop="image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <title>07. Objetos embebidos. :: IES Tubalcain - Acceso a datos (2º DAM)</title>
+    <link href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/03orm/jpa/07embedidos/index.xml" rel="alternate" type="application/rss+xml" title="07. Objetos embebidos. :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <link href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/03orm/jpa/07embedidos/index.print.html" rel="alternate" type="text/html" title="07. Objetos embebidos. :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <link href="../../../fonts/fontawesome/css/fontawesome-all.min3c2e.css?1749199978" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../../fonts/fontawesome/css/fontawesome-all.min3c2e.css?1749199978" rel="stylesheet"></noscript>
+    <link href="../../../css/perfect-scrollbar/perfect-scrollbar.min3c2e.css?1749199978" rel="stylesheet">
+    <link href="../../../css/theme.min3c2e.css?1749199978" rel="stylesheet">
+    <link href="../../../css/format-html.min3c2e.css?1749199978" rel="stylesheet" id="R-format-style">
+    <link href="../../../css/auto-complete/auto-complete.min3c2e.css?1749199978" rel="stylesheet">
+    <script src="../../../js/auto-complete/auto-complete.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.stemmer.support.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.multi.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.es.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/search.min3c2e.js?1749199978" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='#\/03orm\/jpa\/07embedidos\/index.html';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='';
+      window.relearn.contentLangs=['es'];
+      window.relearn.index_js_url="../../../searchindex.es3c2e.js?1749199978";
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // variant stuff
+      window.relearn.themevariants = [ 'blue', 'relearn-light', 'relearn-dark', 'learn', 'neon', 'green', 'red' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copiar en el portapapeles`;
+      window.T_Copied_to_clipboard = `¡Copiado al portapapeles!`;
+      window.T_Copy_link_to_clipboard = `Copiar enlace al portapapeles`;
+      window.T_Link_copied_to_clipboard = `¡Enlace copiado al portapapeles!`;
+      window.T_Reset_view = `Restablecer vista`;
+      window.T_View_reset = `¡Ver reajuste!`;
+      window.T_No_results_found = `No se han encontrado resultados para "{0}"`;
+      window.T_N_results_found = `{1} resultados encontrados para "{0}"`;
+    </script><style>
+    :root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+}
+
+@media screen and (max-width: 70.5rem) {
+    #R-sidebar {
+        min-width: var(--INTERNAL-MENU-WIDTH-S);
+        max-width: var(--INTERNAL-MENU-WIDTH-S);
+        width: var(--INTERNAL-MENU-WIDTH-S);
+    }
+    #R-body {
+        margin-inline-start: var(--INTERNAL-MENU-WIDTH-S);
+        min-width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+        max-width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+        width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+    }
+}
+@media screen and (max-width: 70.5rem) {
+     
+
+    .mobile-support #R-sidebar {
+        inset-inline-start: calc( -1 * var(--INTERNAL-MENU-WIDTH-S) );
+        min-width: var(--INTERNAL-MENU-WIDTH-S);
+        max-width: var(--INTERNAL-MENU-WIDTH-S);
+        width: var(--INTERNAL-MENU-WIDTH-S);
+    }
+    .mobile-support #navshow{
+        display: inline;
+    }
+    .mobile-support #R-body {
+        min-width: 100%;
+        max-width: 100%;
+        width: 100%;
+    }
+    .mobile-support #R-body {
+        margin-inline-start: 0;
+    }
+    .mobile-support.sidebar-flyout {
+        overflow: hidden;
+    }
+    .mobile-support.sidebar-flyout #R-sidebar {
+        inset-inline-start: 0;
+        z-index: 90;
+    }
+    .mobile-support.sidebar-flyout #R-body {
+        margin-inline-start: var(--INTERNAL-MENU-WIDTH-S);
+        overflow: hidden;
+    }
+    .mobile-support.sidebar-flyout #R-body-overlay{
+        background-color: rgba( 134, 134, 134, .5 );
+        bottom: 0;
+        cursor: pointer;
+        height: 100vh;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 190;
+    }
+}
+
+</style>
+
+
+  </head>
+  <body class="mobile-support html" data-url="../../../03orm/jpa/07embedidos/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menú (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Tabla de contenido (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#1-objetos-embebidos-embeddable">1. Objetos embebidos: <code>@Embeddable</code></a></li>
+    <li><a href="#2-sustitución-de-atributos-embebidos-attributeoverride">2. Sustitución de atributos embebidos: <code>@AttributeOverride</code></a>
+      <ul>
+        <li><a href="#21-sustitución-de-múltiples-atributos-embebidos-attributeoverrides">2.1. Sustitución de múltiples atributos embebidos: <code>@AttributeOverrides</code></a></li>
+        <li><a href="#ejercicio-71-elementos-embebidos">Ejercicio 7.1. Elementos embebidos.</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-manytomany-usando-una-clave-compuesta">4. ManyToMany usando una clave compuesta</a>
+      <ul>
+        <li><a href="#41-modelando-atributos-de-relación">4.1. Modelando Atributos de Relación</a></li>
+        <li><a href="#42-creando-una-clave-compuesta-en-jpa-embeddable">4.2. Creando una Clave Compuesta en JPA: <code>@Embeddable</code></a></li>
+        <li><a href="#43-utilizando-una-clave-compuesta-en-jpa-embeddedid">4.3. Utilizando una Clave Compuesta en JPA. <code>@EmbeddedId</code></a></li>
+        <li><a href="#44-características-adicionales">4.4. Características Adicionales</a></li>
+        <li><a href="#45-la-anotación-idclass">4.5. La anotación <code>@IdClass</code></a></li>
+        <li><a href="#46-la-anotación-embeddedid-repaso">4.6 La anotación EmbeddedId (repaso)</a></li>
+        <li><a href="#47-idclass-vs-embeddedid">4.7. @IdClass vs @EmbeddedId</a></li>
+      </ul>
+    </li>
+    <li><a href="#ejercicio-73-entidades-principales-de-base-de-datos-de-películas">Ejercicio 7.3. Entidades principales de base de datos de películas.</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../../index.html"><span itemprop="name">Acceso a datos</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../index.html"><span itemprop="name">UD 3. Object/Relational Mapping (ORM). JPA e Hibernate</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../index.html"><span itemprop="name">03.01. Jakarta Persistence (JPA).</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">07. Objetos embebidos.</span><meta itemprop="position" content="4"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/03orm/jpa/07embedidos/index.print.html" title="Imprimir todo el capítulo (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../06relaciones/index.html" title="06. Relaciones JPA. (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../08colecciones/index.html" title="08. Mapeo de colecciones. (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Más"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 03orm" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="07-objetos-embebidos">07. Objetos embebidos.</h1>
+
+<!-- TOC -->
+<ul>
+<li><a href="index.html#1-objetos-embebidos-embeddable">1. Objetos embebidos: <code>@Embeddable</code></a></li>
+<li><a href="index.html#2-sustitución-de-atributos-embebidos-attributeoverride">2. Sustitución de atributos embebidos: <code>@AttributeOverride</code></a>
+<ul>
+<li><a href="index.html#21-sustitución-de-múltiples-atributos-embebidos-attributeoverrides">2.1. Sustitución de múltiples atributos embebidos: <code>@AttributeOverrides</code></a></li>
+<li><a href="index.html#ejercicio-71-elementos-embebidos">Ejercicio 7.1. Elementos embebidos.</a></li>
+</ul>
+</li>
+<li><a href="index.html#4-manytomany-usando-una-clave-compuesta">4. ManyToMany usando una clave compuesta</a>
+<ul>
+<li><a href="index.html#41-modelando-atributos-de-relación">4.1. Modelando Atributos de Relación</a></li>
+<li><a href="index.html#42-creando-una-clave-compuesta-en-jpa-embeddable">4.2. Creando una Clave Compuesta en JPA: <code>@Embeddable</code></a></li>
+<li><a href="index.html#43-utilizando-una-clave-compuesta-en-jpa-embeddedid">4.3. Utilizando una Clave Compuesta en JPA. <code>@EmbeddedId</code></a></li>
+<li><a href="index.html#44-características-adicionales">4.4. Características Adicionales</a>
+<ul>
+<li><a href="index.html#ejercicio-72-clave-compuesta-en-una-relación-de-muchos-a-muchos">Ejercicio 7.2. Clave compuesta en una relación de muchos a muchos.</a></li>
+</ul>
+</li>
+<li><a href="index.html#45-la-anotación-idclass">4.5. La anotación <code>@IdClass</code></a>
+<ul>
+<li><a href="index.html#mapeando-el-estado-de-la-relación">Mapeando el estado de la relación</a></li>
+</ul>
+</li>
+<li><a href="index.html#46-la-anotación-embeddedid-repaso">4.6 La anotación EmbeddedId (repaso)</a></li>
+<li><a href="index.html#47-idclass-vs-embeddedid">4.7. @IdClass vs @EmbeddedId</a></li>
+</ul>
+</li>
+<li><a href="index.html#ejercicio-73-entidades-principales-de-base-de-datos-de-películas">Ejercicio 7.3. Entidades principales de base de datos de películas.</a></li>
+</ul>
+<!-- TOC -->
+<h2 id="1-objetos-embebidos-embeddable">1. Objetos embebidos: <code>@Embeddable</code></h2>
+<p>Un <strong>objeto embebido</strong> es un objeto que <strong><mark>no tiene identidad propia</mark></strong> y que <strong>es <mark>parte de una entidad</mark></strong>.</p>
+<p>Los objetos embebidos se utilizan para <strong>modelar datos compuestos</strong>.</p>
+<p>Es parte del estado de una entidad que <strong>ha sido extraído y modelado como un objeto independiente</strong>.</p>
+<p>En Java los objetos embebidos se modelan como <strong>clases normales</strong> y se <strong><a href="https://jakarta.ee/specifications/persistence/3.2/apidocs/jakarta.persistence/jakarta/persistence/embeddable" rel="external" target="_blank">anotan con <code>@Embeddable</code></a></strong>. Sin embargo, en la base de datos, <strong>los objetos embebidos <mark>se almacenan en la misma tabla que la entidad que los contiene</mark></strong>, como cualquier otro de sus atributos.</p>
+
+<details open class=" box cstyle notices note">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-exclamation-circle"></i> 
+    <code>@Embeddable</code> y <code>@Embedded</code>
+  </summary>
+  <div class="box-content">
+<p>La anotación <code>@Embeddable</code> se utiliza para <strong>indicar que una clase es un objeto embebido</strong>. La anotación <code>@Embedded</code> se utiliza para <strong>indicar que un atributo de una entidad es un objeto embebido</strong>.</p>
+<p>Aunque los objeto embebidos son referenciados por entidades, <strong><mark>no se consideran relaciones</mark> entre entidades</strong>.</p>
+  </div>
+</details>
+<p>Aunque pudiera parecer contradictorio separar un objeto de una entidad y luego volver a unirlo, hay varias razones por las que esto es útil:</p>
+<ul>
+<li><strong>Los objetos embebidos <mark>pueden ser reutilizados</mark></strong>. Si tienes un objeto embebido que representa una dirección, por ejemplo, puedes reutilizarlo en cualquier entidad que necesite una dirección.</li>
+</ul>
+<p>Aunque los tipos embebidos pueden ser compartidos o reutilizados, las instancias no. <strong>Una instancia de objeto embebido pertenece a la entidad que la referencia; y <mark>ninguna otra instancia de entidad</mark>, de ese tipo de entidad o de cualquier otro, <mark>puede hacer referencia a la misma instancia embebida</mark></strong>.</p>
+<p>Un ejemplo de reutilización es la información de la dirección postal:</p>
+<pre class="mermaid align-center ">classDiagram
+    class Direccion {
+        -String calle
+        -String ciudad
+        -String provincia
+        -String codigoPostal
+    }
+    class Empleado {
+        -long idEmpleado
+        -String nombre
+        -long salario
+        -Direccion direccion
+    }
+    class Compañia {
+        -String nombre
+        -Direccion direccion
+    }
+    Empleado o-- Direccion
+    Compañia o-- Direccion</pre>
+<p>La tabla Empleado:</p>
+<pre class="mermaid align-center ">erDiagram
+    Empleado {
+        idEmpleado int
+        nombre varchar
+        salario int
+        calle varchar
+        ciudad varchar
+        provincia varchar
+        codigoPostal varchar
+    }</pre>
+<table>
+  <thead>
+      <tr>
+          <th>idEmpleado</th>
+          <th>nombre</th>
+          <th>salario</th>
+          <th>calle</th>
+          <th>ciudad</th>
+          <th>provincia</th>
+          <th>codigoPostal</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>Pepe</td>
+          <td>1500</td>
+          <td>C/1</td>
+          <td>Santiago</td>
+          <td>A Coruña</td>
+          <td>15706</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>Xan</td>
+          <td>2200</td>
+          <td>C/2</td>
+          <td>Vigo</td>
+          <td>Pontevedra</td>
+          <td>36201</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Una tabla Empleado que contiene</strong> una mezcla de información básica del empleado, así como columnas que corresponden a la dirección postal del empleado. Las <strong>columnas <code>calle</code>, <code>ciudad</code>, <code>provincia</code> y <code>codigoPostal</code> se combinan lógicamente para formar la dirección (clase <code>Direccion</code>)</strong>.</p>
+<p>En el modelo de objetos, es una excelente candidata para ser <strong>&ldquo;abstracta&rdquo; en un tipo embebido <code>Direccion</code> en lugar de incorporar cada atributo en la clase de la entidad</strong>. La clase de entidad solo tendría un atributo de dirección que apunta a un objeto embebido de tipo Address. La figura muestra cómo <code>Empleado</code> y <code>Direccion</code> se relacionan entre sí.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Embeddable</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Access</span>(AccessType.<span style="color:#a6e22e">FIELD</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Direccion</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String calle;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String ciudad;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String provincia;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Column</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;codigoPostal&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String codigo;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Entity</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Empleado</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Id</span> <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">long</span> idEmpleado;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String nombre;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">long</span> salario;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Embedded</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Direccion direccion;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Al persistir una <strong>instancia de <code>Empleado</code>, se <mark>accede a los atributos del objeto <code>Direccion</code> como si estuvieran presentes en Empleado</mark></strong>.</p>
+<p>Las asignaciones de columnas en el tipo <code>Direccion</code> realmente se refieren a las columnas de la tabla <code>Empleado</code>, aunque estén en una clase separada.</p>
+
+<details open class=" box cstyle notices note">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-exclamation-circle"></i> 
+    Objetos embebidos o entidades
+  </summary>
+  <div class="box-content">
+<p>Es una <strong>decisión de diseño</strong> el uso de objetos embebidos. <strong>Si se precisa crear relaciones con ellos o desde ellos, no los uses</strong>. Los objetos embebidos <strong>no están destinados a ser entidades</strong> y tan pronto como comiences a tratarlos como entidades, probablemente deberías convertirlos en entidades de primera clase si el modelo de datos lo permite.</p>
+<p><strong>No es portátil definir objetos embebidos como parte de jerarquías de herencia</strong>. Una vez que comienzan a heredarse entre sí, la complejidad de su incorporación aumenta y la relación costo-beneficio disminuye.</p>
+  </div>
+</details>
+<p>Una <strong>clase <code>Direccion</code> podría ser reutilizada</strong> tanto en las entidades <code>Empleado</code> como <code>Companía</code> (como hemos indicado en la imagen anterior).</p>
+<p><a href="#R-image-07b97149538cd8346ce8821dc12fce0e" class="lightbox-link"><img alt="Empleado-Dirección-Compañía" class="lazy lightbox figure-image" loading="lazy" src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/03orm/jpa/media/empleadodireccion.svg?width=500" style=" height: auto; width: 500;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-07b97149538cd8346ce8821dc12fce0e"><img alt="Empleado-Dirección-Compañía" class="lazy lightbox lightbox-image" loading="lazy" src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/03orm/jpa/media/empleadodireccion.svg?width=500"></a></p>
+<p>Aunque tanto las clases <code>Empleado</code> como <code>Compañía</code> contiene la clase <code>Direccion</code>, <strong>cada instancia de <code>Direccion</code> será utilizada solo por una única instancia de <code>Empleado</code> o <code>Compañía</code></strong>.</p>
+<h2 id="2-sustitución-de-atributos-embebidos-attributeoverride">2. Sustitución de atributos embebidos: <code>@AttributeOverride</code></h2>
+<p><a href="https://jakarta.ee/specifications/persistence/3.2/apidocs/jakarta.persistence/jakarta/persistence/attributeoverride" rel="external" target="_blank"><code>@AttributeOverride</code></a></p>
+<p>Como las asignaciones de columnas del tipo embebido <code>Direccion</code> se aplican a las columnas de la entidad contenedora (en tablas diferentes), <strong>las tablas de entidades podrían tener nombres de columna diferentes para los mismos campos</strong>.</p>
+<pre class="mermaid align-center ">erDiagram
+    Empleado {
+        idEmpleado int
+        nombre varchar
+        salario int
+        calle varchar
+        ciudad varchar
+        provincia varchar
+        codigoPostal varchar
+    }
+    Compania {
+        nombre varchar
+        calle varchar
+        ciudad varchar
+        prov varchar
+        codPostal varchar
+    }</pre>
+<p>La tabla <code>Empleado</code> coincide con los atributos predeterminados y mapeados del tipo <code>Direccion</code>, pero la <strong>tabla <code>Compania</code> se ha modificado con otros nombres de provincia y código postal</strong>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Entity</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Empleado</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Id</span> <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">long</span> idEmpleado;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String nombre;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">long</span> salario;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Embedded</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Direccion direccion;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Entity</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Compania</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Id</span> <span style="color:#66d9ef">private</span> String name;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Embedded</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@AttributeOverride</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;provincia&#34;</span>, column <span style="color:#f92672">=</span> <span style="color:#a6e22e">@Column</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;prov&#34;</span>)),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@AttributeOverride</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;codigoPostal&#34;</span>, column <span style="color:#f92672">=</span> <span style="color:#a6e22e">@Column</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;codPostal&#34;</span>))
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Direccion direccion;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Como se muestra en el ejemplo, para los cambios de nombres en los atributos <strong>se puede emplear la <a href="https://jakarta.ee/specifications/persistence/3.2/apidocs/jakarta.persistence/jakarta/persistence/attributeoverride" rel="external" target="_blank">anotación <code>@AttributeOverride</code></a></strong>.</p>
+<p>En la declaración de la entidad se emplea la anotación <code>@AttributeOverride</code> para cada atributo del objeto embebido que queremos renombrar en la entidad. Elementos requeridos:</p>
+<ul>
+<li><code>name</code>: el nombre del <strong>campo o propiedad embebido en la entidad</strong>.</li>
+<li><code>column</code>: la <strong>columna a la que se está asignando el atributo en la tabla de la entidad</strong>. Se especifica en forma de <a href="https://jakarta.ee/specifications/persistence/3.1/apidocs/jakarta.persistence/jakarta/persistence/column" rel="external" target="_blank">una anotación <code>@Column</code> anidada</a>.</li>
+</ul>
+<h3 id="21-sustitución-de-múltiples-atributos-embebidos-attributeoverrides">2.1. Sustitución de múltiples atributos embebidos: <code>@AttributeOverrides</code></h3>
+<p>Si sobrescribimos múltiples campos o propiedades, <strong>se puede <a href="https://jakarta.ee/specifications/persistence/3.2/apidocs/jakarta.persistence/jakarta/persistence/attributeoverrides" rel="external" target="_blank">usar la anotación plural <code>@AttributeOverrides</code></a> y anidar múltiples anotaciones <code>@AttributeOverride</code> dentro de ella</strong>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Entity</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Compania</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Id</span> <span style="color:#66d9ef">private</span> String name;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Embedded</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@AttributeOverrides</span>({
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@AttributeOverride</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;provincia&#34;</span>, column <span style="color:#f92672">=</span> <span style="color:#a6e22e">@Column</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;prov&#34;</span>)),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@AttributeOverride</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;codigoPostal&#34;</span>, column <span style="color:#f92672">=</span> <span style="color:#a6e22e">@Column</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;codPostal&#34;</span>))
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Direccion direccion;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Dado que la anotación <code>@AttributeOverride</code> puede repetirse, <strong>no es obligatorio el uso de la anotación <code>@AttributeOverrides</code></strong>. El siguiente ejemplo muestra el uso de <code>Direccion</code> tanto en <code>Empleado</code> como en <code>Compañía</code>. La entidad <code>Empleado</code> utiliza el tipo <code>Direccion</code> sin cambios, pero la entidad <code>Compañía</code> sobrescribe para asignar los atributos <code>provincia</code> y <code>codigoPosta</code> de <code>Direccion</code> a las columnas <code>prov</code> y <code>codPostal</code> de la tabla <code>Companía</code>.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Entity</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Empleado</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Id</span> <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">long</span> idEmpleado;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String nombre;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">long</span> salario;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Embedded</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Direccion direccion;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Entity</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Companía</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Id</span> <span style="color:#66d9ef">private</span> String name;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Embedded</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@AttributeOverride</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;provincia&#34;</span>, column <span style="color:#f92672">=</span> <span style="color:#a6e22e">@Column</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;prov&#34;</span>)),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@AttributeOverride</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;codigoPostal&#34;</span>, column<span style="color:#f92672">=</span><span style="color:#a6e22e">@Column</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;codPostal&#34;</span>))
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Direccion direccion;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<h3 id="ejercicio-71-elementos-embebidos">Ejercicio 7.1. Elementos embebidos.</h3>
+<p>Crea una <strong>aplicación con JPA para la gestión de películas y series</strong>.</p>
+<ol>
+<li>
+<p>Crea una clase <code>InfoContenido</code> con los siguientes atributos:</p>
+<ul>
+<li><code>titulo</code> (String): de tamaño 100.</li>
+<li><code>genero</code> (String): de tamaño 50.</li>
+<li><code>pais</code> (String): de tamaño 2.</li>
+<li><code>duracion</code> (int): duración en minutos.</li>
+<li><code>año</code> (int): año.</li>
+<li><code>sinopsis</code> (String): de tamaño clob.</li>
+</ul>
+</li>
+<li>
+<p>Crea una entidad <code>Serie</code> con los siguientes atributos:</p>
+<ul>
+<li><code>idSerie</code> (long): identificador de la serie. Secuencia.</li>
+<li><code>informacion</code> (de tipo <code>InfoContenido</code>)</li>
+<li><code>fechaEstreno</code> (LocalDate).</li>
+<li><code>temporadas</code> (int): número de temporadas.</li>
+<li><code>capitulos</code> (int)</li>
+<li><code>directores</code> (lista de String).</li>
+</ul>
+</li>
+<li>
+<p>Crea una entidad <code>Pelicula</code> con los siguientes atributos:</p>
+<ul>
+<li><code>idPelicula</code> (long): identificador de la película. Secuencia.</li>
+<li><code>informacion</code> (de tipo <code>InfoContenido</code>)</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>
+<p>La entidad <code>Serie</code> y <code>Pelicula</code> deben tener el atributo <code>informacion</code> como un objeto embebido.</p>
+</li>
+<li>
+<p>La entidad <code>Pelicula</code> el atributo <code>pais</code> debe ser renombrado a <code>paisPelicula</code>.</p>
+</li>
+<li>
+<p>El atributo <code>directores</code> debe guardarse en una nueva tabla, como una colección con la anotación <code>@ElementCollection</code> (busca información sobre esta anotación).</p>
+</li>
+<li>
+<p>La fecha de estreno, <code>fechaEstreno</code>, de la serie debe guardarse en formato numérico (YYYYMMDD).</p>
+</li>
+</ul>
+<h2 id="4-manytomany-usando-una-clave-compuesta">4. ManyToMany usando una clave compuesta</h2>
+<p>A modo de ejemplo, tenemos una <strong>relación de muchos a muchos entre dos entidades</strong>, <code>Estudiante</code> y <code>Curso</code>. Un estudiante puede inscribirse en varios cursos, y un curso puede tener varios estudiantes inscritos.
+Además, <strong>queremos que los estudiantes califiquen los cursos, que sería <mark>un atributo de la relación</mark></strong>. Un estudiante puede calificar cualquier número de cursos, y cualquier número de estudiantes puede calificar el mismo curso.</p>
+<p><strong>Una <mark>clave primaria compuesta</mark>, también llamada <mark>clave compuesta</mark>, es una combinación de dos o más columnas para formar una clave primaria para una tabla</strong>.</p>
+<p>En JPA, tenemos <strong>dos opciones para definir las claves compuestas: las <mark>anotaciones <code>@IdClass</code> y <code>@EmbeddedId</code></mark></strong>.</p>
+<p>Para definir las claves primarias compuestas, debemos seguir algunas reglas:</p>
+<ul>
+<li>La clase de <strong>clave primaria compuesta <mark>debe ser pública</mark></strong>.</li>
+<li>Debe tener un <strong><mark>constructor sin argumentos</mark></strong>.</li>
+<li>Debe <strong>definir los <mark>métodos <code>equals()</code> y <code>hashCode()</code></mark></strong>.</li>
+<li><strong>Debe ser <mark><code>Serializable</code></mark></strong>.</li>
+</ul>
+<h3 id="41-modelando-atributos-de-relación">4.1. Modelando Atributos de Relación</h3>
+<p>Queremos permitir que <strong>los estudiantes califiquen los cursos</strong>. Un estudiante puede calificar cualquier número de cursos, y <strong>cualquier número de estudiantes puede calificar el mismo curso</strong>. Por lo tanto, también es una <strong>relación de muchos a muchos</strong>.</p>
+<pre class="mermaid align-center ">classDiagram
+    Estudiante -- CalificacionCurso
+    CalificacionCurso -- Curso
+    Estudiante : idEstudiante
+    Curso : idCurso
+    CalificacionCurso : calificacion</pre>
+<p>A diferencia de las otras relaciones muchos a muchos, <strong><mark>necesitamos almacenar</mark> la puntuación de calificación que el estudiante dio al curso</strong>, <strong><mark>en la tabla intermedia</mark></strong>.</p>
+<p><em>¿Dónde podemos almacenar esta información? No podemos ponerla en la entidad Estudiante ya que un estudiante puede dar diferentes calificaciones a diferentes cursos. De manera similar, almacenarlo en la entidad Curso tampoco sería una buena solución.</em></p>
+<p>Esta es una situación en la que <strong>la <mark>relación en sí tiene un atributo</mark></strong>.</p>
+<p>Usando este ejemplo, adjuntar un atributo a una relación se ve así en un diagrama ER:</p>
+<pre class="mermaid align-center ">classDiagram
+    Estudiante -- CalificacionCurso
+    CalificacionCurso -- Curso
+    Estudiante : idEstudiante
+    Curso : idCurso
+    CalificacionCurso : calificacion</pre>
+<p>Podemos modelarlo casi de la misma manera que la relación de muchos a muchos sencilla. La única diferencia es que <strong><mark>añadimos un nuevo atributo a la tabla de unión</mark></strong>:</p>
+<p><a href="#R-image-04eeac3edc5f1c604ac51749b56ce696" class="lightbox-link"><img alt="Estudiante - CalificacionCurso - Curso" class="lazy lightbox figure-image" loading="lazy" src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/03orm/jpa/media/estudiantecursoer.svg?width=550" style=" height: auto; width: 550;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-04eeac3edc5f1c604ac51749b56ce696"><img alt="Estudiante - CalificacionCurso - Curso" class="lazy lightbox lightbox-image" loading="lazy" src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/03orm/jpa/media/estudiantecursoer.svg?width=550"></a></p>
+<h3 id="42-creando-una-clave-compuesta-en-jpa-embeddable">4.2. Creando una Clave Compuesta en JPA: <code>@Embeddable</code></h3>
+<p>La implementación de una relación de <strong>muchos a muchos sencilla</strong> fue bastante directa, pero <strong>no podemos agregar una propiedad a una relación de esa manera porque <mark>conectamos las entidades directament</mark>e</strong>. Por lo tanto, <strong>no teníamos forma de añadir una propiedad a la relación en sí</strong>.</p>
+<p>Dado que mapeamos los atributos de la base de datos a campos de clase en JPA, <strong><mark>necesitamos crear una nueva clase de entidad para la relación</mark></strong>:</p>
+<p><a href="#R-image-e64e63e7e6141793b4a37a1cd849f8ae" class="lightbox-link"><img alt="Estudiante - CalificacionCurso - Curso" class="lazy lightbox figure-image" loading="lazy" src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/03orm/jpa/media/estudantecursoclases.svg?width=550" style=" height: auto; width: 550;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-e64e63e7e6141793b4a37a1cd849f8ae"><img alt="Estudiante - CalificacionCurso - Curso" class="lazy lightbox lightbox-image" loading="lazy" src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/03orm/jpa/media/estudantecursoclases.svg?width=550"></a></p>
+<p>Cada entidad JPA <strong>necesita una clave primaria</strong>. Dado que <strong>la clave primaria <mark>es una clave compuesta</mark></strong>, tenemos que crear una <strong><mark>nueva clase para la clave, <code>ClaveCalificacionCurso</code>, que contendrá las diferentes partes de la clave</mark></strong>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Embeddable</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ClaveCalificacionCurso</span> <span style="color:#66d9ef">implements</span> Serializable {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Column</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;idEstudiante&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Long idEstudiante;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Column</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;idCurso&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Long idCurso;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// constructores estándar, getters y setters</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// implementación de hashcode y equals</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Ten en cuenta que una clase de clave compuesta debe cumplir con algunos requisitos clave:</p>
+<ul>
+<li><strong>Debe marcarse con <code>@Embeddable</code></strong>.</li>
+<li><strong>Debe implementar <code>java.io.Serializable</code></strong>.</li>
+<li>Necesitamos proporcionar una <strong>implementación de los métodos <code>hashcode()</code> e <code>equals()</code></strong>.</li>
+</ul>
+<h3 id="43-utilizando-una-clave-compuesta-en-jpa-embeddedid">4.3. Utilizando una Clave Compuesta en JPA. <code>@EmbeddedId</code></h3>
+<p>Usando esta clase de clave compuesta, podemos crear la clase de entidad que modela la tabla de unión:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Entity</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CalificacionCurso</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@EmbeddedId</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> ClaveCalificacionCurso id;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@ManyToOne</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@MapsId</span>(<span style="color:#e6db74">&#34;idEstudiante&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@JoinColumn</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;idEstudiante&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Estudiante estudiante;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@ManyToOne</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@MapsId</span>(<span style="color:#e6db74">&#34;idCurso&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@JoinColumn</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;idCurso&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Curso curso;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> calificacion;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// constructores estándar, getters y setters</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Este código es muy similar a una implementación usual de entidad. Sin embargo, tenemos algunas diferencias clave:</p>
+<ul>
+<li><strong><mark>Usamos <code>@EmbeddedId</code></mark> para marcar la clave primaria</strong>, que es una instancia de la clase <code>ClaveCalificacionCurso</code> (recuerda que antes añadimos la anotación <code>@Embeddable</code> a esta clase).</li>
+<li><strong>Marcamos los campos <code>estudiante</code> y <code>curso</code> con <code>@MapsId</code></strong>.</li>
+<li><strong><code>@MapsId</code> significa que vinculamos esos campos a una parte de la clave</strong> y son las claves externas de una relación de muchos a uno.</li>
+</ul>
+<p>Después de esto, podemos <strong>configurar las referencias inversas en las entidades <code>Estudiante</code> y <code>Curso</code> como antes</strong>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Estudiante</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@OneToMany</span>(mappedBy <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;estudiante&#34;</span>)
+</span></span><span style="display:flex;"><span>    Set<span style="color:#f92672">&lt;</span>CalificacionCurso<span style="color:#f92672">&gt;</span> calificaciones;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Curso</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@OneToMany</span>(mappedBy <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;curso&#34;</span>)
+</span></span><span style="display:flex;"><span>    Set<span style="color:#f92672">&lt;</span>CalificacionCurso<span style="color:#f92672">&gt;</span> calificaciones;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Ten en cuenta que <strong>hay una forma alternativa de usar claves compuestas: la anotación <code>@IdClass</code></strong>.</p>
+<h3 id="44-características-adicionales">4.4. Características Adicionales</h3>
+<p>Configuramos las relaciones con las <strong>clases <code>Estudiante</code> y <code>Curso</code> como <code>@ManyToOne</code></strong>, porque <strong>con la nueva entidad <mark>descompusimos estructuralmente la relación de muchos a muchos en dos relaciones de muchos a uno</mark></strong>.</p>
+<p>Ahora tenemos <strong>dos relaciones de muchos a uno</strong>. En otras palabras, no hay ninguna relación de muchos a muchos en un RDBMS. Llamamos a las estructuras que creamos con tablas de unión relaciones de muchos a muchos porque eso es lo que modelamos.</p>
+<p>Además, es más claro si hablamos de relaciones de muchos a muchos porque esa es nuestra intención. Mientras tanto, <strong>una tabla de unión es solo un detalle de implementación</strong>; realmente no nos importa.</p>
+<p>Esta solución tiene una característica adicional que aún no hemos mencionado. <strong>La solución simple de muchos a muchos crea una relación entre dos entidades</strong>. Por lo tanto, no podemos expandir la relación a más entidades. Pero no tenemos este límite en esta solución: <strong>podemos modelar relaciones entre cualquier número de tipos de entidades</strong>.</p>
+<p>Cuando varios profesores pueden enseñar un curso, los estudiantes pueden calificar cómo un profesor específico enseña un curso específico. De esa manera, una calificación sería una relación entre tres entidades: un estudiante, un curso y un profesor.</p>
+<h4 id="ejercicio-72-clave-compuesta-en-una-relación-de-muchos-a-muchos">Ejercicio 7.2. Clave compuesta en una relación de muchos a muchos.</h4>
+<p>Data la aplicación de gestión de películas y series, añade dos nuevas entidades: <code>Usuario</code> y <code>Calificacion</code> que permita a los usuarios calificar las películas.</p>
+<ol>
+<li>
+<p>Crea una clase <code>Usuario</code> con los siguientes atributos:</p>
+<ul>
+<li><code>idUsuario</code> (long): identificador del usuario. Secuencia.</li>
+<li><code>nombre</code> (String): nombre del usuario.</li>
+<li><code>email</code> (String): email del usuario.</li>
+<li><code>password</code> (String): contraseña del usuario.</li>
+<li><code>fechaRegistro</code> (LocalDate): fecha de registro.</li>
+</ul>
+</li>
+<li>
+<p>Crea una clase <code>Calificacion</code> con los siguientes atributos:</p>
+<ul>
+<li><code>calificacion</code> (int): calificación del contenido, con valores de 10 a 0.</li>
+<li><code>fechaCalificacion</code> (LocalDate): fecha de la calificación.</li>
+<li><code>comentario</code> (String): comentario de la calificación.</li>
+<li>Además, debe estar relacionado con las entidades <code>Usuario</code>, <code>Pelicula</code> y <code>Serie</code>. Como un usuario puede calificar varias películas y series, y una película o serie puede ser calificada por varios usuarios, es una relación de muchos a muchos. <em>No es preciso que califique series, pues el caso de uso es similar al de las películas</em>.</li>
+</ul>
+</li>
+</ol>
+<p>La clave primaria de la tabla <code>Calificacion</code> debe ser compuesta por los atributos <code>idUsuario</code>, <code>idPelicula</code>.</p>
+<hr>
+<h3 id="45-la-anotación-idclass">4.5. La anotación <code>@IdClass</code></h3>
+<p>Digamos que tenemos una tabla llamada <code>Cuenta</code> y tiene dos columnas, <code>numeroCuenta</code> y <code>tipoCuenta</code>, que forman la clave compuesta. Ahora tenemos que mapearlo en JPA.</p>
+<p>Según la especificación de JPA, creemos una clase <code>IdCuenta</code> con estos campos de clave primaria:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">IdCuenta</span> <span style="color:#66d9ef">implements</span> Serializable {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String numeroCuenta;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String tipoCuenta;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// constructor por defecto</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">IdCuenta</span>(String numeroCuenta, String tipoCuenta) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">numeroCuenta</span> <span style="color:#f92672">=</span> numeroCuenta;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tipoCuenta</span> <span style="color:#f92672">=</span> tipoCuenta;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// métodos equals() y hashCode()</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>A continuación, asociemos la clase <code>IdCuenta</code> con la entidad <code>Cuenta</code>.</p>
+<p>Para hacer eso, necesitamos anotar la entidad con la anotación <code>@IdClass</code>. También debemos declarar los campos de la clase <code>IdCuenta</code> en la entidad <code>Cuenta</code> y anotarlos con <code>@Id</code>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Entity</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@IdClass</span>(IdCuenta.<span style="color:#a6e22e">class</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Cuenta</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Id</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String numeroCuenta;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Id</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String tipoCuenta;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// otros campos, getters y setters</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<h4 id="mapeando-el-estado-de-la-relación">Mapeando el estado de la relación</h4>
+<p>En ocasiones, una <strong>relación tiene un estado asociado</strong>. Por ejemplo, supongamos que queremos mantener la <strong>fecha en la que un empleado fue asignado a trabajar en un proyecto</strong> (atributo de la relación). Almacenar el estado en el empleado es posible, pero menos útil, ya que la fecha está realmente asociada a la relación del empleado con un proyecto particular (una sola entrada en la <strong>asociación de muchos a muchos</strong>). Sacar a un empleado de un proyecto debería hacer que la fecha de asignación desaparezca, por lo que almacenarla como parte del empleado significa que tenemos que asegurarnos de que ambos sean consistentes entre sí, lo cual puede ser molesto. En UML, mostraríamos este tipo de relación usando una clase de asociación. El siguiente esquema muestra un ejemplo de esta técnica, en la que Employee tiene un id (Long), un nombre (string) y una salario (long), un proyecto tiene un id (Long) y un nombre (string), y la relación entre ellos tiene una fecha de inicio (Date).</p>
+<pre class="mermaid align-center ">classDiagram
+    class Empleado {
+        -Long id
+        -String nombre
+        -long salario
+    }
+    class Proyecto {
+        -Long id
+        -String nombre
+    }
+    class AsignacionProyecto {
+        -Date fechaInicio
+    }
+    Empleado o-- AsignacionProyecto
+    Proyecto o-- AsignacionProyecto</pre>
+<p>In the database, everything is rosy because we can simply add a column to the join
+table. The data model provides natural support for relationship state. Figure 10-7 shows
+the many-to-many relationship between EMPLOYEE and PROJECT with an expanded
+join table.</p>
+<p>En la base de datos, todo es perfecto porque podemos simplemente <strong>añadir una columna a la tabla de unión</strong>. El modelo de datos proporciona un soporte natural para el estado de la relación. La figura anterior muestra la relación muchos a muchos entre EMPLEADO y PROYECTO con una tabla de unión expandida.</p>
+<pre class="mermaid align-center ">erDiagram
+    EMPLEADO {
+        id int
+        nombre varchar
+        salario int
+    }
+    PROYECTO {
+        id int
+        nombre varchar
+    }
+    ASIGNACION_PROYECTO {
+        EMP_ID int
+        PROJECT_ID int
+        START_DATE date
+    }</pre>
+<p>Cuando llegamos al <strong>modelo de objetos</strong>, sin embargo, se vuelve mucho más problemático. El problema es que <strong>Java no tiene un soporte inherente para el estado de la relación</strong>. Las <strong>relaciones son solo referencias a objetos o punteros; por lo tanto, nunca puede existir estado en ellas</strong> (las relaciones no pueden contener atributos). El estado existe en los objetos solamente, y las relaciones no son objetos de primera clase.</p>
+<p>La solución Java es <strong>convertir la relación en una entidad</strong> que contenga el estado deseado y mapear la nueva entidad a lo que anteriormente era la tabla de unión. <strong>La <mark>nueva entidad tendrá una relación de muchos a uno con cada uno de los tipos de entidad existentes</mark></strong>, y <strong><mark>cada uno de los tipos de entidad tendrá una relación de uno a muchos de vuelta a la nueva entidad que representa la relación</mark></strong>.</p>
+<p>La clave <strong>primaria de la nueva entidad será la combinación de las dos relaciones con los dos tipos de entidad</strong>. El siguiente código muestra todos los participantes en la relación entre Empleado y Proyecto.</p>
+<pre class="mermaid align-center ">classDiagram
+    class Empleado {
+        -int id
+        -String nombre
+        -long salario
+    }
+    class Proyecto {
+        -int id
+        -String nombre
+    }
+    class AsignacionProyecto {
+        -Date fechaInicio
+    }
+    Empleado o-- AsignacionProyecto
+    Proyecto o-- AsignacionProyecto</pre>
+
+<details open class=" box cstyle notices note">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-exclamation-circle"></i> 
+    La relación entre Employee y Project
+  </summary>
+  <div class="box-content">
+<p>La relación entre <code>Employee</code> y <code>Project</code> es una relación de muchos a muchos, que se representa mediante una tabla de unión llamada <code>EMP_PROJECT</code>. Esta tabla contiene dos claves externas, <code>EMP_ID</code> y <code>PROJECT_ID</code>, que hacen referencia a las tablas <code>EMPLOYEE</code> y <code>PROJECT</code>, respectivamente. La clase <code>ProjectAssignment</code> representa la relación entre <code>Employee</code> y <code>Project</code>, y contiene un atributo adicional, <code>startDate</code>, que almacena la fecha en la que se realizó la asignación.</p>
+  </div>
+</details>
+<p>Mapeando el estado de la relación con una entidad intermedia:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Employee</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Id</span> <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> id;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@OneToMany</span>(mappedBy<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;employee&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Collection<span style="color:#f92672">&lt;</span>ProjectAssignment<span style="color:#f92672">&gt;</span> assignments;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Project</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Id</span> <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> id;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@OneToMany</span>(mappedBy<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;project&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Collection<span style="color:#f92672">&lt;</span>ProjectAssignment<span style="color:#f92672">&gt;</span> assignments;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Entity</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Table</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;EMP_PROJECT&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@IdClass</span>(ProjectAssignmentId.<span style="color:#a6e22e">class</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ProjectAssignment</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Id</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@ManyToOne</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@JoinColumn</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;EMP_ID&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Employee employee;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Id</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@ManyToOne</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@JoinColumn</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;PROJECT_ID&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Project project;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Temporal</span>(TemporalType.<span style="color:#a6e22e">DATE</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Column</span>(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;START_DATE&#34;</span>, updatable<span style="color:#f92672">=</span><span style="color:#66d9ef">false</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Date startDate;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ProjectAssignmentId</span> <span style="color:#66d9ef">implements</span> Serializable {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> employee;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> project;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Aquí tenemos una clave primaria compuesta que está compuesta por dos claves externas, una de cada una de las entidades que forman parte de la relación. La clase <code>ProjectAssignmentId</code> es la clave primaria compuesta y contiene los dos atributos que forman la clave primaria. La clase <code>ProjectAssignment</code> es la entidad que representa la relación entre <code>Employee</code> y <code>Project</code>. La relación entre <code>Employee</code> y <code>Project</code> se representa mediante una relación de muchos a uno con la entidad <code>ProjectAssignment</code>.</p>
+
+<details open class=" box cstyle notices important">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-bolt"></i> 
+    Nombre de los atributos de la IdClass
+  </summary>
+  <div class="box-content">
+<p>Los <strong>nombres de los atributos de la clase <code>IdClass</code> deben coincidir con los nombres de los atributos de la clase de la entidad que representa la relación</strong>. En este caso, los nombres de los atributos son <code>employee</code> y <code>project</code>.</p>
+<p>Ojo, <strong>los tipos de datos deben coincidir con los tipos de datos de las claves de las entidades</strong>. En este caso, ambos atributos son de tipo <code>int</code>, que coincide con los tipos de datos de las claves de las entidades.</p>
+  </div>
+</details>
+<p>La clave primaria enteramente compuesta de la relación, con las dos columnas de clave externa que componen la clave primaria en la tabla de unión EMP_PROYECTO. <strong>La fecha en la que se realizó la asignación podría establecerse manualmente cuando se crea la asignación, o podría asociarse a un trigger que haga que se establezca cuando se crea la asignación en la base de datos</strong>. Ten en cuenta que, si se usara un trigger, entonces la entidad tendría que actualizarse desde la base de datos para poder poblar el campo de fecha de asignación en el objeto Java.</p>
+<h3 id="46-la-anotación-embeddedid-repaso">4.6 La anotación EmbeddedId (repaso)</h3>
+<p><code>@EmbeddedId</code> es una alternativa a la anotación <code>@IdClass</code>.</p>
+<p>Consideremos otro ejemplo en el que tenemos que persistir información de un <code>Book</code>, con <code>titulo</code> y <code>idioma</code> como los campos de clave primaria.</p>
+<p>En este caso, la clase de clave primaria, <code>IdLibro</code>, debe estar anotada con <code>@Embeddable</code>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Embeddable</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">IdLibro</span> <span style="color:#66d9ef">implements</span> Serializable {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String titulo;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String idioma;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// constructor por defecto</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">IdLibro</span>(String titulo, String idioma) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">titulo</span> <span style="color:#f92672">=</span> titulo;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">idioma</span> <span style="color:#f92672">=</span> idioma;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// getters, métodos equals() y hashCode()</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Luego, necesitamos incrustar esta clase en la entidad <code>Libro</code> usando <code>@EmbeddedId</code>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Entity</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Libro</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@EmbeddedId</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> IdLibro bookId;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// constructores, otros campos, getters y setters</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<h3 id="47-idclass-vs-embeddedid">4.7. @IdClass vs @EmbeddedId</h3>
+<p>Como podemos ver, <strong>la diferencia superficial entre estos dos es que con <code>@IdClass</code> tuvimos que especificar las columnas dos veces, una vez en <code>IdCuenta</code> y nuevamente en <code>Cuenta</code></strong>; sin embargo, con <code>@EmbeddedId</code> no lo hicimos.</p>
+<p>Sin embargo, hay algunas otras compensaciones.</p>
+<p>Por ejemplo, estas estructuras diferentes <strong>afectan las consultas JPQL que escribimos</strong>.</p>
+<p>Con <code>@IdClass</code>, la consulta es un poco más sencilla:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> cuenta.numeroCuenta <span style="color:#66d9ef">FROM</span> Cuenta cuenta</span></span></code></pre></div>
+<p>Con <code>@EmbeddedId</code>, tenemos que hacer un recorrido extra:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> libro.idLibro.titulo <span style="color:#66d9ef">FROM</span> Libro book</span></span></code></pre></div>
+<p>Además, <strong><code>@IdClass</code></strong> puede ser bastante útil en lugares donde estamos utilizando una clase de <strong><mark>clave compuesta que no podemos modificar</mark></strong>.</p>
+<p>Si vamos a acceder a partes de la clave compuesta individualmente, podemos hacer uso de <code>@IdClass</code>, pero <strong>en lugares donde usamos frecuentemente el identificador completo como un objeto, se prefiere <code>@EmbeddedId</code></strong>.</p>
+<h2 id="ejercicio-73-entidades-principales-de-base-de-datos-de-películas">Ejercicio 7.3. Entidades principales de base de datos de películas.</h2>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span>            <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;jakarta.persistence.jdbc.url&#34;</span>
+</span></span><span style="display:flex;"><span>                      <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;jdbc:mariadb://dbalumnos.sanclemente.local:3312/Peliculas&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;jakarta.persistence.jdbc.user&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;accesoadatos&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;jakarta.persistence.jdbc.password&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;ad123..&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;jakarta.persistence.jdbc.driver&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;org.mariadb.jdbc.Driver&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;jakarta.persistence.schema-generation.database.action&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;none&#34;</span><span style="color:#f92672">/&gt;</span></span></span></code></pre></div>
+<p>Sea la siguiente estructura de la base de datos:</p>
+<p><a href="#R-image-f285ec0d3d338e83f34c57f91393f0c8" class="lightbox-link"><img alt="Estructura de la base de datos" class="lazy lightbox figure-image" loading="lazy" src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/03orm/jpa/media/peliculaser.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-f285ec0d3d338e83f34c57f91393f0c8"><img alt="Estructura de la base de datos" class="lazy lightbox lightbox-image" loading="lazy" src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/03orm/jpa/media/peliculaser.png"></a></p>
+
+<details class=" box cstyle notices transparent expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right"></i> 
+    SQL de las tablas de la base de datos
+  </summary>
+  <div class="box-content">
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">EXISTS</span> <span style="color:#f92672">`</span>pelicula<span style="color:#f92672">`</span> (
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>idPelicula<span style="color:#f92672">`</span> int(<span style="color:#ae81ff">10</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>musica<span style="color:#f92672">`</span> varchar(<span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>orixinal<span style="color:#f92672">`</span> varchar(<span style="color:#ae81ff">125</span>) <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>ingles<span style="color:#f92672">`</span> varchar(<span style="color:#ae81ff">125</span>) <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>castelan<span style="color:#f92672">`</span> varchar(<span style="color:#ae81ff">125</span>) <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>xenero<span style="color:#f92672">`</span> varchar(<span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>anoInicio<span style="color:#f92672">`</span> smallint(<span style="color:#ae81ff">5</span>) <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>anoFin<span style="color:#f92672">`</span> smallint(<span style="color:#ae81ff">5</span>) <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>pais<span style="color:#f92672">`</span> varchar(<span style="color:#ae81ff">125</span>) <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>duración<span style="color:#f92672">`</span> smallint(<span style="color:#ae81ff">5</span>) <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>outrasDuracions<span style="color:#f92672">`</span> varchar(<span style="color:#ae81ff">25</span>) <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>cor<span style="color:#f92672">`</span> varchar(<span style="color:#ae81ff">12</span>) <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>son<span style="color:#f92672">`</span> varchar(<span style="color:#ae81ff">6</span>) <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>video<span style="color:#f92672">`</span> varchar(<span style="color:#ae81ff">2</span>) <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>laserDisc<span style="color:#f92672">`</span> varchar(<span style="color:#ae81ff">2</span>) <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>texto<span style="color:#f92672">`</span> longtext <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>poster<span style="color:#f92672">`</span> longblob,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>revisado<span style="color:#f92672">`</span> varchar(<span style="color:#ae81ff">10</span>) <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> (<span style="color:#f92672">`</span>idPelicula<span style="color:#f92672">`</span>),
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">UNIQUE</span> <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>Película<span style="color:#f92672">#</span>PX<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>idPelicula<span style="color:#f92672">`</span>),
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>Género<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>xenero<span style="color:#f92672">`</span>),
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>GéneroPelícula<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>xenero<span style="color:#f92672">`</span>),
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>OriginalAnyo<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>orixinal<span style="color:#f92672">`</span>,<span style="color:#f92672">`</span>anoFin<span style="color:#f92672">`</span>),
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>País<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>pais<span style="color:#f92672">`</span>),
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>PaísPelícula<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>pais<span style="color:#f92672">`</span>)
+</span></span><span style="display:flex;"><span>   ) ENGINE<span style="color:#f92672">=</span>InnoDB <span style="color:#66d9ef">DEFAULT</span> CHARSET<span style="color:#f92672">=</span>utf8 <span style="color:#66d9ef">COLLATE</span><span style="color:#f92672">=</span>utf8_spanish_ci;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">EXISTS</span> <span style="color:#f92672">`</span>personaxe<span style="color:#f92672">`</span> (
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>idPersonaxe<span style="color:#f92672">`</span> int(<span style="color:#ae81ff">10</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>importancia<span style="color:#f92672">`</span> varchar(<span style="color:#ae81ff">16</span>) <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>nome<span style="color:#f92672">`</span> varchar(<span style="color:#ae81ff">125</span>) <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>nomeOrdenado<span style="color:#f92672">`</span> varchar(<span style="color:#ae81ff">125</span>) <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>nomeOrixinal<span style="color:#f92672">`</span> varchar(<span style="color:#ae81ff">125</span>) <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>sexo<span style="color:#f92672">`</span> varchar(<span style="color:#ae81ff">6</span>) <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>dataNacemento<span style="color:#f92672">`</span> datetime <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>paisNacemento<span style="color:#f92672">`</span> varchar(<span style="color:#ae81ff">125</span>) <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>cidadeNacemento<span style="color:#f92672">`</span> varchar(<span style="color:#ae81ff">125</span>) <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>dataDefuncion<span style="color:#f92672">`</span> datetime <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>paisDefuncion<span style="color:#f92672">`</span> varchar(<span style="color:#ae81ff">125</span>) <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>cidadeDefuncion<span style="color:#f92672">`</span> varchar(<span style="color:#ae81ff">125</span>) <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>estudio<span style="color:#f92672">`</span> varchar(<span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>bio<span style="color:#f92672">`</span> varchar(<span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>texto<span style="color:#f92672">`</span> longtext <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>textoFilmografia<span style="color:#f92672">`</span> longtext <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>revisado<span style="color:#f92672">`</span> varchar(<span style="color:#ae81ff">10</span>) <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> (<span style="color:#f92672">`</span>idPersonaxe<span style="color:#f92672">`</span>),
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">UNIQUE</span> <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>Personaje<span style="color:#f92672">#</span>PX<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>idPersonaxe<span style="color:#f92672">`</span>),
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>NomPersona<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>nome<span style="color:#f92672">`</span>),
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>País de defunción<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>paisDefuncion<span style="color:#f92672">`</span>),
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>País de nacimiento<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>paisNacemento<span style="color:#f92672">`</span>),
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>PaísPersonaje<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>paisNacemento<span style="color:#f92672">`</span>),
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>PaísPersonaje1<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>paisDefuncion<span style="color:#f92672">`</span>),
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>SexoPersonaxe<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>sexo<span style="color:#f92672">`</span>)
+</span></span><span style="display:flex;"><span>   ) ENGINE<span style="color:#f92672">=</span>InnoDB <span style="color:#66d9ef">DEFAULT</span> CHARSET<span style="color:#f92672">=</span>utf8 <span style="color:#66d9ef">COLLATE</span><span style="color:#f92672">=</span>utf8_spanish_ci;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">EXISTS</span> <span style="color:#f92672">`</span>peliculapersonaxe<span style="color:#f92672">`</span> (
+</span></span><span style="display:flex;"><span><span style="color:#f92672">`</span>idPersonaxe<span style="color:#f92672">`</span> int(<span style="color:#ae81ff">10</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span><span style="color:#f92672">`</span>idPelicula<span style="color:#f92672">`</span> int(<span style="color:#ae81ff">10</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span><span style="color:#f92672">`</span>ocupacion<span style="color:#f92672">`</span> varchar(<span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span><span style="color:#f92672">`</span>personaxeInterpretado<span style="color:#f92672">`</span> varchar(<span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> (<span style="color:#f92672">`</span>idPelicula<span style="color:#f92672">`</span>,<span style="color:#f92672">`</span>idPersonaxe<span style="color:#f92672">`</span>,<span style="color:#f92672">`</span>ocupacion<span style="color:#f92672">`</span>),
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>OcupaciónPelícula_Personaje<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>ocupacion<span style="color:#f92672">`</span>),
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>PersonajePelícula_Personaje<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>idPersonaxe<span style="color:#f92672">`</span>)
+</span></span><span style="display:flex;"><span>) ENGINE<span style="color:#f92672">=</span>InnoDB <span style="color:#66d9ef">DEFAULT</span> CHARSET<span style="color:#f92672">=</span>utf8 <span style="color:#66d9ef">COLLATE</span><span style="color:#f92672">=</span>utf8_spanish_ci;</span></span></code></pre></div>
+  </div>
+</details>
+<p>En el que:</p>
+<ul>
+<li>El <strong>título de la película</strong> se guarda en el campo <code>castelan</code>.</li>
+<li>El <strong>identificador de la película es entero</strong> (no autoincremento).</li>
+<li>Los participantes de la película están relacionados por medio da de la tabla <code>peliculapersonaxe</code>, en la que el campo <code>ocupacion</code> identifica o tipo de ocupación de la película (‘Actor’, &hellip;):</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">EXISTS</span> <span style="color:#f92672">`</span>ocupacion<span style="color:#f92672">`</span> (
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>ocupacion<span style="color:#f92672">`</span> varchar(<span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">COLLATE</span> utf8_spanish_ci <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">`</span>orde<span style="color:#f92672">`</span> int(<span style="color:#ae81ff">11</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">UNIQUE</span> <span style="color:#66d9ef">KEY</span> <span style="color:#f92672">`</span>Ocupación<span style="color:#f92672">#</span>PX<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>ocupacion<span style="color:#f92672">`</span>)
+</span></span><span style="display:flex;"><span>   ) ENGINE<span style="color:#f92672">=</span>InnoDB <span style="color:#66d9ef">DEFAULT</span> CHARSET<span style="color:#f92672">=</span>utf8 <span style="color:#66d9ef">COLLATE</span><span style="color:#f92672">=</span>utf8_spanish_ci;</span></span></code></pre></div>
+<p><a href="#R-image-9f189e7052c39f5761147c73cb9ab451" class="lightbox-link"><img alt="Ocupación" class="lazy lightbox figure-image" loading="lazy" src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/03orm/jpa/media/ocupacion.png?width=300" style=" height: auto; width: 300;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-9f189e7052c39f5761147c73cb9ab451"><img alt="Ocupación" class="lazy lightbox lightbox-image" loading="lazy" src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/03orm/jpa/media/ocupacion.png?width=300"></a></p>
+<p><a href="#R-image-72f7f91eb3b8992f9bbed1504d5f19a9" class="lightbox-link"><img alt="Personaxeocupación" class="lazy lightbox figure-image" loading="lazy" src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/03orm/jpa/media/personaxeocupacion.png?width=400" style=" height: auto; width: 400;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-72f7f91eb3b8992f9bbed1504d5f19a9"><img alt="Personaxeocupación" class="lazy lightbox lightbox-image" loading="lazy" src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/03orm/jpa/media/personaxeocupacion.png?width=400"></a></p>
+<p>Para empezar, <strong>crea las entidades <code>Pelicula</code>, <code>Personaxe</code> y <code>Ocupacion</code></strong>.
+A continuación, <strong>crea la entidad <code>PeliculaPersonaxe</code> que relaciona las entidades <code>Pelicula</code> y <code>Personaxe</code> y <code>Ocupacion</code></strong>. Ten en cuenta que tiene un nuevo atributo <code>personaxeInterpretado</code>, que <strong>es el nombre del personaje interpretado por el actor en la película</strong>.</p>
+<p>Mejora:</p>
+<p>Crea las entidades asociadas a la base de datos. De modo que las columnas <code>anoInicio</code>, <code>outrasDuracions</code>, <code>video</code>, <code>laserDisc</code> pertenezca a una entidad <code>DetallePelicula</code> de tipo embebido.
+Hay que tener en cuenta que estos elementos no siempre están presentes, por lo que deben ser opcionales.</p>
+<hr>
+
+  <footer class="footline"></article>
+<footer>
+   <i class='fas fa-user'></i>  <span itemprop="name"> </span>
+
+<i class='fas fa-calendar'></i> Última actualización: 06.06.2025 
+</footer>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<img  src="../../../images/logo-ies.png" style="color:white;  font-size: 20px;" id="logo" href="http://manuais.pages.iessanclemente.net/apuntes/">
+        </div>
+        <search><form action="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Buscar (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Buscar</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Buscar...">
+            <button class="search-clear" type="button" data-search-clear="" title="Borrar búsqueda"><i class="fas fa-times" title="Borrar búsqueda"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/index.html"><a class="padding" href="../../../index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/index.html"><input type="checkbox" id="R-section-0758abab80c2aa84781892223aa808b3" aria-controls="R-subsections-0758abab80c2aa84781892223aa808b3"><label for="R-section-0758abab80c2aa84781892223aa808b3"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 0. Refuerzo y ayudas complementarias</span></label><a class="padding" href="../../../00ayudas/index.html">UD 0. Refuerzo y ayudas complementarias<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-0758abab80c2aa84781892223aa808b3" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/index.html"><input type="checkbox" id="R-section-1b1977ce428c9ac8dab8b72f8979bcb5" aria-controls="R-subsections-1b1977ce428c9ac8dab8b72f8979bcb5"><label for="R-section-1b1977ce428c9ac8dab8b72f8979bcb5"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01 Configuración y despliegue</span></label><a class="padding" href="../../../00ayudas/00configjava/index.html">01 Configuración y despliegue<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1b1977ce428c9ac8dab8b72f8979bcb5" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/01jarfiles/index.html"><a class="padding" href="../../../00ayudas/00configjava/01jarfiles/index.html">01 Archivos Jar<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/02jarwithmaven/index.html"><a class="padding" href="../../../00ayudas/00configjava/02jarwithmaven/index.html">02 Creación de un JAR ejecutable con Java con Apache Maven<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/03dependencias/index.html"><a class="padding" href="../../../00ayudas/00configjava/03dependencias/index.html">03. Dependencias Maven.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/index.html"><input type="checkbox" id="R-section-0ee0a79915535bc59e8b9d0e78f65ef9" aria-controls="R-subsections-0ee0a79915535bc59e8b9d0e78f65ef9"><label for="R-section-0ee0a79915535bc59e8b9d0e78f65ef9"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02 Java General</span></label><a class="padding" href="../../../00ayudas/02javageneral/index.html">02 Java General<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-0ee0a79915535bc59e8b9d0e78f65ef9" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/01streamapi/index.html"><a class="padding" href="../../../00ayudas/02javageneral/01streamapi/index.html">00.01 Java Stream API<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/02urlfiles/index.html"><a class="padding" href="../../../00ayudas/02javageneral/02urlfiles/index.html">00.02 Descarga de archivos de Internet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/03hashcode/index.html"><a class="padding" href="../../../00ayudas/02javageneral/03hashcode/index.html">03 Implementación de hashCode()<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/index.html"><input type="checkbox" id="R-section-8eb2a58628ca595eccda7f8f066488f0" aria-controls="R-subsections-8eb2a58628ca595eccda7f8f066488f0"><label for="R-section-8eb2a58628ca595eccda7f8f066488f0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 03. Layouts en Java Swing &amp; UI</span></label><a class="padding" href="../../../00ayudas/03layouts/index.html">03. Layouts en Java Swing &amp; UI<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8eb2a58628ca595eccda7f8f066488f0" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/00dialogosenswing/index.html"><a class="padding" href="../../../00ayudas/03layouts/00dialogosenswing/index.html">01 Ventanas de entrada de datos, mensajes y archivos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/05gridbaglayout/index.html"><a class="padding" href="../../../00ayudas/03layouts/05gridbaglayout/index.html">05 GridBagLayout<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/index.html"><input type="checkbox" id="R-section-1c69dc8b47fb6fae98603b1968118cf8" aria-controls="R-subsections-1c69dc8b47fb6fae98603b1968118cf8"><label for="R-section-1c69dc8b47fb6fae98603b1968118cf8"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 04. Patrones de diseño</span></label><a class="padding" href="../../../00ayudas/04patronesdisenho/index.html">04. Patrones de diseño<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1c69dc8b47fb6fae98603b1968118cf8" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/01designprinciples/index.html"><a class="padding" href="../../../00ayudas/04patronesdisenho/01designprinciples/index.html">01. Principios de diseño<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/02singleton/index.html"><a class="padding" href="../../../00ayudas/04patronesdisenho/02singleton/index.html">02. Patrón Singleton<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/03objetosinmutables/index.html"><a class="padding" href="../../../00ayudas/04patronesdisenho/03objetosinmutables/index.html">03. Objetos Inmutables<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/index.html"><input type="checkbox" id="R-section-36a825e367dd24b7cccca030c91ea60b" aria-controls="R-subsections-36a825e367dd24b7cccca030c91ea60b"><label for="R-section-36a825e367dd24b7cccca030c91ea60b"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 05. Programación en Kotlin</span></label><a class="padding" href="../../../00ayudas/05kotlin/index.html">05. Programación en Kotlin<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-36a825e367dd24b7cccca030c91ea60b" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/index.html"><input type="checkbox" id="R-section-312a90d18fa918ef04d04e75820d73c0" aria-controls="R-subsections-312a90d18fa918ef04d04e75820d73c0"><label for="R-section-312a90d18fa918ef04d04e75820d73c0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación estructurada básica</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/index.html">Programación estructurada básica<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-312a90d18fa918ef04d04e75820d73c0" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/10.-la_funcion_main/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/10.-la_funcion_main/index.html">La funcion main()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/20.-la_funcion-print-_y-_println/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/20.-la_funcion-print-_y-_println/index.html">La funcion print() y println()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/30.-comentarios/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/30.-comentarios/index.html">Comentarios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/40.-variables-_-literales-_y_-sentencia_-de_-asignación/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/40.-variables-_-literales-_y_-sentencia_-de_-asignaci%c3%b3n/index.html">Variables, literales y sentencia de asignación<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/50.-palabras_reservadas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/50.-palabras_reservadas/index.html">Palabras reservadas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/index.html"><input type="checkbox" id="R-section-94a2bfa5cc4fa0f33d0f2cf1c75e3265" aria-controls="R-subsections-94a2bfa5cc4fa0f33d0f2cf1c75e3265"><label for="R-section-94a2bfa5cc4fa0f33d0f2cf1c75e3265"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú tipos de datos y operadores</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/index.html">tipos de datos y operadores<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-94a2bfa5cc4fa0f33d0f2cf1c75e3265" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/60.tipos_de_datos_basicos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/60.tipos_de_datos_basicos/index.html">Tipos de datos básicos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/70.tipos_numericos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/70.tipos_numericos/index.html">Tipos Numéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/80.tipos_no_-numericos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/80.tipos_no_-numericos/index.html">Tipos básicos  No Numéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/90.conversion_de_tipos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/90.conversion_de_tipos/index.html">Conversión de Tipos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/100.-operadores/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/100.-operadores/index.html">Operadores<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/110.-expresiones_booleanas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/110.-expresiones_booleanas/index.html">Expresiones booleanas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/index.html"><input type="checkbox" id="R-section-840caf4a5c9da596bf4345cae4c798ab" aria-controls="R-subsections-840caf4a5c9da596bf4345cae4c798ab"><label for="R-section-840caf4a5c9da596bf4345cae4c798ab"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú colecciones básicas</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/index.html">colecciones básicas<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-840caf4a5c9da596bf4345cae4c798ab" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/120.-string/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/120.-string/index.html">String<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/130.-listas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/130.-listas/index.html">Listas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/140.rangos-/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/140.rangos-/index.html">Rangos<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/150.-entrada_teclado/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/150.-entrada_teclado/index.html">Entrada de datos por teclado con readln()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/index.html"><input type="checkbox" id="R-section-f79f31fcf5ae1f44691bca6f05e1710f" aria-controls="R-subsections-f79f31fcf5ae1f44691bca6f05e1710f"><label for="R-section-f79f31fcf5ae1f44691bca6f05e1710f"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú control de flujo</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/index.html">control de flujo<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-f79f31fcf5ae1f44691bca6f05e1710f" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/151.-control_de_flujo/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/151.-control_de_flujo/index.html">Control de flujo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/160.-sentencia_condicional_if/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/160.-sentencia_condicional_if/index.html">Sentencia condicional IF<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/190.-sentecia_when/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/190.-sentecia_when/index.html">Sentencia when<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/200.-bucle_for/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/200.-bucle_for/index.html">Bucle for<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/210.-while_y_do_while/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/210.-while_y_do_while/index.html">while y do while<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/220.-variables_locales_y_bloques/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/220.-variables_locales_y_bloques/index.html">variables locales y bloques<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/230.-break_y_continue/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/230.-break_y_continue/index.html">break y continue<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/240.otras_formas_de_iterar/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/240.otras_formas_de_iterar/index.html">Otras formas de iterar<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/250.-funciones/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/250.-funciones/index.html">Funciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/260.el_valor_nulo/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/260.el_valor_nulo/index.html">El valor nulo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/270.-readline/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/270.-readline/index.html">Entrada de datos por teclado con readLine()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/index.html"><input type="checkbox" id="R-section-44784ce5c237bf9124eefe20ce36272f" aria-controls="R-subsections-44784ce5c237bf9124eefe20ce36272f"><label for="R-section-44784ce5c237bf9124eefe20ce36272f"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú más sobre colecciones básicas</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/index.html">más sobre colecciones básicas<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-44784ce5c237bf9124eefe20ce36272f" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/310.-arrays/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/310.-arrays/index.html">Arrays<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/320.-listas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/320.-listas/index.html">Listas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/330.rangos-/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/330.rangos-/index.html">Rangos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/340.mapas-/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/340.mapas-/index.html">Mapas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/350.iterar_sobre_colecciones/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/350.iterar_sobre_colecciones/index.html">Iterar sobre colecciones<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/index.html"><input type="checkbox" id="R-section-1ef1a5ed807dacffeb206c0950804c3a" aria-controls="R-subsections-1ef1a5ed807dacffeb206c0950804c3a"><label for="R-section-1ef1a5ed807dacffeb206c0950804c3a"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación orientada a objetos</span></label><a class="padding" href="../../../00ayudas/05kotlin/02progoo/index.html">Programación orientada a objetos<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1ef1a5ed807dacffeb206c0950804c3a" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1010.objetos_y_clases/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1010.objetos_y_clases/index.html">Objetos y clases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1020.constructores-/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1020.constructores-/index.html">Constructores<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1030.propiedades/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1030.propiedades/index.html">Propiedades<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1040.sobreescribir_tostring/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1040.sobreescribir_tostring/index.html">Sobreescribir toString()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1060.modificadoresvisibilidad/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1060.modificadoresvisibilidad/index.html">modificadores de visibilidad<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1070.enum/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1070.enum/index.html">clases Enum<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1100.composicion/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1100.composicion/index.html">Composición<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1200.herencia/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1200.herencia/index.html">Herencia<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1220.clases_abstractas_interfaces/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1220.clases_abstractas_interfaces/index.html">Clases abstractas e Interfaces<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1240.dataclases/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1240.dataclases/index.html">Data Clases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1250.keywordobject/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1250.keywordobject/index.html">La palabra reservada object. Companion object, objetos singleton y objetos expressions<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1255.excepciones/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1255.excepciones/index.html">Excepciones en Kotlin<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1260.genericos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1260.genericos/index.html">Genéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1265.clausulatypealiases/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1265.clausulatypealiases/index.html">cláusula typealiases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1270.delegacion/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1270.delegacion/index.html">Delegación con cláusula by<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1280.claesanidadaseinternas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1280.claesanidadaseinternas/index.html">Clases anidadas e internas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/index.html"><input type="checkbox" id="R-section-8bbd4a78f07b64e8b2bc4b83b71f1498" aria-controls="R-subsections-8bbd4a78f07b64e8b2bc4b83b71f1498"><label for="R-section-8bbd4a78f07b64e8b2bc4b83b71f1498"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación funcional</span></label><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/index.html">Programación funcional<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8bbd4a78f07b64e8b2bc4b83b71f1498" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2010.funcioneskotlin/index.html"><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/2010.funcioneskotlin/index.html">sintáxis avanzada de las  funciones kotlin<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2020.-basesdepf/index.html"><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/2020.-basesdepf/index.html">algunos conceptos básicos de programación funcional<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2030.funcionesordensuperiorcolecciones/index.html"><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/2030.funcionesordensuperiorcolecciones/index.html">funciones de orden superior y colecciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2040.funcionesordensuperiorysequence/index.html"><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/2040.funcionesordensuperiorysequence/index.html">funciones de orden superior y sequence<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li></ul></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/index.html"><input type="checkbox" id="R-section-cf4ee7bae7fca4e692355524601fe599" aria-controls="R-subsections-cf4ee7bae7fca4e692355524601fe599"><label for="R-section-cf4ee7bae7fca4e692355524601fe599"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML</span></label><a class="padding" href="../../../01accesoficheros/index.html">UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-cf4ee7bae7fca4e692355524601fe599" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/index.html"><input type="checkbox" id="R-section-ec127efd28751c1f836952c8dac2374d" aria-controls="R-subsections-ec127efd28751c1f836952c8dac2374d"><label for="R-section-ec127efd28751c1f836952c8dac2374d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.01 Java IO. Acceso a ficheros, flujos, serialización de objetos.</span></label><a class="padding" href="../../../01accesoficheros/01javaio/index.html">01.01 Java IO. Acceso a ficheros, flujos, serialización de objetos.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-ec127efd28751c1f836952c8dac2374d" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0100javaiointro/index.html"><a class="padding" href="../../../01accesoficheros/01javaio/0100javaiointro/index.html">01.00 Java IO. Introducción.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0101javaiofile/index.html"><a class="padding" href="../../../01accesoficheros/01javaio/0101javaiofile/index.html">01.01 La clase File<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0102randomaccessfile/index.html"><a class="padding" href="../../../01accesoficheros/01javaio/0102randomaccessfile/index.html">01.02 La clase RandomAccessFile<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0103javaiostreams/index.html"><a class="padding" href="../../../01accesoficheros/01javaio/0103javaiostreams/index.html">01.03 Flujos de E/S<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0104bytestream/index.html"><a class="padding" href="../../../01accesoficheros/01javaio/0104bytestream/index.html">01.04 Flujos de byte<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0105characterstream/index.html"><a class="padding" href="../../../01accesoficheros/01javaio/0105characterstream/index.html">01.05 Flujos de caracteres<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0106javaiobuffer/index.html"><a class="padding" href="../../../01accesoficheros/01javaio/0106javaiobuffer/index.html">01.06 Flujos de E/S con Buffer<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0107javaistream/index.html"><a class="padding" href="../../../01accesoficheros/01javaio/0107javaistream/index.html">01.07 Operaciones comunes con flujos de E/S.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0109ejercicios/index.html"><a class="padding" href="../../../01accesoficheros/01javaio/0109ejercicios/index.html">Ejercicios<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/index.html"><input type="checkbox" id="R-section-2d1e1941df73311305891c0dca6583fd" aria-controls="R-subsections-2d1e1941df73311305891c0dca6583fd"><label for="R-section-2d1e1941df73311305891c0dca6583fd"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.02 Java NIO.2</span></label><a class="padding" href="../../../01accesoficheros/02javanio2/index.html">01.02 Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-2d1e1941df73311305891c0dca6583fd" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0202javaniopath/index.html"><a class="padding" href="../../../01accesoficheros/02javanio2/0202javaniopath/index.html">02.01. La interface Path<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0203javaniopathcreate/index.html"><a class="padding" href="../../../01accesoficheros/02javanio2/0203javaniopathcreate/index.html">02.03. Creación de Path<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0204javaniopath/index.html"><a class="padding" href="../../../01accesoficheros/02javanio2/0204javaniopath/index.html">02.04. Operaciones comunes de Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0205javaniopathmethods/index.html"><a class="padding" href="../../../01accesoficheros/02javanio2/0205javaniopathmethods/index.html">02.05. Métodos y con Path Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0206javaniostreams/index.html"><a class="padding" href="../../../01accesoficheros/02javanio2/0206javaniostreams/index.html">02.06. Programación funcional con Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/index.html"><input type="checkbox" id="R-section-662c48eb0e2f97ba0e58c14a690fca47" aria-controls="R-subsections-662c48eb0e2f97ba0e58c14a690fca47"><label for="R-section-662c48eb0e2f97ba0e58c14a690fca47"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.03 JSON en Java</span></label><a class="padding" href="../../../01accesoficheros/03json/index.html">01.03 JSON en Java<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-662c48eb0e2f97ba0e58c14a690fca47" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0300jsonintro/index.html"><a class="padding" href="../../../01accesoficheros/03json/0300jsonintro/index.html">01.00. Introducción a JSON<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0301jsonjs/index.html"><a class="padding" href="../../../01accesoficheros/03json/0301jsonjs/index.html">01.01. JSON con el API JavaScript de Java<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0302jsonlibraries/index.html"><a class="padding" href="../../../01accesoficheros/03json/0302jsonlibraries/index.html">01.02. Bibliotecas JSON para Java<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0304gson/index.html"><a class="padding" href="../../../01accesoficheros/03json/0304gson/index.html">01.03. Gson. Introducción<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0304gsondiagram/index.html"><a class="padding" href="../../../01accesoficheros/03json/0304gsondiagram/index.html">01.03. Gson. Diagrama de clases (e interfaces)<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0305gsoncreate/index.html"><a class="padding" href="../../../01accesoficheros/03json/0305gsoncreate/index.html">01.04. Gson. Creación de instancias Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0306creaciongson/index.html"><a class="padding" href="../../../01accesoficheros/03json/0306creaciongson/index.html">01.05 Gson. Creación y lectura de objetos JSON<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0306transformacion/index.html"><a class="padding" href="../../../01accesoficheros/03json/0306transformacion/index.html">01.06. Gson. Transformación de objetos JSON personalizada<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0307jsonreader01/index.html"><a class="padding" href="../../../01accesoficheros/03json/0307jsonreader01/index.html">01.07 Gson. JsonReader<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0308jsonrename/index.html"><a class="padding" href="../../../01accesoficheros/03json/0308jsonrename/index.html">01.08 Gson. Renombrar atributos <i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0309jsonserialize/index.html"><a class="padding" href="../../../01accesoficheros/03json/0309jsonserialize/index.html">01.09 Resumen Serialización Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0310jsondeserialize/index.html"><a class="padding" href="../../../01accesoficheros/03json/0310jsondeserialize/index.html">01.09 Resumen Deserialización Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/098ejercicio/index.html"><a class="padding" href="../../../01accesoficheros/03json/098ejercicio/index.html">Ejercicio. Trivial<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/0105ejercicios/index.html"><a class="padding" href="../../../01accesoficheros/0105ejercicios/index.html">Ejercicios y recursos<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/index.html"><input type="checkbox" id="R-section-342b2e95b9611e1108f16a11c61cd1f2" aria-controls="R-subsections-342b2e95b9611e1108f16a11c61cd1f2"><label for="R-section-342b2e95b9611e1108f16a11c61cd1f2"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 2. Acceso a BD remotas relacionales</span></label><a class="padding" href="../../../02accesobd/index.html">UD 2. Acceso a BD remotas relacionales<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-342b2e95b9611e1108f16a11c61cd1f2" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/index.html"><input type="checkbox" id="R-section-66326b82828cdbb6e30c77e924342908" aria-controls="R-subsections-66326b82828cdbb6e30c77e924342908"><label for="R-section-66326b82828cdbb6e30c77e924342908"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02.02 JDBC. Introducción a las Bases de datos relacionales.</span></label><a class="padding" href="../../../02accesobd/02db/index.html">02.02 JDBC. Introducción a las Bases de datos relacionales.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-66326b82828cdbb6e30c77e924342908" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0101databases/index.html"><a class="padding" href="../../../02accesobd/02db/0101databases/index.html">02.01. Sistemas gestores de bases de datos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0102introdb/index.html"><a class="padding" href="../../../02accesobd/02db/0102introdb/index.html">02. Introducción a las bases de datos relacionales<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0103postgresql/index.html"><a class="padding" href="../../../02accesobd/02db/0103postgresql/index.html">03. PostgreSQL<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0104postgres01/index.html"><a class="padding" href="../../../02accesobd/02db/0104postgres01/index.html">04. PostgreSQL. Características y Operadores.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/index.html"><input type="checkbox" id="R-section-4b93c45cd959371d7c20dcc7da6d632c" aria-controls="R-subsections-4b93c45cd959371d7c20dcc7da6d632c"><label for="R-section-4b93c45cd959371d7c20dcc7da6d632c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02.03. Procesamiento de sentencias SQL.</span></label><a class="padding" href="../../../02accesobd/03procesandosql/index.html">02.03. Procesamiento de sentencias SQL.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-4b93c45cd959371d7c20dcc7da6d632c" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0101procesamientosql/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0101procesamientosql/index.html">01. Procesamiento de sentencias SQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0102conexiones/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0102conexiones/index.html">02. Conexiones a BD<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0103excepcionessql/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0103excepcionessql/index.html">03. Excepciones SQLException<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0104resultset/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0104resultset/index.html">04. ResultSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0105resultsetbatch/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0105resultsetbatch/index.html">05. Actualizaciones por lotes con ResultSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0106preparedst/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0106preparedst/index.html">06. Prepared Statement<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0107transacciones/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0107transacciones/index.html">07. Transacciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0108clavesgeneradas/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0108clavesgeneradas/index.html">08. Claves Generadas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0109largeobjects/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0109largeobjects/index.html">09. Objectos grandes<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0111rowset/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0111rowset/index.html">11. RowSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0115boletines/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0115boletines/index.html">15. Ejercicios y archivos de la unidad<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/99proyecto/index.html"><a class="padding" href="../../../02accesobd/99proyecto/index.html">Proyecto 1ª evaluación<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="parent " data-nav-id="https://manuais.pages.iessanclemente.net/03orm/index.html"><input type="checkbox" id="R-section-87c8b6c6cd354a309db816f73d185be0" aria-controls="R-subsections-87c8b6c6cd354a309db816f73d185be0" checked><label for="R-section-87c8b6c6cd354a309db816f73d185be0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 3. Object/Relational Mapping (ORM). JPA e Hibernate</span></label><a class="padding" href="../../index.html">UD 3. Object/Relational Mapping (ORM). JPA e Hibernate<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-87c8b6c6cd354a309db816f73d185be0" class="collapsible-menu">
+            <li class="parent " data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/index.html"><input type="checkbox" id="R-section-5aaca10806a740cf4d784be6e24473b9" aria-controls="R-subsections-5aaca10806a740cf4d784be6e24473b9" checked><label for="R-section-5aaca10806a740cf4d784be6e24473b9"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 03.01. Jakarta Persistence (JPA).</span></label><a class="padding" href="../index.html">03.01. Jakarta Persistence (JPA).<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-5aaca10806a740cf4d784be6e24473b9" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/01jpa/index.html"><a class="padding" href="../01jpa/index.html">01. Jakarta Persistence (JPA).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/02jpavshibernate/index.html"><a class="padding" href="../02jpavshibernate/index.html">02. JPA vs Hibernate.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/03jpaejercicio/index.html"><a class="padding" href="../03jpaejercicio/index.html">03. Ejercicio básico de JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/04entitymanager/index.html"><a class="padding" href="../04entitymanager/index.html">04. Gestión de entidades con EntityManager.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/05mapeoentidades/index.html"><a class="padding" href="../05mapeoentidades/index.html">05. Mapeo de entidades.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/06relaciones/index.html"><a class="padding" href="../06relaciones/index.html">06. Relaciones JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="active " data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/07embedidos/index.html"><a class="padding" href="index.html">07. Objetos embebidos.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/08colecciones/index.html"><a class="padding" href="../08colecciones/index.html">08. Mapeo de colecciones.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/09queries/index.html"><a class="padding" href="../09queries/index.html">09. Consultas.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/10jpql/index.html"><a class="padding" href="../10jpql/index.html">10. JPQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/11paginacion/index.html"><a class="padding" href="../11paginacion/index.html">11. Paginación de consultas.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/12herencia/index.html"><a class="padding" href="../12herencia/index.html">12. Herencia.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/14ejercicios/index.html"><a class="padding" href="../14ejercicios/index.html">Ejercicios de la unidad de JPA<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/15boletines/index.html"><a class="padding" href="../15boletines/index.html">Ejercicios de refuerzo.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/16dependencias/index.html"><a class="padding" href="../16dependencias/index.html">Dependencias Maven.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/95singleton/index.html"><a class="padding" href="../../95singleton/index.html">03.02. Patrón Singleton.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/96ejerciciosrepaso/index.html"><a class="padding" href="../../96ejerciciosrepaso/index.html">03.03. Ejercicios de refuerzo (Violín).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/97ejerciciosrepaso2/index.html"><a class="padding" href="../../97ejerciciosrepaso2/index.html">03.04 Ejercicios de refuerzo (II)<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/98ejerciciosrepaso3/index.html"><a class="padding" href="../../98ejerciciosrepaso3/index.html">03.05 Ejercicios de refuerzo (III)<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/index.html"><input type="checkbox" id="R-section-ffae27028787f9b794af8498ce8bc361" aria-controls="R-subsections-ffae27028787f9b794af8498ce8bc361"><label for="R-section-ffae27028787f9b794af8498ce8bc361"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 4. Spring.</span></label><a class="padding" href="../../../04spring/index.html">UD 4. Spring.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-ffae27028787f9b794af8498ce8bc361" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/01springboot/index.html"><a class="padding" href="../../../04spring/01springboot/index.html">01. Spring Boot.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/02springdata/index.html"><a class="padding" href="../../../04spring/02springdata/index.html">02. Spring Data JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/03practicajpadata/index.html"><a class="padding" href="../../../04spring/03practicajpadata/index.html">03. Práctica con de Spring Data JPA y REST.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/04repositorios/index.html"><a class="padding" href="../../../04spring/04repositorios/index.html">04. Repositorios String Data.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/05paginacion/index.html"><a class="padding" href="../../../04spring/05paginacion/index.html">05. Paginación y Ordenación usando Spring Data JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/06paginacionrest/index.html"><a class="padding" href="../../../04spring/06paginacionrest/index.html">06. Paginación y Ordenación usando Spring Data REST.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/07vaadin/index.html"><a class="padding" href="../../../04spring/07vaadin/index.html">07. Spring Data JPA con Vaadin (práctica).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/08ejecutores/index.html"><a class="padding" href="../../../04spring/08ejecutores/index.html">08. Ejecutores al inicio con Spring Boot<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/09serviciocompo/index.html"><a class="padding" href="../../../04spring/09serviciocompo/index.html">09. Servicios, componentes y repositorios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/10servicios/index.html"><a class="padding" href="../../../04spring/10servicios/index.html">10. Servicios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/index.html"><input type="checkbox" id="R-section-f25e02e15b94f5cb39179f26efa74bfe" aria-controls="R-subsections-f25e02e15b94f5cb39179f26efa74bfe"><label for="R-section-f25e02e15b94f5cb39179f26efa74bfe"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 11. Proyecto Spring. Cuestionarios.</span></label><a class="padding" href="../../../04spring/11proyecto/index.html">11. Proyecto Spring. Cuestionarios.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-f25e02e15b94f5cb39179f26efa74bfe" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/01modelo/index.html"><a class="padding" href="../../../04spring/11proyecto/01modelo/index.html">01. Modelo de datos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/02dto/index.html"><a class="padding" href="../../../04spring/11proyecto/02dto/index.html">02. DTO<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/03repositorios/index.html"><a class="padding" href="../../../04spring/11proyecto/03repositorios/index.html">03. Repositorios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/04controller/index.html"><a class="padding" href="../../../04spring/11proyecto/04controller/index.html">04. Controller<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/05resultados/index.html"><a class="padding" href="../../../04spring/11proyecto/05resultados/index.html">05. Pruebas y mejoras<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/12springproj/index.html"><a class="padding" href="../../../04spring/12springproj/index.html">12. Proyecto Spring. Cuestionarios.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/index.html"><input type="checkbox" id="R-section-a0dc28a495fca757d219f1aec2ecff4c" aria-controls="R-subsections-a0dc28a495fca757d219f1aec2ecff4c"><label for="R-section-a0dc28a495fca757d219f1aec2ecff4c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 5. Bases de datos no SQL. MongoDB</span></label><a class="padding" href="../../../05basesdatosnonsql/index.html">UD 5. Bases de datos no SQL. MongoDB<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-a0dc28a495fca757d219f1aec2ecff4c" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/mongodb/01nosql/index.html"><a class="padding" href="../../../05basesdatosnonsql/mongodb/01nosql/index.html">01. Bases de datos NoSQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/mongodb/03springmongodb/index.html"><a class="padding" href="../../../05basesdatosnonsql/mongodb/03springmongodb/index.html">03. Conexión a MongoDB con String Data MongoDB (práctica).<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/index.html"><input type="checkbox" id="R-section-8d4041f058dd2262e83830e1db38cc6d" aria-controls="R-subsections-8d4041f058dd2262e83830e1db38cc6d"><label for="R-section-8d4041f058dd2262e83830e1db38cc6d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Git</span></label><a class="padding" href="../../../git/index.html">Git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8d4041f058dd2262e83830e1db38cc6d" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/index.html"><input type="checkbox" id="R-section-a87776bdac862bf972ec945bc124b884" aria-controls="R-subsections-a87776bdac862bf972ec945bc124b884"><label for="R-section-a87776bdac862bf972ec945bc124b884"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Introducción git</span></label><a class="padding" href="../../../git/1.introduccion_git/index.html">Introducción git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-a87776bdac862bf972ec945bc124b884" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/1.introduccion_git/index.html"><a class="padding" href="../../../git/1.introduccion_git/1.introduccion_git/index.html">Introducción a git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/2.estados_git/index.html"><a class="padding" href="../../../git/1.introduccion_git/2.estados_git/index.html">Estados de git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/3.instalacion_git/index.html"><a class="padding" href="../../../git/1.introduccion_git/3.instalacion_git/index.html">Instalación de git<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/index.html"><input type="checkbox" id="R-section-b63515bb4dcfe678de9ffac7a29c1e77" aria-controls="R-subsections-b63515bb4dcfe678de9ffac7a29c1e77"><label for="R-section-b63515bb4dcfe678de9ffac7a29c1e77"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Fundamentos git</span></label><a class="padding" href="../../../git/2.fundamentos_git/index.html">Fundamentos git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-b63515bb4dcfe678de9ffac7a29c1e77" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/1.configuracion_git/index.html"><a class="padding" href="../../../git/2.fundamentos_git/1.configuracion_git/index.html">Configuracion de git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/2.inicializar_repo/index.html"><a class="padding" href="../../../git/2.fundamentos_git/2.inicializar_repo/index.html">Inicializando repositorio<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/3.cambios/index.html"><a class="padding" href="../../../git/2.fundamentos_git/3.cambios/index.html">Cambios en el repositorio<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/4.ignorar_archivos/index.html"><a class="padding" href="../../../git/2.fundamentos_git/4.ignorar_archivos/index.html">Archivos Ignorados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/5.checkout/index.html"><a class="padding" href="../../../git/2.fundamentos_git/5.checkout/index.html">Git checkout<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/6.log/index.html"><a class="padding" href="../../../git/2.fundamentos_git/6.log/index.html">Git Log<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/7.archivos_modificados/index.html"><a class="padding" href="../../../git/2.fundamentos_git/7.archivos_modificados/index.html">Archivos modificados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/8.cambios/index.html"><a class="padding" href="../../../git/2.fundamentos_git/8.cambios/index.html">Archivos modificados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/9.eliminar_archivos/index.html"><a class="padding" href="../../../git/2.fundamentos_git/9.eliminar_archivos/index.html">Opciones con archivos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/10.limitar/index.html"><a class="padding" href="../../../git/2.fundamentos_git/10.limitar/index.html">Historial de confirmaciones<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/3.remotos/index.html"><a class="padding" href="../../../git/3.remotos/index.html">Remotos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/4.etiquetado/index.html"><a class="padding" href="../../../git/4.etiquetado/index.html">Etiquetado<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/index.html"><input type="checkbox" id="R-section-d8234a81ae190365829886d9d8a058a7" aria-controls="R-subsections-d8234a81ae190365829886d9d8a058a7"><label for="R-section-d8234a81ae190365829886d9d8a058a7"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Ramas Git</span></label><a class="padding" href="../../../git/5.ramas_git/index.html">Ramas Git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-d8234a81ae190365829886d9d8a058a7" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/1.ramificaciones_git/index.html"><a class="padding" href="../../../git/5.ramas_git/1.ramificaciones_git/index.html">Ramificación<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/2.ramificaciones_remotas/index.html"><a class="padding" href="../../../git/5.ramas_git/2.ramificaciones_remotas/index.html">Ramas Remotas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/6.claves_ssh/index.html"><a class="padding" href="../../../git/6.claves_ssh/index.html">Claves SSH<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">Más</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/"><a class="padding" href="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/" rel="external" target="_blank"><i class='fas fa-fw fa-bookmark'></i>  Cómo editar plantilla<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://www.iessanclemente.net/"><a class="padding" href="https://www.iessanclemente.net/" rel="external" target="_blank"><i class='fas fa-home'></i> IES Tubalcain<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/categories"><a class="padding" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/categories"><i class='fa-fw fas fa-layer-group'></i> Categories<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tags"><a class="padding" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/tags"><i class='fa-fw fas fa-tags'></i> Tags<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+            <li class="R-variantswitcher">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-paint-brush"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <label class="a11y-only" for="R-select-variant">Tema</label>
+                  <select id="R-select-variant">
+                    <option id="R-select-variant-blue" value="blue" selected>Blue</option>
+                    <option id="R-select-variant-relearn-light" value="relearn-light">Relearn Light</option>
+                    <option id="R-select-variant-relearn-dark" value="relearn-dark">Relearn Dark</option>
+                    <option id="R-select-variant-learn" value="learn">Learn</option>
+                    <option id="R-select-variant-neon" value="neon">Neon</option>
+                    <option id="R-select-variant-green" value="green">Green</option>
+                    <option id="R-select-variant-red" value="red">Red</option>
+                  </select>
+                </div>
+                <div class="clear"></div>
+              </div>
+              <script>window.relearn.markVariant();</script>
+            </li>
+            <li class="R-historyclearer">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-history"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <button>Borrar Historial</button>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+<div id="R-footer">
+<div>
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/cc.png" height="30" />
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/by.png"  height="30"/>
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/nc-eu.png"  height="30"/>
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/sa.png" height="30" />
+</div>
+</div>
+      </div>
+    </aside>
+    <script src="../../../js/clipboard/clipboard.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/perfect-scrollbar/perfect-scrollbar.min3c2e.js?1749199978" defer></script>
+    <script src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/js/js-yaml/js-yaml.min.js?1749199978" defer></script>
+    <script src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/js/d3/d3-color.min.js?1749199978" defer></script>
+    <script src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/js/d3/d3-dispatch.min.js?1749199978" defer></script>
+    <script src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/js/d3/d3-drag.min.js?1749199978" defer></script>
+    <script src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/js/d3/d3-ease.min.js?1749199978" defer></script>
+    <script src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/js/d3/d3-interpolate.min.js?1749199978" defer></script>
+    <script src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/js/d3/d3-selection.min.js?1749199978" defer></script>
+    <script src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/js/d3/d3-timer.min.js?1749199978" defer></script>
+    <script src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/js/d3/d3-transition.min.js?1749199978" defer></script>
+    <script src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/js/d3/d3-zoom.min.js?1749199978" defer></script>
+    <script src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/js/mermaid/mermaid.min.js?1749199978" defer></script>
+    <script>
+      window.relearn.themeUseMermaid = JSON.parse("{ \"securityLevel\": \"loose\" }");
+    </script>
+    <script src="../../../js/theme.min3c2e.js?1749199978" defer></script>
+  </body>
+
+<!-- Mirrored from manuais.pages.iessanclemente.net/plantillas/dam/ad/03orm/jpa/07embedidos/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Sep 2025 20:45:36 GMT -->
+</html>

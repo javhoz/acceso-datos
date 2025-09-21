@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  
+<!-- Mirrored from manuais.pages.iessanclemente.net/plantillas/dam/ad/04spring/02springdata/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Sep 2025 20:45:37 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.140.2">
+    <meta name="generator" content="Relearn 7.6.1+0b83617ee9da5253aafcf11807b256da7d88d709">
+    <meta name="description" content="0. JPA, Hibernate y Spring Data 0.1. JPA (Jakarta Persistence API) y Hibernate 0.2. Spring Data 0.2.1. API de Spring Data 0.3. Ventajas de Spring Data Spring Data y JPA Ventajas de Spring Data 1. Repositorios de Spring Data 1.1. Creación de un repositorio 1.2. Añadiendo Métodos a la Interfaz a un repositorio en Spring Data JPA 2. Fichero de configuración application.properties Estrategia de nombres Identificadores entre comillas Ejercicio. Spring de Vehículos 0. JPA, Hibernate y Spring Data 0.1. JPA (Jakarta Persistence API) y Hibernate Como hemos estudiado, JPA (API de Persistencia de Jakarta, anteriormente conocida como Java Persistence API) es una especificación que define una API encargada de gestionar la persistencia de objetos y mapeos objeto-relacional.">
+    <meta name="author" content="IES Tubalcain">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <meta name="twitter:title" content="02. Spring Data JPA. :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta name="twitter:description" content="0. JPA, Hibernate y Spring Data 0.1. JPA (Jakarta Persistence API) y Hibernate 0.2. Spring Data 0.2.1. API de Spring Data 0.3. Ventajas de Spring Data Spring Data y JPA Ventajas de Spring Data 1. Repositorios de Spring Data 1.1. Creación de un repositorio 1.2. Añadiendo Métodos a la Interfaz a un repositorio en Spring Data JPA 2. Fichero de configuración application.properties Estrategia de nombres Identificadores entre comillas Ejercicio. Spring de Vehículos 0. JPA, Hibernate y Spring Data 0.1. JPA (Jakarta Persistence API) y Hibernate Como hemos estudiado, JPA (API de Persistencia de Jakarta, anteriormente conocida como Java Persistence API) es una especificación que define una API encargada de gestionar la persistencia de objetos y mapeos objeto-relacional.">
+    <meta property="og:url" content="https://manuais.pages.iessanclemente.net/04spring/02springdata/index.html">
+    <meta property="og:site_name" content="IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta property="og:title" content="02. Spring Data JPA. :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta property="og:description" content="0. JPA, Hibernate y Spring Data 0.1. JPA (Jakarta Persistence API) y Hibernate 0.2. Spring Data 0.2.1. API de Spring Data 0.3. Ventajas de Spring Data Spring Data y JPA Ventajas de Spring Data 1. Repositorios de Spring Data 1.1. Creación de un repositorio 1.2. Añadiendo Métodos a la Interfaz a un repositorio en Spring Data JPA 2. Fichero de configuración application.properties Estrategia de nombres Identificadores entre comillas Ejercicio. Spring de Vehículos 0. JPA, Hibernate y Spring Data 0.1. JPA (Jakarta Persistence API) y Hibernate Como hemos estudiado, JPA (API de Persistencia de Jakarta, anteriormente conocida como Java Persistence API) es una especificación que define una API encargada de gestionar la persistencia de objetos y mapeos objeto-relacional.">
+    <meta property="og:locale" content="es">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="UD 4. Spring.">
+    <meta property="article:modified_time" content="2025-06-06T08:52:44+00:00">
+    <meta property="og:image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <meta itemprop="name" content="02. Spring Data JPA. :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta itemprop="description" content="0. JPA, Hibernate y Spring Data 0.1. JPA (Jakarta Persistence API) y Hibernate 0.2. Spring Data 0.2.1. API de Spring Data 0.3. Ventajas de Spring Data Spring Data y JPA Ventajas de Spring Data 1. Repositorios de Spring Data 1.1. Creación de un repositorio 1.2. Añadiendo Métodos a la Interfaz a un repositorio en Spring Data JPA 2. Fichero de configuración application.properties Estrategia de nombres Identificadores entre comillas Ejercicio. Spring de Vehículos 0. JPA, Hibernate y Spring Data 0.1. JPA (Jakarta Persistence API) y Hibernate Como hemos estudiado, JPA (API de Persistencia de Jakarta, anteriormente conocida como Java Persistence API) es una especificación que define una API encargada de gestionar la persistencia de objetos y mapeos objeto-relacional.">
+    <meta itemprop="dateModified" content="2025-06-06T08:52:44+00:00">
+    <meta itemprop="wordCount" content="4797">
+    <meta itemprop="image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <title>02. Spring Data JPA. :: IES Tubalcain - Acceso a datos (2º DAM)</title>
+    <link href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/04spring/02springdata/index.xml" rel="alternate" type="application/rss+xml" title="02. Spring Data JPA. :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <link href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/04spring/02springdata/index.print.html" rel="alternate" type="text/html" title="02. Spring Data JPA. :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <link href="../../fonts/fontawesome/css/fontawesome-all.min3c2e.css?1749199978" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../fonts/fontawesome/css/fontawesome-all.min3c2e.css?1749199978" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar/perfect-scrollbar.min3c2e.css?1749199978" rel="stylesheet">
+    <link href="../../css/theme.min3c2e.css?1749199978" rel="stylesheet">
+    <link href="../../css/format-html.min3c2e.css?1749199978" rel="stylesheet" id="R-format-style">
+    <link href="../../css/auto-complete/auto-complete.min3c2e.css?1749199978" rel="stylesheet">
+    <script src="../../js/auto-complete/auto-complete.min3c2e.js?1749199978" defer></script>
+    <script src="../../js/lunr/lunr.min3c2e.js?1749199978" defer></script>
+    <script src="../../js/lunr/lunr.stemmer.support.min3c2e.js?1749199978" defer></script>
+    <script src="../../js/lunr/lunr.multi.min3c2e.js?1749199978" defer></script>
+    <script src="../../js/lunr/lunr.es.min3c2e.js?1749199978" defer></script>
+    <script src="../../js/search.min3c2e.js?1749199978" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='#\/04spring\/02springdata\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='';
+      window.relearn.contentLangs=['es'];
+      window.relearn.index_js_url="../../searchindex.es3c2e.js?1749199978";
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // variant stuff
+      window.relearn.themevariants = [ 'blue', 'relearn-light', 'relearn-dark', 'learn', 'neon', 'green', 'red' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copiar en el portapapeles`;
+      window.T_Copied_to_clipboard = `¡Copiado al portapapeles!`;
+      window.T_Copy_link_to_clipboard = `Copiar enlace al portapapeles`;
+      window.T_Link_copied_to_clipboard = `¡Enlace copiado al portapapeles!`;
+      window.T_Reset_view = `Restablecer vista`;
+      window.T_View_reset = `¡Ver reajuste!`;
+      window.T_No_results_found = `No se han encontrado resultados para "{0}"`;
+      window.T_N_results_found = `{1} resultados encontrados para "{0}"`;
+    </script><style>
+    :root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+}
+
+@media screen and (max-width: 70.5rem) {
+    #R-sidebar {
+        min-width: var(--INTERNAL-MENU-WIDTH-S);
+        max-width: var(--INTERNAL-MENU-WIDTH-S);
+        width: var(--INTERNAL-MENU-WIDTH-S);
+    }
+    #R-body {
+        margin-inline-start: var(--INTERNAL-MENU-WIDTH-S);
+        min-width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+        max-width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+        width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+    }
+}
+@media screen and (max-width: 70.5rem) {
+     
+
+    .mobile-support #R-sidebar {
+        inset-inline-start: calc( -1 * var(--INTERNAL-MENU-WIDTH-S) );
+        min-width: var(--INTERNAL-MENU-WIDTH-S);
+        max-width: var(--INTERNAL-MENU-WIDTH-S);
+        width: var(--INTERNAL-MENU-WIDTH-S);
+    }
+    .mobile-support #navshow{
+        display: inline;
+    }
+    .mobile-support #R-body {
+        min-width: 100%;
+        max-width: 100%;
+        width: 100%;
+    }
+    .mobile-support #R-body {
+        margin-inline-start: 0;
+    }
+    .mobile-support.sidebar-flyout {
+        overflow: hidden;
+    }
+    .mobile-support.sidebar-flyout #R-sidebar {
+        inset-inline-start: 0;
+        z-index: 90;
+    }
+    .mobile-support.sidebar-flyout #R-body {
+        margin-inline-start: var(--INTERNAL-MENU-WIDTH-S);
+        overflow: hidden;
+    }
+    .mobile-support.sidebar-flyout #R-body-overlay{
+        background-color: rgba( 134, 134, 134, .5 );
+        bottom: 0;
+        cursor: pointer;
+        height: 100vh;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 190;
+    }
+}
+
+</style>
+
+
+  </head>
+  <body class="mobile-support html" data-url="../../04spring/02springdata/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menú (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Tabla de contenido (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#0-jpa-hibernate-y-spring-data">0. JPA, Hibernate y Spring Data</a>
+      <ul>
+        <li><a href="#01-jpa-jakarta-persistence-api-y-hibernate">0.1. JPA (Jakarta Persistence API) y Hibernate</a></li>
+        <li><a href="#02-spring-data">0.2. Spring Data</a></li>
+        <li><a href="#03-ventajas-de-spring-data">0.3. Ventajas de Spring Data</a></li>
+      </ul>
+    </li>
+    <li><a href="#1-repositorios-de-spring-data">1. Repositorios de Spring Data</a>
+      <ul>
+        <li><a href="#11-creación-de-un-repositorio">1.1. Creación de un repositorio</a></li>
+        <li><a href="#12-añadiendo-métodos-a-la-interfaz-a-un-repositorio-en-spring-data-jpa">1.2. Añadiendo Métodos a la Interfaz a un repositorio en Spring Data JPA</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-fichero-de-configuración-applicationproperties">2. Fichero de configuración <code>application.properties</code></a>
+      <ul>
+        <li><a href="#estrategia-de-nombres">Estrategia de nombres</a></li>
+        <li><a href="#identificadores-entre-comillas">Identificadores entre comillas</a></li>
+      </ul>
+    </li>
+    <li><a href="#ejercicio-spring-de-vehículos">Ejercicio. Spring de Vehículos</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../index.html"><span itemprop="name">Acceso a datos</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../index.html"><span itemprop="name">UD 4. Spring.</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">02. Spring Data JPA.</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/04spring/02springdata/index.print.html" title="Imprimir todo el capítulo (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../01springboot/index.html" title="01. Spring Boot. (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../03practicajpadata/index.html" title="03. Práctica con de Spring Data JPA y REST. (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Más"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 04spring" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="02-spring-data-jpa">02. Spring Data JPA.</h1>
+
+<!-- TOC -->
+<ul>
+<li><a href="index.html#0-jpa-hibernate-y-spring-data">0. JPA, Hibernate y Spring Data</a>
+<ul>
+<li><a href="index.html#01-jpa-jakarta-persistence-api-y-hibernate">0.1. JPA (Jakarta Persistence API) y Hibernate</a></li>
+<li><a href="index.html#02-spring-data">0.2. Spring Data</a>
+<ul>
+<li><a href="index.html#021-api-de-spring-data">0.2.1. API de Spring Data</a></li>
+</ul>
+</li>
+<li><a href="index.html#03-ventajas-de-spring-data">0.3. Ventajas de Spring Data</a>
+<ul>
+<li><a href="index.html#spring-data-y-jpa">Spring Data y JPA</a></li>
+<li><a href="index.html#ventajas-de-spring-data">Ventajas de Spring Data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="index.html#1-repositorios-de-spring-data">1. Repositorios de Spring Data</a>
+<ul>
+<li><a href="index.html#11-creación-de-un-repositorio">1.1. Creación de un repositorio</a></li>
+<li><a href="index.html#12-añadiendo-métodos-a-la-interfaz-a-un-repositorio-en-spring-data-jpa">1.2. Añadiendo Métodos a la Interfaz a un repositorio en Spring Data JPA</a></li>
+</ul>
+</li>
+<li><a href="index.html#2-fichero-de-configuración-applicationproperties">2. Fichero de configuración <code>application.properties</code></a>
+<ul>
+<li><a href="index.html#estrategia-de-nombres">Estrategia de nombres</a></li>
+<li><a href="index.html#identificadores-entre-comillas">Identificadores entre comillas</a></li>
+</ul>
+</li>
+<li><a href="index.html#ejercicio-spring-de-vehículos">Ejercicio. Spring de Vehículos</a></li>
+</ul>
+<!-- TOC -->
+<h2 id="0-jpa-hibernate-y-spring-data">0. JPA, Hibernate y Spring Data</h2>
+<h3 id="01-jpa-jakarta-persistence-api-y-hibernate">0.1. JPA (Jakarta Persistence API) y Hibernate</h3>
+<ul>
+<li>
+<p>Como hemos estudiado, <strong>JPA</strong> (API de Persistencia de Jakarta, anteriormente conocida como Java Persistence API) <strong>es una especificación</strong> que define una API encargada de gestionar la persistencia de objetos y mapeos objeto-relacional.</p>
+</li>
+<li>
+<p><strong>Hibernate es la implementación más popular de esta especificación</strong>. Esto es, <strong>JPA establece qué hacer para persistir objetos, mientras que Hibernate indica cómo hacerlo</strong>.</p>
+</li>
+</ul>
+<p><strong>Características JPA</strong></p>
+<p>La especificación JPA define lo siguiente:</p>
+<ul>
+<li>
+<p>Un mecanismo para <strong>especificar metadatos de mapeo</strong>: cómo se relacionan las clases persistentes y sus propiedades con el esquema de la base de datos. JPA <strong>se basa en gran medida en anotaciones de Java en las clases del modelo de dominio, aunque también se pueden escribir mapeos en archivos XML</strong>.</p>
+</li>
+<li>
+<p>APIs para <strong>realizar operaciones CRUD básicas en instancias de clases persistentes</strong>, principalmente <code>[jakarta.persistence.EntityManager](https://jakarta.ee/specifications/persistence/3.1/apidocs/jakarta.persistence/jakarta/persistence/entitymanager)</code> para almacenar y cargar datos.</p>
+</li>
+<li>
+<p>Un <strong>lenguaje y APIs</strong> para especificar consultas que se refieren a clases y propiedades de clases. Este lenguaje es el <strong><a href="https://jakarta.ee/specifications/persistence/3.1/jakarta-persistence-spec-3.1#a4665" rel="external" target="_blank">Jakarta Persistence Query Language (JPQL)</a></strong> y se asemeja a SQL. La <a href="https://jakarta.ee/specifications/persistence/3.1/apidocs/jakarta.persistence/jakarta/persistence/criteria/package-summary.html" rel="external" target="_blank">API Criteria</a> permite la <strong>creación programática de consultas de criterios sin manipulación de cadenas</strong>.</p>
+</li>
+<li>
+<p>Cómo el <strong>motor de persistencia interactúa con instancias transaccionales</strong> para realizar comprobaciones de cambios, recuperación de asociaciones y otras funciones de optimización. La especificación JPA cubre algunas estrategias básicas de almacenamiento en caché.</p>
+</li>
+</ul>
+<p><strong>Hibernate implementa JPA</strong> y respalda todos los mapeos, consultas y interfaces de programación estandarizados.</p>
+<p><strong>Ventajas de Hibernate</strong></p>
+<ul>
+<li>
+<p><strong>Productividad:</strong> Hibernate elimina gran parte del trabajo repetitivo y permite concentrarse en el problema comercial. Ya sea que prefieras una estrategia de desarrollo de aplicaciones de arriba hacia abajo, comenzando con un modelo de dominio, o de abajo hacia arriba, comenzando con un esquema de base de datos existente, Hibernate, utilizado junto con las herramientas adecuadas, reducirá significativamente el tiempo de desarrollo.</p>
+</li>
+<li>
+<p><strong>Mantenimiento:</strong> el ORM automatizada con Hibernate <strong>reduce las líneas de código</strong>, lo que hace que el sistema sea más comprensible y fácil de refactorizar. Hibernate proporciona un <strong>buffer entre el modelo de dominio y el esquema SQL, aislando</strong> cada modelo de cambios menores en el otro.</p>
+</li>
+<li>
+<p><strong>Rendimiento:</strong> aunque la persistencia codificada a mano puede ser más rápida en el mismo sentido en que el código ensamblador puede ser más rápido que el código Java, <strong>las soluciones automatizadas como Hibernate permiten el uso de muchas optimizaciones</strong> en todo momento. Un ejemplo es el <strong>almacenamiento en caché eficiente y fácilmente ajustable en la capa de aplicación</strong>, lo que permite a los desarrolladores optimizar los pocos cuellos de botella reales en lugar de optimizar prematuramente todo.</p>
+</li>
+<li>
+<p><strong>Independencia del proveedor:</strong> Hibernate puede ayudar a mitigar algunos de los riesgos asociados con el bloqueo del proveedor. Incluso si no está previsto cambiar de Sistema Gestor de Base de Datos, las <strong>herramientas ORM que admiten varios SGBDs brindan un cierto nivel de portabilidad</strong>. Además, la independencia del SGBS (DBMS en inglés) es <strong>útil en escenarios de desarrollo donde los ingenieros utilizan una base de datos local ligera</strong> pero implementan para <strong>pruebas</strong> y producción en un sistema diferente.</p>
+</li>
+</ul>
+<h3 id="02-spring-data">0.2. Spring Data</h3>
+<p><strong><a href="https://spring.io/projects/spring-data" rel="external" target="_blank">Spring Data</a> es una familia de proyectos pertenecientes al framework Spring</strong> cuyo propósito es simplificar el acceso <strong>tanto a bases de datos relacionales como a bases de datos NoSQL</strong>.
+Proporciona los elementos fundamentales del framework Spring que <strong>poseen todos los módulos de Spring Data</strong>.</p>
+<p><strong><a href="https://spring.io/projects/spring-data-jpa" rel="external" target="_blank">Spring Data JPA</a></strong> es un subproyecto de Spring Data que <strong>simplifica el acceso a datos JPA</strong>. <strong>Spring Data JPA</strong> <strong>elimina la necesidad de escribir consultas SQL</strong>. En su lugar, <strong>puedes definir consultas personalizadas en el repositorio</strong> y <strong>Spring Data JPA generará las consultas SQL por ti</strong>.</p>
+<p><a href="#R-image-795a379979a7a1cb174aaf31130801f7" class="lightbox-link"><img alt="Spring Data" class="lazy lightbox figure-image" loading="lazy" src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/04spring/media/springdataarquitectura.jpg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-795a379979a7a1cb174aaf31130801f7"><img alt="Spring Data" class="lazy lightbox lightbox-image" loading="lazy" src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/04spring/media/springdataarquitectura.jpg"></a></p>
+<ul>
+<li><strong>Spring Data Commons:</strong> <a href="https://github.com/spring-projects/spring-data-commons" rel="external" target="_blank">Spring Data Commons</a>, parte del proyecto paraguas Spring Data, proporciona un modelo de metadatos para persistir clases Java e interfaces de repositorio <strong>independientes de la tecnología</strong>. <a href="https://docs.spring.io/spring-data/commons/reference/index.html" rel="external" target="_blank">Spring Data Commons</a>, como <strong>parte de Spring Data</strong>, proporciona los elementos fundamentales del framework Spring que <strong>poseen todos los módulos de Spring Data</strong>.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Ejemplo de interfaz de repositorio Spring Data Commons</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">RepositorioComun</span><span style="color:#f92672">&lt;</span>T, ID<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">extends</span> Repository<span style="color:#f92672">&lt;</span>T, ID<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Métodos de repositorio común</span>
+</span></span><span style="display:flex;"><span>    Optional<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">findById</span>(ID id);
+</span></span><span style="display:flex;"><span>    T <span style="color:#a6e22e">save</span>(T entity);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Otros métodos...</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<ul>
+<li><strong>Spring Data JPA:</strong> <a href="https://spring.io/projects/spring-data-jpa" rel="external" target="_blank">Spring Data JPA</a> se encarga de la implementación de <strong>repositorios basados en JPA</strong>. Ofrece un soporte mejorado para capas de acceso a datos basadas en JPA al reducir el código repetitivo y crear implementaciones para las interfaces de repositorio. Es una <strong>capa adicional sobre las implementaciones JPA (como Hibernate)</strong>. No solo puede utilizar todas las capacidades de JPA, sino que también <strong>agrega sus propias funciones, como la creación de consultas de base de datos generadas a partir de nombres de métodos</strong>.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Ejemplo de Entidad JPA:</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Entity</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Entidad</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Id</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@GeneratedValue</span>(strategy <span style="color:#f92672">=</span> GenerationType.<span style="color:#a6e22e">AUTO</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Long id;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String nombre;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Otros atributos...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Getters y setters...</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Ejemplo de interfaz de repositorio Spring Data JPA</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">RepositorioJPA</span> <span style="color:#66d9ef">extends</span> JpaRepository<span style="color:#f92672">&lt;</span>Entidad, Long<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Métodos de repositorio JPA</span>
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Entidad<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">findByNombre</span>(String nombre);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Otros métodos persomalozados si es necesario...</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<ul>
+<li><strong>Spring Data JDBC:</strong> <a href="https://spring.io/projects/spring-data-jdbc" rel="external" target="_blank">Spring Data JDBC</a> se ocupa de la implementación de <strong>repositorios basados en JDBC</strong>. Ofrece un soporte mejorado para <strong>capas de acceso a datos basadas en JDBC</strong>. No ofrece una serie de capacidades de JPA, como el almacenamiento en caché o la carga diferida, lo que resulta en un ORM más simple y limitado.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Ejemplo de Entidad JDBC:</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Entidad</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Long id;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String nombre;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Otros atributos...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Getters y setters...</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Ejemplo de interfaz de repositorio Spring Data JDBC</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">RepositorioJDBC</span> <span style="color:#66d9ef">extends</span> CrudRepository<span style="color:#f92672">&lt;</span>Entidad, Long<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Métodos de repositorio JDBC</span>
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Entidad<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">findByNombre</span>(String nombre);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Otros métodos persomalozados si es necesario...</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<ul>
+<li><strong>Spring Data REST:</strong> <a href="https://spring.io/projects/spring-data-rest" rel="external" target="_blank">Spring Data REST</a> se encarga de <strong>exportar repositorios de Spring Data como recursos RESTful</strong>:</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#75715e">// Ejemplo de interfaz de repositorio Spring Data REST </span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@RepositoryRestResource</span>(collectionResourceRel <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;entidades&#34;</span>, path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;entidades&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">RepositorioREST</span> <span style="color:#66d9ef">extends</span> PagingAndSortingRepository<span style="color:#f92672">&lt;</span>Entidad, Long<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Métodos de repositorio REST</span>
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>Entidad<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">findByNombre</span>(String nombre);
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Otros métodos persomalozados si es necesario...</span>
+</span></span><span style="display:flex;"><span>    }</span></span></code></pre></div>
+<ul>
+<li><strong>Spring Data MongoDB:</strong> <a href="https://spring.io/projects/spring-data-mongodb" rel="external" target="_blank">Spring Data MongoDB</a> se ocupa del <strong>acceso a la base de datos de documentos MongoDB</strong>. Se basa en la capa de acceso a datos de estilo <strong>repositorio y en el modelo de programación POJO</strong>:</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Ejemplo de Entidad MongoDB:</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Document</span>(collection <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;entidadesMongo&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">EntidadMongo</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Id</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String id;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String nombre;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Otros atributos...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Getters y setters...</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Ejemplo de interfaz de repositorio Spring Data MongoDB</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">RepositorioMongo</span> <span style="color:#66d9ef">extends</span> MongoRepository<span style="color:#f92672">&lt;</span>EntidadMongo, String<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Métodos de repositorio MongoDB</span>
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>EntidadMongo<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">findByNombre</span>(String nombre);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Otros métodos persomalozados si es necesario...</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<ul>
+<li><strong>Spring Data Redis:</strong> <a href="https://spring.io/projects/spring-data-redis" rel="external" target="_blank">Spring Data Redis</a> se ocupa del <strong>acceso a la base de datos clave-valor Redis</strong>. Se basa en liberar al desarrollador de gestionar la infraestructura y proporciona abstracciones de alto y bajo nivel para acceder al almacén de datos.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Ejemplo de Entidad Redis:</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@RedisHash</span>(<span style="color:#e6db74">&#34;entidadesRedis&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">EntidadRedis</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Id</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String id;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String nombre;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Otros atributos...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Getters y setters...</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Ejemplo de interfaz de repositorio Spring Data Redis</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">RepositorioRedis</span> <span style="color:#66d9ef">extends</span> CrudRepository<span style="color:#f92672">&lt;</span>EntidadRedis, String<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Métodos de repositorio Redis</span>
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>EntidadRedis<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">findByNombre</span>(String nombre);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Otros métodos persomalozados si es necesario...</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<ul>
+<li>
+<p><strong>Spring Data Neo4j:</strong> <a href="https://spring.io/projects/spring-data-neo4j" rel="external" target="_blank">Spring Data Neo4j</a> se ocupa del <strong>acceso a la base de datos de grafos Neo4j</strong>. Se basa en liberar al desarrollador de gestionar la infraestructura y proporciona abstracciones de alto y bajo nivel para acceder al almacén de datos.</p>
+</li>
+<li>
+<p><strong>Spring LDAP:</strong> <a href="https://spring.io/projects/spring-ldap" rel="external" target="_blank">Spring LDAP</a> se ocupa del <strong>acceso a los servicios de directorio LDAP</strong>.</p>
+</li>
+</ul>
+<p>El código fuente de Spring Data (junto con otros proyectos de Spring) se puede descargar libremente desde <a href="https://github.com/spring-projects" rel="external" target="_blank">https://github.com/spring-projects</a>.</p>
+<p>Para aprovechar Hibernate de manera eficaz, es necesario poder ver e interpretar las declaraciones SQL que emite y comprender sus implicaciones de rendimiento. Para beneficiarse de las ventajas de <strong>Spring Data</strong>, es <strong>esencial anticipar cómo se crean el código estándar y las consultas generadas</strong>.</p>
+<h4 id="021-api-de-spring-data">0.2.1. API de Spring Data</h4>
+<p>La <a href="https://javadoc.io/doc/org.springframework.data" rel="external" target="_blank">API DE String Data</a> puede consultarse en la página:</p>
+<p><a href="https://javadoc.io/doc/org.springframework.data" rel="external" target="_blank">https://javadoc.io/doc/org.springframework.data</a></p>
+<h3 id="03-ventajas-de-spring-data">0.3. Ventajas de Spring Data</h3>
+<h4 id="spring-data-y-jpa">Spring Data y JPA</h4>
+<ul>
+<li><strong>Spring Data hace que la implementación de la capa de persistencia sea aún más eficiente</strong>.</li>
+<li><strong>Spring Data JPA</strong>, uno de los proyectos de la familia, <strong>se encuentra sobre la capa JPA</strong>.</li>
+<li><strong>Spring Data JDBC</strong>, otro proyecto de la familia, <strong>se encuentra sobre JDBC</strong>.</li>
+</ul>
+<h4 id="ventajas-de-spring-data">Ventajas de Spring Data</h4>
+<ul>
+<li>
+<p><strong>Infraestructura compartida:</strong> <strong>Spring Data Commons</strong>, parte del proyecto Spring Data, proporciona un modelo de metadatos para persistir clases Java e interfaces de repositorio <strong>independientes de la tecnología. Ofrece sus capacidades a otros proyectos de Spring Data</strong>.</p>
+</li>
+<li>
+<p><strong>Eliminación de implementaciones DAO:</strong> Las implementaciones <strong>JPA utilizan el patrón DAO (Data Access Object)</strong>. Este patrón comienza con la idea de una interfaz abstracta a una base de datos y asigna las llamadas de la aplicación a la capa de persistencia, ocultando los detalles de la base de datos. <strong>Spring Data JPA permite eliminar por completo las implementaciones DAO</strong>, lo que reduce la longitud del código.</p>
+</li>
+<li>
+<p><strong>Creación automática de clases</strong></p>
+<ul>
+<li>Utilizando <strong>Spring Data JPA, una interfaz DAO debe extender la interfaz <a href="https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/repository/Repository.html" rel="external" target="_blank"><code>Repository</code></a> específica de JPA, <a href="https://docs.spring.io/spring-data/jpa/docs/current/api/org/springframework/data/jpa/repository/JpaRepository.html" rel="external" target="_blank"><code>JpaRepository</code></a></strong>. Spring Data JPA <strong>creará automáticamente una implementación para esta interfaz</strong>, eliminando la necesidad de que el programador se ocupe de esto.</li>
+</ul>
+</li>
+<li>
+<p><strong>Implementaciones predeterminadas para métodos:</strong> Spring Data JPA <strong>generará implementaciones predeterminadas para cada método definido por las interfaces de repositorio</strong>. Las <strong>operaciones básicas CRUD ya no necesitan implementarse</strong>, lo que reduce el código innecesario, acelera el desarrollo y elimina la posibilidad de introducir errores.</p>
+</li>
+<li>
+<p><strong>Consultas generadas:</strong> Puedes <strong>definir un método en tu interfaz de repositorio siguiendo un patrón de nombres</strong>. No es necesario escribir tus consultas manualmente, <strong>Spring Data JPA analizará el nombre del método y creará una consulta para ello</strong>.</p>
+</li>
+<li>
+<p><strong>Cercano a la base de datos si es necesario:</strong> <strong>Spring Data JDBC puede comunicarse directamente con la base de datos y evitar la &ldquo;capa&rdquo; de Spring Data JPA</strong>. Permite interactuar con la base de datos a través de JDBC, pero elimina el código innecesario utilizando las facilidades del framework Spring.</p>
+</li>
+</ul>
+<h2 id="1-repositorios-de-spring-data">1. Repositorios de Spring Data</h2>
+<p><mark><strong>Spring Data JPA</strong></mark> proporciona una interfaz de repositorio que <strong>extiende la interface <a href="https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/repository/ListCrudRepository.html" rel="external" target="_blank"><code>ListCrudRepository&lt;T,ID&gt;</code></a> y de <a href="https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/repository/ListPagingAndSortingRepository.html" rel="external" target="_blank"><code>ListPagingAndSortingRepository&lt;T,ID&gt;</code></a></strong>. <strong><code>CrudRepository</code></strong> (y su versión con listas) proporciona <strong>métodos CRUD básicos</strong>, métodos para <strong>paginación</strong>. Además, <strong>Spring Data JPA</strong> proporciona <strong>métodos adicionales</strong> para <strong>realizar consultas personalizadas</strong>.</p>
+<p><strong>Spring Data JPA</strong> también proporciona <strong>métodos para paginación y ordenación</strong>. <strong>Spring Data JPA</strong> <strong>generará consultas SQL</strong> para estos métodos.</p>
+<p>Spring Data JPA proporciona <strong>soporte para capas de acceso a datos basadas en JPA al reducir el código repetitivo y crear implementaciones para las interfaces de repositorio</strong>.</p>
+<p><strong>Solo necesitamos definir nuestra propia interfaz de repositorio, extendiendo una de las interfaces de Spring Data</strong>.</p>
+<p>El conjunto de <strong>interfaces de repositorio de Spring Data comunes</strong> es el siguiente:</p>
+<p><a href="#R-image-8ac80a11b572b0a31843e1690fdf4107" class="lightbox-link"><img alt="Jerarquía de interfaces de repositorio de Spring Data" class="lazy lightbox figure-image" loading="lazy" src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/04spring/media/repositorios.svg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-8ac80a11b572b0a31843e1690fdf4107"><img alt="Jerarquía de interfaces de repositorio de Spring Data" class="lazy lightbox lightbox-image" loading="lazy" src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/04spring/media/repositorios.svg"></a></p>
+<ul>
+<li>
+<p><mark><strong><a href="https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/repository/Repository.html" rel="external" target="_blank"><code>Repository&lt;T,ID&gt;</code></a></strong>: es la <strong>interfaz base de Spring Data</strong></mark>, precisamos <strong>heredarla para crear un repositorio y personalizarlo</strong>. No tiene métodos específicos declarados, pues es <strong>interface principal para definir un repositorio</strong>. El propósito general es <strong>gestionar el tipo de información (tipos)</strong> y ser capar de <strong>descubrir interfaces que la heredan</strong> durante el escaneo (en el <code>classpath</code>) para facilitar la creación de Beans de Spring.</p>
+</li>
+<li>
+<p><mark><strong><a href="https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/repository/CrudRepository.html" rel="external" target="_blank"><code>CrudRepository&lt;T,ID&gt;</code></a></strong></mark>: hereda <code>Repository</code>, <strong>añade métodos CRUD</strong> e implanta métodos para <strong>contar, borrar, comprobar existencia, recuperar y guardar entidades</strong>:</p>
+<ul>
+<li><strong><code>long count()</code>: cuenta el número de entidades</strong> disponibles.</li>
+<li><strong><code>void delete(T entity)</code>: elimina</strong> una entidad.</li>
+<li><strong><code>void deleteAll()</code>: borra todas las entidades</strong> gestionadas por el repositorio.</li>
+<li><strong><code>void deleteAll(Iterable&lt;? extends T&gt; entities)</code>: elimina todas las entidades</strong> de la colección.</li>
+<li><strong><code>void deleteById(ID id)</code>: elimina la entidad</strong> con el identificador especificado.</li>
+<li><strong><code>boolean existsById(ID id)</code>: comprueba si existe una entidad</strong> con el identificador especificado.</li>
+<li><strong><code>Iterable&lt;T&gt; findAll()</code>: recupera todas</strong> las entidades.</li>
+<li><strong><code>Iterable&lt;T&gt; findAllById(Iterable&lt;ID&gt; ids)</code>: recupera todas las entidades con los ids</strong> especificados.</li>
+<li><strong><code>Optional&lt;T&gt; findById(ID id)</code>: recupera la entidad con el identificador</strong> recogido como parámetro.</li>
+<li><strong><code>&lt;S extends T&gt; save(S entity)</code>: guarda</strong> una entidad.</li>
+<li><strong><code>&lt;S extends T&gt; Iterable&lt;S&gt; saveAll(Iterable&lt;S&gt; entities)</code>: guarda todas las entidades</strong> del iterable.</li>
+</ul>
+</li>
+<li>
+<p><mark><strong><a href="https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/repository/ListCrudRepository.html" rel="external" target="_blank"><code>ListCrudRepository&lt;T,ID&gt;</code></a></strong>: hereda <code>CrudRepository</code></mark> y <strong>sobrescribe los métodos de <code>CrudRepository</code> para devolver listas en lugar de <a href="https://docs.oracle.com/en/java/javase/22/docs/api/java.base/java/lang/Iterable.html" rel="external" target="_blank">Iterable</a></strong>:</p>
+<ul>
+<li><code>List&lt;T&gt; findAll()</code>: recupera todas las entidades.</li>
+<li><code>List&lt;T&gt; findAllById(Iterable&lt;ID&gt; ids)</code>: recupera todas las entidades con los ids especificados.</li>
+<li><code>&lt;S extends T&gt; List&lt;S&gt; saveAll(Iterable&lt;S&gt; entities)</code>: guarda las entidades de la colección.</li>
+</ul>
+</li>
+<li>
+<p><strong><a href="https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/repository/PagingAndSortingRepository.html" rel="external" target="_blank"><code>PagingAndSortingRepository</code></a>:</strong> hereda <code>Repository</code> y <strong>declara métodos de búsqueda para paginación y ordenación</strong>. En la mayoría de los casos se combina con <code>CrudRepository</code> o similar (no <code>JpaRepository</code>, que ya hereda de <code>PagingAndSortingRepository</code>) para añadir funcionalidad de paginación y ordenación a los métodos CRUD:</p>
+<ul>
+<li><strong><code>Iterable&lt;T&gt; findAll(Sort sort)</code></strong>: recupera todas las <strong>entidades ordenadas</strong> según las <a href="https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/domain/Sort.html" rel="external" target="_blank">opciones de ordenación</a>.</li>
+<li><strong><code>Page&lt;T&gt; findAll(Pageable pageable)</code></strong>: recupera las entidades con las <strong>opciones de paginación del <a href="https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/domain/Pageable.html" rel="external" target="_blank">objeto <code>Pageable</code></a></strong>.</li>
+</ul>
+</li>
+</ul>
+<p>Ejemplo de uso de <code>PagingAndSortingRepository</code>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">RepositorioPaginacion</span> <span style="color:#66d9ef">extends</span> PagingAndSortingRepository<span style="color:#f92672">&lt;</span>Entidad, Long<span style="color:#f92672">&gt;</span>, CrudRepository<span style="color:#f92672">&lt;</span>Entidad, Long<span style="color:#f92672">&gt;</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Métodos de repositorio con paginación y ordenación</span>
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Entidad<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">findByNombre</span>(String nombre, Pageable pageable);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Otros métodos persomalozados si es necesario...</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Por heredar de <code>PagingAndSortingRepository</code>, el repositorio <code>RepositorioPaginacion</code> <strong>tendrá acceso a los métodos de paginación y ordenación</strong>: <strong><code>findAll(Sort sort)</code></strong> y <strong><code>findAll(Pageable pageable)</code></strong>.</p>
+<ul>
+<li><strong><a href="https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/repository/ListPagingAndSortingRepository.html" rel="external" target="_blank"><code>ListPagingAndSortingRepository&lt;T,ID&gt;</code></a></strong>: hereda de <code>PagingAndSortingRepository&lt;T,ID&gt;</code> (y por ello de <code>Repository&lt;T,ID&gt;</code>) y <strong>sobrescribe el método <code>findAll(Sort sort)</code> de <code>PagingAndSortingRepository</code> para devolver una lista en lugar de Iterable</strong>:
+<ul>
+<li><strong><code>List&lt;T&gt; findAll(Sort sort)</code>: recupera todas las entidades</strong> ordenadas según las opciones de ordenación.</li>
+</ul>
+</li>
+</ul>
+<p>Interfaces específicas de JPA:</p>
+<ul>
+<li>
+<p><strong><a href="https://docs.spring.io/spring-data/jpa/docs/current/api/org/springframework/data/jpa/repository/JpaRepository.html" rel="external" target="_blank"><code>JpaRepository&lt;T,ID&gt;</code></a>:</strong> hereda  de hereda de <code>ListCrudRepository&lt;T,ID&gt;</code>, <code>ListPagingAndSortingRepository&lt;T,ID&gt;</code>, <code>QueryByExampleExecutor&lt;T&gt;</code> (y, por ello de <code>CrudRepository&lt;T,ID&gt;</code>, <code>PagingAndSortingRepository&lt;T,ID&gt;</code>, <code>Repository&lt;T,ID&gt;</code>) y <strong>agrega métodos específicos de JPA</strong>:</p>
+<ul>
+<li><code>&lt;S extends T&gt; List&lt;S&gt; findAll(Example&lt;S&gt; example)</code>: recupera todas las entidades que coinciden con el ejemplo (subespecificación de <code>QueryByExampleExecutor&lt;T&gt;</code>).</li>
+<li><code>&lt;S extends T&gt; List&lt;S&gt; findAll(Example&lt;S&gt; example, Sort sort)</code>: recupera todas las entidades que coinciden con el ejemplo y las ordena según las opciones de ordenación (subespecificación de <code>QueryByExampleExecutor&lt;T&gt;</code>).</li>
+<li><code>getReferenceById(ID id)</code>: devuelve una referencia a la entidad con el identificador especificado.</li>
+<li><del><code>getById(ID id)</code></del>: <strong>desaprobado</strong> por <code>getReferenceById(ID id)</code>.</li>
+<li><del><code>getOne(ID id)</code></del>: <strong>desaprobado</strong> por <code>getReferenceById(ID id)</code>.</li>
+<li><code>&lt;S extends T&gt; S saveAndFlush(S entity)</code>: guarda la entidad y la fuerza a la base de datos.</li>
+<li><code>&lt;S extends T&gt; List&lt;S&gt; saveAllAndFlush(Iterable&lt;S&gt; entities)</code>: guarda todas las entidades y las fuerza a la base de datos.</li>
+<li><code>void flush()</code>: fuerza todas las entidades gestionadas a la base de datos.</li>
+<li><del><code>void deleteInBatch(Iterable&lt;T&gt; entities)</code></del>: <strong>desaprobado</strong> por <code>deleteAllInBatch(Iterable&lt;T&gt; entities)</code>.</li>
+<li><code>void deleteAllInBatch(Iterable&lt;T&gt; entities)</code>: elimina todas las entidades de la colección en una única consulta.</li>
+<li><code>void deleteAllInBatch()</code>: elimina todas las entidades en una única consulta.</li>
+<li><code>void deleteAllByIdInBatch(Iterable&lt;ID&gt; ids)</code>: elimina todas las entidades con los ids especificados en una única consulta.</li>
+</ul>
+</li>
+<li>
+<p>Para JDBC es preciso heredar de <code>CrudRepository</code> y <strong>agregar métodos específicos de JDBC</strong>.</p>
+</li>
+</ul>
+<p>Otros repositorios de Spring Data son:</p>
+<ul>
+<li><strong><a href="https://docs.spring.io/spring-data/mongodb/docs/current/api/org/springframework/data/mongodb/repository/MongoRepository.html" rel="external" target="_blank"><code>MongoRepository&lt;T,ID&gt;</code></a>:</strong> hereda <code>ListCrudRepository&lt;T,ID&gt;</code>, <code>ListPagingAndSortingRepository&lt;T,ID&gt;</code>, <code>QueryByExampleExecutor&lt;T&gt;</code> (y, por ello, de <code>CrudRepository&lt;T,ID&gt;</code>, <code>PagingAndSortingRepository&lt;T,ID&gt;</code> y <code>Repository&lt;T,ID&gt;</code>). Es el repositorio <strong>específico para trabajar con MongoDB</strong>.</li>
+<li><strong><a href="https://docs.spring.io/spring-data/data-neo4j/docs/current/api/org/springframework/data/neo4j/repository/Neo4jRepository.html" rel="external" target="_blank"><code>Neo4jRepository&lt;T,ID&gt;</code></a>:</strong> hereda de <code>PagingAndSortingRepository&lt;T,ID&gt;</code>, <code>CrudRepository&lt;T,ID&gt;</code> y <code>QueryByExampleExecutor&lt;T&gt;</code> (y, por ello, de <code>Repository&lt;T,ID&gt;</code>), es un <strong>repositorio específico para Neo4j</strong>.</li>
+<li><strong>Redis:</strong> no existe un <strong>RedisRepository específico en Spring Data</strong>. En su lugar, <strong>se puede utilizar el repositorio CrudRepository para interactuar con Redis</strong>, configurando adecuadamente la conexión a Redis en el <code>application.properties</code> o <code>application.yml</code>:</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Ejemplo de interfaz de repositorio Spring Data Redis</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">RepositorioRedis</span> <span style="color:#66d9ef">extends</span> CrudRepository<span style="color:#f92672">&lt;</span>EntidadRedis, String<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Métodos de repositorio Redis</span>
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>EntidadRedis<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">findByNombre</span>(String nombre);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Otros métodos personalizados si es necesario...</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<ul>
+<li>
+<p><strong><a href="https://docs.spring.io/spring-data/ldap/docs/current/api/org/springframework/data/ldap/repository/LdapRepository.html" rel="external" target="_blank"><code>LdapRepository&lt;T&gt;</code></a>:</strong> hereda de <code>ListCrudRepository&lt;T,Name&gt;</code> (y por ello de <code>CrudRepository&lt;T,Name&gt;</code> y <code>Repository&lt;T,Name&gt;</code>), <strong>es específico para LDAP</strong>, con métodos: <code>Optional&lt;T&gt; findOne(org.springframework.ldap.query.LdapQuery ldapQuery)</code> y <code>List&lt;T&gt; findAll(org.springframework.ldap.query.LdapQuery ldapQuery)</code>.</p>
+</li>
+<li>
+<p><strong><a href="https://docs.spring.io/spring-data/cassandra/docs/current/api/org/springframework/data/cassandra/repository/CassandraRepository.html" rel="external" target="_blank"><code>CassandraRepository</code></a>:</strong> hereda de <code>ListCrudRepository&lt;T,ID&gt;</code> (y por ello de: <code>CrudRepository&lt;T,ID&gt;</code> y <code>Repository&lt;T,ID&gt;</code>). Permite  la <strong>especificación de un tipo para la identidad de <code>@Table</code> (o <code>@Persistable</code>)</strong>. Los repositorios Cassandra pueden definir tanto una única clave primaria, usar una clase de clave primaria o una clave primaria compuesta sin una clase de clave primaria. Los tipos que utilizan una clave primaria compuesta sin una clase de clave primaria deben <a href="https://docs.spring.io/spring-data/cassandra/docs/current/api/org/springframework/data/cassandra/core/mapping/MapId.html" rel="external" target="_blank">usar <code>MapId</code></a> para declarar el valor de su clave.</p>
+</li>
+<li>
+<p><strong><a href="https://docs.spring.io/spring-data/solr/docs/current/api/org/springframework/data/solr/repository/SolrRepository.html" rel="external" target="_blank"><code>SolrRepository</code></a>:</strong> hereda de directamente de <code>Repository&lt;T,ID&gt;</code> y es una excelente opción para <strong>integrar Spring Data con el popular <a href="https://solr.apache.org/" rel="external" target="_blank">motor de búsqueda Solr</a></strong>.</p>
+</li>
+</ul>
+<p><strong>¿Qué es Spring Data Solr?</strong></p>
+<ul>
+<li><strong><a href="https://docs.spring.io/spring-data/solr/docs/current/reference/html/#solr.repositories" rel="external" target="_blank">Spring Data Solr</a></strong> es un proyecto que aplica conceptos fundamentales de Spring al desarrollo de soluciones <strong><a href="https://solr.apache.org/" rel="external" target="_blank">utilizando el motor de búsqueda Apache Solr</a></strong>.</li>
+<li><strong>Solr es un motor de búsqueda de texto completo de código abierto listo para implementar en empresas</strong>.</li>
+<li>Spring Data Solr <strong>simplifica la implementación de la capa DAO (Acceso a Datos) y elimina el código repetitivo</strong> en aplicaciones Spring.</li>
+</ul>
+<p>a) Configuración básica:</p>
+<p>Dependencia Maven:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;groupId&gt;</span>org.springframework.data<span style="color:#f92672">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;artifactId&gt;</span>spring-data-solr<span style="color:#f92672">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;version&gt;</span>4.3.14<span style="color:#f92672">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/dependency&gt;</span></span></span></code></pre></div>
+<p>Declaramos un documento Solr llamado <code>Producto</code>, por ejemplo, que queremos almacenar en Solr:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.data.annotation.Id;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.data.solr.core.mapping.Indexed;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.data.solr.core.mapping.SolrDocument;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@SolrDocument</span>(solrCoreName <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;product&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Producto</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@Id</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@Indexed</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;id&#34;</span>, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;string&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> String id;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@Indexed</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;name&#34;</span>, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;string&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> String name;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Getters y setters (omito para simplificar)</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>El repositorio <code>ProductoRepositorio</code>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.data.solr.repository.SolrCrudRepository;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">ProductoRepositorio</span> <span style="color:#66d9ef">extends</span> SolrCrudRepository<span style="color:#f92672">&lt;</span>Producto, String<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>  List<span style="color:#f92672">&lt;</span>Producto<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">findByName</span>(String name);
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Configuración de Spring (se precisa configurar la capa de persistencia de la aplicación Spring):</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.solr.client.solrj.SolrClient;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.solr.client.solrj.impl.HttpSolrClient;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.context.annotation.Bean;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.context.annotation.Configuration;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.data.solr.core.SolrTemplate;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.data.solr.repository.config.EnableSolrRepositories;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Configuration</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@EnableSolrRepositories</span>(basePackages <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;com.javhoz.ad.repositories&#34;</span>, namedQueriesLocation <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;classpath:solr-named-queries.properties&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SpringDataSolrConfiguration</span> {
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Bean</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> SolrClient <span style="color:#a6e22e">solrClient</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> HttpSolrClient.<span style="color:#a6e22e">Builder</span>(<span style="color:#e6db74">&#34;http://localhost:8983/solr&#34;</span>).<span style="color:#a6e22e">build</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Bean</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> SolrTemplate <span style="color:#a6e22e">solrTemplate</span>() {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> SolrTemplate(solrClientFactory());
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Además, se precisa un archivo <code>solr-named-queries.properties</code> en el directorio <code>resources</code> con las consultas personalizadas:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#a6e22e">Producto.findByName</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">name:?0</span></span></span></code></pre></div>
+<ul>
+<li><strong><a href="https://docs.spring.io/spring-data/elasticsearch/docs/current/api/org/springframework/data/elasticsearch/repository/ElasticsearchRepository.html" rel="external" target="_blank"><code>ElasticsearchRepository&lt;T,ID&gt;</code></a>:</strong> hereda de <code>PagingAndSortingRepository&lt;T,ID&gt;</code>, <code>CrudRepository&lt;T,ID&gt;</code> (y, por ello, de <code>Repository&lt;T,ID&gt;</code>). <strong>Añade métodos específicos de Elasticsearch</strong>.</li>
+<li><strong><a href="https://docs.spring.io/spring-data/couchbase/docs/current/api/org/springframework/data/couchbase/repository/CouchbaseRepository.html" rel="external" target="_blank"><code>CouchbaseRepository&lt;T,ID&gt;</code></a>:</strong> hereda de <code>PagingAndSortingRepository&lt;T,ID&gt;</code>, <code>CrudRepository&lt;T,ID&gt;</code> (y, por ello, de <code>Repository&lt;T,ID&gt;</code>). <strong>Añade métodos específicos de Couchbase</strong>.</li>
+<li><strong><a href="https://docs.spring.io/spring-data/gemfire/docs/current/api/org/springframework/data/gemfire/repository/GemfireRepository.html" rel="external" target="_blank"><code>GemfireRepository</code></a>:</strong> hereda <code>CrudRepository&lt;T,ID&gt;</code> (y, por ello, de <code>Repository&lt;T,ID&gt;</code>) y <strong>agrega métodos específicos de Apache Geode</strong>.</li>
+<li><strong><a href="https://spring.io/projects/spring-data-couchbase" rel="external" target="_blank"><code>Couchbase</code></a>:</strong> debes heredar de <code>CrudRepository</code>.</li>
+</ul>
+<h3 id="11-creación-de-un-repositorio">1.1. Creación de un repositorio</h3>
+<p>Dada la Entidad <code>Mensaje</code>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Entity</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Mensaje</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Id</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@GeneratedValue</span>(strategy <span style="color:#f92672">=</span> GenerationType.<span style="color:#a6e22e">AUTO</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Long id;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String texto;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Getters y setters...</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Por ejemplo, la interface, <code>MensajeRepositorio.java</code></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">MensajeRepositorio</span> <span style="color:#66d9ef">extends</span> CrudRepository<span style="color:#f92672">&lt;</span>Mensaje, Long<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>La interfaz <code>MensajeRepositorio</code> extiende <code>CrudRepository&lt;Mensaje, Long&gt;</code>. Esto significa que es un repositorio de entidades <code>Mensaje</code> con un identificador <code>Long</code>. Recordemos que la clase <code>Mensaje</code> tiene un campo <code>id</code> anotado como <code>@Id</code> de tipo <code>Long</code>. <strong>Podemos llamar directamente a métodos como <code>save</code>, <code>findAll</code> o <code>findById</code>, heredados de <a href="https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/repository/CrudRepository.html" rel="external" target="_blank"><code>CrudRepository</code></a></strong>, y podemos <strong>usarlos sin ninguna información adicional para ejecutar operaciones habituales contra una base de datos</strong>. Spring Data JPA <strong>creará una clase proxy que implementa la interfaz <code>MensajeRepositorio</code></strong> e implementará sus métodos:</p>
+<p><a href="https://springframework.guru/gang-of-four-design-patterns/proxy-pattern/" rel="external" target="_blank">https://springframework.guru/gang-of-four-design-patterns/proxy-pattern/</a></p>
+<p>Ahora, guardemos un <code>Mensaje</code> en la base de datos usando Spring Data JPA: <code>HolaMundoSpringDataJPA.java</code>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@ExtendWith</span>(SpringExtension.<span style="color:#a6e22e">class</span>) <span style="color:#75715e">// #A</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@ContextConfiguration</span>(classes <span style="color:#f92672">=</span> {SpringDataConfiguration.<span style="color:#a6e22e">class</span>}) <span style="color:#75715e">// #B</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HolaMundoSpringDataJPA</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Autowired</span> <span style="color:#75715e">// #C</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> MensajeRepositorio repositorioMensaje; <span style="color:#75715e">// #C</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">saveMensaje</span>() {
+</span></span><span style="display:flex;"><span>        Mensaje message <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Mensaje(); <span style="color:#75715e">// #D</span>
+</span></span><span style="display:flex;"><span>        message.<span style="color:#a6e22e">setText</span>(<span style="color:#e6db74">&#34;Hola MUndo desde Spring Data JPA!&#34;</span>); <span style="color:#75715e">// #D</span>
+</span></span><span style="display:flex;"><span>        repositorioMensaje.<span style="color:#a6e22e">save</span>(message); <span style="color:#75715e">// #E</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>Mensaje<span style="color:#f92672">&gt;</span> mensajes <span style="color:#f92672">=</span> (List<span style="color:#f92672">&lt;</span>Mensaje<span style="color:#f92672">&gt;</span>)repositorioMensaje.<span style="color:#a6e22e">findAll</span>(); <span style="color:#75715e">// #F</span>
+</span></span><span style="display:flex;"><span>        assertAll( <span style="color:#75715e">// #G</span>
+</span></span><span style="display:flex;"><span>            () <span style="color:#f92672">-&gt;</span> assertEquals(1, mensajes.<span style="color:#a6e22e">size</span>()), <span style="color:#75715e">// #G</span>
+</span></span><span style="display:flex;"><span>            () <span style="color:#f92672">-&gt;</span> assertEquals(<span style="color:#e6db74">&#34;Hola MUndo desde Spring Data JPA!&#34;</span>, mensajes.<span style="color:#a6e22e">get</span>(0).<span style="color:#a6e22e">getText</span>()) <span style="color:#75715e">// #H</span>
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    #A Extendemos la prueba utilizando SpringExtension. Esta extensión se utiliza para integrar el contexto de prueba de Spring con JUnit 5 Jupiter: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/context/junit/jupiter/SpringExtension.html.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    #B La configuración del contexto de prueba de Spring se realiza utilizando los beans definidos en la clase SpringDataConfiguration.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    #C Se inyecta un bean MensajeRepositorio mediante &#34;auto-cableado&#34; de Spring. Esto es posible gracias a que el paquete com.javhoz.ad.repositories, donde se encuentra MensajeRepositorio, se usó como argumento en la anotación @EnableJpaRepositories. Si llamamos a repositorioMensaje.getClass(), veremos algo como com.sun.proxy.$Proxy41, un proxy generado por Spring Data.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    #D Creamos una nueva instancia de la clase de modelo de dominio mapeada Mensaje y establecemos su propiedad de texto.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    #E Persistimos el objeto mensaje. El método save se hereda de la interfaz CrudRepository y su cuerpo será generado por Spring Data JPA cuando se cree la clase proxy. Simplemente guardará una entidad Mensaje en la base de datos.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    #F Recuperamos los mensajes del repositorio. El método findAll se hereda de la interfaz CrudRepository y su cuerpo será generado por Spring Data JPA cuando se cree la clase proxy. Simplemente devolverá todas las entidades pertenecientes a la clase Mensaje.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    #G Verificamos el tamaño de la lista de mensajes recuperados de la base de datos y que el mensaje que persistimos está en la base de datos #H. Utilizamos el método assertAll de JUnit 5, que siempre verifica todas las afirmaciones que se le pasan, incluso si algunas de ellas fallan. Las dos afirmaciones que verificamos están conceptualmente relacionadas.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span></span></span></code></pre></div>
+<p>La prueba de <strong>Spring Data JPA es considerablemente más corta que las que utilizan JPA o Hibernate nativo</strong>. Esto se debe a que <strong>se ha eliminado el código redundante, no hay más creación explícita de objetos ni control explícito de las transacciones</strong>. El <strong>objeto del repositorio se inyecta y proporciona los métodos generados de la clase proxy</strong>. La carga es más pesada ahora en el lado de la configuración, pero esto debería hacerse solo una vez por aplicación (que normalmente se ejecuta en un servidor de aplicaciones y no he puesto en el ejemplo).</p>
+<h3 id="12-añadiendo-métodos-a-la-interfaz-a-un-repositorio-en-spring-data-jpa">1.2. Añadiendo Métodos a la Interfaz a un repositorio en Spring Data JPA</h3>
+<p>Supongamos una clase de modelo de dominio <code>Usuario</code>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Entity</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Usuario</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Id</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@GeneratedValue</span>(strategy <span style="color:#f92672">=</span> GenerationType.<span style="color:#a6e22e">AUTO</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Long id;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String nombre;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String email;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> LocalDate fechaRegistro;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">boolean</span> activo;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> nivel;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Getters y setters...</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Comenzaremos a agregar nuevos métodos a la interfaz <code>RepositorioUsuario</code> y los utilizaremos en pruebas recién creadas.</p>
+<p>La <strong>interfaz <em><code>RepositorioUsuario</code></em></strong> ahora <a href="https://docs.spring.io/spring-data/jpa/docs/current/api/org/springframework/data/jpa/repository/JpaRepository.html" rel="external" target="_blank">extenderá <strong><code>JpaRepository**</code></strong></a> en <a href="https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/repository/CrudRepository.html" rel="external" target="_blank">lugar de <code>CrudRepository</code></a>.</p>
+<p><strong><code>JpaRepository</code> <a href="https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/repository/PagingAndSortingRepository.html" rel="external" target="_blank">extiende <code>PagingAndSortingRepository</code></a> y<code>CrudRepository</code>.</strong> En realidad hereda de las subclases: <code>ListCrudRepository</code> que devuelven <code>List</code> en lugar de <code>Iterable</code> y <code>ListPagingAndSortingRepository</code> que devuelven <code>List</code> en lugar de <code>Iterable</code> y añaden paginación y ordenación. <strong><code>JpaRepository</code> también agrega métodos específicos de JPA</strong>.</p>
+<ul>
+<li><strong><code>CrudRepository</code></strong> proporciona funcionalidad básica de CRUD.</li>
+<li><strong><code>PagingAndSortingRepository</code></strong> ofrece métodos convenientes para <strong>ordenar y paginar los registros</strong></li>
+<li><strong><code>JpaRepository</code></strong> ofrece <strong>métodos relacionados con JPA</strong>, como la <strong>limpieza del contexto de persistencia y la eliminación de registros por lotes</strong>. Además, JpaRepository <strong>sobrescribe algunos métodos de <code>CrudRepository</code>, como <code>findAll</code>, <code>findAllById</code> o <code>saveAll</code>, para devolver <code>List</code> en lugar de <code>Iterable</code></strong>.</li>
+</ul>
+<p>También agregaremos una serie de métodos de consulta a la interfaz <code>RepositorioUsuario</code>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// RepositorioUsuario.java</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">RepositorioUsuario</span> <span style="color:#66d9ef">extends</span> JpaRepository<span style="color:#f92672">&lt;</span>Usuario, Long<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>    Usuario <span style="color:#a6e22e">findByNombre</span>(String username);
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Usuario<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">findAllByOrderByNombreAsc</span>();
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Usuario<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">findByFechaRegistroBetween</span>(LocalDate start, LocalDate end);
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Usuario<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">findByNombreAndEmail</span>(String username, String email);
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Usuario<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">findByNombreOrEmail</span>(String username, String email);
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Usuario<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">findByNombreIgnoreCase</span>(String username);
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Usuario<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">findByNivelOrderByNombreDesc</span>(<span style="color:#66d9ef">int</span> level);
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Usuario<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">findByNivelGreaterThanEqual</span>(<span style="color:#66d9ef">int</span> level);
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Usuario<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">findByNombreContaining</span>(String text);
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Usuario<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">findByNombreLike</span>(String text);
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Usuario<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">findByNombreStartingWith</span>(String start);
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Usuario<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">findByNombreEndingWith</span>(String end);
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Usuario<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">findByActivo</span>(<span style="color:#66d9ef">boolean</span> activo);
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Usuario<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">findByFechaRegistroIn</span>(Collection<span style="color:#f92672">&lt;</span>LocalDate<span style="color:#f92672">&gt;</span> dates);
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Usuario<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">findByFechaRegistroNotIn</span>(Collection<span style="color:#f92672">&lt;</span>LocalDate<span style="color:#f92672">&gt;</span> dates);
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>El propósito de los métodos de consulta es <strong>recuperar información de la base de datos</strong>.</p>
+<p><strong>Spring Data JPA proporciona un mecanismo de construcción de consultas que creará el comportamiento de los métodos del repositorio según sus nombres</strong>. Analizaremos más adelante las consultas de modificación; ahora nos sumergiremos en las consultas cuyo propósito es encontrar información.</p>
+<p>Este mecanismo de consulta <strong>elimina los prefijos y sufijos como <code>find...By</code>, <code>get...By</code>, <code>query...By</code>, <code>read...By</code>, <code>count...By</code> del nombre del método y analiza el resto</strong>.</p>
+<p>Métodos de consulta de Spring Data JPA: <a href="https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html" rel="external" target="_blank">https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html</a></p>
+<p>Los nombres de los métodos <strong>deben seguir las reglas para determinar la consulta resultante</strong>. Si el <strong>nombre del método es incorrecto</strong> (por ejemplo, la propiedad de la entidad no coincide en el método de consulta), <strong>recibirás un error al cargar el contexto de la aplicación</strong>.</p>
+<p>La tabla siguiente describe las palabras clave que <strong>Spring Data JPA admite y cómo se transpone cada nombre de método en JPQL</strong>.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Palabra clave</th>
+          <th>Ejemplo</th>
+          <th>Fragmento JPQL</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Distinct</td>
+          <td>findDistinctByLastnameAndFirstname</td>
+          <td>select distinct …​ where x.lastname = ?1 and x.firstname = ?2</td>
+      </tr>
+      <tr>
+          <td>And</td>
+          <td>findByLastnameAndFirstname</td>
+          <td>… where x.lastname = ?1 and x.firstname = ?2</td>
+      </tr>
+      <tr>
+          <td>Or</td>
+          <td>findByLastnameOrFirstname</td>
+          <td>… where x.lastname = ?1 or x.firstname = ?2</td>
+      </tr>
+      <tr>
+          <td>Is, Equals</td>
+          <td>findByFirstname, findByFirstnameIs, findByFirstnameEquals</td>
+          <td>… where x.firstname = ?1</td>
+      </tr>
+      <tr>
+          <td>Between</td>
+          <td>findByStartDateBetween</td>
+          <td>… where x.startDate between ?1 and ?2</td>
+      </tr>
+      <tr>
+          <td>LessThan</td>
+          <td>findByAgeLessThan</td>
+          <td>… where x.age &lt; ?1</td>
+      </tr>
+      <tr>
+          <td>LessThanEqual</td>
+          <td>findByAgeLessThanEqual</td>
+          <td>… where x.age &lt;= ?1</td>
+      </tr>
+      <tr>
+          <td>GreaterThan</td>
+          <td>findByAgeGreaterThan</td>
+          <td>… where x.age &gt; ?1</td>
+      </tr>
+      <tr>
+          <td>GreaterThanEqual</td>
+          <td>findByAgeGreaterThanEqual</td>
+          <td>… where x.age &gt;= ?1</td>
+      </tr>
+      <tr>
+          <td>After</td>
+          <td>findByStartDateAfter</td>
+          <td>… where x.startDate &gt; ?1</td>
+      </tr>
+      <tr>
+          <td>Before</td>
+          <td>findByStartDateBefore</td>
+          <td>… where x.startDate &lt; ?1</td>
+      </tr>
+      <tr>
+          <td>IsNull, Null</td>
+          <td>findByAge(Is)Null</td>
+          <td>… where x.age is null</td>
+      </tr>
+      <tr>
+          <td>IsNotNull, NotNull</td>
+          <td>findByAge(Is)NotNull</td>
+          <td>… where x.age not null</td>
+      </tr>
+      <tr>
+          <td>Like</td>
+          <td>findByFirstnameLike</td>
+          <td>… where x.firstname like ?1</td>
+      </tr>
+      <tr>
+          <td>NotLike</td>
+          <td>findByFirstnameNotLike</td>
+          <td>… where x.firstname not like ?1</td>
+      </tr>
+      <tr>
+          <td>StartingWith</td>
+          <td>findByFirstnameStartingWith</td>
+          <td>… where x.firstname like ?1 (parameter bound with appended %)</td>
+      </tr>
+      <tr>
+          <td>EndingWith</td>
+          <td>findByFirstnameEndingWith</td>
+          <td>… where x.firstname like ?1 (parameter bound with prepended %)</td>
+      </tr>
+      <tr>
+          <td>Containing</td>
+          <td>findByFirstnameContaining</td>
+          <td>… where x.firstname like ?1 (parameter bound wrapped in %)</td>
+      </tr>
+      <tr>
+          <td>OrderBy</td>
+          <td>findByAgeOrderByLastnameDesc</td>
+          <td>… where x.age = ?1 order by x.lastname desc</td>
+      </tr>
+      <tr>
+          <td>Not</td>
+          <td>findByLastnameNot</td>
+          <td>… where x.lastname &lt;&gt; ?1</td>
+      </tr>
+      <tr>
+          <td>In</td>
+          <td>findByAgeIn(Collection<Age> ages)</td>
+          <td>… where x.age in ?1</td>
+      </tr>
+      <tr>
+          <td>NotIn</td>
+          <td>findByAgeNotIn(Collection<Age> ages)</td>
+          <td>… where x.age not in ?1</td>
+      </tr>
+      <tr>
+          <td>True</td>
+          <td>findByActiveTrue()</td>
+          <td>… where x.active = true</td>
+      </tr>
+      <tr>
+          <td>False</td>
+          <td>findByActiveFalse()</td>
+          <td>… where x.active = false</td>
+      </tr>
+      <tr>
+          <td>IgnoreCase</td>
+          <td>findByFirstnameIgnoreCase</td>
+          <td>… where UPPER(x.firstname) = UPPER(?1)</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>
+<p>Se pueden <strong>declarar métodos que contengan expresiones como <code>Distinct</code> para establecer una cláusula <code>DISTINCT</code></strong>, operadores como <code>LessThan</code>, <code>GreaterThan</code>, <code>Between</code> y <code>Like</code> o condiciones compuestas con <code>And</code> u <code>Or</code>.</p>
+</li>
+<li>
+<p>Se pueden <strong>aplicar un orden estático con la cláusula <code>OrderBy</code> en el nombre del método de consulta haciendo referencia a una propiedad y proporcionando una dirección de ordenamiento (Asc o Desc)</strong>.</p>
+</li>
+<li>
+<p>Se puede <strong>usar <code>IgnoreCase</code> para propiedades que admitan dicha cláusula</strong>.</p>
+</li>
+<li>
+<p>Para <strong>eliminar filas, debes reemplazar <code>find</code> con <code>delete</code> en los nombres de los métodos</strong>.</p>
+</li>
+</ul>
+<p>Además, <strong>Spring Data JPA examinará el tipo de retorno del método</strong>. Si deseas encontrar un Usuario y devolverlo en un contenedor <code>Optional</code>, el tipo de retorno del método será <code>Optional&lt;Usuario&gt;</code>. Se puede encontrar una lista completa de tipos de retorno posibles, junto con explicaciones detalladas en: <a href="https://docs.spring.io/spring-data/jpa/reference/repositories/query-return-types-reference.html" rel="external" target="_blank">https://docs.spring.io/spring-data/jpa/reference/repositories/query-return-types-reference.html</a>.</p>
+<h2 id="2-fichero-de-configuración-applicationproperties">2. Fichero de configuración <code>application.properties</code></h2>
+<p>El fichero de configuración de Spring Boot se llama <code>application.properties</code> y es el lugar donde se definen las propiedades de la aplicación. <strong>Spring Boot busca automáticamente un archivo <code>application.properties</code> en el directorio <code>src/main/resources</code></strong>. Si no se encuentra, se utilizarán las propiedades por defecto.</p>
+<p>Por ejemplo, para configurar una base de datos PostgreSQL, el archivo <code>application.properties</code> podría ser:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#a6e22e">spring.application.name</span><span style="color:#f92672">=</span><span style="color:#e6db74">Nombre de la aplicación</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#spring.jpa.hibernate.ddl-auto=none</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">spring.datasource.url</span><span style="color:#f92672">=</span><span style="color:#e6db74">jdbc:postgresql://localhost:5432/mibasededatos</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">spring.datasource.username</span><span style="color:#f92672">=</span><span style="color:#e6db74">usuario</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">spring.datasource.password</span><span style="color:#f92672">=</span><span style="color:#e6db74">contraseña</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">spring.datasource.driver-class-name</span><span style="color:#f92672">=</span><span style="color:#e6db74">org.postgresql.Driver</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">spring.jpa.show-sql</span><span style="color:#f92672">=</span><span style="color:#e6db74">false</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">spring.jpa.hibernate.naming.physical-strategy</span><span style="color:#f92672">=</span><span style="color:#e6db74">org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">spring.jpa.properties.hibernate.globally_quoted_identifiers</span><span style="color:#f92672">=</span><span style="color:#e6db74">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#logging.level.org.hibernate.SQL=DEBUG</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE</span></span></span></code></pre></div>
+<h3 id="estrategia-de-nombres">Estrategia de nombres</h3>
+<p>Hibernate utiliza nombres de campo mediante una <strong>estrategia física</strong> y una <strong>estrategia implícita</strong>.</p>
+<p>Y Spring Boot proporciona valores por defecto para ambos:</p>
+<ul>
+<li><code>spring.jpa.hibernate.naming.physical-strategy</code> es por defecto to <code>org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy</code>.</li>
+<li><code>spring.jpa.hibernate.naming.implicit-strategy</code> vale por defecto <code>org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy</code></li>
+</ul>
+<p>Podemos sobrescribir estos valores, pero de forma predeterminada, <strong>Spring Boot utiliza las estrategias de nombres de Hibernate</strong>:</p>
+<ul>
+<li><strong>Reemplaza puntos por guiones bajos</strong>.</li>
+<li><strong>Cambia CamelCase a minúsculas y separa las palabras con guiones bajos (snake_case)</strong>.</li>
+<li><strong>Nombres de las tablas en minúsculas</strong>.</li>
+</ul>
+<h3 id="identificadores-entre-comillas">Identificadores entre comillas</h3>
+<p>Como SQL es un lenguaje declarativo, las palabras reservadas de la gramática son para uso intenterno y no pueden ser empleadas cuando declramos identificadores de la base de datos (catalogos, esquemas, tablas, columnas, nombres&hellip;)</p>
+<p>Podemos hacer un escape manual de las palabras reservadas con comillas dobles, pues <strong>Hibernate no lo hace por defecto</strong>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Entity</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Table</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\&#34;User\&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Id</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@GeneratedValue</span>(strategy <span style="color:#f92672">=</span> GenerationType.<span style="color:#a6e22e">AUTO</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Long id;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String name;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String email;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Getters y setters...</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Para que Hibernate utilice comillas dobles, <strong>debemos configurar la propiedad <code>hibernate.globally_quoted_identifiers</code> a <code>true</code></strong>.</p>
+<p>También puede escaparse con el carácter específico de hibernate:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Entity</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Table</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;`User`&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Id</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@GeneratedValue</span>(strategy <span style="color:#f92672">=</span> GenerationType.<span style="color:#a6e22e">AUTO</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Long id;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String name;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String email;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Getters y setters...</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>La tercera opción es poniendo <mark>la opción <code>hibernate.globally_quoted_identifiers</code> a <code>true</code> en el fichero <code>application.properties</code>:. De esta forma Hibernate escapará todos los identificadores con comillas dobles</mark>.</p>
+<p>Para <mark>poder usar identificadores entre comillas en las consultas de Spring Data JPA, debemos configurar la estrategia de nombre físico de Hibernate a <code>org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl</code></mark>.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#a6e22e">spring.jpa.properties.hibernate.globally_quoted_identifiers</span><span style="color:#f92672">=</span><span style="color:#e6db74">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">spring.jpa.hibernate.naming.physical-strategy</span><span style="color:#f92672">=</span><span style="color:#e6db74">org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl</span></span></span></code></pre></div>
+<h2 id="ejercicio-spring-de-vehículos">Ejercicio. Spring de Vehículos</h2>
+<p>Crea una <strong>aplicación en Spring Boot</strong> gestionar una base de datos de vehículos. La base de datos tiene las siguientes entidades:</p>
+<ul>
+<li><code>Vehiculo</code>: idVehiculo, marca, modelo, año, precio.</li>
+<li><code>Coche</code>: idVehiculo, puertas, plazas.</li>
+<li><code>Moto</code>: idVehiculo, cilindrada, tipo.</li>
+<li><code>Propietario</code>: idPropietario, nombre, apellidos, vehiculo.</li>
+</ul>
+<p>Hazlo con la estrategia de herencia de JPA de JOINED.</p>
+<p>Crea una nueva clase <code>Vehiculo</code> que se llame <strong>VehiculoDTO</strong> que tenga los campos:</p>
+<ul>
+<li>idVehiculo.</li>
+<li>marca</li>
+<li>modelo</li>
+<li>año</li>
+<li>precio</li>
+<li><strong>propietario</strong>.</li>
+</ul>
+<p>Crea las entidades JPA correspondientes y realiza las consultas necesarias para obtener los vehículos de la base de datos, creando un repositorio para cada entidad.</p>
+<p>Hazlo con una base de datos H2 orientada a fichero.</p>
+<p>La interface VehiculoRepository debe tener, al menos los siguientes métodos:</p>
+<ul>
+<li>Uno que devuelve los vehículos de una marca.</li>
+<li><code>findAll</code>: devuelve todos los vehículos, pero paginados.</li>
+<li><code>existsByIdVehiculoAndVehiculoType</code>: que devuelve si existe un vehículo con un id y un tipo de vehículo concreto. Para hacerlo debe tener un parámetro de tipo <code>VehiculoType</code> que es de tipo Class y un idVehiculo. Debe hacerse con una consulta personalizada que emplee la anotación <code>@Query</code>, con la consulta entre comillas y los parámetros entre dos puntos.</li>
+<li>Un método que devuelva un VehiculoDTO con el idVehiculo, marca, modelo, año, precio y propietario de un vehículo concreto a partir del idVehiculo.</li>
+<li>Un método que devuelva todos los vehiculos en formato VehiculoDTO, a ser posible paginados y con un orden concreto.</li>
+</ul>
+
+  <footer class="footline"></article>
+<footer>
+   <i class='fas fa-user'></i>  <span itemprop="name"> </span>
+
+<i class='fas fa-calendar'></i> Última actualización: 06.06.2025 
+</footer>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<img  src="../../images/logo-ies.png" style="color:white;  font-size: 20px;" id="logo" href="http://manuais.pages.iessanclemente.net/apuntes/">
+        </div>
+        <search><form action="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Buscar (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Buscar</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Buscar...">
+            <button class="search-clear" type="button" data-search-clear="" title="Borrar búsqueda"><i class="fas fa-times" title="Borrar búsqueda"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/index.html"><a class="padding" href="../../index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/index.html"><input type="checkbox" id="R-section-0758abab80c2aa84781892223aa808b3" aria-controls="R-subsections-0758abab80c2aa84781892223aa808b3"><label for="R-section-0758abab80c2aa84781892223aa808b3"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 0. Refuerzo y ayudas complementarias</span></label><a class="padding" href="../../00ayudas/index.html">UD 0. Refuerzo y ayudas complementarias<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-0758abab80c2aa84781892223aa808b3" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/index.html"><input type="checkbox" id="R-section-1b1977ce428c9ac8dab8b72f8979bcb5" aria-controls="R-subsections-1b1977ce428c9ac8dab8b72f8979bcb5"><label for="R-section-1b1977ce428c9ac8dab8b72f8979bcb5"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01 Configuración y despliegue</span></label><a class="padding" href="../../00ayudas/00configjava/index.html">01 Configuración y despliegue<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1b1977ce428c9ac8dab8b72f8979bcb5" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/01jarfiles/index.html"><a class="padding" href="../../00ayudas/00configjava/01jarfiles/index.html">01 Archivos Jar<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/02jarwithmaven/index.html"><a class="padding" href="../../00ayudas/00configjava/02jarwithmaven/index.html">02 Creación de un JAR ejecutable con Java con Apache Maven<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/03dependencias/index.html"><a class="padding" href="../../00ayudas/00configjava/03dependencias/index.html">03. Dependencias Maven.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/index.html"><input type="checkbox" id="R-section-0ee0a79915535bc59e8b9d0e78f65ef9" aria-controls="R-subsections-0ee0a79915535bc59e8b9d0e78f65ef9"><label for="R-section-0ee0a79915535bc59e8b9d0e78f65ef9"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02 Java General</span></label><a class="padding" href="../../00ayudas/02javageneral/index.html">02 Java General<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-0ee0a79915535bc59e8b9d0e78f65ef9" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/01streamapi/index.html"><a class="padding" href="../../00ayudas/02javageneral/01streamapi/index.html">00.01 Java Stream API<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/02urlfiles/index.html"><a class="padding" href="../../00ayudas/02javageneral/02urlfiles/index.html">00.02 Descarga de archivos de Internet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/03hashcode/index.html"><a class="padding" href="../../00ayudas/02javageneral/03hashcode/index.html">03 Implementación de hashCode()<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/index.html"><input type="checkbox" id="R-section-8eb2a58628ca595eccda7f8f066488f0" aria-controls="R-subsections-8eb2a58628ca595eccda7f8f066488f0"><label for="R-section-8eb2a58628ca595eccda7f8f066488f0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 03. Layouts en Java Swing &amp; UI</span></label><a class="padding" href="../../00ayudas/03layouts/index.html">03. Layouts en Java Swing &amp; UI<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8eb2a58628ca595eccda7f8f066488f0" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/00dialogosenswing/index.html"><a class="padding" href="../../00ayudas/03layouts/00dialogosenswing/index.html">01 Ventanas de entrada de datos, mensajes y archivos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/05gridbaglayout/index.html"><a class="padding" href="../../00ayudas/03layouts/05gridbaglayout/index.html">05 GridBagLayout<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/index.html"><input type="checkbox" id="R-section-1c69dc8b47fb6fae98603b1968118cf8" aria-controls="R-subsections-1c69dc8b47fb6fae98603b1968118cf8"><label for="R-section-1c69dc8b47fb6fae98603b1968118cf8"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 04. Patrones de diseño</span></label><a class="padding" href="../../00ayudas/04patronesdisenho/index.html">04. Patrones de diseño<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1c69dc8b47fb6fae98603b1968118cf8" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/01designprinciples/index.html"><a class="padding" href="../../00ayudas/04patronesdisenho/01designprinciples/index.html">01. Principios de diseño<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/02singleton/index.html"><a class="padding" href="../../00ayudas/04patronesdisenho/02singleton/index.html">02. Patrón Singleton<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/03objetosinmutables/index.html"><a class="padding" href="../../00ayudas/04patronesdisenho/03objetosinmutables/index.html">03. Objetos Inmutables<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/index.html"><input type="checkbox" id="R-section-36a825e367dd24b7cccca030c91ea60b" aria-controls="R-subsections-36a825e367dd24b7cccca030c91ea60b"><label for="R-section-36a825e367dd24b7cccca030c91ea60b"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 05. Programación en Kotlin</span></label><a class="padding" href="../../00ayudas/05kotlin/index.html">05. Programación en Kotlin<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-36a825e367dd24b7cccca030c91ea60b" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/index.html"><input type="checkbox" id="R-section-312a90d18fa918ef04d04e75820d73c0" aria-controls="R-subsections-312a90d18fa918ef04d04e75820d73c0"><label for="R-section-312a90d18fa918ef04d04e75820d73c0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación estructurada básica</span></label><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/index.html">Programación estructurada básica<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-312a90d18fa918ef04d04e75820d73c0" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/10.-la_funcion_main/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/10.-la_funcion_main/index.html">La funcion main()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/20.-la_funcion-print-_y-_println/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/20.-la_funcion-print-_y-_println/index.html">La funcion print() y println()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/30.-comentarios/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/30.-comentarios/index.html">Comentarios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/40.-variables-_-literales-_y_-sentencia_-de_-asignación/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/40.-variables-_-literales-_y_-sentencia_-de_-asignaci%c3%b3n/index.html">Variables, literales y sentencia de asignación<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/50.-palabras_reservadas/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/50.-palabras_reservadas/index.html">Palabras reservadas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/index.html"><input type="checkbox" id="R-section-94a2bfa5cc4fa0f33d0f2cf1c75e3265" aria-controls="R-subsections-94a2bfa5cc4fa0f33d0f2cf1c75e3265"><label for="R-section-94a2bfa5cc4fa0f33d0f2cf1c75e3265"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú tipos de datos y operadores</span></label><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/index.html">tipos de datos y operadores<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-94a2bfa5cc4fa0f33d0f2cf1c75e3265" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/60.tipos_de_datos_basicos/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/60.tipos_de_datos_basicos/index.html">Tipos de datos básicos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/70.tipos_numericos/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/70.tipos_numericos/index.html">Tipos Numéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/80.tipos_no_-numericos/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/80.tipos_no_-numericos/index.html">Tipos básicos  No Numéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/90.conversion_de_tipos/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/90.conversion_de_tipos/index.html">Conversión de Tipos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/100.-operadores/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/100.-operadores/index.html">Operadores<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/110.-expresiones_booleanas/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/110.-expresiones_booleanas/index.html">Expresiones booleanas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/index.html"><input type="checkbox" id="R-section-840caf4a5c9da596bf4345cae4c798ab" aria-controls="R-subsections-840caf4a5c9da596bf4345cae4c798ab"><label for="R-section-840caf4a5c9da596bf4345cae4c798ab"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú colecciones básicas</span></label><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/index.html">colecciones básicas<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-840caf4a5c9da596bf4345cae4c798ab" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/120.-string/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/120.-string/index.html">String<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/130.-listas/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/130.-listas/index.html">Listas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/140.rangos-/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/140.rangos-/index.html">Rangos<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/150.-entrada_teclado/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/150.-entrada_teclado/index.html">Entrada de datos por teclado con readln()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/index.html"><input type="checkbox" id="R-section-f79f31fcf5ae1f44691bca6f05e1710f" aria-controls="R-subsections-f79f31fcf5ae1f44691bca6f05e1710f"><label for="R-section-f79f31fcf5ae1f44691bca6f05e1710f"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú control de flujo</span></label><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/index.html">control de flujo<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-f79f31fcf5ae1f44691bca6f05e1710f" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/151.-control_de_flujo/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/151.-control_de_flujo/index.html">Control de flujo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/160.-sentencia_condicional_if/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/160.-sentencia_condicional_if/index.html">Sentencia condicional IF<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/190.-sentecia_when/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/190.-sentecia_when/index.html">Sentencia when<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/200.-bucle_for/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/200.-bucle_for/index.html">Bucle for<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/210.-while_y_do_while/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/210.-while_y_do_while/index.html">while y do while<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/220.-variables_locales_y_bloques/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/220.-variables_locales_y_bloques/index.html">variables locales y bloques<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/230.-break_y_continue/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/230.-break_y_continue/index.html">break y continue<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/240.otras_formas_de_iterar/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/240.otras_formas_de_iterar/index.html">Otras formas de iterar<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/250.-funciones/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/250.-funciones/index.html">Funciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/260.el_valor_nulo/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/260.el_valor_nulo/index.html">El valor nulo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/270.-readline/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/270.-readline/index.html">Entrada de datos por teclado con readLine()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/index.html"><input type="checkbox" id="R-section-44784ce5c237bf9124eefe20ce36272f" aria-controls="R-subsections-44784ce5c237bf9124eefe20ce36272f"><label for="R-section-44784ce5c237bf9124eefe20ce36272f"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú más sobre colecciones básicas</span></label><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/index.html">más sobre colecciones básicas<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-44784ce5c237bf9124eefe20ce36272f" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/310.-arrays/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/310.-arrays/index.html">Arrays<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/320.-listas/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/320.-listas/index.html">Listas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/330.rangos-/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/330.rangos-/index.html">Rangos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/340.mapas-/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/340.mapas-/index.html">Mapas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/350.iterar_sobre_colecciones/index.html"><a class="padding" href="../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/350.iterar_sobre_colecciones/index.html">Iterar sobre colecciones<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/index.html"><input type="checkbox" id="R-section-1ef1a5ed807dacffeb206c0950804c3a" aria-controls="R-subsections-1ef1a5ed807dacffeb206c0950804c3a"><label for="R-section-1ef1a5ed807dacffeb206c0950804c3a"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación orientada a objetos</span></label><a class="padding" href="../../00ayudas/05kotlin/02progoo/index.html">Programación orientada a objetos<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1ef1a5ed807dacffeb206c0950804c3a" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1010.objetos_y_clases/index.html"><a class="padding" href="../../00ayudas/05kotlin/02progoo/1010.objetos_y_clases/index.html">Objetos y clases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1020.constructores-/index.html"><a class="padding" href="../../00ayudas/05kotlin/02progoo/1020.constructores-/index.html">Constructores<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1030.propiedades/index.html"><a class="padding" href="../../00ayudas/05kotlin/02progoo/1030.propiedades/index.html">Propiedades<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1040.sobreescribir_tostring/index.html"><a class="padding" href="../../00ayudas/05kotlin/02progoo/1040.sobreescribir_tostring/index.html">Sobreescribir toString()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1060.modificadoresvisibilidad/index.html"><a class="padding" href="../../00ayudas/05kotlin/02progoo/1060.modificadoresvisibilidad/index.html">modificadores de visibilidad<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1070.enum/index.html"><a class="padding" href="../../00ayudas/05kotlin/02progoo/1070.enum/index.html">clases Enum<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1100.composicion/index.html"><a class="padding" href="../../00ayudas/05kotlin/02progoo/1100.composicion/index.html">Composición<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1200.herencia/index.html"><a class="padding" href="../../00ayudas/05kotlin/02progoo/1200.herencia/index.html">Herencia<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1220.clases_abstractas_interfaces/index.html"><a class="padding" href="../../00ayudas/05kotlin/02progoo/1220.clases_abstractas_interfaces/index.html">Clases abstractas e Interfaces<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1240.dataclases/index.html"><a class="padding" href="../../00ayudas/05kotlin/02progoo/1240.dataclases/index.html">Data Clases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1250.keywordobject/index.html"><a class="padding" href="../../00ayudas/05kotlin/02progoo/1250.keywordobject/index.html">La palabra reservada object. Companion object, objetos singleton y objetos expressions<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1255.excepciones/index.html"><a class="padding" href="../../00ayudas/05kotlin/02progoo/1255.excepciones/index.html">Excepciones en Kotlin<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1260.genericos/index.html"><a class="padding" href="../../00ayudas/05kotlin/02progoo/1260.genericos/index.html">Genéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1265.clausulatypealiases/index.html"><a class="padding" href="../../00ayudas/05kotlin/02progoo/1265.clausulatypealiases/index.html">cláusula typealiases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1270.delegacion/index.html"><a class="padding" href="../../00ayudas/05kotlin/02progoo/1270.delegacion/index.html">Delegación con cláusula by<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1280.claesanidadaseinternas/index.html"><a class="padding" href="../../00ayudas/05kotlin/02progoo/1280.claesanidadaseinternas/index.html">Clases anidadas e internas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/index.html"><input type="checkbox" id="R-section-8bbd4a78f07b64e8b2bc4b83b71f1498" aria-controls="R-subsections-8bbd4a78f07b64e8b2bc4b83b71f1498"><label for="R-section-8bbd4a78f07b64e8b2bc4b83b71f1498"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación funcional</span></label><a class="padding" href="../../00ayudas/05kotlin/03progfuncional/index.html">Programación funcional<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8bbd4a78f07b64e8b2bc4b83b71f1498" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2010.funcioneskotlin/index.html"><a class="padding" href="../../00ayudas/05kotlin/03progfuncional/2010.funcioneskotlin/index.html">sintáxis avanzada de las  funciones kotlin<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2020.-basesdepf/index.html"><a class="padding" href="../../00ayudas/05kotlin/03progfuncional/2020.-basesdepf/index.html">algunos conceptos básicos de programación funcional<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2030.funcionesordensuperiorcolecciones/index.html"><a class="padding" href="../../00ayudas/05kotlin/03progfuncional/2030.funcionesordensuperiorcolecciones/index.html">funciones de orden superior y colecciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2040.funcionesordensuperiorysequence/index.html"><a class="padding" href="../../00ayudas/05kotlin/03progfuncional/2040.funcionesordensuperiorysequence/index.html">funciones de orden superior y sequence<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li></ul></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/index.html"><input type="checkbox" id="R-section-cf4ee7bae7fca4e692355524601fe599" aria-controls="R-subsections-cf4ee7bae7fca4e692355524601fe599"><label for="R-section-cf4ee7bae7fca4e692355524601fe599"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML</span></label><a class="padding" href="../../01accesoficheros/index.html">UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-cf4ee7bae7fca4e692355524601fe599" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/index.html"><input type="checkbox" id="R-section-ec127efd28751c1f836952c8dac2374d" aria-controls="R-subsections-ec127efd28751c1f836952c8dac2374d"><label for="R-section-ec127efd28751c1f836952c8dac2374d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.01 Java IO. Acceso a ficheros, flujos, serialización de objetos.</span></label><a class="padding" href="../../01accesoficheros/01javaio/index.html">01.01 Java IO. Acceso a ficheros, flujos, serialización de objetos.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-ec127efd28751c1f836952c8dac2374d" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0100javaiointro/index.html"><a class="padding" href="../../01accesoficheros/01javaio/0100javaiointro/index.html">01.00 Java IO. Introducción.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0101javaiofile/index.html"><a class="padding" href="../../01accesoficheros/01javaio/0101javaiofile/index.html">01.01 La clase File<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0102randomaccessfile/index.html"><a class="padding" href="../../01accesoficheros/01javaio/0102randomaccessfile/index.html">01.02 La clase RandomAccessFile<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0103javaiostreams/index.html"><a class="padding" href="../../01accesoficheros/01javaio/0103javaiostreams/index.html">01.03 Flujos de E/S<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0104bytestream/index.html"><a class="padding" href="../../01accesoficheros/01javaio/0104bytestream/index.html">01.04 Flujos de byte<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0105characterstream/index.html"><a class="padding" href="../../01accesoficheros/01javaio/0105characterstream/index.html">01.05 Flujos de caracteres<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0106javaiobuffer/index.html"><a class="padding" href="../../01accesoficheros/01javaio/0106javaiobuffer/index.html">01.06 Flujos de E/S con Buffer<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0107javaistream/index.html"><a class="padding" href="../../01accesoficheros/01javaio/0107javaistream/index.html">01.07 Operaciones comunes con flujos de E/S.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0109ejercicios/index.html"><a class="padding" href="../../01accesoficheros/01javaio/0109ejercicios/index.html">Ejercicios<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/index.html"><input type="checkbox" id="R-section-2d1e1941df73311305891c0dca6583fd" aria-controls="R-subsections-2d1e1941df73311305891c0dca6583fd"><label for="R-section-2d1e1941df73311305891c0dca6583fd"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.02 Java NIO.2</span></label><a class="padding" href="../../01accesoficheros/02javanio2/index.html">01.02 Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-2d1e1941df73311305891c0dca6583fd" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0202javaniopath/index.html"><a class="padding" href="../../01accesoficheros/02javanio2/0202javaniopath/index.html">02.01. La interface Path<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0203javaniopathcreate/index.html"><a class="padding" href="../../01accesoficheros/02javanio2/0203javaniopathcreate/index.html">02.03. Creación de Path<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0204javaniopath/index.html"><a class="padding" href="../../01accesoficheros/02javanio2/0204javaniopath/index.html">02.04. Operaciones comunes de Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0205javaniopathmethods/index.html"><a class="padding" href="../../01accesoficheros/02javanio2/0205javaniopathmethods/index.html">02.05. Métodos y con Path Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0206javaniostreams/index.html"><a class="padding" href="../../01accesoficheros/02javanio2/0206javaniostreams/index.html">02.06. Programación funcional con Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/index.html"><input type="checkbox" id="R-section-662c48eb0e2f97ba0e58c14a690fca47" aria-controls="R-subsections-662c48eb0e2f97ba0e58c14a690fca47"><label for="R-section-662c48eb0e2f97ba0e58c14a690fca47"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.03 JSON en Java</span></label><a class="padding" href="../../01accesoficheros/03json/index.html">01.03 JSON en Java<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-662c48eb0e2f97ba0e58c14a690fca47" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0300jsonintro/index.html"><a class="padding" href="../../01accesoficheros/03json/0300jsonintro/index.html">01.00. Introducción a JSON<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0301jsonjs/index.html"><a class="padding" href="../../01accesoficheros/03json/0301jsonjs/index.html">01.01. JSON con el API JavaScript de Java<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0302jsonlibraries/index.html"><a class="padding" href="../../01accesoficheros/03json/0302jsonlibraries/index.html">01.02. Bibliotecas JSON para Java<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0304gson/index.html"><a class="padding" href="../../01accesoficheros/03json/0304gson/index.html">01.03. Gson. Introducción<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0304gsondiagram/index.html"><a class="padding" href="../../01accesoficheros/03json/0304gsondiagram/index.html">01.03. Gson. Diagrama de clases (e interfaces)<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0305gsoncreate/index.html"><a class="padding" href="../../01accesoficheros/03json/0305gsoncreate/index.html">01.04. Gson. Creación de instancias Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0306creaciongson/index.html"><a class="padding" href="../../01accesoficheros/03json/0306creaciongson/index.html">01.05 Gson. Creación y lectura de objetos JSON<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0306transformacion/index.html"><a class="padding" href="../../01accesoficheros/03json/0306transformacion/index.html">01.06. Gson. Transformación de objetos JSON personalizada<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0307jsonreader01/index.html"><a class="padding" href="../../01accesoficheros/03json/0307jsonreader01/index.html">01.07 Gson. JsonReader<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0308jsonrename/index.html"><a class="padding" href="../../01accesoficheros/03json/0308jsonrename/index.html">01.08 Gson. Renombrar atributos <i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0309jsonserialize/index.html"><a class="padding" href="../../01accesoficheros/03json/0309jsonserialize/index.html">01.09 Resumen Serialización Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0310jsondeserialize/index.html"><a class="padding" href="../../01accesoficheros/03json/0310jsondeserialize/index.html">01.09 Resumen Deserialización Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/098ejercicio/index.html"><a class="padding" href="../../01accesoficheros/03json/098ejercicio/index.html">Ejercicio. Trivial<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/0105ejercicios/index.html"><a class="padding" href="../../01accesoficheros/0105ejercicios/index.html">Ejercicios y recursos<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/index.html"><input type="checkbox" id="R-section-342b2e95b9611e1108f16a11c61cd1f2" aria-controls="R-subsections-342b2e95b9611e1108f16a11c61cd1f2"><label for="R-section-342b2e95b9611e1108f16a11c61cd1f2"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 2. Acceso a BD remotas relacionales</span></label><a class="padding" href="../../02accesobd/index.html">UD 2. Acceso a BD remotas relacionales<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-342b2e95b9611e1108f16a11c61cd1f2" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/index.html"><input type="checkbox" id="R-section-66326b82828cdbb6e30c77e924342908" aria-controls="R-subsections-66326b82828cdbb6e30c77e924342908"><label for="R-section-66326b82828cdbb6e30c77e924342908"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02.02 JDBC. Introducción a las Bases de datos relacionales.</span></label><a class="padding" href="../../02accesobd/02db/index.html">02.02 JDBC. Introducción a las Bases de datos relacionales.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-66326b82828cdbb6e30c77e924342908" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0101databases/index.html"><a class="padding" href="../../02accesobd/02db/0101databases/index.html">02.01. Sistemas gestores de bases de datos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0102introdb/index.html"><a class="padding" href="../../02accesobd/02db/0102introdb/index.html">02. Introducción a las bases de datos relacionales<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0103postgresql/index.html"><a class="padding" href="../../02accesobd/02db/0103postgresql/index.html">03. PostgreSQL<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0104postgres01/index.html"><a class="padding" href="../../02accesobd/02db/0104postgres01/index.html">04. PostgreSQL. Características y Operadores.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/index.html"><input type="checkbox" id="R-section-4b93c45cd959371d7c20dcc7da6d632c" aria-controls="R-subsections-4b93c45cd959371d7c20dcc7da6d632c"><label for="R-section-4b93c45cd959371d7c20dcc7da6d632c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02.03. Procesamiento de sentencias SQL.</span></label><a class="padding" href="../../02accesobd/03procesandosql/index.html">02.03. Procesamiento de sentencias SQL.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-4b93c45cd959371d7c20dcc7da6d632c" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0101procesamientosql/index.html"><a class="padding" href="../../02accesobd/03procesandosql/0101procesamientosql/index.html">01. Procesamiento de sentencias SQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0102conexiones/index.html"><a class="padding" href="../../02accesobd/03procesandosql/0102conexiones/index.html">02. Conexiones a BD<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0103excepcionessql/index.html"><a class="padding" href="../../02accesobd/03procesandosql/0103excepcionessql/index.html">03. Excepciones SQLException<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0104resultset/index.html"><a class="padding" href="../../02accesobd/03procesandosql/0104resultset/index.html">04. ResultSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0105resultsetbatch/index.html"><a class="padding" href="../../02accesobd/03procesandosql/0105resultsetbatch/index.html">05. Actualizaciones por lotes con ResultSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0106preparedst/index.html"><a class="padding" href="../../02accesobd/03procesandosql/0106preparedst/index.html">06. Prepared Statement<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0107transacciones/index.html"><a class="padding" href="../../02accesobd/03procesandosql/0107transacciones/index.html">07. Transacciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0108clavesgeneradas/index.html"><a class="padding" href="../../02accesobd/03procesandosql/0108clavesgeneradas/index.html">08. Claves Generadas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0109largeobjects/index.html"><a class="padding" href="../../02accesobd/03procesandosql/0109largeobjects/index.html">09. Objectos grandes<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0111rowset/index.html"><a class="padding" href="../../02accesobd/03procesandosql/0111rowset/index.html">11. RowSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0115boletines/index.html"><a class="padding" href="../../02accesobd/03procesandosql/0115boletines/index.html">15. Ejercicios y archivos de la unidad<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/99proyecto/index.html"><a class="padding" href="../../02accesobd/99proyecto/index.html">Proyecto 1ª evaluación<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/index.html"><input type="checkbox" id="R-section-87c8b6c6cd354a309db816f73d185be0" aria-controls="R-subsections-87c8b6c6cd354a309db816f73d185be0"><label for="R-section-87c8b6c6cd354a309db816f73d185be0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 3. Object/Relational Mapping (ORM). JPA e Hibernate</span></label><a class="padding" href="../../03orm/index.html">UD 3. Object/Relational Mapping (ORM). JPA e Hibernate<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-87c8b6c6cd354a309db816f73d185be0" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/index.html"><input type="checkbox" id="R-section-5aaca10806a740cf4d784be6e24473b9" aria-controls="R-subsections-5aaca10806a740cf4d784be6e24473b9"><label for="R-section-5aaca10806a740cf4d784be6e24473b9"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 03.01. Jakarta Persistence (JPA).</span></label><a class="padding" href="../../03orm/jpa/index.html">03.01. Jakarta Persistence (JPA).<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-5aaca10806a740cf4d784be6e24473b9" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/01jpa/index.html"><a class="padding" href="../../03orm/jpa/01jpa/index.html">01. Jakarta Persistence (JPA).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/02jpavshibernate/index.html"><a class="padding" href="../../03orm/jpa/02jpavshibernate/index.html">02. JPA vs Hibernate.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/03jpaejercicio/index.html"><a class="padding" href="../../03orm/jpa/03jpaejercicio/index.html">03. Ejercicio básico de JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/04entitymanager/index.html"><a class="padding" href="../../03orm/jpa/04entitymanager/index.html">04. Gestión de entidades con EntityManager.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/05mapeoentidades/index.html"><a class="padding" href="../../03orm/jpa/05mapeoentidades/index.html">05. Mapeo de entidades.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/06relaciones/index.html"><a class="padding" href="../../03orm/jpa/06relaciones/index.html">06. Relaciones JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/07embedidos/index.html"><a class="padding" href="../../03orm/jpa/07embedidos/index.html">07. Objetos embebidos.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/08colecciones/index.html"><a class="padding" href="../../03orm/jpa/08colecciones/index.html">08. Mapeo de colecciones.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/09queries/index.html"><a class="padding" href="../../03orm/jpa/09queries/index.html">09. Consultas.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/10jpql/index.html"><a class="padding" href="../../03orm/jpa/10jpql/index.html">10. JPQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/11paginacion/index.html"><a class="padding" href="../../03orm/jpa/11paginacion/index.html">11. Paginación de consultas.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/12herencia/index.html"><a class="padding" href="../../03orm/jpa/12herencia/index.html">12. Herencia.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/14ejercicios/index.html"><a class="padding" href="../../03orm/jpa/14ejercicios/index.html">Ejercicios de la unidad de JPA<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/15boletines/index.html"><a class="padding" href="../../03orm/jpa/15boletines/index.html">Ejercicios de refuerzo.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/16dependencias/index.html"><a class="padding" href="../../03orm/jpa/16dependencias/index.html">Dependencias Maven.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/95singleton/index.html"><a class="padding" href="../../03orm/95singleton/index.html">03.02. Patrón Singleton.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/96ejerciciosrepaso/index.html"><a class="padding" href="../../03orm/96ejerciciosrepaso/index.html">03.03. Ejercicios de refuerzo (Violín).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/97ejerciciosrepaso2/index.html"><a class="padding" href="../../03orm/97ejerciciosrepaso2/index.html">03.04 Ejercicios de refuerzo (II)<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/98ejerciciosrepaso3/index.html"><a class="padding" href="../../03orm/98ejerciciosrepaso3/index.html">03.05 Ejercicios de refuerzo (III)<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="parent " data-nav-id="https://manuais.pages.iessanclemente.net/04spring/index.html"><input type="checkbox" id="R-section-ffae27028787f9b794af8498ce8bc361" aria-controls="R-subsections-ffae27028787f9b794af8498ce8bc361" checked><label for="R-section-ffae27028787f9b794af8498ce8bc361"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 4. Spring.</span></label><a class="padding" href="../index.html">UD 4. Spring.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-ffae27028787f9b794af8498ce8bc361" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/01springboot/index.html"><a class="padding" href="../01springboot/index.html">01. Spring Boot.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="active " data-nav-id="https://manuais.pages.iessanclemente.net/04spring/02springdata/index.html"><a class="padding" href="index.html">02. Spring Data JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/03practicajpadata/index.html"><a class="padding" href="../03practicajpadata/index.html">03. Práctica con de Spring Data JPA y REST.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/04repositorios/index.html"><a class="padding" href="../04repositorios/index.html">04. Repositorios String Data.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/05paginacion/index.html"><a class="padding" href="../05paginacion/index.html">05. Paginación y Ordenación usando Spring Data JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/06paginacionrest/index.html"><a class="padding" href="../06paginacionrest/index.html">06. Paginación y Ordenación usando Spring Data REST.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/07vaadin/index.html"><a class="padding" href="../07vaadin/index.html">07. Spring Data JPA con Vaadin (práctica).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/08ejecutores/index.html"><a class="padding" href="../08ejecutores/index.html">08. Ejecutores al inicio con Spring Boot<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/09serviciocompo/index.html"><a class="padding" href="../09serviciocompo/index.html">09. Servicios, componentes y repositorios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/10servicios/index.html"><a class="padding" href="../10servicios/index.html">10. Servicios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/index.html"><input type="checkbox" id="R-section-f25e02e15b94f5cb39179f26efa74bfe" aria-controls="R-subsections-f25e02e15b94f5cb39179f26efa74bfe"><label for="R-section-f25e02e15b94f5cb39179f26efa74bfe"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 11. Proyecto Spring. Cuestionarios.</span></label><a class="padding" href="../11proyecto/index.html">11. Proyecto Spring. Cuestionarios.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-f25e02e15b94f5cb39179f26efa74bfe" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/01modelo/index.html"><a class="padding" href="../11proyecto/01modelo/index.html">01. Modelo de datos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/02dto/index.html"><a class="padding" href="../11proyecto/02dto/index.html">02. DTO<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/03repositorios/index.html"><a class="padding" href="../11proyecto/03repositorios/index.html">03. Repositorios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/04controller/index.html"><a class="padding" href="../11proyecto/04controller/index.html">04. Controller<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/05resultados/index.html"><a class="padding" href="../11proyecto/05resultados/index.html">05. Pruebas y mejoras<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/12springproj/index.html"><a class="padding" href="../12springproj/index.html">12. Proyecto Spring. Cuestionarios.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/index.html"><input type="checkbox" id="R-section-a0dc28a495fca757d219f1aec2ecff4c" aria-controls="R-subsections-a0dc28a495fca757d219f1aec2ecff4c"><label for="R-section-a0dc28a495fca757d219f1aec2ecff4c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 5. Bases de datos no SQL. MongoDB</span></label><a class="padding" href="../../05basesdatosnonsql/index.html">UD 5. Bases de datos no SQL. MongoDB<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-a0dc28a495fca757d219f1aec2ecff4c" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/mongodb/01nosql/index.html"><a class="padding" href="../../05basesdatosnonsql/mongodb/01nosql/index.html">01. Bases de datos NoSQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/mongodb/03springmongodb/index.html"><a class="padding" href="../../05basesdatosnonsql/mongodb/03springmongodb/index.html">03. Conexión a MongoDB con String Data MongoDB (práctica).<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/index.html"><input type="checkbox" id="R-section-8d4041f058dd2262e83830e1db38cc6d" aria-controls="R-subsections-8d4041f058dd2262e83830e1db38cc6d"><label for="R-section-8d4041f058dd2262e83830e1db38cc6d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Git</span></label><a class="padding" href="../../git/index.html">Git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8d4041f058dd2262e83830e1db38cc6d" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/index.html"><input type="checkbox" id="R-section-a87776bdac862bf972ec945bc124b884" aria-controls="R-subsections-a87776bdac862bf972ec945bc124b884"><label for="R-section-a87776bdac862bf972ec945bc124b884"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Introducción git</span></label><a class="padding" href="../../git/1.introduccion_git/index.html">Introducción git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-a87776bdac862bf972ec945bc124b884" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/1.introduccion_git/index.html"><a class="padding" href="../../git/1.introduccion_git/1.introduccion_git/index.html">Introducción a git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/2.estados_git/index.html"><a class="padding" href="../../git/1.introduccion_git/2.estados_git/index.html">Estados de git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/3.instalacion_git/index.html"><a class="padding" href="../../git/1.introduccion_git/3.instalacion_git/index.html">Instalación de git<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/index.html"><input type="checkbox" id="R-section-b63515bb4dcfe678de9ffac7a29c1e77" aria-controls="R-subsections-b63515bb4dcfe678de9ffac7a29c1e77"><label for="R-section-b63515bb4dcfe678de9ffac7a29c1e77"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Fundamentos git</span></label><a class="padding" href="../../git/2.fundamentos_git/index.html">Fundamentos git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-b63515bb4dcfe678de9ffac7a29c1e77" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/1.configuracion_git/index.html"><a class="padding" href="../../git/2.fundamentos_git/1.configuracion_git/index.html">Configuracion de git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/2.inicializar_repo/index.html"><a class="padding" href="../../git/2.fundamentos_git/2.inicializar_repo/index.html">Inicializando repositorio<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/3.cambios/index.html"><a class="padding" href="../../git/2.fundamentos_git/3.cambios/index.html">Cambios en el repositorio<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/4.ignorar_archivos/index.html"><a class="padding" href="../../git/2.fundamentos_git/4.ignorar_archivos/index.html">Archivos Ignorados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/5.checkout/index.html"><a class="padding" href="../../git/2.fundamentos_git/5.checkout/index.html">Git checkout<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/6.log/index.html"><a class="padding" href="../../git/2.fundamentos_git/6.log/index.html">Git Log<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/7.archivos_modificados/index.html"><a class="padding" href="../../git/2.fundamentos_git/7.archivos_modificados/index.html">Archivos modificados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/8.cambios/index.html"><a class="padding" href="../../git/2.fundamentos_git/8.cambios/index.html">Archivos modificados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/9.eliminar_archivos/index.html"><a class="padding" href="../../git/2.fundamentos_git/9.eliminar_archivos/index.html">Opciones con archivos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/10.limitar/index.html"><a class="padding" href="../../git/2.fundamentos_git/10.limitar/index.html">Historial de confirmaciones<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/3.remotos/index.html"><a class="padding" href="../../git/3.remotos/index.html">Remotos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/4.etiquetado/index.html"><a class="padding" href="../../git/4.etiquetado/index.html">Etiquetado<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/index.html"><input type="checkbox" id="R-section-d8234a81ae190365829886d9d8a058a7" aria-controls="R-subsections-d8234a81ae190365829886d9d8a058a7"><label for="R-section-d8234a81ae190365829886d9d8a058a7"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Ramas Git</span></label><a class="padding" href="../../git/5.ramas_git/index.html">Ramas Git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-d8234a81ae190365829886d9d8a058a7" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/1.ramificaciones_git/index.html"><a class="padding" href="../../git/5.ramas_git/1.ramificaciones_git/index.html">Ramificación<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/2.ramificaciones_remotas/index.html"><a class="padding" href="../../git/5.ramas_git/2.ramificaciones_remotas/index.html">Ramas Remotas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/6.claves_ssh/index.html"><a class="padding" href="../../git/6.claves_ssh/index.html">Claves SSH<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">Más</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/"><a class="padding" href="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/" rel="external" target="_blank"><i class='fas fa-fw fa-bookmark'></i>  Cómo editar plantilla<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://www.iessanclemente.net/"><a class="padding" href="https://www.iessanclemente.net/" rel="external" target="_blank"><i class='fas fa-home'></i> IES Tubalcain<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/categories"><a class="padding" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/categories"><i class='fa-fw fas fa-layer-group'></i> Categories<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tags"><a class="padding" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/tags"><i class='fa-fw fas fa-tags'></i> Tags<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+            <li class="R-variantswitcher">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-paint-brush"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <label class="a11y-only" for="R-select-variant">Tema</label>
+                  <select id="R-select-variant">
+                    <option id="R-select-variant-blue" value="blue" selected>Blue</option>
+                    <option id="R-select-variant-relearn-light" value="relearn-light">Relearn Light</option>
+                    <option id="R-select-variant-relearn-dark" value="relearn-dark">Relearn Dark</option>
+                    <option id="R-select-variant-learn" value="learn">Learn</option>
+                    <option id="R-select-variant-neon" value="neon">Neon</option>
+                    <option id="R-select-variant-green" value="green">Green</option>
+                    <option id="R-select-variant-red" value="red">Red</option>
+                  </select>
+                </div>
+                <div class="clear"></div>
+              </div>
+              <script>window.relearn.markVariant();</script>
+            </li>
+            <li class="R-historyclearer">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-history"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <button>Borrar Historial</button>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+<div id="R-footer">
+<div>
+    <img src="../../../../../../mirrors.creativecommons.org/presskit/icons/cc.png" height="30" />
+    <img src="../../../../../../mirrors.creativecommons.org/presskit/icons/by.png"  height="30"/>
+    <img src="../../../../../../mirrors.creativecommons.org/presskit/icons/nc-eu.png"  height="30"/>
+    <img src="../../../../../../mirrors.creativecommons.org/presskit/icons/sa.png" height="30" />
+</div>
+</div>
+      </div>
+    </aside>
+    <script src="../../js/clipboard/clipboard.min3c2e.js?1749199978" defer></script>
+    <script src="../../js/perfect-scrollbar/perfect-scrollbar.min3c2e.js?1749199978" defer></script>
+    <script src="../../js/theme.min3c2e.js?1749199978" defer></script>
+  </body>
+
+<!-- Mirrored from manuais.pages.iessanclemente.net/plantillas/dam/ad/04spring/02springdata/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Sep 2025 20:45:37 GMT -->
+</html>

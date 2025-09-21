@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  
+<!-- Mirrored from manuais.pages.iessanclemente.net/plantillas/dam/ad/01accesoficheros/03json/0307jsonreader01/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Sep 2025 20:45:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.140.2">
+    <meta name="generator" content="Relearn 7.6.1+0b83617ee9da5253aafcf11807b256da7d88d709">
+    <meta name="description" content="1. La clase JsonReader 1.1 Creación de un JsonReader 2. Iteración de los Tokens JSON JsonToken de un JsonReader 3. “Parser” personalizado de JSON con JsonReader 1. La clase JsonReader La clase JsonReader de GSON es el analizador JSON en streaming de GSON.
+Un JsonReader permite leer una cadena JSON o un archivo como una secuencia de tokens JSON, JsonToken.
+Iterar token por token en JSON también se conoce como streaming o flujo a través de los tokens JSON. Así, a veces se hace referencia al JsonReader de GSON como un analizador JSON en streaming.">
+    <meta name="author" content="IES Tubalcain">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <meta name="twitter:title" content="01.07 Gson. JsonReader :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta name="twitter:description" content="1. La clase JsonReader 1.1 Creación de un JsonReader 2. Iteración de los Tokens JSON JsonToken de un JsonReader 3. “Parser” personalizado de JSON con JsonReader 1. La clase JsonReader La clase JsonReader de GSON es el analizador JSON en streaming de GSON.
+Un JsonReader permite leer una cadena JSON o un archivo como una secuencia de tokens JSON, JsonToken.
+Iterar token por token en JSON también se conoce como streaming o flujo a través de los tokens JSON. Así, a veces se hace referencia al JsonReader de GSON como un analizador JSON en streaming.">
+    <meta property="og:url" content="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0307jsonreader01/index.html">
+    <meta property="og:site_name" content="IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta property="og:title" content="01.07 Gson. JsonReader :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta property="og:description" content="1. La clase JsonReader 1.1 Creación de un JsonReader 2. Iteración de los Tokens JSON JsonToken de un JsonReader 3. “Parser” personalizado de JSON con JsonReader 1. La clase JsonReader La clase JsonReader de GSON es el analizador JSON en streaming de GSON.
+Un JsonReader permite leer una cadena JSON o un archivo como una secuencia de tokens JSON, JsonToken.
+Iterar token por token en JSON también se conoce como streaming o flujo a través de los tokens JSON. Así, a veces se hace referencia al JsonReader de GSON como un analizador JSON en streaming.">
+    <meta property="og:locale" content="es">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML">
+    <meta property="article:modified_time" content="2025-06-06T08:52:43+00:00">
+    <meta property="og:image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <meta itemprop="name" content="01.07 Gson. JsonReader :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <meta itemprop="description" content="1. La clase JsonReader 1.1 Creación de un JsonReader 2. Iteración de los Tokens JSON JsonToken de un JsonReader 3. “Parser” personalizado de JSON con JsonReader 1. La clase JsonReader La clase JsonReader de GSON es el analizador JSON en streaming de GSON.
+Un JsonReader permite leer una cadena JSON o un archivo como una secuencia de tokens JSON, JsonToken.
+Iterar token por token en JSON también se conoce como streaming o flujo a través de los tokens JSON. Así, a veces se hace referencia al JsonReader de GSON como un analizador JSON en streaming.">
+    <meta itemprop="dateModified" content="2025-06-06T08:52:43+00:00">
+    <meta itemprop="wordCount" content="3820">
+    <meta itemprop="image" content="https://manuais.pages.iessanclemente.net/images/logo-ies.png">
+    <title>01.07 Gson. JsonReader :: IES Tubalcain - Acceso a datos (2º DAM)</title>
+    <link href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/01accesoficheros/03json/0307jsonreader01/index.xml" rel="alternate" type="application/rss+xml" title="01.07 Gson. JsonReader :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <link href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/01accesoficheros/03json/0307jsonreader01/index.print.html" rel="alternate" type="text/html" title="01.07 Gson. JsonReader :: IES Tubalcain - Acceso a datos (2º DAM)">
+    <link href="../../../fonts/fontawesome/css/fontawesome-all.min3c2e.css?1749199978" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../../fonts/fontawesome/css/fontawesome-all.min3c2e.css?1749199978" rel="stylesheet"></noscript>
+    <link href="../../../css/perfect-scrollbar/perfect-scrollbar.min3c2e.css?1749199978" rel="stylesheet">
+    <link href="../../../css/theme.min3c2e.css?1749199978" rel="stylesheet">
+    <link href="../../../css/format-html.min3c2e.css?1749199978" rel="stylesheet" id="R-format-style">
+    <link href="../../../css/auto-complete/auto-complete.min3c2e.css?1749199978" rel="stylesheet">
+    <script src="../../../js/auto-complete/auto-complete.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.stemmer.support.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.multi.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/lunr/lunr.es.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/search.min3c2e.js?1749199978" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='#\/01accesoficheros\/03json\/0307jsonreader01\/index.html';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='';
+      window.relearn.contentLangs=['es'];
+      window.relearn.index_js_url="../../../searchindex.es3c2e.js?1749199978";
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // variant stuff
+      window.relearn.themevariants = [ 'blue', 'relearn-light', 'relearn-dark', 'learn', 'neon', 'green', 'red' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copiar en el portapapeles`;
+      window.T_Copied_to_clipboard = `¡Copiado al portapapeles!`;
+      window.T_Copy_link_to_clipboard = `Copiar enlace al portapapeles`;
+      window.T_Link_copied_to_clipboard = `¡Enlace copiado al portapapeles!`;
+      window.T_Reset_view = `Restablecer vista`;
+      window.T_View_reset = `¡Ver reajuste!`;
+      window.T_No_results_found = `No se han encontrado resultados para "{0}"`;
+      window.T_N_results_found = `{1} resultados encontrados para "{0}"`;
+    </script><style>
+    :root {
+    --MENU-WIDTH-S: 14.375rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
+}
+
+@media screen and (max-width: 70.5rem) {
+    #R-sidebar {
+        min-width: var(--INTERNAL-MENU-WIDTH-S);
+        max-width: var(--INTERNAL-MENU-WIDTH-S);
+        width: var(--INTERNAL-MENU-WIDTH-S);
+    }
+    #R-body {
+        margin-inline-start: var(--INTERNAL-MENU-WIDTH-S);
+        min-width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+        max-width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+        width: calc( 100% - var(--INTERNAL-MENU-WIDTH-S) );
+    }
+}
+@media screen and (max-width: 70.5rem) {
+     
+
+    .mobile-support #R-sidebar {
+        inset-inline-start: calc( -1 * var(--INTERNAL-MENU-WIDTH-S) );
+        min-width: var(--INTERNAL-MENU-WIDTH-S);
+        max-width: var(--INTERNAL-MENU-WIDTH-S);
+        width: var(--INTERNAL-MENU-WIDTH-S);
+    }
+    .mobile-support #navshow{
+        display: inline;
+    }
+    .mobile-support #R-body {
+        min-width: 100%;
+        max-width: 100%;
+        width: 100%;
+    }
+    .mobile-support #R-body {
+        margin-inline-start: 0;
+    }
+    .mobile-support.sidebar-flyout {
+        overflow: hidden;
+    }
+    .mobile-support.sidebar-flyout #R-sidebar {
+        inset-inline-start: 0;
+        z-index: 90;
+    }
+    .mobile-support.sidebar-flyout #R-body {
+        margin-inline-start: var(--INTERNAL-MENU-WIDTH-S);
+        overflow: hidden;
+    }
+    .mobile-support.sidebar-flyout #R-body-overlay{
+        background-color: rgba( 134, 134, 134, .5 );
+        bottom: 0;
+        cursor: pointer;
+        height: 100vh;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 190;
+    }
+}
+
+</style>
+
+
+  </head>
+  <body class="mobile-support html" data-url="../../../01accesoficheros/03json/0307jsonreader01/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menú (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Tabla de contenido (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#1-la-clase-jsonreader">1. La clase <code>JsonReader</code></a>
+      <ul>
+        <li><a href="#11-creación-de-un-jsonreader">1.1 Creación de un <code>JsonReader</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#2-iteración-de-los-tokens-json-jsontoken-de-un-jsonreader">2. Iteración de los Tokens JSON <code>JsonToken</code> de un <code>JsonReader</code></a></li>
+    <li><a href="#3-parser-personalizado-de-json-con-jsonreader">3. &ldquo;Parser&rdquo; personalizado de JSON con JsonReader</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../../index.html"><span itemprop="name">Acceso a datos</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../../index.html"><span itemprop="name">UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="../index.html"><span itemprop="name">01.03 JSON en Java</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li>
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">01.07 Gson. JsonReader</span><meta itemprop="position" content="4"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/01accesoficheros/03json/0307jsonreader01/index.print.html" title="Imprimir todo el capítulo (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../0306transformacion/index.html" title="01.06. Gson. Transformación de objetos JSON personalizada (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../0308jsonrename/index.html" title="01.08 Gson. Renombrar atributos  (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Más"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 01accesoficheros" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="0107-gson-jsonreader">01.07 Gson. JsonReader</h1>
+
+<ul>
+<li><a href="index.html#1-la-clase-jsonreader">1. La clase <code>JsonReader</code></a>
+<ul>
+<li><a href="index.html#11-creación-de-un-jsonreader">1.1 Creación de un <code>JsonReader</code></a></li>
+</ul>
+</li>
+<li><a href="index.html#2-iteración-de-los-tokens-json-jsontoken-de-un-jsonreader">2. Iteración de los Tokens JSON <code>JsonToken</code> de un <code>JsonReader</code></a></li>
+<li><a href="index.html#3-parser-personalizado-de-json-con-jsonreader">3. &ldquo;Parser&rdquo; personalizado de JSON con JsonReader</a></li>
+</ul>
+<hr>
+<h2 id="1-la-clase-jsonreader">1. La clase <code>JsonReader</code></h2>
+<p>La <a href="https://www.javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/com/google/gson/stream/JsonReader.html" rel="external" target="_blank">clase <code>JsonReader</code> de GSON</a> es el <strong>analizador JSON en streaming de GSON</strong>.</p>
+<p>Un <code>JsonReader</code> permite leer una cadena JSON o un archivo como una <a href="https://www.javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/com/google/gson/stream/JsonToken.html" rel="external" target="_blank"><strong>secuencia de tokens JSON</strong></a>, <code>JsonToken</code>.</p>
+<p>Iterar token por token en JSON también se conoce como <em>streaming</em> o <em>flujo</em> a través de los tokens JSON. Así, a veces se hace referencia al <code>JsonReader</code> de GSON como un <strong>analizador JSON en streaming</strong>.</p>
+<p>Un flujo incluye:</p>
+<ul>
+<li>Elementos <strong>literales</strong>: cadenas, números, booleanos y nulos.</li>
+<li><strong>Delimitadores</strong> de inicio y fin de objetos y arrays (<em>{, }, [, ]</em>).</li>
+</ul>
+<p>Los <strong>tokens de JSON se recorren en profundidad</strong>, e<strong>n el mismo orden</strong> en que aparecen en el documento JSON.</p>
+<p>Los <strong>Objetos JSON, los pares nombre/valor se representan en un único Token</strong>.</p>
+<p>Los analizadores en streaming suelen implementarse en dos versiones:</p>
+<ul>
+<li>Analizadores <strong>de extracción</strong> (<em><strong>pull parser</strong></em>): analizador en el que el código que lo utiliza <strong>extrae los tokens del analizador cuando está listo para gestionar el siguiente token</strong>.</li>
+<li>Analizadores <strong>de empuje</strong> (<em><strong>push parser</strong></em>): un <em>push parser</em> analiza los tokens JSON y los envía a un gestor de eventos.</li>
+</ul>
+<p><strong><mark><code>JsonReader</code> de GSON es un pull parser</mark></strong>.</p>
+<h3 id="11-creación-de-un-jsonreader">1.1 Creación de un <code>JsonReader</code></h3>
+<p>Se puede crear un <strong><code>JsonReader</code> de GSON por medio de su constructor (único)</strong>.<br>
+El constructor del <code>JsonReader</code> <strong>recoge un <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/io/Reader.html" rel="external" target="_blank">Reader Java</a></strong> como argumento:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">JsonReader</span> (Reader in);</span></span></code></pre></div>
+<p>Por ejemplo:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String json <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;{\&#34;nome\&#34; : \&#34;Alejandra Pizarnik\&#34;, \&#34;idade\&#34; : 36}&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>JsonReader jsonReader <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> JsonReader(<span style="color:#66d9ef">new</span> StringReader(json));</span></span></code></pre></div>
+<p>En el ejemplo anterior se lee de un flujo de cadena de tipo <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/io/StringReader.html" rel="external" target="_blank">StringReader</a>, pasándole el objeto de tipo <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/io/StringReader.html" rel="external" target="_blank">StringReader</a>al constructor del <code>JsonReader</code>.<br>
+El <code>StringReader</code> es un flujo de tipo <em>Reader</em> que convierte una cadena Java en una secuencia de caracteres (es decir, un <code>Reader</code>).</p>
+
+<details open class=" box cstyle notices info">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-info-circle"></i> 
+    Readers Java
+  </summary>
+  <div class="box-content">
+<p>Nota: recuerda el tipo de Readers que existen en Java. Entre otros: <strong><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/io/BufferedReader.html" rel="external" target="_blank">BufferedReader</a> (y subclase <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/io/LineNumberReader.html" rel="external" target="_blank">LineNumberReader</a>), <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/io/CharArrayReader.html" rel="external" target="_blank">CharArrayReader</a>, <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/io/FilterReader.html" rel="external" target="_blank">FilterReader</a> (subclase <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/io/PushbackReader.html" rel="external" target="_blank">PushbackReader</a>), <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/io/InputStreamReader.html" rel="external" target="_blank">InputStreamReader</a> (y subclase <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/io/FileReader.html" rel="external" target="_blank">FileReader</a>), <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/io/PipedReader.html" rel="external" target="_blank">PipedReader</a> o <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/io/StringReader.html" rel="external" target="_blank">StringReader</a></strong></p>
+  </div>
+</details>
+<p><strong>Diagrama de clases de Readers Java:</strong></p>
+<p><a href="#R-image-7f44c7d220a9277c6c3bc4d77b796643" class="lightbox-link"><img alt="Diagrama de clases java.io.Reader" class="lazy lightbox figure-image" loading="lazy" src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/01accesoficheros/03json/media/diagramaClasesReader.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-7f44c7d220a9277c6c3bc4d77b796643"><img alt="Diagrama de clases java.io.Reader" class="lazy lightbox lightbox-image" loading="lazy" src="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/01accesoficheros/03json/media/diagramaClasesReader.png"></a></p>
+<h2 id="2-iteración-de-los-tokens-json-jsontoken-de-un-jsonreader">2. Iteración de los Tokens JSON <code>JsonToken</code> de un <code>JsonReader</code></h2>
+<p>Una vez creada una instancia de <code>JsonReader</code>, se puede <strong>iterar a través de <a href="https://www.javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/com/google/gson/stream/JsonToken.html" rel="external" target="_blank">los tokens JSON</a></strong> que <strong>lee del <code>Reader</code> pasado al constructor del <code>JsonReader</code></strong>.</p>
+<p>La clase <a href="https://www.javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/com/google/gson/stream/JsonToken.html" rel="external" target="_blank">JsonToken</a> tiene constantes de enumeración para identificar el tipo de token:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Constante enumeración</th>
+          <th>Descripción</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>BEGIN_ARRAY</code></td>
+          <td>Apertura de un array JSON.</td>
+      </tr>
+      <tr>
+          <td><code>BEGIN_OBJECT</code></td>
+          <td>Apertura de un objeto JSON.</td>
+      </tr>
+      <tr>
+          <td><code>BOOLEAN</code></td>
+          <td>Valor JSON <code>true</code> o <code>false</code>.</td>
+      </tr>
+      <tr>
+          <td><code>END_ARRAY</code></td>
+          <td>Cierre de un array JSON.</td>
+      </tr>
+      <tr>
+          <td><code>END_DOCUMENT</code></td>
+          <td>Final del flujo JSON.</td>
+      </tr>
+      <tr>
+          <td><code>END_OBJECT</code></td>
+          <td>Cierre de un objeto JSON.</td>
+      </tr>
+      <tr>
+          <td><code>NAME</code></td>
+          <td>Nombre de una propiedad JSON.</td>
+      </tr>
+      <tr>
+          <td><code>NULL</code></td>
+          <td>Valor JSON nulo.</td>
+      </tr>
+      <tr>
+          <td><code>NUMBER</code></td>
+          <td>Número JSON representado por un <em>double</em>, <em>long</em> o <em>int</em> en Java.</td>
+      </tr>
+      <tr>
+          <td><code>STRING</code></td>
+          <td>String JSON.</td>
+      </tr>
+  </tbody>
+</table>
+<p>Para acceder a los tokens del <code>JsonReader</code>, se puede utilizar un bucle similar al siguiente:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">while</span> (jsonReader.<span style="color:#a6e22e">hasNext</span>()) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>El método <code>hasNext()</code> del <code>JsonReader</code> devuelve <code>true</code> si el  tiene más tokens.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String json <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;{\&#34;nome\&#34; : \&#34;Alejandra Pizarnik\&#34;, \&#34;idade\&#34; : 36}&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>JsonReader jsonReader <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> JsonReader(<span style="color:#66d9ef">new</span> StringReader(json));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (jsonReader.<span style="color:#a6e22e">hasNext</span>()) {
+</span></span><span style="display:flex;"><span>        JsonToken siguienteToken <span style="color:#f92672">=</span> jsonReader.<span style="color:#a6e22e">peek</span>(); <span style="color:#75715e">// devuelve el siguiente, sin consumirlo.</span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(siguienteToken);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (JsonToken.<span style="color:#a6e22e">BEGIN_OBJECT</span> <span style="color:#f92672">==</span> siguienteToken) {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Si es un objeto, consumimos las llaves {</span>
+</span></span><span style="display:flex;"><span>            jsonReader.<span style="color:#a6e22e">beginObject</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (JsonToken.<span style="color:#a6e22e">NAME</span> <span style="color:#f92672">==</span> siguienteToken) {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Si es un nombre de atributo, lo imprimimos.</span>
+</span></span><span style="display:flex;"><span>            String nomeAtributo <span style="color:#f92672">=</span> jsonReader.<span style="color:#a6e22e">nextName</span>();
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(nomeAtributo);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (JsonToken.<span style="color:#a6e22e">STRING</span> <span style="color:#f92672">==</span> siguienteToken) {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// si es una cadena, recuperamos String y la imprimimos</span>
+</span></span><span style="display:flex;"><span>            String valorString <span style="color:#f92672">=</span> jsonReader.<span style="color:#a6e22e">nextString</span>();
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(valorString);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (JsonToken.<span style="color:#a6e22e">NUMBER</span> <span style="color:#f92672">==</span> siguienteToken) {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Si es un número, OJO con los tipos...</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">long</span> valorNumero <span style="color:#f92672">=</span> jsonReader.<span style="color:#a6e22e">nextLong</span>();
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(valorNumero);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">catch</span> (IOException e) {
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">println</span>(e.<span style="color:#a6e22e">getMessage</span>());
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>También podría haberse hecho con un switch:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String json <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;{\&#34;nome\&#34; : \&#34;Alejandra Pizarnik\&#34;, \&#34;idade\&#34; : 36}&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>JsonReader jsonReader <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> JsonReader(<span style="color:#66d9ef">new</span> StringReader(json));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> (jsonReader.<span style="color:#a6e22e">hasNext</span>()) {
+</span></span><span style="display:flex;"><span>    JsonToken siguienteToken <span style="color:#f92672">=</span> jsonReader.<span style="color:#a6e22e">peek</span>(); <span style="color:#75715e">// devuelve el siguiente, sin consumirlo.</span>
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(siguienteToken);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">null</span> <span style="color:#f92672">!=</span> siguienteToken) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">switch</span> (siguienteToken) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">case</span> BEGIN_OBJECT <span style="color:#f92672">-&gt;</span> <span style="color:#75715e">// Si es un objeto, consumimos las llaves {</span>
+</span></span><span style="display:flex;"><span>                jsonReader.<span style="color:#a6e22e">beginObject</span>();
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">case</span> NAME <span style="color:#f92672">-&gt;</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// Si es un nombre de atributo, lo imprimimos.</span>
+</span></span><span style="display:flex;"><span>                String nomeAtributo <span style="color:#f92672">=</span> jsonReader.<span style="color:#a6e22e">nextName</span>();
+</span></span><span style="display:flex;"><span>                System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(nomeAtributo);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">case</span> STRING <span style="color:#f92672">-&gt;</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// si es una cadena, recuperamos String y la imprimimos</span>
+</span></span><span style="display:flex;"><span>                String valorString <span style="color:#f92672">=</span> jsonReader.<span style="color:#a6e22e">nextString</span>();
+</span></span><span style="display:flex;"><span>                System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(valorString);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">case</span> NUMBER <span style="color:#f92672">-&gt;</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// Si es un número, OJO con los tipos...</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">long</span> valorNumero <span style="color:#f92672">=</span> jsonReader.<span style="color:#a6e22e">nextLong</span>();
+</span></span><span style="display:flex;"><span>                System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(valorNumero);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">default</span> <span style="color:#f92672">-&gt;</span> {
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>El <strong>método <mark><code>peek()</code> del <code>JsonReader</code> devuelve el siguiente token JSON</mark>, pero sin moverse sobre él</strong> (sin devolver el siguiente). Sucesivas llamadas a <code>peek()</code> devolverán el mismo token JSON.</p>
+<p>El <code>JsonToken</code> devuelto por <code>peek()</code> se puede comparar con constantes en la clase <code>JsonToken</code> para averiguar qué tipo de token es. Puedes ver cómo se hace esto en el bucle del código anterior.</p>
+<p>Dentro de cada declaración <code>if</code>, se llama a un método del <code>JsonReader</code>, <strong><code>next _TipoDato_ ()</code> , lee del <code>JsonReader</code> el token actual y avanza al siguiente</strong>.<br>
+Todos los métodos <code>beginObject()</code>, <code>nextString()</code> y <code>nextLong()</code> <strong>devuelven el valor del token actual</strong> y <strong>mueven el puntero interno al siguiente Token</strong>.</p>
+<h2 id="3-parser-personalizado-de-json-con-jsonreader">3. &ldquo;Parser&rdquo; personalizado de JSON con JsonReader</h2>
+<p>Para <strong>analizar (&ldquo;parsear&rdquo;) un flujo JSON</strong> por medio de un <code>JsonReader</code> mediante un parser descendente <strong>recursivo</strong>:</p>
+<p>a) <mark>Creamos un <strong>método inicial que cree un <code>JsonReader</code></strong></mark> y llame a un método de lectura de un array de objetos JSON. Finalmente, cierra el <code>JsonReader</code>:
+- El método principal de entrada crea un <code>JsonReader</code> a partir de un <code>InputStream</code> (que convertiremos en un <code>Reader</code>) o un <code>Reader</code>.
+- Llama a un método de lectura de los tokens JSON de un array o de objetos JSON.
+- Finalmente, cierra el <code>JsonReader</code>.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> com.google.gson.stream.JsonReader;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.IOException;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.InputStream;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.InputStreamReader;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.List;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PoemaJsonReader</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Método principal de entrada</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> List<span style="color:#f92672">&lt;</span>Poema<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">readJsonStream</span>(InputStream in) <span style="color:#66d9ef">throws</span> IOException {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// JsonReader necesita un Reader, por lo que convertimos el InputStream en un InputStreamReader</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Además, implanta la interfaz Closeable, por lo que podemos cerrarlo en un bloque try-with-resources</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span>(JsonReader reader <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> JsonReader(<span style="color:#66d9ef">new</span> InputStreamReader(in, <span style="color:#e6db74">&#34;UTF-8&#34;</span>))) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> readArrayPoemas(reader);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>b) Creamos <strong>métodos de gestión/control para cada estructura del objeto JSON</strong>. <mark>Se necesita <strong>un método para cada tipo de objeto y para cada tipo de array</strong></mark>:</p>
+<ul>
+<li>
+<p>Dentro de los <strong>métodos de gestión de arrays</strong>, primero llamamos a <strong><code>beginArray()</code> para consumir el corchete de apertura del array</strong>. Luego, se crea un bucle <code>while</code> que acumula valores, terminando cuando <code>hasNext()</code> sea <code>false</code>. Finalmente, se <strong>lee el corchete de cierre del array llamando a <code>endArray()</code></strong>.</p>
+</li>
+<li>
+<p>Dentro de los <strong>métodos de gestión de objetos</strong>, primero se invoca a <strong><code>beginObject()</code> para consumir la llave de apertura del objeto</strong>. Luego, crea un bucle <code>while</code> que asigna valores a variables locales según su nombre. Este bucle debe terminar cuando <code>hasNext()</code> sea <code>false</code>. Finalmente, se <strong>lee la llave de cierre del objeto llamando a <code>endObject()</code></strong>.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> com.google.gson.stream.*;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.IOException;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.ArrayList;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.List;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PoemaJsonReader</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Método principal de entrada</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * Ejemplo que lee un array de objetos JSON
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * Devuelve la lista de poemas del JSON
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> List<span style="color:#f92672">&lt;</span>Poema<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">readArrayPoemas</span>(JsonReader reader) <span style="color:#66d9ef">throws</span> IOException {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Guardar la lista de poemas del JSON</span>
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>Poema<span style="color:#f92672">&gt;</span> poemas <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        reader.<span style="color:#a6e22e">beginArray</span>(); <span style="color:#75715e">// Leemos el  [</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (reader.<span style="color:#a6e22e">hasNext</span>()) { <span style="color:#75715e">// para cada elemento de array de poemas</span>
+</span></span><span style="display:flex;"><span>            poemas.<span style="color:#a6e22e">add</span>(readPoema(reader));
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        reader.<span style="color:#a6e22e">endArray</span>(); <span style="color:#75715e">// Leemos el ]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> poemas;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Poema <span style="color:#a6e22e">readPoema</span>(JsonReader reader) <span style="color:#66d9ef">throws</span> IOException {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Código de lectura de un poema</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+</li>
+</ul>
+<p>Cuando se encuentra un objeto o array anidado, delega al método de control correspondiente.</p>
+<p>Cuando se encuentra un nombre desconocido, los analizadores estrictos deberían fallar con una excepción. Los analizadores permisivos deben llamar a <code>skipValue()</code> para omitir de forma recursiva los tokens anidados del valor, que de lo contrario podrían entrar en conflicto.</p>
+<p>Si un valor puede ser nulo, debes verificar primero utilizando <code>peek()</code>. Los literales nulos se pueden consumir utilizando <code>nextNull()</code> o <code>skipValue()</code>.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>[
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">123456789012</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;poema&#34;</span>: <span style="color:#e6db74">&#34;I dwell in Possibility&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;localizacion&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;poeta&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;nome&#34;</span>: <span style="color:#e6db74">&#34;Emily Dickinson&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;anoNacemento&#34;</span>: <span style="color:#ae81ff">1830</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;numeroSeguidores&#34;</span>: <span style="color:#ae81ff">150</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">123456789013</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;poema&#34;</span>: <span style="color:#e6db74">&#34;Still I Rise&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;localizacion&#34;</span>: [<span style="color:#ae81ff">34.0522</span>, <span style="color:#ae81ff">-118.2437</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;poeta&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;nome&#34;</span>: <span style="color:#e6db74">&#34;Maya Angelou&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;anoNacemento&#34;</span>: <span style="color:#ae81ff">1928</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;numeroSeguidores&#34;</span>: <span style="color:#ae81ff">300</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>]</span></span></code></pre></div>
+<p>El parser sería algo así:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> com.google.gson.stream.JsonReader;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.google.gson.stream.JsonToken;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.IOException;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.InputStream;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.InputStreamReader;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.ArrayList;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.List;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PoemaJsonReader</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Método principal de entrada</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> List<span style="color:#f92672">&lt;</span>Poema<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">readJsonStream</span>(InputStream in) <span style="color:#66d9ef">throws</span> IOException {
+</span></span><span style="display:flex;"><span>        JsonReader reader <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> JsonReader(<span style="color:#66d9ef">new</span> InputStreamReader(in, <span style="color:#e6db74">&#34;UTF-8&#34;</span>));
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> readArrayPoemas(reader);
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">finally</span> {
+</span></span><span style="display:flex;"><span>            reader.<span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * Devuelve la lista de poemas del JSON
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> List<span style="color:#f92672">&lt;</span>Poema<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">readArrayPoemas</span>(JsonReader reader) <span style="color:#66d9ef">throws</span> IOException {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Guardar la lista de poemas del JSON</span>
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>Poema<span style="color:#f92672">&gt;</span> poemas <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        reader.<span style="color:#a6e22e">beginArray</span>(); <span style="color:#75715e">// Leemos el  [</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (reader.<span style="color:#a6e22e">hasNext</span>()) { <span style="color:#75715e">// para cade elemento de array de poemas</span>
+</span></span><span style="display:flex;"><span>            poemas.<span style="color:#a6e22e">add</span>(readPoema(reader));
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        reader.<span style="color:#a6e22e">endArray</span>(); <span style="color:#75715e">// Leemos el ]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> poemas;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Poema <span style="color:#a6e22e">readPoema</span>(JsonReader reader) <span style="color:#66d9ef">throws</span> IOException {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">long</span> id <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>1;
+</span></span><span style="display:flex;"><span>        String poema <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>; <span style="color:#75715e">// el nombre del poema</span>
+</span></span><span style="display:flex;"><span>        Poeta poeta <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>; <span style="color:#75715e">// El poeta es un objeto</span>
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>Double<span style="color:#f92672">&gt;</span> localizacion <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>; <span style="color:#75715e">// Es un array JSON de double</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        reader.<span style="color:#a6e22e">beginObject</span>(); <span style="color:#75715e">// Lectura  {</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (reader.<span style="color:#a6e22e">hasNext</span>()) { <span style="color:#75715e">// Mientras haya atributos</span>
+</span></span><span style="display:flex;"><span>            String nome <span style="color:#f92672">=</span> reader.<span style="color:#a6e22e">nextName</span>();
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (nome.<span style="color:#a6e22e">equals</span>(<span style="color:#e6db74">&#34;id&#34;</span>)) {
+</span></span><span style="display:flex;"><span>                id <span style="color:#f92672">=</span> reader.<span style="color:#a6e22e">nextLong</span>();
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (nome.<span style="color:#a6e22e">equals</span>(<span style="color:#e6db74">&#34;poema&#34;</span>)) {
+</span></span><span style="display:flex;"><span>                poema <span style="color:#f92672">=</span> reader.<span style="color:#a6e22e">nextString</span>();
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (nome.<span style="color:#a6e22e">equals</span>(<span style="color:#e6db74">&#34;localizacion&#34;</span>)
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// peek devuelve el siguiente elemento sin consumirlo</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// (no salta al siguiente). Es un array.</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&amp;&amp;</span> reader.<span style="color:#a6e22e">peek</span>() <span style="color:#f92672">!=</span> JsonToken.<span style="color:#a6e22e">NULL</span>) {
+</span></span><span style="display:flex;"><span>                localizacion <span style="color:#f92672">=</span> readArrayDouble(reader);
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (nome.<span style="color:#a6e22e">equals</span>(<span style="color:#e6db74">&#34;poeta&#34;</span>)) {
+</span></span><span style="display:flex;"><span>                poeta <span style="color:#f92672">=</span> readPoeta(reader);
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                reader.<span style="color:#a6e22e">skipValue</span>();
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        reader.<span style="color:#a6e22e">endObject</span>(); <span style="color:#75715e">// Lectura  {</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Poema(id, poema, poeta, localizacion);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> List<span style="color:#f92672">&lt;</span>Double<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">readArrayDouble</span>(JsonReader reader) <span style="color:#66d9ef">throws</span> IOException {
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>Double<span style="color:#f92672">&gt;</span> doubles <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        reader.<span style="color:#a6e22e">beginArray</span>(); <span style="color:#75715e">// [</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (reader.<span style="color:#a6e22e">hasNext</span>()) {
+</span></span><span style="display:flex;"><span>            doubles.<span style="color:#a6e22e">add</span>(reader.<span style="color:#a6e22e">nextDouble</span>());
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        reader.<span style="color:#a6e22e">endArray</span>(); <span style="color:#75715e">// ]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> doubles;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Poet <span style="color:#a6e22e">readPoeta</span>(JsonReader reader) <span style="color:#66d9ef">throws</span> IOException {
+</span></span><span style="display:flex;"><span>        String nome <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> anoNacemento <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>1;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> numeroSeguidores <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>1;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        reader.<span style="color:#a6e22e">beginObject</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (reader.<span style="color:#a6e22e">hasNext</span>()) {
+</span></span><span style="display:flex;"><span>            String fieldName <span style="color:#f92672">=</span> reader.<span style="color:#a6e22e">nextName</span>();
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (fieldName.<span style="color:#a6e22e">equals</span>(<span style="color:#e6db74">&#34;nome&#34;</span>)) {
+</span></span><span style="display:flex;"><span>                nome <span style="color:#f92672">=</span> reader.<span style="color:#a6e22e">nextString</span>();
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (fieldName.<span style="color:#a6e22e">equals</span>(<span style="color:#e6db74">&#34;anoNacemento&#34;</span>)) {
+</span></span><span style="display:flex;"><span>                anoNacemento <span style="color:#f92672">=</span> reader.<span style="color:#a6e22e">nextInt</span>();
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (fieldName.<span style="color:#a6e22e">equals</span>(<span style="color:#e6db74">&#34;numeroSeguidores&#34;</span>)) {
+</span></span><span style="display:flex;"><span>                numeroSeguidores <span style="color:#f92672">=</span> reader.<span style="color:#a6e22e">nextInt</span>();
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                reader.<span style="color:#a6e22e">skipValue</span>();
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        reader.<span style="color:#a6e22e">endObject</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Poet(nome, anoNacemento, numeroSeguidores);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+
+<details open class=" box cstyle notices info">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-pen-square"></i> 
+    Ejercicio. Adaptación de datos de Meteogalicia
+  </summary>
+  <div class="box-content">
+<p><strong>Inicialmente haz el ejercicio con JsonDeserializer y luego con JsonReader</strong>.</p>
+<p><strong>MeteoGalicia suministra un API JSON para la lectura de datos meteorológicos</strong>. Los JSONs de MeteoGalicia pueden consultarse en:</p>
+<p><a href="https://www.meteogalicia.gal/web/rss-georss-json" rel="external" target="_blank">https://www.meteogalicia.gal/web/rss-georss-json</a></p>
+<p>Un ejemplo de predicción a corto plato es:</p>
+<p><a href="https://servizos.meteogalicia.gal/mgrss/predicion/jsonPredConcellos.action?idConc=15078&amp;request_locale=gl" rel="external" target="_blank">https://servizos.meteogalicia.gal/mgrss/predicion/jsonPredConcellos.action?idConc=15078&request_locale=gl</a>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;predConcello&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;idConcello&#34;</span>: <span style="color:#ae81ff">15078</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;listaPredDiaConcello&#34;</span>: [
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;ceo&#34;</span>: {
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;manha&#34;</span>: <span style="color:#ae81ff">108</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;noite&#34;</span>: <span style="color:#ae81ff">208</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;tarde&#34;</span>: <span style="color:#ae81ff">107</span>
+</span></span><span style="display:flex;"><span>                },
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;dataPredicion&#34;</span>: <span style="color:#e6db74">&#34;2023-10-29T00:00:00&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;nivelAviso&#34;</span>: <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;pchoiva&#34;</span>: {
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;manha&#34;</span>: <span style="color:#ae81ff">95</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;noite&#34;</span>: <span style="color:#ae81ff">55</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;tarde&#34;</span>: <span style="color:#ae81ff">75</span>
+</span></span><span style="display:flex;"><span>                },
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;tMax&#34;</span>: <span style="color:#ae81ff">14</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;tMin&#34;</span>: <span style="color:#ae81ff">11</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;tmaxFranxa&#34;</span>: {
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;manha&#34;</span>: <span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;noite&#34;</span>: <span style="color:#ae81ff">11</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;tarde&#34;</span>: <span style="color:#ae81ff">14</span>
+</span></span><span style="display:flex;"><span>                },
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;tminFranxa&#34;</span>: {
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;manha&#34;</span>: <span style="color:#ae81ff">11</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;noite&#34;</span>: <span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;tarde&#34;</span>: <span style="color:#ae81ff">11</span>
+</span></span><span style="display:flex;"><span>                },
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;uvMax&#34;</span>: <span style="color:#ae81ff">-9999</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;vento&#34;</span>: {
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;manha&#34;</span>: <span style="color:#ae81ff">306</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;noite&#34;</span>: <span style="color:#ae81ff">300</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">&#34;tarde&#34;</span>: <span style="color:#ae81ff">300</span>
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        ],
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;nome&#34;</span>: <span style="color:#e6db74">&#34;Santiago de Compostela&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Así, por ejemplo, la documentación de API de JSON a corto plazo es:</p>
+<p><a href="https://meteo-estaticos.xunta.gal/datosred/infoweb/meteo/docs/rss/JSON_Pred_Concello_gl.pdf" rel="external" target="_blank">https://meteo-estaticos.xunta.gal/datosred/infoweb/meteo/docs/rss/JSON_Pred_Concello_gl.pdf</a></p>
+<p>En la que pueden consultarse los identificadores de concello y el formato JSON. Para Santiago tenemos:</p>
+<p><a href="https://servizos.meteogalicia.gal/mgrss/predicion/jsonPredConcellos.action?idConc=15078&amp;request_locale=gl" rel="external" target="_blank">https://servizos.meteogalicia.gal/mgrss/predicion/jsonPredConcellos.action?idConc=15078&request_locale=gl</a></p>
+<p>Teniendo en cuenta que las varias propiedades identifican un identificador del icono con un número y que el icono está asociado al número por medio de la URL:</p>
+<p><a href="https://www.meteogalicia.gal/web/assets/icons/svg/111.svg" rel="external" target="_blank">https://www.meteogalicia.gal/web/assets/icons/svg/111.svg</a>, siendo 111 el número.</p>
+<p>Se pide:</p>
+<p>Crea las <strong>clases que consideres necesarias para la lectura del objeto JSON</strong>.</p>
+<p>Mapea los campos se muestren de otro modo: listaPredDiaConcello como prediccionDia, de tipo List.</p>
+<ul>
+<li>Enumeración con el nombre <code>VariableMeteoroloxica</code> con posibles valores: <code>CIELO</code>, <code>LLUVIA</code>, <code>TEMPERATURA_MAXIMA</code>, <code>TEMPERATURA_MINIMA</code>, <code>VIENTO</code>:</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">enum</span> VariableMeteo {
+</span></span><span style="display:flex;"><span>    CIELO(<span style="color:#e6db74">&#34;ceo&#34;</span>), LLUVIA(<span style="color:#e6db74">&#34;pchoiva&#34;</span>), TEMPERATURA_MAXIMA(<span style="color:#e6db74">&#34;tmaxFranxa&#34;</span>),
+</span></span><span style="display:flex;"><span>    TEMPERATURA_MINIMA(<span style="color:#e6db74">&#34;tminFranxa&#34;</span>), VIENTO(<span style="color:#e6db74">&#34;vento&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String nome;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    VariableMeteo(String nome) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">nome</span> <span style="color:#f92672">=</span> nome;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ... método get para nome</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Método estático que devuelve la VariableMeteo a partir de un String: </span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// public static VariableMeteo fromString(String nome) {...}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Método toString: </span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">toString</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> nome;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<ul>
+<li><code>VariableFranxa</code>, con dos atributos: <code>variable</code> (de tipo VariableMeteo), <code>valorManha</code>, <code>valorTarde</code>, <code>valorNoche</code> (los tres de tipo entero):</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;tmaxFranxa&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;manha&#34;</span>: <span style="color:#ae81ff">18</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;noite&#34;</span>: <span style="color:#ae81ff">16</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;tarde&#34;</span>: <span style="color:#ae81ff">20</span>
+</span></span><span style="display:flex;"><span>  }<span style="color:#960050;background-color:#1e0010">,</span></span></span></code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">VariableFranxa</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> NO_DATA <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>9999; <span style="color:#75715e">// Valor por defecto cuando no hay dato para una variable entera.</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> VariableMeteoroloxica variableMeteorologica;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> valorManha;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> valorTarde;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> valorNoche;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Constructores, Getters y Setters</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// toString: </span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">toString</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>  variable <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;: (&#34;</span> <span style="color:#f92672">+</span> (valorManha<span style="color:#f92672">!=</span>NO_DATA <span style="color:#f92672">?</span> valorManha : <span style="color:#e6db74">&#34;-&#34;</span> ) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;, &#34;</span> <span style="color:#f92672">+</span> (valorTarde<span style="color:#f92672">!=</span>NO_DATA <span style="color:#f92672">?</span> valorTarde : <span style="color:#e6db74">&#34;-&#34;</span> ) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;, &#34;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">+</span> (valorNoche<span style="color:#f92672">!=</span>NO_DATA <span style="color:#f92672">?</span> valorNoche : <span style="color:#e6db74">&#34;-&#34;</span> )  <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;)&#39;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<ul>
+<li><code>Concello</code> con <code>idConcello</code> y <code>nome</code>:</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Concello</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> idConcello;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String nome;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Constructores, Getters y Setters</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// toString</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">toString</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> nome <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; [&#34;</span> <span style="color:#f92672">+</span>idConcello <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;]&#39;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<ul>
+<li><code>PrediccionDia</code>: dataPrediccion, nivelAviso (int), tMax, tMin, uvMaz, y una List de objetos VariableFranxa con los posibles valores de VariableMeteoroloxia:</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PrediccionDia</span> {
+</span></span><span style="display:flex;"><span>    rivate LocalDate dataPredicion;<span style="color:#75715e">// Guádala para que la ponga mejor como LocalDate</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> nivelAviso;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> temperaturaMaxima;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> temperaturaMinima;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> uvMaximo;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> List<span style="color:#f92672">&lt;</span>VariableFranxa<span style="color:#f92672">&gt;</span> listaVariableFranxa;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">PrediccionDia</span>() {
+</span></span><span style="display:flex;"><span>        listaVariableFranxa <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">PrediccionDia</span>(String dataPredicion) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">dataPredicion</span> <span style="color:#f92672">=</span> LocalDateTime.<span style="color:#a6e22e">parse</span>(dataPredicion).<span style="color:#a6e22e">toLocalDate</span>();
+</span></span><span style="display:flex;"><span>        listaVariableFranxa <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Constructores, Getters y Setters</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addVariableFranxa</span>(VariableFranxa variableFranxa) {
+</span></span><span style="display:flex;"><span>        listaVariableFranxa.<span style="color:#a6e22e">add</span>(variableFranxa);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// toString</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">toString</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> dataPredicion <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34; (aviso: &#34;</span> <span style="color:#f92672">+</span> nivelAviso <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;) &#34;</span> <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;, Máxima: &#34;</span> <span style="color:#f92672">+</span> temperaturaMaxima <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;, Mínima: &#34;</span> <span style="color:#f92672">+</span> temperaturaMinima <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;, Índice ultravioleta máx: &#34;</span> <span style="color:#f92672">+</span> uvMaximo <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">+</span> listaVariableFranxa.<span style="color:#a6e22e">stream</span>().<span style="color:#a6e22e">collect</span>(StringBuilder::<span style="color:#66d9ef">new</span>,
+</span></span><span style="display:flex;"><span>                (sb, vf) <span style="color:#f92672">-&gt;</span> sb.<span style="color:#a6e22e">append</span>(vf).<span style="color:#a6e22e">append</span>(System.<span style="color:#a6e22e">lineSeparator</span>()), StringBuilder::append);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<ul>
+<li><code>Prediccion</code>, con atributos: concello de tipo Concello y una lista de valores de PredicciónDia:</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Prediccion</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> String BARRA <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;--------------------------------------------------&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Concello concello;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> List<span style="color:#f92672">&lt;</span>PrediccionDia<span style="color:#f92672">&gt;</span> listaPredDiaConcello;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Prediccion</span>() {
+</span></span><span style="display:flex;"><span>        listaPredDiaConcello <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Prediccion</span>(Concello concello) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">concello</span> <span style="color:#f92672">=</span> concello;
+</span></span><span style="display:flex;"><span>        listaPredDiaConcello <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Constructores, Getters y Setters</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addPredDiaConcello</span>(PrediccionDia predDia){
+</span></span><span style="display:flex;"><span>        listaPredDiaConcello.<span style="color:#a6e22e">add</span>(predDia);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">equals</span>(Object o) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span> <span style="color:#f92672">==</span> o) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (o <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">||</span> getClass() <span style="color:#f92672">!=</span> o.<span style="color:#a6e22e">getClass</span>()) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>        Prediccion that <span style="color:#f92672">=</span> (Prediccion) o;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Objects.<span style="color:#a6e22e">equals</span>(concello, that.<span style="color:#a6e22e">concello</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">hashCode</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Objects.<span style="color:#a6e22e">hashCode</span>(concello);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">toString</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> concello <span style="color:#f92672">+</span> System.<span style="color:#a6e22e">lineSeparator</span>() <span style="color:#f92672">+</span> BARRA <span style="color:#f92672">+</span> System.<span style="color:#a6e22e">lineSeparator</span>()
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">+</span> listaPredDiaConcello.<span style="color:#a6e22e">stream</span>().<span style="color:#a6e22e">collect</span>(StringBuilder::<span style="color:#66d9ef">new</span>,
+</span></span><span style="display:flex;"><span>                (sb, pd) <span style="color:#f92672">-&gt;</span> sb.<span style="color:#a6e22e">append</span>(pd).<span style="color:#a6e22e">append</span>(System.<span style="color:#a6e22e">lineSeparator</span>())
+</span></span><span style="display:flex;"><span>                        .<span style="color:#a6e22e">append</span>(BARRA).<span style="color:#a6e22e">append</span>(System.<span style="color:#a6e22e">lineSeparator</span>()), StringBuilder::append);
+</span></span><span style="display:flex;"><span>    }</span></span></code></pre></div>
+<hr>
+<p><strong>a.</strong> Crea el <strong>modelo de datos de la aplicación</strong>, lo más ajustado al diseño anterior.</p>
+<hr>
+<p><strong>b.</strong> Dada la URL siguiente, haz un <strong>programa <code>AppPredicción</code> que lea los datos de la URL</strong>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>   <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> String URL <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://servizos.meteogalicia.gal/mgrss/predicion/&#34;</span> <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;jsonPredConcellos.action?idConc=15078&amp;request_locale=gl&#34;</span>;</span></span></code></pre></div>
+<p>Recuerda que con <code>new URI(URL).toURL().openConnection().getInputStream()</code> puedes obtener el flujo de datos de entrada. Debes convertirlo en <code>Reader</code>.</p>
+<hr>
+<p><strong>c.</strong> Crea un <strong>adaptador para ese Json completo</strong>, llamado <strong><code>PrediccionDeselializer implements JsonDeserializer&lt;Prediccion&gt; </code></strong> que permita obtener un objeto Java de tipo <code>Prediccion</code> con los <strong>datos del Concello</strong>, únicamente:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span>   Santiago de Compostela [15078] </span></span></code></pre></div>
+<p>Haz pruebas con el adaptador para que muestre la información del Concello. Recuerda registrar el adaptador en el objeto <code>GsonBuilder</code> y hacer pruebas con varios concellos.</p>
+<hr>
+<p><strong>d.</strong> Haz un <strong>adaptador para <code>PrediccionDia</code></strong>, <code>public class PrediccionDiaDeserializer implements JsonDeserializer&lt;PrediccionDia&gt;</code>, para que permita adaptar el siguiente JSON, pero <strong>solo los atributos de primer nivel</strong>, no las variables de franxa (ten en cuenta que los atributos pueden cambiar de nombre y que hay elementos nulos):</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;ceo&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;manha&#34;</span>: <span style="color:#ae81ff">104</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;noite&#34;</span>: <span style="color:#ae81ff">208</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;tarde&#34;</span>: <span style="color:#ae81ff">108</span>
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;dataPredicion&#34;</span>: <span style="color:#e6db74">&#34;2024-11-04T00:00:00&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;nivelAviso&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;pchoiva&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;manha&#34;</span>: <span style="color:#ae81ff">5</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;noite&#34;</span>: <span style="color:#ae81ff">70</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;tarde&#34;</span>: <span style="color:#ae81ff">55</span>
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;tMax&#34;</span>: <span style="color:#ae81ff">20</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;tMin&#34;</span>: <span style="color:#ae81ff">13</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;tmaxFranxa&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;manha&#34;</span>: <span style="color:#ae81ff">18</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;noite&#34;</span>: <span style="color:#ae81ff">16</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;tarde&#34;</span>: <span style="color:#ae81ff">20</span>
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;tminFranxa&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;manha&#34;</span>: <span style="color:#ae81ff">15</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;noite&#34;</span>: <span style="color:#ae81ff">14</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;tarde&#34;</span>: <span style="color:#ae81ff">16</span>
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;uvMax&#34;</span>: <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;vento&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;manha&#34;</span>: <span style="color:#ae81ff">303</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;noite&#34;</span>: <span style="color:#ae81ff">299</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;tarde&#34;</span>: <span style="color:#ae81ff">305</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }</span></span></code></pre></div>
+<hr>
+<p><strong>e.</strong> Haz que <strong>el adaptador <code>PrediccionAdapter</code> llame al adaptador <code>PrediccionDiaAdapter</code> para que adapte los datos de <code>PrediccionDia</code></strong>.</p>
+<p>Ayuda: para que el <strong>adaptador de <code>Predicción</code> llame al de PredicciónDia</strong>, debes <strong>invocar al <a href="https://www.javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/com/google/gson/JsonDeserializationContext.html" rel="external" target="_blank">método <code>deserialize</code> del contexto</a> pasándole el objeto Json y el tipo de objeto a deserializar</strong>:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> T <span style="color:#a6e22e">deserialize</span> (JsonElement json, Type typeOfT) <span style="color:#66d9ef">throws</span> JsonParseException</span></span></code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// e es el JsonElement que se pasa al adaptador, en nuestro caso el Json de PrediccionDia que hemos leído en PrediccionAdapter.</span>
+</span></span><span style="display:flex;"><span>pr.<span style="color:#a6e22e">addPredDiaConcello</span>(contexto.<span style="color:#a6e22e">deserialize</span>(e, PrediccionDia.<span style="color:#a6e22e">class</span>));</span></span></code></pre></div>
+<p>El resultado debe ser algo así:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span>Santiago de Compostela [15078]
+</span></span><span style="display:flex;"><span>--------------------------------------------------
+</span></span><span style="display:flex;"><span>2024-11-04 (aviso: 0) , Máxima: 21, Mínima: 11, Índice ultravioleta máx: 2 
+</span></span><span style="display:flex;"><span>--------------------------------------------------
+</span></span><span style="display:flex;"><span>2024-11-05 (aviso: 0) , Máxima: 22, Mínima: 13, Índice ultravioleta máx: 2 
+</span></span><span style="display:flex;"><span>--------------------------------------------------
+</span></span><span style="display:flex;"><span>2024-11-06 (aviso: 0) , Máxima: 22, Mínima: 13, Índice ultravioleta máx: 2 
+</span></span><span style="display:flex;"><span>--------------------------------------------------
+</span></span><span style="display:flex;"><span>2024-11-07 (aviso: 0) , Máxima: 21, Mínima: 12, Índice ultravioleta máx: 2 
+</span></span><span style="display:flex;"><span>--------------------------------------------------</span></span></code></pre></div>
+<p><strong>f.</strong> Amplía <code>PrediccionDiaDeserializer</code> para que <strong>recupere los datos de las variables de franxa</strong>.</p>
+<p><strong>f.1.</strong> Crea un <strong>método privado en <code>PrediccionDiaDeserializer</code> llamado <code>getVariableFranxa</code></strong> que recoja el tipo de variable meteorológica y el objeto Json con los valores y devuelva un objeto de tipo VariableFranxa con la siguiente firma:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> VariableFranxa <span style="color:#a6e22e">getVariableFranxa</span>(VariableMeteo v, JsonObject varFranxaJsonObject){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>    }</span></span></code></pre></div>
+<p>En el que el objeto <code>varFranxaJsonObject</code> es el que tiene el formato:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;manha&#34;</span>: <span style="color:#ae81ff">18</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;noite&#34;</span>: <span style="color:#ae81ff">16</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;tarde&#34;</span>: <span style="color:#ae81ff">20</span>
+</span></span><span style="display:flex;"><span>}<span style="color:#960050;background-color:#1e0010">,</span></span></span></code></pre></div>
+<p><strong>f.2.</strong> Recupera los valores de VariableFranxa del objeto Json de <code>PrediccionDia</code>. Existen varios modos de hacerlo:</p>
+<ul>
+<li><strong>Recorrer todos los atributos del objeto JSON</strong> y, si son de tipo objeto, llamar a un método que los lea o hacerlo en el propio bucle:</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> PrediccionDia <span style="color:#a6e22e">deserialize</span>(JsonElement json, Type typeOfT, JsonDeserializationContext context) <span style="color:#66d9ef">throws</span> JsonParseException {
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (Map.<span style="color:#a6e22e">Entry</span><span style="color:#f92672">&lt;</span>String, JsonElement<span style="color:#f92672">&gt;</span> entrada : jsonObject.<span style="color:#a6e22e">entrySet</span>()) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (entrada.<span style="color:#a6e22e">getValue</span>().<span style="color:#a6e22e">isJsonObject</span>()) { <span style="color:#75715e">// ¡ES UNA VARIABLE DE FRANXA!</span>
+</span></span><span style="display:flex;"><span>                entrada.<span style="color:#a6e22e">getKey</span>(); <span style="color:#75715e">// Es el nombre de la variable de franxa, de tipo String</span>
+</span></span><span style="display:flex;"><span>                entrada.<span style="color:#a6e22e">getValue</span>().<span style="color:#a6e22e">getAsJsonObject</span>(); <span style="color:#75715e">// Es el objeto JSON de la variable de franxa</span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    }</span></span></code></pre></div>
+<ul>
+<li><strong>Recorrer todos los posibles valores de <code>VariableMeteo</code> y obtener el objeto asociado a ese valor</strong>:</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> PrediccionDia <span style="color:#a6e22e">deserialize</span>(JsonElement json, Type typeOfT, JsonDeserializationContext context) <span style="color:#66d9ef">throws</span> JsonParseException {
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (VariableMeteo variable : VariableMeteo.<span style="color:#a6e22e">values</span>()) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (jsonObject.<span style="color:#a6e22e">has</span>(variable.<span style="color:#a6e22e">getNome</span>())) { <span style="color:#75715e">// tiene esa variable de franxa</span>
+</span></span><span style="display:flex;"><span>                getVariableFranxa(variable, jsonObject.<span style="color:#a6e22e">get</span>(variable.<span style="color:#a6e22e">getNome</span>()).<span style="color:#a6e22e">getAsJsonObject</span>());
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span>    }</span></span></code></pre></div>
+<p><strong>f.3.</strong> Modifica el método toString() de VariableMeteo para que imprima según la siguiente regla:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>CIELO <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;Cielo&#34;</span>;
+</span></span><span style="display:flex;"><span>LLUVIA <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;Lluvia&#34;</span>;
+</span></span><span style="display:flex;"><span>TEMPERATURA_MAXIMA <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;Tempertura máxima&#34;</span>;
+</span></span><span style="display:flex;"><span>TEMPERATURA_MINIMA <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;Temperatura mínima&#34;</span>;
+</span></span><span style="display:flex;"><span>VIENTO <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;Viento&#34;</span>;</span></span></code></pre></div>
+<p>El resultado tras la ejecución debe ser algo así:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span>Santiago de Compostela [15078]
+</span></span><span style="display:flex;"><span>--------------------------------------------------
+</span></span><span style="display:flex;"><span>2024-11-06 (aviso: 0) , Máxima: 23, Mínima: 16, Índice ultravioleta máx: 2 
+</span></span><span style="display:flex;"><span>Cielo: (103, 103, 202)
+</span></span><span style="display:flex;"><span>Lluvia: (5, 5, 5)
+</span></span><span style="display:flex;"><span>Tempertura máxima: (21, 23, 18)
+</span></span><span style="display:flex;"><span>Temperatura mínima: (16, 19, 14)
+</span></span><span style="display:flex;"><span>Viento: (300, 306, 302)
+</span></span><span style="display:flex;"><span>--------------------------------------------------
+</span></span><span style="display:flex;"><span>2024-11-07 (aviso: 0) , Máxima: 21, Mínima: 14, Índice ultravioleta máx: 2 
+</span></span><span style="display:flex;"><span>Cielo: (102, 102, 204)
+</span></span><span style="display:flex;"><span>Lluvia: (5, 5, 5)
+</span></span><span style="display:flex;"><span>Tempertura máxima: (20, 21, 17)
+</span></span><span style="display:flex;"><span>Temperatura mínima: (14, 18, 13)
+</span></span><span style="display:flex;"><span>Viento: (304, 300, 299)
+</span></span><span style="display:flex;"><span>--------------------------------------------------
+</span></span><span style="display:flex;"><span>2024-11-08 (aviso: 0) , Máxima: 18, Mínima: 11, Índice ultravioleta máx: 2 
+</span></span><span style="display:flex;"><span>Cielo: (104, 108, 205)
+</span></span><span style="display:flex;"><span>Lluvia: (5, 55, 35)
+</span></span><span style="display:flex;"><span>Tempertura máxima: (-, -, -)
+</span></span><span style="display:flex;"><span>Temperatura mínima: (-, -, -)
+</span></span><span style="display:flex;"><span>Viento: (300, 306, 301)
+</span></span><span style="display:flex;"><span>--------------------------------------------------
+</span></span><span style="display:flex;"><span>2024-11-09 (aviso: 0) , Máxima: 17, Mínima: 9, Índice ultravioleta máx: 2 
+</span></span><span style="display:flex;"><span>Cielo: (104, 104, 205)
+</span></span><span style="display:flex;"><span>Lluvia: (10, 10, 5)
+</span></span><span style="display:flex;"><span>Tempertura máxima: (-, -, -)
+</span></span><span style="display:flex;"><span>Temperatura mínima: (-, -, -)
+</span></span><span style="display:flex;"><span>Viento: (299, 299, 299)
+</span></span><span style="display:flex;"><span>--------------------------------------------------</span></span></code></pre></div>
+<hr>
+<p><strong>g.</strong> <strong>Recuperación de la lista de Concellos de MeteoGalicia</strong>. El json con la lista de concellos está compartido en &ldquo;común&rdquo;: concellos.json, y tiene el siguiente formato:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>[
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">15078</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;nombre&#34;</span>: <span style="color:#e6db74">&#34;Santiago de Compostela&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">15079</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;nombre&#34;</span>: <span style="color:#e6db74">&#34;A Coruña&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">15080</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;nombre&#34;</span>: <span style="color:#e6db74">&#34;Ferrol&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">15081</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;nombre&#34;</span>: <span style="color:#e6db74">&#34;Lugo&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">15082</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;nombre&#34;</span>: <span style="color:#e6db74">&#34;Ourense&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">15083</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;nombre&#34;</span>: <span style="color:#e6db74">&#34;Pontevedra&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">15084</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;nombre&#34;</span>: <span style="color:#e6db74">&#34;Vigo&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>]</span></span></code></pre></div>
+<p>Haz un <strong>adaptador para recuperar la lista de concellos</strong>. Crea una <strong>clase <code>ConcelloAdapter</code> que permita recuperar la lista de concellos de MeteoGalicia</strong>. Este adaptador debe ser de tipo <code>TypeAdapter&lt;List&lt;Concello&gt;&gt;</code> y debe devolver una lista de objetos de tipo <code>Concello</code>.</p>
+<p>Haz un programa que muestre la lista de concellos.</p>
+<hr>
+<p><strong>h.</strong> Dado el archivo Json con los concellos clasificados por Provincia, crea una clase Provincia, que tenga un atributo <code>nombre</code> y una lista de concellos. Crea un adaptador para recuperar la lista de provincias y los Concellos asociados.</p>
+<p>EL formato del archivo Json es el siguiente:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;A Coruña&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">15001</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;nombre&#34;</span>: <span style="color:#e6db74">&#34;Abegondo&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">15002</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;nombre&#34;</span>: <span style="color:#e6db74">&#34;Ames&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Lugo&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">27001</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;nombre&#34;</span>: <span style="color:#e6db74">&#34;Abadín&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">27002</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;nombre&#34;</span>: <span style="color:#e6db74">&#34;Alfoz&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Ourense&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">32001</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;nombre&#34;</span>: <span style="color:#e6db74">&#34;Allariz&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">32002</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;nombre&#34;</span>: <span style="color:#e6db74">&#34;Amoeiro&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Pontevedra&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">36001</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;nombre&#34;</span>: <span style="color:#e6db74">&#34;A Cañiza&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">36002</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;nombre&#34;</span>: <span style="color:#e6db74">&#34;A Estrada&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<hr>
+<p><strong>i.</strong> Dada la interface DAO:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.List;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Dao</span> <span style="color:#f92672">&lt;</span>T, K<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>    T <span style="color:#a6e22e">getById</span>(K id);
+</span></span><span style="display:flex;"><span>    T <span style="color:#a6e22e">getByName</span>(String name);
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getAll</span>();
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p><strong>a)</strong> Crea una <strong>clase <code>ConcelloDao</code> que implemente la interface <code>Dao&lt;Concello, Integer&gt;</code></strong>.:</p>
+<ul>
+<li>Debe tener dos atributos estáticos:
+<ul>
+<li><code>CONCELLOS_JSON</code> con el nombre del archivo JSON con la lista de concellos (<code>concellos.json</code>).</li>
+<li><code>TIPO</code> a emplear en las listas de concellos: <code>new TypeToken&lt;List&lt;Concello&gt;&gt;() {}.getType()</code>.</li>
+</ul>
+</li>
+<li>La clase <code>ConcelloDao</code> debe tener un <strong>atributo <code>concellos</code> de <code>List&lt;Concello&gt;</code></strong> con la lista de concellos.</li>
+<li>Declara dos constructores:
+<ul>
+<li><strong>No recoja nada y obtenga la lista de concellos del archivo JSON</strong> por defecto, <code>CONCELLOS_JSON</code>.</li>
+<li><strong>Un constructor que recoja un <code>InputStream</code>/<code>Reader</code> al archivo JSON</strong> y cargue la lista de concellos de ese recurso.</li>
+</ul>
+</li>
+<li>Los métodos implantados de la interfaz DAO son:
+<ul>
+<li><strong><code>getById(Integer idConcello)</code> y <code>getByName(String nomeConcello)</code></strong>.</li>
+<li><strong><code>getAll()</code></strong>.</li>
+</ul>
+</li>
+</ul>
+<p><strong>a)</strong> Crea una <strong>clase <code>ProvinciaDao</code> que implemente la interfaz <code>Dao&lt;Provincia, Integer&gt;</code></strong>.:</p>
+<ul>
+<li>Debe tener dos atributos estáticos:
+<ul>
+<li><code>PROVINCIAS_FILE</code> con el nombre del archivo JSON con la lista de provincias (<code>provincias.json</code>).</li>
+<li><code>TIPO</code> a emplear en las listas de provincias: <code>new TypeToken&lt;List&lt;Provincia&gt;&gt;() {}.getType()</code>.</li>
+</ul>
+</li>
+<li>La clase <code>ProvinciaDao</code> debe tener un <strong>atributo <code>provincias</code> de <code>List&lt;Provincia&gt;</code></strong> con la lista de provincias.</li>
+<li>Declara dos constructores:
+<ul>
+<li>Uno que <strong>no recoja nada y obtenga la lista de provincias del archivo JSON</strong> por defecto, <code>PROVINCIAS_FILE</code>.</li>
+<li><strong>Un constructor que recoja un <code>InputStream</code>/<code>Reader</code> al archivo JSON</strong> y cargue la lista de provincias de ese recurso.</li>
+</ul>
+</li>
+<li>Los métodos implantados de la interfaz DAO son:
+<ul>
+<li><strong><code>getById(Integer idProvincia)</code> y <code>getByName(String nomeProvincia)</code></strong>.</li>
+<li><strong><code>getAll()</code></strong>.</li>
+</ul>
+</li>
+</ul>
+<p><strong>c)</strong> Crea una clase PrediccionDao que implemente la interfaz <code>Dao&lt;Prediccion, Integer&gt;</code>:</p>
+<ul>
+<li>Debe tener dos atributos estáticos:
+<ul>
+<li><code>BASE_URL</code> con la ruta base para la predicción de un concello: <code>&quot;https://servizos.meteogalicia.gal/mgrss/predicion/jsonPredConcellos.action?idConc=&quot;</code></li>
+</ul>
+</li>
+<li>Atributos:
+<ul>
+<li><code>gson</code> de tipo <code>Gson</code> para la deserialización de los objetos JSON.</li>
+<li><code>concelloDao</code> de tipo <code>ConcelloDao</code> para la recuperación de los id de los concellos a partir del nombre o la lista de concellos.</li>
+</ul>
+</li>
+<li>Constructores:
+<ul>
+<li>Uno que <strong>no recoja nada</strong> y cree un <code>ConcelloDao</code> por defecto, así como un <code>Gson</code> con el adaptador de <code>Prediccion</code>.</li>
+<li>Un <strong>constructor que recoja un <code>ConcelloDao</code></strong> y cree <code>Gson</code> para la deserialización de los objetos JSON con el adaptador de <code>Prediccion</code>.</li>
+<li>Un <strong>constructor que recoja un <code>ConcelloDao</code> y un <code>Gson</code></strong> para la deserialización de los objetos JSON.</li>
+</ul>
+</li>
+<li>Implantación de los métodos de la interfaz DAO:
+<ul>
+<li><strong><code>getById(Integer idConcello)</code></strong> que recupera la predicción de un concello a partir de su id.</li>
+<li><strong><code>getByName(String nomeConcello)</code></strong> que recupera la predicción de un concello a partir de su nombre.</li>
+<li><strong><code>getAll()</code></strong> que recupera la predicción de todos los concellos.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>j.</strong> Mejora el programa AppPredicción para que <strong>pueda mostrar la predicción de cualquier concello</strong>. Para ello, <strong>deberás solicitar al usuario el id, comprobar que existe</strong> y mostrar la predicción de ese concello.
+Haz un menú que permita al usuario <strong>buscar el nombre de un concello de modo que contenda la cadena escrita</strong>, mostrando los <strong>ids de esos concellos</strong>. Después, debe permitir al usuario introducir el id del concello y mostrar la predicción.</p>
+  </div>
+</details>
+
+  <footer class="footline"></article>
+<footer>
+   <i class='fas fa-user'></i>  <span itemprop="name"> </span>
+
+<i class='fas fa-calendar'></i> Última actualización: 06.06.2025 
+</footer>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<img  src="../../../images/logo-ies.png" style="color:white;  font-size: 20px;" id="logo" href="http://manuais.pages.iessanclemente.net/apuntes/">
+        </div>
+        <search><form action="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Buscar (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Buscar</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Buscar...">
+            <button class="search-clear" type="button" data-search-clear="" title="Borrar búsqueda"><i class="fas fa-times" title="Borrar búsqueda"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/index.html"><a class="padding" href="../../../index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/index.html"><input type="checkbox" id="R-section-0758abab80c2aa84781892223aa808b3" aria-controls="R-subsections-0758abab80c2aa84781892223aa808b3"><label for="R-section-0758abab80c2aa84781892223aa808b3"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 0. Refuerzo y ayudas complementarias</span></label><a class="padding" href="../../../00ayudas/index.html">UD 0. Refuerzo y ayudas complementarias<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-0758abab80c2aa84781892223aa808b3" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/index.html"><input type="checkbox" id="R-section-1b1977ce428c9ac8dab8b72f8979bcb5" aria-controls="R-subsections-1b1977ce428c9ac8dab8b72f8979bcb5"><label for="R-section-1b1977ce428c9ac8dab8b72f8979bcb5"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01 Configuración y despliegue</span></label><a class="padding" href="../../../00ayudas/00configjava/index.html">01 Configuración y despliegue<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1b1977ce428c9ac8dab8b72f8979bcb5" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/01jarfiles/index.html"><a class="padding" href="../../../00ayudas/00configjava/01jarfiles/index.html">01 Archivos Jar<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/02jarwithmaven/index.html"><a class="padding" href="../../../00ayudas/00configjava/02jarwithmaven/index.html">02 Creación de un JAR ejecutable con Java con Apache Maven<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/00configjava/03dependencias/index.html"><a class="padding" href="../../../00ayudas/00configjava/03dependencias/index.html">03. Dependencias Maven.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/index.html"><input type="checkbox" id="R-section-0ee0a79915535bc59e8b9d0e78f65ef9" aria-controls="R-subsections-0ee0a79915535bc59e8b9d0e78f65ef9"><label for="R-section-0ee0a79915535bc59e8b9d0e78f65ef9"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02 Java General</span></label><a class="padding" href="../../../00ayudas/02javageneral/index.html">02 Java General<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-0ee0a79915535bc59e8b9d0e78f65ef9" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/01streamapi/index.html"><a class="padding" href="../../../00ayudas/02javageneral/01streamapi/index.html">00.01 Java Stream API<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/02urlfiles/index.html"><a class="padding" href="../../../00ayudas/02javageneral/02urlfiles/index.html">00.02 Descarga de archivos de Internet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/02javageneral/03hashcode/index.html"><a class="padding" href="../../../00ayudas/02javageneral/03hashcode/index.html">03 Implementación de hashCode()<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/index.html"><input type="checkbox" id="R-section-8eb2a58628ca595eccda7f8f066488f0" aria-controls="R-subsections-8eb2a58628ca595eccda7f8f066488f0"><label for="R-section-8eb2a58628ca595eccda7f8f066488f0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 03. Layouts en Java Swing &amp; UI</span></label><a class="padding" href="../../../00ayudas/03layouts/index.html">03. Layouts en Java Swing &amp; UI<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8eb2a58628ca595eccda7f8f066488f0" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/00dialogosenswing/index.html"><a class="padding" href="../../../00ayudas/03layouts/00dialogosenswing/index.html">01 Ventanas de entrada de datos, mensajes y archivos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/03layouts/05gridbaglayout/index.html"><a class="padding" href="../../../00ayudas/03layouts/05gridbaglayout/index.html">05 GridBagLayout<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/index.html"><input type="checkbox" id="R-section-1c69dc8b47fb6fae98603b1968118cf8" aria-controls="R-subsections-1c69dc8b47fb6fae98603b1968118cf8"><label for="R-section-1c69dc8b47fb6fae98603b1968118cf8"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 04. Patrones de diseño</span></label><a class="padding" href="../../../00ayudas/04patronesdisenho/index.html">04. Patrones de diseño<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1c69dc8b47fb6fae98603b1968118cf8" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/01designprinciples/index.html"><a class="padding" href="../../../00ayudas/04patronesdisenho/01designprinciples/index.html">01. Principios de diseño<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/02singleton/index.html"><a class="padding" href="../../../00ayudas/04patronesdisenho/02singleton/index.html">02. Patrón Singleton<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/04patronesdisenho/03objetosinmutables/index.html"><a class="padding" href="../../../00ayudas/04patronesdisenho/03objetosinmutables/index.html">03. Objetos Inmutables<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/index.html"><input type="checkbox" id="R-section-36a825e367dd24b7cccca030c91ea60b" aria-controls="R-subsections-36a825e367dd24b7cccca030c91ea60b"><label for="R-section-36a825e367dd24b7cccca030c91ea60b"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 05. Programación en Kotlin</span></label><a class="padding" href="../../../00ayudas/05kotlin/index.html">05. Programación en Kotlin<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-36a825e367dd24b7cccca030c91ea60b" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/index.html"><input type="checkbox" id="R-section-312a90d18fa918ef04d04e75820d73c0" aria-controls="R-subsections-312a90d18fa918ef04d04e75820d73c0"><label for="R-section-312a90d18fa918ef04d04e75820d73c0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación estructurada básica</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/index.html">Programación estructurada básica<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-312a90d18fa918ef04d04e75820d73c0" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/10.-la_funcion_main/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/10.-la_funcion_main/index.html">La funcion main()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/20.-la_funcion-print-_y-_println/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/20.-la_funcion-print-_y-_println/index.html">La funcion print() y println()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/30.-comentarios/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/30.-comentarios/index.html">Comentarios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/40.-variables-_-literales-_y_-sentencia_-de_-asignación/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/40.-variables-_-literales-_y_-sentencia_-de_-asignaci%c3%b3n/index.html">Variables, literales y sentencia de asignación<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/50.-palabras_reservadas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/50.-palabras_reservadas/index.html">Palabras reservadas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/index.html"><input type="checkbox" id="R-section-94a2bfa5cc4fa0f33d0f2cf1c75e3265" aria-controls="R-subsections-94a2bfa5cc4fa0f33d0f2cf1c75e3265"><label for="R-section-94a2bfa5cc4fa0f33d0f2cf1c75e3265"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú tipos de datos y operadores</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/index.html">tipos de datos y operadores<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-94a2bfa5cc4fa0f33d0f2cf1c75e3265" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/60.tipos_de_datos_basicos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/60.tipos_de_datos_basicos/index.html">Tipos de datos básicos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/70.tipos_numericos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/70.tipos_numericos/index.html">Tipos Numéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/80.tipos_no_-numericos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/80.tipos_no_-numericos/index.html">Tipos básicos  No Numéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/90.conversion_de_tipos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/90.conversion_de_tipos/index.html">Conversión de Tipos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/100.-operadores/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/100.-operadores/index.html">Operadores<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/110.-expresiones_booleanas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/tipos_de_datos_y_operadores_basicos/110.-expresiones_booleanas/index.html">Expresiones booleanas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/index.html"><input type="checkbox" id="R-section-840caf4a5c9da596bf4345cae4c798ab" aria-controls="R-subsections-840caf4a5c9da596bf4345cae4c798ab"><label for="R-section-840caf4a5c9da596bf4345cae4c798ab"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú colecciones básicas</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/index.html">colecciones básicas<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-840caf4a5c9da596bf4345cae4c798ab" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/120.-string/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/120.-string/index.html">String<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/130.-listas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/130.-listas/index.html">Listas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/coleccionesbasicas/140.rangos-/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/coleccionesbasicas/140.rangos-/index.html">Rangos<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/150.-entrada_teclado/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/150.-entrada_teclado/index.html">Entrada de datos por teclado con readln()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/index.html"><input type="checkbox" id="R-section-f79f31fcf5ae1f44691bca6f05e1710f" aria-controls="R-subsections-f79f31fcf5ae1f44691bca6f05e1710f"><label for="R-section-f79f31fcf5ae1f44691bca6f05e1710f"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú control de flujo</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/index.html">control de flujo<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-f79f31fcf5ae1f44691bca6f05e1710f" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/151.-control_de_flujo/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/151.-control_de_flujo/index.html">Control de flujo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/160.-sentencia_condicional_if/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/160.-sentencia_condicional_if/index.html">Sentencia condicional IF<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/190.-sentecia_when/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/190.-sentecia_when/index.html">Sentencia when<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/200.-bucle_for/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/200.-bucle_for/index.html">Bucle for<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/210.-while_y_do_while/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/210.-while_y_do_while/index.html">while y do while<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/220.-variables_locales_y_bloques/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/220.-variables_locales_y_bloques/index.html">variables locales y bloques<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/230.-break_y_continue/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/230.-break_y_continue/index.html">break y continue<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/control_de_-flujo/240.otras_formas_de_iterar/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/control_de_-flujo/240.otras_formas_de_iterar/index.html">Otras formas de iterar<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/250.-funciones/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/250.-funciones/index.html">Funciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/260.el_valor_nulo/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/260.el_valor_nulo/index.html">El valor nulo<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/270.-readline/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/270.-readline/index.html">Entrada de datos por teclado con readLine()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/index.html"><input type="checkbox" id="R-section-44784ce5c237bf9124eefe20ce36272f" aria-controls="R-subsections-44784ce5c237bf9124eefe20ce36272f"><label for="R-section-44784ce5c237bf9124eefe20ce36272f"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú más sobre colecciones básicas</span></label><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/index.html">más sobre colecciones básicas<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-44784ce5c237bf9124eefe20ce36272f" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/310.-arrays/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/310.-arrays/index.html">Arrays<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/320.-listas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/320.-listas/index.html">Listas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/330.rangos-/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/330.rangos-/index.html">Rangos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/340.mapas-/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/340.mapas-/index.html">Mapas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/350.iterar_sobre_colecciones/index.html"><a class="padding" href="../../../00ayudas/05kotlin/01progestructurada/mas_sobre_colecciones_basicas/350.iterar_sobre_colecciones/index.html">Iterar sobre colecciones<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/index.html"><input type="checkbox" id="R-section-1ef1a5ed807dacffeb206c0950804c3a" aria-controls="R-subsections-1ef1a5ed807dacffeb206c0950804c3a"><label for="R-section-1ef1a5ed807dacffeb206c0950804c3a"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación orientada a objetos</span></label><a class="padding" href="../../../00ayudas/05kotlin/02progoo/index.html">Programación orientada a objetos<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-1ef1a5ed807dacffeb206c0950804c3a" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1010.objetos_y_clases/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1010.objetos_y_clases/index.html">Objetos y clases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1020.constructores-/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1020.constructores-/index.html">Constructores<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1030.propiedades/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1030.propiedades/index.html">Propiedades<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1040.sobreescribir_tostring/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1040.sobreescribir_tostring/index.html">Sobreescribir toString()<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1060.modificadoresvisibilidad/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1060.modificadoresvisibilidad/index.html">modificadores de visibilidad<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1070.enum/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1070.enum/index.html">clases Enum<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1100.composicion/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1100.composicion/index.html">Composición<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1200.herencia/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1200.herencia/index.html">Herencia<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1220.clases_abstractas_interfaces/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1220.clases_abstractas_interfaces/index.html">Clases abstractas e Interfaces<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1240.dataclases/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1240.dataclases/index.html">Data Clases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1250.keywordobject/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1250.keywordobject/index.html">La palabra reservada object. Companion object, objetos singleton y objetos expressions<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1255.excepciones/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1255.excepciones/index.html">Excepciones en Kotlin<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1260.genericos/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1260.genericos/index.html">Genéricos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1265.clausulatypealiases/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1265.clausulatypealiases/index.html">cláusula typealiases<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1270.delegacion/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1270.delegacion/index.html">Delegación con cláusula by<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/02progoo/1280.claesanidadaseinternas/index.html"><a class="padding" href="../../../00ayudas/05kotlin/02progoo/1280.claesanidadaseinternas/index.html">Clases anidadas e internas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/index.html"><input type="checkbox" id="R-section-8bbd4a78f07b64e8b2bc4b83b71f1498" aria-controls="R-subsections-8bbd4a78f07b64e8b2bc4b83b71f1498"><label for="R-section-8bbd4a78f07b64e8b2bc4b83b71f1498"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Programación funcional</span></label><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/index.html">Programación funcional<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8bbd4a78f07b64e8b2bc4b83b71f1498" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2010.funcioneskotlin/index.html"><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/2010.funcioneskotlin/index.html">sintáxis avanzada de las  funciones kotlin<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2020.-basesdepf/index.html"><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/2020.-basesdepf/index.html">algunos conceptos básicos de programación funcional<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2030.funcionesordensuperiorcolecciones/index.html"><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/2030.funcionesordensuperiorcolecciones/index.html">funciones de orden superior y colecciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/00ayudas/05kotlin/03progfuncional/2040.funcionesordensuperiorysequence/index.html"><a class="padding" href="../../../00ayudas/05kotlin/03progfuncional/2040.funcionesordensuperiorysequence/index.html">funciones de orden superior y sequence<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li></ul></li></ul></li>
+            <li class="parent " data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/index.html"><input type="checkbox" id="R-section-cf4ee7bae7fca4e692355524601fe599" aria-controls="R-subsections-cf4ee7bae7fca4e692355524601fe599" checked><label for="R-section-cf4ee7bae7fca4e692355524601fe599"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML</span></label><a class="padding" href="../../index.html">UD 1. Acceso a ficheros, flujos, serialización de objetos, ficheros JSON y XML<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-cf4ee7bae7fca4e692355524601fe599" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/index.html"><input type="checkbox" id="R-section-ec127efd28751c1f836952c8dac2374d" aria-controls="R-subsections-ec127efd28751c1f836952c8dac2374d"><label for="R-section-ec127efd28751c1f836952c8dac2374d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.01 Java IO. Acceso a ficheros, flujos, serialización de objetos.</span></label><a class="padding" href="../../01javaio/index.html">01.01 Java IO. Acceso a ficheros, flujos, serialización de objetos.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-ec127efd28751c1f836952c8dac2374d" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0100javaiointro/index.html"><a class="padding" href="../../01javaio/0100javaiointro/index.html">01.00 Java IO. Introducción.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0101javaiofile/index.html"><a class="padding" href="../../01javaio/0101javaiofile/index.html">01.01 La clase File<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0102randomaccessfile/index.html"><a class="padding" href="../../01javaio/0102randomaccessfile/index.html">01.02 La clase RandomAccessFile<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0103javaiostreams/index.html"><a class="padding" href="../../01javaio/0103javaiostreams/index.html">01.03 Flujos de E/S<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0104bytestream/index.html"><a class="padding" href="../../01javaio/0104bytestream/index.html">01.04 Flujos de byte<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0105characterstream/index.html"><a class="padding" href="../../01javaio/0105characterstream/index.html">01.05 Flujos de caracteres<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0106javaiobuffer/index.html"><a class="padding" href="../../01javaio/0106javaiobuffer/index.html">01.06 Flujos de E/S con Buffer<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0107javaistream/index.html"><a class="padding" href="../../01javaio/0107javaistream/index.html">01.07 Operaciones comunes con flujos de E/S.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/01javaio/0109ejercicios/index.html"><a class="padding" href="../../01javaio/0109ejercicios/index.html">Ejercicios<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/index.html"><input type="checkbox" id="R-section-2d1e1941df73311305891c0dca6583fd" aria-controls="R-subsections-2d1e1941df73311305891c0dca6583fd"><label for="R-section-2d1e1941df73311305891c0dca6583fd"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.02 Java NIO.2</span></label><a class="padding" href="../../02javanio2/index.html">01.02 Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-2d1e1941df73311305891c0dca6583fd" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0202javaniopath/index.html"><a class="padding" href="../../02javanio2/0202javaniopath/index.html">02.01. La interface Path<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0203javaniopathcreate/index.html"><a class="padding" href="../../02javanio2/0203javaniopathcreate/index.html">02.03. Creación de Path<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0204javaniopath/index.html"><a class="padding" href="../../02javanio2/0204javaniopath/index.html">02.04. Operaciones comunes de Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0205javaniopathmethods/index.html"><a class="padding" href="../../02javanio2/0205javaniopathmethods/index.html">02.05. Métodos y con Path Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/02javanio2/0206javaniostreams/index.html"><a class="padding" href="../../02javanio2/0206javaniostreams/index.html">02.06. Programación funcional con Java NIO.2<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="parent " data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/index.html"><input type="checkbox" id="R-section-662c48eb0e2f97ba0e58c14a690fca47" aria-controls="R-subsections-662c48eb0e2f97ba0e58c14a690fca47" checked><label for="R-section-662c48eb0e2f97ba0e58c14a690fca47"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 01.03 JSON en Java</span></label><a class="padding" href="../index.html">01.03 JSON en Java<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-662c48eb0e2f97ba0e58c14a690fca47" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0300jsonintro/index.html"><a class="padding" href="../0300jsonintro/index.html">01.00. Introducción a JSON<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0301jsonjs/index.html"><a class="padding" href="../0301jsonjs/index.html">01.01. JSON con el API JavaScript de Java<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0302jsonlibraries/index.html"><a class="padding" href="../0302jsonlibraries/index.html">01.02. Bibliotecas JSON para Java<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0304gson/index.html"><a class="padding" href="../0304gson/index.html">01.03. Gson. Introducción<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0304gsondiagram/index.html"><a class="padding" href="../0304gsondiagram/index.html">01.03. Gson. Diagrama de clases (e interfaces)<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0305gsoncreate/index.html"><a class="padding" href="../0305gsoncreate/index.html">01.04. Gson. Creación de instancias Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0306creaciongson/index.html"><a class="padding" href="../0306creaciongson/index.html">01.05 Gson. Creación y lectura de objetos JSON<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0306transformacion/index.html"><a class="padding" href="../0306transformacion/index.html">01.06. Gson. Transformación de objetos JSON personalizada<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="active " data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0307jsonreader01/index.html"><a class="padding" href="index.html">01.07 Gson. JsonReader<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0308jsonrename/index.html"><a class="padding" href="../0308jsonrename/index.html">01.08 Gson. Renombrar atributos <i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0309jsonserialize/index.html"><a class="padding" href="../0309jsonserialize/index.html">01.09 Resumen Serialización Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/0310jsondeserialize/index.html"><a class="padding" href="../0310jsondeserialize/index.html">01.09 Resumen Deserialización Gson<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/03json/098ejercicio/index.html"><a class="padding" href="../098ejercicio/index.html">Ejercicio. Trivial<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/01accesoficheros/0105ejercicios/index.html"><a class="padding" href="../../0105ejercicios/index.html">Ejercicios y recursos<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/index.html"><input type="checkbox" id="R-section-342b2e95b9611e1108f16a11c61cd1f2" aria-controls="R-subsections-342b2e95b9611e1108f16a11c61cd1f2"><label for="R-section-342b2e95b9611e1108f16a11c61cd1f2"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 2. Acceso a BD remotas relacionales</span></label><a class="padding" href="../../../02accesobd/index.html">UD 2. Acceso a BD remotas relacionales<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-342b2e95b9611e1108f16a11c61cd1f2" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/index.html"><input type="checkbox" id="R-section-66326b82828cdbb6e30c77e924342908" aria-controls="R-subsections-66326b82828cdbb6e30c77e924342908"><label for="R-section-66326b82828cdbb6e30c77e924342908"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02.02 JDBC. Introducción a las Bases de datos relacionales.</span></label><a class="padding" href="../../../02accesobd/02db/index.html">02.02 JDBC. Introducción a las Bases de datos relacionales.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-66326b82828cdbb6e30c77e924342908" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0101databases/index.html"><a class="padding" href="../../../02accesobd/02db/0101databases/index.html">02.01. Sistemas gestores de bases de datos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0102introdb/index.html"><a class="padding" href="../../../02accesobd/02db/0102introdb/index.html">02. Introducción a las bases de datos relacionales<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0103postgresql/index.html"><a class="padding" href="../../../02accesobd/02db/0103postgresql/index.html">03. PostgreSQL<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/02db/0104postgres01/index.html"><a class="padding" href="../../../02accesobd/02db/0104postgres01/index.html">04. PostgreSQL. Características y Operadores.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/index.html"><input type="checkbox" id="R-section-4b93c45cd959371d7c20dcc7da6d632c" aria-controls="R-subsections-4b93c45cd959371d7c20dcc7da6d632c"><label for="R-section-4b93c45cd959371d7c20dcc7da6d632c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 02.03. Procesamiento de sentencias SQL.</span></label><a class="padding" href="../../../02accesobd/03procesandosql/index.html">02.03. Procesamiento de sentencias SQL.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-4b93c45cd959371d7c20dcc7da6d632c" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0101procesamientosql/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0101procesamientosql/index.html">01. Procesamiento de sentencias SQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0102conexiones/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0102conexiones/index.html">02. Conexiones a BD<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0103excepcionessql/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0103excepcionessql/index.html">03. Excepciones SQLException<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0104resultset/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0104resultset/index.html">04. ResultSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0105resultsetbatch/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0105resultsetbatch/index.html">05. Actualizaciones por lotes con ResultSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0106preparedst/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0106preparedst/index.html">06. Prepared Statement<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0107transacciones/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0107transacciones/index.html">07. Transacciones<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0108clavesgeneradas/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0108clavesgeneradas/index.html">08. Claves Generadas<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0109largeobjects/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0109largeobjects/index.html">09. Objectos grandes<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0111rowset/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0111rowset/index.html">11. RowSet<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/03procesandosql/0115boletines/index.html"><a class="padding" href="../../../02accesobd/03procesandosql/0115boletines/index.html">15. Ejercicios y archivos de la unidad<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/02accesobd/99proyecto/index.html"><a class="padding" href="../../../02accesobd/99proyecto/index.html">Proyecto 1ª evaluación<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/index.html"><input type="checkbox" id="R-section-87c8b6c6cd354a309db816f73d185be0" aria-controls="R-subsections-87c8b6c6cd354a309db816f73d185be0"><label for="R-section-87c8b6c6cd354a309db816f73d185be0"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 3. Object/Relational Mapping (ORM). JPA e Hibernate</span></label><a class="padding" href="../../../03orm/index.html">UD 3. Object/Relational Mapping (ORM). JPA e Hibernate<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-87c8b6c6cd354a309db816f73d185be0" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/index.html"><input type="checkbox" id="R-section-5aaca10806a740cf4d784be6e24473b9" aria-controls="R-subsections-5aaca10806a740cf4d784be6e24473b9"><label for="R-section-5aaca10806a740cf4d784be6e24473b9"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 03.01. Jakarta Persistence (JPA).</span></label><a class="padding" href="../../../03orm/jpa/index.html">03.01. Jakarta Persistence (JPA).<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-5aaca10806a740cf4d784be6e24473b9" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/01jpa/index.html"><a class="padding" href="../../../03orm/jpa/01jpa/index.html">01. Jakarta Persistence (JPA).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/02jpavshibernate/index.html"><a class="padding" href="../../../03orm/jpa/02jpavshibernate/index.html">02. JPA vs Hibernate.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/03jpaejercicio/index.html"><a class="padding" href="../../../03orm/jpa/03jpaejercicio/index.html">03. Ejercicio básico de JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/04entitymanager/index.html"><a class="padding" href="../../../03orm/jpa/04entitymanager/index.html">04. Gestión de entidades con EntityManager.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/05mapeoentidades/index.html"><a class="padding" href="../../../03orm/jpa/05mapeoentidades/index.html">05. Mapeo de entidades.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/06relaciones/index.html"><a class="padding" href="../../../03orm/jpa/06relaciones/index.html">06. Relaciones JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/07embedidos/index.html"><a class="padding" href="../../../03orm/jpa/07embedidos/index.html">07. Objetos embebidos.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/08colecciones/index.html"><a class="padding" href="../../../03orm/jpa/08colecciones/index.html">08. Mapeo de colecciones.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/09queries/index.html"><a class="padding" href="../../../03orm/jpa/09queries/index.html">09. Consultas.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/10jpql/index.html"><a class="padding" href="../../../03orm/jpa/10jpql/index.html">10. JPQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/11paginacion/index.html"><a class="padding" href="../../../03orm/jpa/11paginacion/index.html">11. Paginación de consultas.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/12herencia/index.html"><a class="padding" href="../../../03orm/jpa/12herencia/index.html">12. Herencia.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/14ejercicios/index.html"><a class="padding" href="../../../03orm/jpa/14ejercicios/index.html">Ejercicios de la unidad de JPA<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/15boletines/index.html"><a class="padding" href="../../../03orm/jpa/15boletines/index.html">Ejercicios de refuerzo.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/jpa/16dependencias/index.html"><a class="padding" href="../../../03orm/jpa/16dependencias/index.html">Dependencias Maven.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/95singleton/index.html"><a class="padding" href="../../../03orm/95singleton/index.html">03.02. Patrón Singleton.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/96ejerciciosrepaso/index.html"><a class="padding" href="../../../03orm/96ejerciciosrepaso/index.html">03.03. Ejercicios de refuerzo (Violín).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/97ejerciciosrepaso2/index.html"><a class="padding" href="../../../03orm/97ejerciciosrepaso2/index.html">03.04 Ejercicios de refuerzo (II)<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/03orm/98ejerciciosrepaso3/index.html"><a class="padding" href="../../../03orm/98ejerciciosrepaso3/index.html">03.05 Ejercicios de refuerzo (III)<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/index.html"><input type="checkbox" id="R-section-ffae27028787f9b794af8498ce8bc361" aria-controls="R-subsections-ffae27028787f9b794af8498ce8bc361"><label for="R-section-ffae27028787f9b794af8498ce8bc361"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 4. Spring.</span></label><a class="padding" href="../../../04spring/index.html">UD 4. Spring.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-ffae27028787f9b794af8498ce8bc361" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/01springboot/index.html"><a class="padding" href="../../../04spring/01springboot/index.html">01. Spring Boot.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/02springdata/index.html"><a class="padding" href="../../../04spring/02springdata/index.html">02. Spring Data JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/03practicajpadata/index.html"><a class="padding" href="../../../04spring/03practicajpadata/index.html">03. Práctica con de Spring Data JPA y REST.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/04repositorios/index.html"><a class="padding" href="../../../04spring/04repositorios/index.html">04. Repositorios String Data.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/05paginacion/index.html"><a class="padding" href="../../../04spring/05paginacion/index.html">05. Paginación y Ordenación usando Spring Data JPA.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/06paginacionrest/index.html"><a class="padding" href="../../../04spring/06paginacionrest/index.html">06. Paginación y Ordenación usando Spring Data REST.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/07vaadin/index.html"><a class="padding" href="../../../04spring/07vaadin/index.html">07. Spring Data JPA con Vaadin (práctica).<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/08ejecutores/index.html"><a class="padding" href="../../../04spring/08ejecutores/index.html">08. Ejecutores al inicio con Spring Boot<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/09serviciocompo/index.html"><a class="padding" href="../../../04spring/09serviciocompo/index.html">09. Servicios, componentes y repositorios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/10servicios/index.html"><a class="padding" href="../../../04spring/10servicios/index.html">10. Servicios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/index.html"><input type="checkbox" id="R-section-f25e02e15b94f5cb39179f26efa74bfe" aria-controls="R-subsections-f25e02e15b94f5cb39179f26efa74bfe"><label for="R-section-f25e02e15b94f5cb39179f26efa74bfe"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú 11. Proyecto Spring. Cuestionarios.</span></label><a class="padding" href="../../../04spring/11proyecto/index.html">11. Proyecto Spring. Cuestionarios.<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-f25e02e15b94f5cb39179f26efa74bfe" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/01modelo/index.html"><a class="padding" href="../../../04spring/11proyecto/01modelo/index.html">01. Modelo de datos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/02dto/index.html"><a class="padding" href="../../../04spring/11proyecto/02dto/index.html">02. DTO<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/03repositorios/index.html"><a class="padding" href="../../../04spring/11proyecto/03repositorios/index.html">03. Repositorios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/04controller/index.html"><a class="padding" href="../../../04spring/11proyecto/04controller/index.html">04. Controller<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/11proyecto/05resultados/index.html"><a class="padding" href="../../../04spring/11proyecto/05resultados/index.html">05. Pruebas y mejoras<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/04spring/12springproj/index.html"><a class="padding" href="../../../04spring/12springproj/index.html">12. Proyecto Spring. Cuestionarios.<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/index.html"><input type="checkbox" id="R-section-a0dc28a495fca757d219f1aec2ecff4c" aria-controls="R-subsections-a0dc28a495fca757d219f1aec2ecff4c"><label for="R-section-a0dc28a495fca757d219f1aec2ecff4c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú UD 5. Bases de datos no SQL. MongoDB</span></label><a class="padding" href="../../../05basesdatosnonsql/index.html">UD 5. Bases de datos no SQL. MongoDB<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-a0dc28a495fca757d219f1aec2ecff4c" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/mongodb/01nosql/index.html"><a class="padding" href="../../../05basesdatosnonsql/mongodb/01nosql/index.html">01. Bases de datos NoSQL.<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/05basesdatosnonsql/mongodb/03springmongodb/index.html"><a class="padding" href="../../../05basesdatosnonsql/mongodb/03springmongodb/index.html">03. Conexión a MongoDB con String Data MongoDB (práctica).<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/index.html"><input type="checkbox" id="R-section-8d4041f058dd2262e83830e1db38cc6d" aria-controls="R-subsections-8d4041f058dd2262e83830e1db38cc6d"><label for="R-section-8d4041f058dd2262e83830e1db38cc6d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Git</span></label><a class="padding" href="../../../git/index.html">Git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8d4041f058dd2262e83830e1db38cc6d" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/index.html"><input type="checkbox" id="R-section-a87776bdac862bf972ec945bc124b884" aria-controls="R-subsections-a87776bdac862bf972ec945bc124b884"><label for="R-section-a87776bdac862bf972ec945bc124b884"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Introducción git</span></label><a class="padding" href="../../../git/1.introduccion_git/index.html">Introducción git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-a87776bdac862bf972ec945bc124b884" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/1.introduccion_git/index.html"><a class="padding" href="../../../git/1.introduccion_git/1.introduccion_git/index.html">Introducción a git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/2.estados_git/index.html"><a class="padding" href="../../../git/1.introduccion_git/2.estados_git/index.html">Estados de git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/1.introduccion_git/3.instalacion_git/index.html"><a class="padding" href="../../../git/1.introduccion_git/3.instalacion_git/index.html">Instalación de git<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/index.html"><input type="checkbox" id="R-section-b63515bb4dcfe678de9ffac7a29c1e77" aria-controls="R-subsections-b63515bb4dcfe678de9ffac7a29c1e77"><label for="R-section-b63515bb4dcfe678de9ffac7a29c1e77"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Fundamentos git</span></label><a class="padding" href="../../../git/2.fundamentos_git/index.html">Fundamentos git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-b63515bb4dcfe678de9ffac7a29c1e77" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/1.configuracion_git/index.html"><a class="padding" href="../../../git/2.fundamentos_git/1.configuracion_git/index.html">Configuracion de git<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/2.inicializar_repo/index.html"><a class="padding" href="../../../git/2.fundamentos_git/2.inicializar_repo/index.html">Inicializando repositorio<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/3.cambios/index.html"><a class="padding" href="../../../git/2.fundamentos_git/3.cambios/index.html">Cambios en el repositorio<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/4.ignorar_archivos/index.html"><a class="padding" href="../../../git/2.fundamentos_git/4.ignorar_archivos/index.html">Archivos Ignorados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/5.checkout/index.html"><a class="padding" href="../../../git/2.fundamentos_git/5.checkout/index.html">Git checkout<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/6.log/index.html"><a class="padding" href="../../../git/2.fundamentos_git/6.log/index.html">Git Log<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/7.archivos_modificados/index.html"><a class="padding" href="../../../git/2.fundamentos_git/7.archivos_modificados/index.html">Archivos modificados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/8.cambios/index.html"><a class="padding" href="../../../git/2.fundamentos_git/8.cambios/index.html">Archivos modificados<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/9.eliminar_archivos/index.html"><a class="padding" href="../../../git/2.fundamentos_git/9.eliminar_archivos/index.html">Opciones con archivos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/2.fundamentos_git/10.limitar/index.html"><a class="padding" href="../../../git/2.fundamentos_git/10.limitar/index.html">Historial de confirmaciones<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/3.remotos/index.html"><a class="padding" href="../../../git/3.remotos/index.html">Remotos<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/4.etiquetado/index.html"><a class="padding" href="../../../git/4.etiquetado/index.html">Etiquetado<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/index.html"><input type="checkbox" id="R-section-d8234a81ae190365829886d9d8a058a7" aria-controls="R-subsections-d8234a81ae190365829886d9d8a058a7"><label for="R-section-d8234a81ae190365829886d9d8a058a7"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenú Ramas Git</span></label><a class="padding" href="../../../git/5.ramas_git/index.html">Ramas Git<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-d8234a81ae190365829886d9d8a058a7" class="collapsible-menu">
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/1.ramificaciones_git/index.html"><a class="padding" href="../../../git/5.ramas_git/1.ramificaciones_git/index.html">Ramificación<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/5.ramas_git/2.ramificaciones_remotas/index.html"><a class="padding" href="../../../git/5.ramas_git/2.ramificaciones_remotas/index.html">Ramas Remotas<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="https://manuais.pages.iessanclemente.net/git/6.claves_ssh/index.html"><a class="padding" href="../../../git/6.claves_ssh/index.html">Claves SSH<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <div class="nav-title padding">Más</div>
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/"><a class="padding" href="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/" rel="external" target="_blank"><i class='fas fa-fw fa-bookmark'></i>  Cómo editar plantilla<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="https://www.iessanclemente.net/"><a class="padding" href="https://www.iessanclemente.net/" rel="external" target="_blank"><i class='fas fa-home'></i> IES Tubalcain<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/categories"><a class="padding" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/categories"><i class='fa-fw fas fa-layer-group'></i> Categories<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/tags"><a class="padding" href="https://manuais.pages.iessanclemente.net/plantillas/dam/ad/tags"><i class='fa-fw fas fa-tags'></i> Tags<i class="fa-fw fas fa-check read-icon"></i></a></li>
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+            <li class="R-variantswitcher">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-paint-brush"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <label class="a11y-only" for="R-select-variant">Tema</label>
+                  <select id="R-select-variant">
+                    <option id="R-select-variant-blue" value="blue" selected>Blue</option>
+                    <option id="R-select-variant-relearn-light" value="relearn-light">Relearn Light</option>
+                    <option id="R-select-variant-relearn-dark" value="relearn-dark">Relearn Dark</option>
+                    <option id="R-select-variant-learn" value="learn">Learn</option>
+                    <option id="R-select-variant-neon" value="neon">Neon</option>
+                    <option id="R-select-variant-green" value="green">Green</option>
+                    <option id="R-select-variant-red" value="red">Red</option>
+                  </select>
+                </div>
+                <div class="clear"></div>
+              </div>
+              <script>window.relearn.markVariant();</script>
+            </li>
+            <li class="R-historyclearer">
+              <div class="padding menu-control">
+                <i class="fa-fw fas fa-history"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <button>Borrar Historial</button>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+<div id="R-footer">
+<div>
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/cc.png" height="30" />
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/by.png"  height="30"/>
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/nc-eu.png"  height="30"/>
+    <img src="../../../../../../../mirrors.creativecommons.org/presskit/icons/sa.png" height="30" />
+</div>
+</div>
+      </div>
+    </aside>
+    <script src="../../../js/clipboard/clipboard.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/perfect-scrollbar/perfect-scrollbar.min3c2e.js?1749199978" defer></script>
+    <script src="../../../js/theme.min3c2e.js?1749199978" defer></script>
+  </body>
+
+<!-- Mirrored from manuais.pages.iessanclemente.net/plantillas/dam/ad/01accesoficheros/03json/0307jsonreader01/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Sep 2025 20:45:34 GMT -->
+</html>
